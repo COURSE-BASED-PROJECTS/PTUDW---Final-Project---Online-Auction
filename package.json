@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "ptudw---final-project---online-auction",
+  "version": "1.0.0",
+  "description": "PTUDW - Final Project - Online Auction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction/issues"
+  },
+  "homepage": "https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

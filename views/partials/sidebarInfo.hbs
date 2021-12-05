@@ -1,0 +1,22 @@
+<div class="column is-2-tablet is-hidden-mobile">
+    <aside class="menu is-size-6-tablet">
+        <p class="menu-label is-size-6">Thông tin</p>
+        <ul class="menu-list">
+            <li><a href="/info/reviewHistory">Lịch sử đánh giá</a></li>
+            <li><a href="/info/favouriteProduct" class="is-active">Sản phẩm yêu thích</a></li>
+            <li><a href="/info/onlineAuction">Sản phẩm đang đấu giá</a></li>
+            <li><a href="/info/wonProduct">Sản phẩm đã thắng</a></li>
+        </ul>
+        <p class="menu-label is-size-6 {{#unless this.isSeller}}is-hidden{{/unless}}">Người bán</p>
+        <ul class="menu-list {{#unless this.isSeller}}is-hidden{{/unless}}">
+            <li><a href="/seller/liveProduct">Sản phẩm đang đăng</a></li>
+            <li><a href="/seller/soldProduct" class="is-active">Sản phẩm đã bán</a></li>
+        </ul>
+        <p class="menu-label is-size-6 {{#unless this.isAdmin}}is-hidden{{/unless}}">Admin</p>
+        <ul class="menu-list {{#unless this.isAdmin}}is-hidden{{/unless}}">
+            <li><a href="/admin/updateCategory">Danh mục</a></li>
+            <li><a href="/admin/Account" class="is-active">Tài khoản</a></li>
+            <li><a href="/admin/verifySeller">Nâng cấp</a></li>
+        </ul>
+    </aside>
+</div>

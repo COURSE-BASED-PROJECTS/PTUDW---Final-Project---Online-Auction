@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.2",
+    "morgan": "^1.10.0"
   }
 }

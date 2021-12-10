@@ -35,6 +35,10 @@ app.get('/', function (req, res)  {
     });
 })
 
+app.get('/account', function (req, res)  {
+    res.render('vwAccount/Account');
+})
+
 // add listen port
 app.listen(port, function() {
     console.log(`Example app listening at http://localhost:${port}`)

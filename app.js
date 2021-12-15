@@ -36,7 +36,15 @@ app.get('/', function (req, res)  {
 })
 
 app.get('/account', function (req, res)  {
-    res.render('vwAccount/Account');
+    res.render('vwAccount/account');
+})
+
+app.get('/category', function (req, res)  {
+    res.render('vwCategory/category');
+})
+
+app.get('/product', function (req, res)  {
+    res.render('vwCategory/product');
 })
 
 // add listen port

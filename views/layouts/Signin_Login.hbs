@@ -71,6 +71,19 @@
 </script>
 
 <script>
+    $('#text').keypress(function(event){
+        const keycode = (event.keyCode ? event.keyCode : event.which);
+
+        if (keycode == '13') {
+            const action = $('#text').val();
+            const url = "/search/"+action;
+            $('#frmSearch').attr('action', url);
+            $('#frmSearch').submit();
+        }
+    });
+</script>
+
+<script>
     bulmaCarousel.attach(".carousel", {
         slidesToScroll: 1,
         slidesToShow: 2,

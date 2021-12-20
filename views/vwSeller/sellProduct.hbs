@@ -1,4 +1,10 @@
+{{#section 'css'}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
 {{#section 'js'}}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" referrerpolicy="origin"></script>
     <script>
         const fileInput = document.querySelector('#file-js-example input[type=file]');
         fileInput.onchange = () => {
@@ -12,25 +18,61 @@
                 fileName.textContent = multipleFileInput;
             }
         }
-    </script>
-{{/section}}
 
-<div class="has-text-centered">
-    <div class="column is-4 is-inline-block box my-5">
-        <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG BÁN SẢN PHẨM</div>
+        $('#frmUpload').on('submit',function(e){
+            e.preventDefault();
+
+            const name = $('#txtName').val();
+            const firstPrice = $('#txtFirstPrice').val();
+            const winPrice = $('#txtPrice').val();
+            const dateEnd = $('#datetimepicker').val();
+
+            if(name && firstPrice && winPrice && dateEnd)
+                $('#frmUpload').off('submit').submit();
+            else {
+                $('.check-info').removeClass('is-hidden');
+            }
+        });
+
+        $('#datetimepicker').datetimepicker({
+            format:'d/m/Y H:i',
+            mask:true,
+        });
+
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: '#txtFullDesc',
+            plugins: 'paste image link autolink lists table media',
+            menubar: false,
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | ' +
+                'forecolor backcolor | table link image media',
+            ]
+        });
+    </script>
+
+{{/section}}
+<form action="/seller/upload" method="post" id="frmUpload" enctype="multipart/form-data">
+    <div class="has-text-centered">
+        <div class="column is-5 is-inline-block box my-5">
+            <div class="notification is-warning is-hidden check-info">
+                <strong>Vui lòng điền đầy đủ thông tin</strong>
+            </div>
+
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG BÁN SẢN PHẨM</div>
 
         <div class="field has-text-left">
             <label class="label">Tên sản phẩm</label>
             <div class="control"  >
                 <input class="input" type="text" placeholder="Nhập tên sản phẩm" />
             </div>
-
         </div>
 
         <div class="file is-info has-name my-2" id="file-js-example">
             <label class="file-label">
-
-                <input class="file-input" type="file" name="resume" multiple>
+                <input class="file-input" type="file" name="image" multiple>
 
                 <span class="file-cta">
                     <span class="file-icon">
@@ -53,15 +95,14 @@
                 <input
                         class="input is-info"
                         type="number"
-                        placeholder="Nhập Email"
-                        value="hello@"
+                        placeholder="Nhập giá mua ngay"
+                        id="txtPrice"
+                        name="Price"
                 />
                 <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
+                  <i class="fa fa-money"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fa fa-exclamation-triangle"></i>
-                </span>
+                <span class="icon is-small is-right"> </span>
             </div>
         </div>
 
@@ -72,10 +113,11 @@
                         class="input is-success"
                         type="number"
                         placeholder="Giá khởi điểm"
-                        value="bulma"
+                        id="txtFirstPrice"
+                        name="FirstPrice"
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
+                  <i class="fas fa-money-bill"></i>
                 </span>
                 <span class="icon is-small is-right">
                   <i class="fas fa-check"></i>
@@ -89,32 +131,49 @@
                 <input
                         class="input is-dark"
                         type="number"
-                        placeholder="bước giá"
-                        value="hello@"
+                        placeholder="Bước giá"
+                        id="stepPrice"
+                        name="stepPrice"
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
+                  <i class="fas fa-money"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fa fa-exclamation-triangle"></i>
-                </span>
+                <span class="icon is-small is-right"> </span>
             </div>
         </div>
+
+            <div class="field has-text-left">
+                <label class="label" for="stepPrice">Thời gian kết thúc</label>
+                <div class="control has-icons-left has-icons-right" >
+                    <input
+                            class="input is-info"
+                            type="text"
+                            id="datetimepicker"
+                            name="DateEnd"
+                    />
+                    <span class="icon is-small is-left">
+                  <i class="fa fa-calendar-day"></i>
+                </span>
+                    <span class="icon is-small is-right">
+                </span>
+                </div>
+            </div>
 
         <hr class="has-background-black">
 
         <div class="field has-text-left">
-            <label class="label">Mô tả sản phẩm</label>
+            <label class="label" for="txtFullDesc">Mô tả sản phẩm</label>
             <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
+                <!--                <textarea class="textarea" placeholder="Textarea"></textarea>-->
+                <textarea id="txtFullDesc" name="FullDesc">Hello, World!</textarea>
             </div>
 
         </div>
 
         <div class="field has-text-left">
             <div class="control">
-                <label class="checkbox">
-                    <input type="checkbox" />
+                <label class="checkbox" for="txtCheckbox">
+                    <input type="checkbox" id="txtCheckbox" name="checkbox" />
                     Tự động gia hạn
                 </label>
             </div>
@@ -126,8 +185,11 @@
             </div>
             <div class="control">
                 <button class="button is-link is-light">Hủy</button>
+
             </div>
+
+        </div>
+
         </div>
     </div>
-
-</div>
+</form>

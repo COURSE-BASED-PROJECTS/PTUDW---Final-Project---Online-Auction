@@ -1,17 +1,45 @@
+
 <div class="column is-2-tablet is-hidden-mobile">
     <aside class="menu is-size-6-tablet">
         <p class="menu-label is-size-6">Danh mục</p>
         <ul class="menu-list">
-            <li><a>Điện tử</a></li>
-            <li>
-                <a class="is-active">Thời trang</a>
-                <ul class="list is-hidden">
-                    <li><a>Quần</a></li>
-                    <li><a>Áo</a></li>
-                </ul>
-            </li>
-            <li><a>Sách</a></li>
-            <li><a>Thực phẩm</a></li>
+            {{#each lcCategories}}
+                <li>
+                    <a class="manual category-{{CatID}} {{#if isActive}}is-active{{/if}}" onclick="categoryClick({{CatID}})">{{CatName}}</a>
+                    <ul class="manual-list list-{{CatID}} {{#unless isActive}}is-hidden{{/unless}}">
+                        {{#each listsub}}
+                            <li><a href="/product/byCat/{{CatIDNext}}" class="{{#if isActive}}is-active{{/if}}">{{CatNextName}}</a></li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+
+        <!--        <p class="menu-label is-size-6 {{#unless auth}}is-hidden{{/unless}}">Thông tin</p>-->
+        <!--        <ul class="menu-list {{#unless auth}}is-hidden{{/unless}}">-->
+        <!--            <li><a href="/info/reviewHistory">Lịch sử đánh giá</a></li>-->
+        <!--            <li><a href="/info/favouriteProduct" class="is-active">Sản phẩm yêu thích</a></li>-->
+        <!--            <li><a href="/info/onlineAuction">Sản phẩm đang đấu giá</a></li>-->
+        <!--            <li><a href="/info/wonProduct">Sản phẩm đã thắng</a></li>-->
+        <!--        </ul>-->
+        <p class="menu-label is-size-6 {{#unless Seller}}is-hidden{{/unless}}">Bán</p>
+        <ul class="menu-list {{#unless Seller}}is-hidden{{/unless}}">
+            <li><a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">Sản phẩm đang đăng</a></li>
+            <li><a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">Sản phẩm đã bán</a></li>
+        </ul>
+
+        <p class="menu-label is-size-6 {{#unless Admin}}is-hidden{{/unless}}">Bán</p>
+        <ul class="menu-list {{#unless Admin}}is-hidden{{/unless}}">
+            <li><a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">Sản phẩm đang đăng</a></li>
+            <li><a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">Sản phẩm đã bán</a></li>
+        </ul>
+
+        <p class="menu-label is-size-6 {{#unless Admin}}is-hidden{{/unless}}">Admin</p>
+        <ul class="menu-list {{#unless Admin}}is-hidden{{/unless}}">
+            <li><a href="/admin/updateCategory" class="{{#if this.isUpdateCategory}}is-active{{/if}}">Danh mục</a></li>
+            <li><a href="/admin/Account" class="{{#if this.isAccount}}is-active{{/if}}">Tài khoản</a></li>
+            <li><a href="/admin/verifySeller" class="{{#if this.isVerifySeller}}is-active{{/if}}">Nâng cấp</a></li>
         </ul>
     </aside>
+
 </div>

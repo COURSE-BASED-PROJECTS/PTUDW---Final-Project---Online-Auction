@@ -1,19 +1,54 @@
-<div class="column is-2-tablet is-hidden-mobile">
+{{#section 'js_search'}}
+    <script>
+        function typePrice() {
+            if($(".manual-price").hasClass("is-active")){
+                $(".manual-price").removeClass("is-active");
+                $(".manual-list-price").toggleClass("is-hidden");
+            }else{
+                $(".manual-price").toggleClass("is-active");
+                $(".manual-list-price").removeClass("is-hidden");
+
+                if($(".manual-time").hasClass("is-active")) {
+                    $(".manual-time").removeClass("is-active");
+                    $(".manual-list-time").toggleClass("is-hidden");
+                }
+            }
+
+        }
+
+        function typeTime(){
+            if($(".manual-time").hasClass("is-active")){
+                $(".manual-time").removeClass("is-active");
+                $(".manual-list-time").toggleClass("is-hidden");
+            }else{
+                $(".manual-time").toggleClass("is-active");
+                $(".manual-list-time").removeClass("is-hidden");
+
+                if($(".manual-price").hasClass("is-active")) {
+                    $(".manual-price").removeClass("is-active");
+                    $(".manual-list-price").toggleClass("is-hidden");
+                }
+            }
+        }
+    </script>
+{{/section}}
+
+<div class="column is-2-tablet is-12-mobile">
     <aside class="menu is-size-6-tablet">
         <p class="menu-label is-size-6">Lọc</p>
         <ul class="menu-list">
             <li>
-                <a class="is-active">Giá</a>
-                <ul class="list is-hidden">
-                    <li><a>Giá tăng dần</a></li>
-                    <li><a>Giá giảm dần</a></li>
+                <a class="manual-price {{#if type_price}}is-active{{/if}}" onclick="typePrice();">Giá</a>
+                <ul class="manual-list-price {{#unless type_price}}is-hidden{{/unless}}">
+                    <li><a href="?type=1" class="{{#if type_1}}is-active{{/if}}">Giá tăng dần</a></li>
+                    <li><a href="?type=2" class="{{#if type_2}}is-active{{/if}}">Giá giảm dần</a></li>
                 </ul>
             </li>
             <li>
-                <a class="">Thời gian</a>
-                <ul class="list is-hidden">
-                    <li><a>Thời gian kết thúc tăng dần</a></li>
-                    <li><a>Thời gian kết thúc giảm dần</a></li>
+                <a class="manual-time {{#if type_time}}is-active{{/if}}" onclick="typeTime();">Thời gian</a>
+                <ul class="manual-list-time {{#unless type_time}}is-hidden{{/unless}}">
+                    <li><a href="?type=3" class="{{#if type_3}}is-active{{/if}}">Thời gian kết thúc tăng dần</a></li>
+                    <li><a href="?type=4" class="{{#if type_4}}is-active{{/if}}">Thời gian kết thúc giảm dần</a></li>
                 </ul>
             </li>
         </ul>

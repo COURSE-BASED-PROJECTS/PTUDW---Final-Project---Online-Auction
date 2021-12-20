@@ -1,57 +1,93 @@
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12">
-        <div class="card-header-title is-size-4-tablet is-size-5-mobile">Tìm thấy 17 kết quả cho từ khóa "do an"</div>
+        <div class="card-header-title is-size-4-tablet is-size-5-mobile">Tìm thấy {{count}} kết quả cho từ khóa "{{word}}"</div>
 
-        <div class="control p-4">
-            <label class="radio">
-                <input type="radio" name="answer">
-                Danh mục
-            </label>
-            <label class="radio">
-                <input type="radio" name="answer">
-                Sản phẩm
-            </label>
-        </div>
+        {{#if auth}}
+            <div class="control p-4">
+                <label class="radio">
+                    <input type="radio" name="answer">
+                    Danh mục
+                </label>
+                <label class="radio">
+                    <input type="radio" name="answer">
+                    Sản phẩm
+                </label>
+            </div>
+        {{/if}}
+
 
         <hr class="has-background-grey" />
     </div>
 
-    <div class="column is-4-tablet is-12-mobile ">
-        <div class="card p-5 m-4">
-            <header class="card-header">
-                <p class="card-header-title is-size-4">
-                    Card header
-                </p>
-            </header>
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                </figure>
-            </div>
-            <div class="card-content py-2 px-0">
-                <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
-                        class="has-text-danger-dark">15000</span></strong>
-                <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
-                        class="has-text-danger-dark">15000</span></strong>
-                <hr class="navbar-divider"/>
-                <div class="content">
-                    <strong class="is-block"> Bidder: <a>@bulmaio</a></strong>
-                    <strong class="is-block"> Số lượt ra giá: <a href="#">#15</a></strong>
-                    <hr class="navbar-divider"/>
-                    <time datetime="2016-1-1" class="is-block "><strong class="has-text-primary-dark">Ngày
-                        đăng:</strong>
-                        11:09 PM - 1 Jan 2016
-                    </time>
-                    <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Còn lại:</strong>
-                        11:09
-                        PM - 1 Jan 2016
-                    </time>
+    {{#each this.product}}
+        <div class="column is-4-tablet is-12-mobile ">
+            <div class="card p-5 m-4 card-hover">
+                <header class="card-header">
+                    <p class="card-header-title is-size-5 is-size-7-mobile" >
+                        {{ProName}}
+                    </p>
+                </header>
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <a href="/product/detail/{{ProID}}">
+                            <img src="/img/product/{{ProID}}/1.png" alt="Placeholder image">
+                        </a>
+                    </figure>
                 </div>
-            </div>
+                <div class="card-content py-2 px-0 is-size-7-mobile">
+                    <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
+                            class="has-text-danger-dark">{{PriceCurrent}}</span></strong>
+                    <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
+                            class="has-text-danger-dark">{{PriceWin}}</span></strong>
+                    <hr class="navbar-divider has-background-grey-dark"/>
+                    <div class="content">
+                        <strong class="is-block"> Bidder: <a>@{{Bidder}}</a></strong>
+                        <strong class="is-block"> Số lượt ra giá: <a href="#">#{{BidderCount}}</a></strong>
+                        <hr class="navbar-divider has-background-grey-dark"/>
+                        <time datetime="2016-1-1" class="is-block "><strong class="has-text-primary-dark">Ngày
+                            đăng:</strong>
+                            {{DateStart}}
+                        </time>
+                        <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
+                            {{DateEnd}}
+                        </time>
+                    </div>
+                </div>
 
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">MUA NGAY</a>
-            </footer>
+                {{#if auth}}
+                    <footer class="card-footer">
+                        <a href="" class="card-footer-item">MUA NGAY</a>
+                    </footer>
+                {{/if}}
+
+
+            </div>
         </div>
+    {{/each}}
+
+    <div class="column is-12">
+        <nav
+                class="pagination is-centered"
+                role="navigation"
+                aria-label="pagination"
+        >
+
+
+            {{#if this.pagePrev.isVisible}}
+                <a class="pagination-previous " href="?page={{this.pagePrev.page}}">Trang trước</a>
+            {{/if}}
+            {{#if this.pageNext.isVisible}}
+                <a class="pagination-next" href="?page={{this.pageNext.page}}">Trang sau</a>
+            {{/if}}
+            <ul class="pagination-list">
+                {{#each this.pageNumbers}}
+                    {{#if isCurrent}}
+                        <li><a class="pagination-link is-current" href="javascript:;">{{value}}</a></li>
+                    {{else}}
+                        <li><a class="pagination-link" href="?page={{value}}">{{value}}</a></li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </nav>
     </div>
 </div>

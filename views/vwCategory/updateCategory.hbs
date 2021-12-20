@@ -1,27 +1,116 @@
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12">
-        <div class="card-header-title is-size-4-tablet is-size-5-mobile">Danh sách danh mục</div>
-
+        <div class="card-header-title is-size-4-tablet is-size-5-mobile">Danh sách danh mục & Sản phẩm</div>
         <hr class="has-background-grey" />
     </div>
 
-    <div class="column is-4-tablet is-12-mobile ">
-        <div class="card p-5 m-4">
-            <header class="card-header">
-                <p class="card-header-title is-size-4">
-                    Card header
-                </p>
-            </header>
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                </figure>
-            </div>
+    <div class="is-12 column mt-0">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-4">
+                    Danh mục
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="">Mã danh mục</abbr></th>
+                    <th><abbr title="">Tên danh mục</abbr></th>
+                    <th><abbr title="">Xóa</abbr></th>
+                </tr>
+                </thead>
 
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">SỬA</a>
-                <a href="#" class="card-footer-item">XÓA</a>
-            </footer>
+                <tbody>
+                {{#each this.listCategory}}
+                    <tr class="has-text-centered">
+                        <th>{{CatID}}</th>
+                        <td>{{CatName}}</td>
+                        <form action="/admin/delCat/{{CatID}}" method="post" id="frmDelCat-{{CatID}}"></form>
+                        <td ><a href="javascript: $('#frmDelCat-{{CatID}}').submit();"><button class="delete"></button></a></td>
+                    </tr>
+                {{/each}}
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="is-12 column mt-0">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-4">
+                    Danh mục phụ
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="">Mã danh mục phụ</abbr></th>
+                    <th><abbr title="">Tên danh mục phụ</abbr></th>
+                    <th><abbr title="">Danh mục cha</abbr></th>
+                    <th><abbr title="">Số lượng sản phẩm</abbr></th>
+                    <th><abbr title="" >Xóa</abbr></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {{#each this.listCategoryNext}}
+                    <tr class="has-text-centered">
+                        <th>{{CatIDNext}}</th>
+                        <td>{{CatNextName}}</td>
+                        <td>{{NameParent}}</td>
+                        <td>{{amount}}</td>
+                        <form action="/admin/delCatNext/{{CatIDNext}}" method="post" id="frmDelCatNext-{{CatIDNext}}"></form>
+                        <td ><a href="javascript: $('#frmDelCatNext-{{CatIDNext}}').submit();"><button class="delete"></button></a></td>
+                    </tr>
+                {{/each}}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="is-12 column mt-0">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-4">
+                    Sản phẩm
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="time">Mã sản phẩm</abbr></th>
+                    <th><abbr title="">Tên sản phẩm</abbr></th>
+                    <th><abbr title="">Giá hiện tại</abbr></th>
+                    <th><abbr title="">Thuộc danh mục</abbr></th>
+                    <th><abbr title="">Người bán</abbr></th>
+                    <th><abbr title="">Ngày bắt đầu</abbr></th>
+                    <th><abbr title="">Ngày kết thúc</abbr></th>
+                    <th><abbr title="" >Xóa</abbr></th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {{#each this.listProduct}}
+                    <tr class="has-text-centered">
+                        <th >{{ProID}}</th>
+                        <td>{{ProName}}</td>
+                        <td>{{format_number PriceCurrent}}</td>
+                        <th>{{NameCatIDNext}}</th>
+                        <td>{{Seller}}</td>
+                        <td>{{DateStart}}</td>
+                        <td>{{DateEnd}}</td>
+                        <form action="/admin/delProduct/{{ProID}}" method="post" id="frmDelProduct-{{ProID}}"></form>
+                        <td ><a href="javascript: $('#frmDelProduct-{{ProID}}').submit();"><button class="delete"></button></a></td>
+                    </tr>
+                {{/each}}
+
+
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

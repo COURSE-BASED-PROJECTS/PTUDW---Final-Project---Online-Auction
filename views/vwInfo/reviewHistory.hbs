@@ -1,38 +1,53 @@
 <div class="columns is-multiline is-mobile p-2">
-    <div class="column is-12 p-5">
-        <span class="tag is-success is-large">+5</span>
-        <hr class="has-background-grey" />
-    </div>
+    {{#if this.isEmpty}}
+        <div class="card-header-title is-size-3">Không có lịch sử đấu giá</div>
+    {{else}}
+        <div class="column is-12 p-5 ">
+            <span class="tag {{#if this.isPositive}}is-success{{else}}is-danger{{/if}} is-large">{{this.point}}</span>
+            <hr class="has-background-grey" />
+        </div>
 
-    <div class="column is-4-tablet is-12-mobile ">
-        <div class="card p-5 m-4">
-            <header class="card-header">
-                <p class="card-header-title is-size-4">
-                    Card header
-                </p>
-                <span class="tag is-danger is-medium">sold</span>
-            </header>
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                </figure>
-            </div>
-            <div class="card-content py-2 px-0">
-                <strong class="is-block has-text-info-dark my-2"> Giá mua: <span
-                        class="has-text-success">#15000</span></strong>
-                <strong class="is-block has-text-info-dark my-2">Điểm đánh giá: <span
-                        class="icon is-small"><i class="fa fa-thumbs-up"></i></span></strong>
-                <hr class="navbar-divider has-background-black"/>
-                <div class="content">
-                    <p class="box">
-                        <span><strong>Nhận xét:</strong></span>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Beatae consequuntur deserunt doloribus enim ipsam ipsum laborum nihil
-                        omnis perspiciatis provident recusandae, vel voluptate voluptatem.
-                        Ea eaque laboriosam optio reiciendis sunt.</p>
+        {{#each this.list}}
+            <div class="column is-4-tablet is-12-mobile ">
+                <div class="card p-5 m-4">
+                    <header class="card-header">
+                        <p class="card-header-title is-size-5-tablet is-size-7-mobile">
+                            {{ProName}}
+                        </p>
+                        <span class="tag is-danger is-medium">sold</span>
+                    </header>
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <a href="/product/detail/{{ProID}}">
+                                <img src="/img/product/{{ProID}}/1.png" alt="Placeholder image">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="card-content py-2 px-0 is-size-7-mobile">
+                        <strong class="is-block has-text-info-dark my-2"> Giá mua: <span
+                                class="has-text-success">#{{PriceWinAll}}</span></strong>
+                        <strong class="is-block has-text-info-dark my-2">Điểm đánh giá: <span
+                                class="icon is-small">
+                            {{#if point}}
+                                <i class="fa fa-thumbs-up"></i>
+                            {{else}}
+                                <i class="fa fa-thumbs-down has-text-danger"></i>
+                            {{/if}}
+
+                        </span></strong>
+                        <hr class="navbar-divider has-background-black"/>
+                        <div class="content">
+                            <p class="box">
+                                <span><strong>Nhận xét từ người bán:</strong></span>
+                                <br>
+                                {{commentSeller}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        {{/each}}
+
+    {{/if}}
+
+
 </div>

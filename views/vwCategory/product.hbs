@@ -2,7 +2,7 @@
     <div class="column is-6-tablet is-12-mobile mr-5">
         <div class="box">
             <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
+                <img src="/img/product/{{this.product.ProID}}/1.png">
             </figure>
         </div>
 
@@ -106,98 +106,98 @@
                 </section>
             </div>
 
-            <div class="column is-12 p-5">
-                <div class="table-wrapper" style="overflow-x: auto">
-                    <table class="table is-hoverable is-striped is-fullwidth">
-                        <hr class="has-background-grey"/>
-                        <div class="card-header-title is-size-4">
-                            Lịch sử đấu giá
-                        </div>
-                        <thead>
-                        <tr>
-                            <th><abbr title="time">Thời điểm</abbr></th>
-                            <th><abbr title="bidder">Người mua</abbr></th>
-                            <th><abbr title="price">Giá</abbr></th>
-                        </tr>
-                        </thead>
+            {{#if auth}}
+                <div class="column is-12 p-5">
+                    <div class="table-wrapper" style="overflow-x: auto">
+                        <table class="table is-hoverable is-striped is-fullwidth">
+                            <hr class="has-background-grey"/>
+                            <div class="card-header-title is-size-4">
+                                Lịch sử đấu giá
+                            </div>
+                            <thead>
+                            <tr>
+                                <th><abbr title="time">Thời điểm</abbr></th>
+                                <th><abbr title="bidder">Người mua</abbr></th>
+                                <th><abbr title="price">Giá</abbr></th>
+                            </tr>
+                            </thead>
 
-                        <tbody>
-                        <tr class="is-selected">
-                            <th>1/11/2019 10:43</th>
-                            <td>****Khoa</td>
-                            <td>6,000,000</td>
-                        </tr>
+                            <tbody>
+                            <tr class="is-selected">
+                                <th>1/11/2019 10:43</th>
+                                <td>****Khoa</td>
+                                <td>6,000,000</td>
+                            </tr>
 
-                        <tr>
-                            <th>1/11/2019 9:43</th>
-                            <td>****Quang</td>
-                            <td>5,900,000</td>
-                        </tr>
+                            <tr>
+                                <th>1/11/2019 9:43</th>
+                                <td>****Quang</td>
+                                <td>5,900,000</td>
+                            </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-            </div>
+            {{/if}}
         </div>
     </div>
     <div class="column is-5-tablet is-12-mobile ">
         <div class="columns is-multiline">
             <div class="column is-12 card-header-title is-size-4-tablet is-size-5-mobile ">
-                VINTAS SAIGON 1980S NE - LOW TOP - VIN BLACK
+                {{this.product.ProName}}
             </div>
-            <span class="column is-12 ">Mã sản phẩm: <strong>AV00032</strong></span>
-            <span class="column is-12 ">Giá hiện tại: <strong>560.000 VND</strong></span>
-            <span class="column is-12  pb-0">Giá mua ngay: <strong>560.000 VND</strong>
+            <span class="column is-12 ">Mã sản phẩm: <strong>{{this.product.ProID}}</strong></span>
+            <span class="column is-12 ">Giá hiện tại: <strong>{{format_number this.product.PriceCurrent}}</strong></span>
+            <span class="column is-12  pb-0">Giá mua ngay: <strong>{{format_number this.product.PriceWin}}</strong>
             <hr class="has-background-grey"/></span>
-            <span class="column is-12  pt-0">Thời điểm đăng: <strong>14:00 AM</strong></span>
-            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong>15:00 PM</strong>
+            <span class="column is-12  pt-0">Thời điểm đăng: <strong>{{this.product.DateStart}}</strong></span>
+            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong>{{this.product.DateEnd}}</strong>
             <hr class="has-background-grey"/></span>
             <div class="column is-12 card-content box m-0">
                 <div class="card-header-title">
                     Thông tin sản phẩm
                 </div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Ab aliquam, corporis culpa cumque distinctio eveniet fuga fugit id impedit iusto laboriosam,
-                magni non nulla quam quasi quisquam, sed soluta suscipit.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Ab aliquam, corporis culpa cumque distinctio eveniet fuga fugit id impedit iusto laboriosam,
-                magni non nulla quam quasi quisquam, sed soluta suscipit.
-            </div>
-            <div class="column is-12 ">
-                <hr class="has-background-grey"/>
+                {{this.product.Description}}
             </div>
 
-            <div class="column is-12">
-                <div class="is-inline-block">
+            {{#if auth}}
+                <div class="column is-12 ">
+                    <hr class="has-background-grey"/>
+                </div>
+
+                <div class="column is-12">
+                    <div class="is-inline-block">
                     <span>Người bán:
-                        <strong><a href="#">#1912</a></strong>
+                        <strong><a href="#">#{{this.product.Seller}}</a></strong>
                         <div class="box has-text-centered has-background-primary">+5</div>
                     </span>
-                </div>
+                    </div>
 
-                <div class="is-inline-block ml-5">
+                    <div class="is-inline-block ml-5">
                     <span>Người đấu giá cao nhất:
-                        <strong><a href="#">#1912</a></strong>
+                        <strong><a href="#">#{{this.product.Bidder}}</a></strong>
                         <div class="box has-text-centered has-background-danger">+5</div>
                     </span>
+                    </div>
+
                 </div>
 
-            </div>
 
 
+                <div class="column is-8 ">
+                    <input class="input is-large " type="number" placeholder="Đấu giá">
+                </div>
 
-            <div class="column is-8 ">
-                <input class="input is-large " type="number" placeholder="Đấu giá">
-            </div>
+                <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
+                <div class="column is-4 has-text-centered">
+                    <div class="box"><a href="javascript: $('#frmFavorite').submit();">Yêu thích</a></div>
+                </div>
 
-            <div class="column is-4 has-text-centered">
-                <div class="box">Yêu thích</div>
-            </div>
-
-            <div class="column is-12 has-text-centered ">
-                <a class="box has-background-primary">Mua ngay</a>
-            </div>
+                <div class="column is-12 has-text-centered ">
+                    <a class="box has-background-primary">Mua ngay</a>
+                </div>
+            {{/if}}
 
         </div>
     </div>

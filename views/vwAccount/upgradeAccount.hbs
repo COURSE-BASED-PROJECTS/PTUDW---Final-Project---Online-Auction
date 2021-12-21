@@ -1,41 +1,62 @@
 <div class="columns is-multiline is-mobile p-2">
-    <div class="column is-12">
-        <div class="card-header-title is-size-4-tablet is-size-5-mobile">Danh sách tài khoản trong hệ thống</div>
-        <hr class="has-background-grey" />
-    </div>
+    {{#if this.isEmpty}}
+        <div class="card-header-title is-size-3">Không có tài khoản cần nâng cấp</div>
+    {{else}}
+        <div class="column is-12">
+            <div class="card-header-title is-size-4-tablet is-size-5-mobile">Danh sách tài khoản nâng cấp</div>
+            <hr class="has-background-grey" />
+        </div>
 
-    <div class="column is-4-tablet is-12-mobile ">
-        <div class="card p-5 m-4">
-            <header class="card-header">
-                <p class="card-header-title is-size-4">
-                    <strong>Tài khoản: <a>#mã6số</a></strong>
-                </p>
-            </header>
-            <div class="card-content py-2 px-0">
-                <div class="content">
-                    <strong class="is-block has-text-info-dark my-2"> Họ và tên: <span
-                            class="has-text-primary-dark">Nguyễn Văn A</span></strong>
-                    <strong class="is-block has-text-info-dark my-2"> Địa chỉ: <span
-                            class="has-text-primary-dark">227 Nguyễn Văn Cừ, P.4, Q.5, TP.HCM</span></strong>
-                    <strong class="is-block has-text-info-dark my-2"> Email: <span
-                            class="has-text-primary-dark">nva@gmail.com</span></strong>
-                    <strong class="is-block has-text-info-dark my-2"> Số điểm:
-                        <span>
-                        <i class="is-small tag has-text-danger-dark">+5</i>
-                    </span>
-                    </strong>
+        {{#each this.list}}
+            <div class="column is-4-tablet is-12-mobile ">
+                <div class="card p-5 m-4">
+                    <header class="card-header">
+                        <p class="card-header-title is-size-4">
+                            <strong>Tài khoản: <a>#{{username}}</a></strong>
+                        </p>
+                    </header>
+                    <div class="card-content py-2 px-0">
+                        <div class="content">
+                            <strong class="is-block has-text-info-dark my-2"> Họ tên: <span
+                                    class="has-text-primary-dark">{{name}}</span></strong>
+                            <strong class="is-block has-text-info-dark my-2"> Địa chỉ: <span
+                                    class="has-text-primary-dark">{{address}}</span></strong>
+                            <strong class="is-block has-text-info-dark my-2"> Email: <span
+                                    class="has-text-primary-dark">{{email}}</span></strong>
+                            <strong class="is-block has-text-info-dark my-2"> Ngày xin nâng cấp: <span
+                                    class="has-text-primary-dark">{{dateStart}}</span></strong>
+                            <strong class="is-block has-text-info-dark my-2"> Số điểm:
+                                <span>
+                                    {{#if info.isPositive}}
+                                        <i class="is-small tag has-text-info">+{{point}}</i>
+                                    {{else}}
+                                        <i class="is-small tag has-text-danger">{{point}}</i>
+                                    {{/if}}
+                                </span>
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <footer class="card-footer">
+                        <form action="/admin/Account/upgrade/:{{username}}" method="post" id="frmUpgrade"></form>
+                        <form action="/admin/Account/cancel/:{{username}}" method="post" id="frmCancel"></form>
+
+                        <a href="javascript: $('#frmUpgrade').submit();" class="card-footer-item">
+                            <span class="is-small mr-1"><i class="fa fa-level-up-alt"></i></span>
+                            NÂNG CẤP</a>
+                        <a href="javascript: $('#frmCancel').submit();" class="card-footer-item">
+                            <span class="is-small mr-1 has-text-danger"><i class="fa fa-ban"></i></span>
+                            HỦY
+                        </a>
+                    </footer>
                 </div>
             </div>
+        {{/each}}
 
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">
-                    <span class="is-small mr-1"><i class="fa fa-level-up-alt"></i></span>
-                    NÂNG CẤP</a>
-                <a href="#" class="card-footer-item">
-                    <span class="is-small mr-1 has-text-danger"><i class="fa fa-ban"></i></span>
-                    HỦY
-                </a>
-            </footer>
-        </div>
-    </div>
+    {{/if}}
+
+
+
+
 </div>

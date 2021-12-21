@@ -1,0 +1,57 @@
+<div class="columns is-multiline is-mobile p-2">
+    <div class="column is-12">
+        <div class="card-header-title is-size-4-tablet is-size-6-mobile">Danh sách tài khoản trong hệ thống</div>
+        <hr class="has-background-grey" />
+    </div>
+
+    {{#each this.list}}
+        <div class="column is-4-tablet is-12-mobile">
+            <div class="card p-5 m-4">
+                <header class="card-header">
+                    <p class="card-header-title is-size-5 is-size-7-mobile">
+                        <strong>Tài khoản: <a>#{{username}}</a></strong>
+                    </p>
+                </header>
+                <div class="card-content py-2 px-0  is-size-7-mobile" style="overflow-x: auto">
+                    <div class="content">
+                        <strong class="is-block has-text-info-dark my-2"> Họ tên: <span
+                                class="has-text-primary-dark">{{name}}</span></strong>
+                        <strong class="is-block has-text-info-dark my-2"> Địa chỉ: <span
+                                class="has-text-primary-dark">{{address}}</span></strong>
+                        <strong class="is-block has-text-info-dark my-2"> Email: <span
+                                class="has-text-primary-dark">{{email}}</span></strong>
+                        <strong class="is-block has-text-info-dark my-2"> Tài khoản: <span
+                                class="has-text-primary-dark">{{level}}</span></strong>
+
+                        <strong class="is-block has-text-info-dark my-2 is-flex-direction-row" > Số điểm:
+                            <span>
+                                {{#if info.isPositive}}
+                                    <i class="is-small tag has-text-info">+{{point}}</i>
+                                {{else}}
+                                    <i class="is-small tag has-text-danger">{{point}}</i>
+                                {{/if}}
+
+                                {{#if info.isSeller}}
+                                    <a href="javascript: $('#degrade').submit();" class="ml-4">
+                                        <span class="is-small mr-1 has-text-right">
+                                            <i class="fa fa-level-down-alt"></i>
+                                        </span>
+                                        HẠ CẤP
+                                    </a>
+                                <form action="/admin/Account/degrade/{{username}}" method="post" id="degrade"></form>
+                                {{/if}}
+
+
+                            </span>
+                        </strong>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    {{/each}}
+
+</div>

@@ -7,125 +7,44 @@
             <div id="slider" style="overflow: hidden">
                 <!-- Start Carousel -->
                 <div class="carousel">
-                    <div class="item-1 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <a href="/product">
-                                        <img
-                                                src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                                alt=""
-                                        />
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-2 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{#each this.topBidderCount}}
+                        <div class="item-{{ProID}} mx-2">
+                            <!-- Slide Content -->
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-16by9 is-covered">
+                                        <a href="/product/detail/{{ProID}}">
+                                            <img
+                                                    src="/img/product/{{ProID}}/1.png"
+                                                    alt="{{ProName}}"
+                                            />
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                        </a>
+                                    </figure>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                <div class="card-content">
+                                    <p class="card-header-title is-size-4 p-0 mb-2">
+                                        {{ProName}}
+                                    </p>
+                                    <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
+                                            class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
+                                    <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
+                                            class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
+                                    <hr class="navbar-divider"/>
+                                    <div class="content">
+                                        <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
+                                            {{DateEnd}}
+                                        </time>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
+                    {{/each}}
+
+
                 </div>
                 <!-- End Carousel -->
             </div>
@@ -140,123 +59,44 @@
             <div id="slider" style="overflow: hidden">
                 <!-- Start Carousel -->
                 <div class="carousel">
-                    <div class="item-1 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-2 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{#each this.topBidderCount}}
+                        <div class="item-{{ProID}} mx-2">
+                            <!-- Slide Content -->
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-16by9 is-covered">
+                                        <a href="/product/detail/{{ProID}}">
+                                            <img
+                                                    src="/img/product/{{ProID}}/1.png"
+                                                    alt="{{ProName}}"
+                                            />
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                        </a>
+                                    </figure>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                <div class="card-content">
+                                    <p class="card-header-title is-size-4 p-0 mb-2">
+                                        {{ProName}}
+                                    </p>
+                                    <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
+                                            class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
+                                    <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
+                                            class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
+                                    <hr class="navbar-divider"/>
+                                    <div class="content">
+                                        <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
+                                            {{DateEnd}}
+                                        </time>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
+                    {{/each}}
+
+
                 </div>
                 <!-- End Carousel -->
             </div>
@@ -271,157 +111,44 @@
             <div id="slider" style="overflow: hidden">
                 <!-- Start Carousel -->
                 <div class="carousel">
-                    <div class="item-1 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-2 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{#each this.topProductPrice}}
+                        <div class="item-{{ProID}} mx-2">
+                            <!-- Slide Content -->
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-16by9 is-covered">
+                                        <a href="/product/detail/{{ProID}}">
+                                            <img
+                                                    src="/img/product/{{ProID}}/1.png"
+                                                    alt="{{ProName}}"
+                                            />
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                        </a>
+                                    </figure>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                                <div class="card-content">
+                                    <p class="card-header-title is-size-4 p-0 mb-2">
+                                        {{ProName}}
+                                    </p>
+                                    <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
+                                            class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
+                                    <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
+                                            class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
+                                    <hr class="navbar-divider"/>
+                                    <div class="content">
+                                        <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
+                                            {{DateEnd}}
+                                        </time>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    {{/each}}
                 </div>
                 <!-- End Carousel -->
             </div>
         </section>
     </div>
 </div>
-
-<nav
-        class="pagination is-centered"
-        role="navigation"
-        aria-label="pagination"
->
-    <a class="pagination-previous">Previous</a>
-    <a class="pagination-next">Next page</a>
-    <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li>
-            <a class="pagination-link" aria-label="Goto page 45">45</a>
-        </li>
-        <li>
-            <a
-                    class="pagination-link is-current"
-                    aria-label="Page 46"
-                    aria-current="page"
-            >46</a
-            >
-        </li>
-        <li>
-            <a class="pagination-link" aria-label="Goto page 47">47</a>
-        </li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li>
-            <a class="pagination-link" aria-label="Goto page 86">86</a>
-        </li>
-    </ul>
-</nav>

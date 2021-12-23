@@ -21,11 +21,12 @@ app.use(express.urlencoded({
     extended:true
 }));
 
-viewMdw(app);
-routesMdw(app);
 sessionMdw(app);
 localMdw(app);
+viewMdw(app);
+routesMdw(app);
 errorMdw(app);
+
 
 // add listen port
 app.listen(port, function() {

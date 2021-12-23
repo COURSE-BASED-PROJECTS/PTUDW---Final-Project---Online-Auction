@@ -1,5 +1,6 @@
 {
   "type": "module",
+  "author": "Huy,Thong,Tram",
   "name": "ptudw---final-project---online-auction",
   "version": "1.0.0",
   "description": "PTUDW - Final Project - Online Auction",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
     "express-handlebars-sections": "^1.0.1",
@@ -27,6 +29,8 @@
     "knex": "^0.95.14",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "mysql2": "^2.3.3",
     "numeral": "^2.0.6"
   }
 }

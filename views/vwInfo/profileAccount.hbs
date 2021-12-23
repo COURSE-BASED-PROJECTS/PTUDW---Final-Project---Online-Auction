@@ -1,0 +1,98 @@
+{{#section 'css'}}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+            referrerpolicy="origin"></script>
+    <script>
+        $('#datetimepicker').datetimepicker({
+            format: 'd/m/Y',
+            mask: true,
+        });
+    </script>
+{{/section}}
+<form id="frmInfo" method="post">
+    <div class="has-text-centered">
+        <div class="column is-4 is-inline-block box my-5">
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">THÔNG TIN TÀI KHOẢN</div>
+            <div class="field has-text-left">
+                <label class="label">Họ tên</label>
+                <div class="control">
+                    <input class="input" id="txtName" name="name" type="text" value="{{this.user.name}}"/>
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label">Địa chỉ</label>
+                <div class="control">
+                    <input class="input" id="txtAddr" name="address" type="text" value="{{this.user.address}}"/>
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label">Email</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input
+                            class="input"
+                            id="txtEmail"
+                            name="email"
+                            type="email"
+                            value="{{this.user.email}}"
+                    />
+                    <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label" for="stepPrice">Ngày sinh</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input
+                            class="input is-info"
+                            type="text"
+                            name="dob"
+                            id="datetimepicker"
+                            name="dayOfBirth"
+                            value={{format_date this.user.dob}}
+                    />
+                    <span class="icon is-small is-left">
+                  <i class="fa fa-calendar-day"></i>
+                </span>
+                    <span class="icon is-small is-right">
+                </span>
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label">Level</label>
+                <div class="control">
+                    <input class="input" type="text" value="{{this.user.level}}" readonly/>
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label">Point</label>
+                <div class="control">
+                    <input class="input" type="text" value="{{this.user.point}}" readonly/>
+                </div>
+            </div>
+
+            <div class="field is-grouped is-justify-content-center mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link has-background-success" id="updateBtn">
+                        Cập nhật
+                    </button>
+                </div>
+                <div class="control">
+                    <a class="button is-link has-background-danger-dark" href="/info/reviewProfile/changePassword"
+                       type="button">
+                        Đổi mật khẩu
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

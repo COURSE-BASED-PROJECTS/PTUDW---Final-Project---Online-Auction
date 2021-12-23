@@ -104,8 +104,12 @@
                         </a>
                         <hr class="navbar-divider" />
 
+                        <a class="navbar-item {{#if isProfile}}has-background-success{{/if}}" href="/info/reviewProfile" >
+                            <i class="fa fa-user-edit mr-2"></i> Thông tin cá nhân
+                        </a>
+
                         <a class="navbar-item {{#if isHistory}}has-background-success{{/if}}" href="/info/reviewHistory" >
-                            <i class="fa fa-history mr-2"></i>Lịch sử đánh giá
+                            <i class="fa fa-history mr-2"></i>Lịch sử đấu giá
                         </a>
 
                         <a class="navbar-item {{#if this.isFavorite}}has-background-success{{/if}}" href="/info/favouriteProduct" >

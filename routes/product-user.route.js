@@ -1,5 +1,6 @@
 import express from "express";
 import productModel from "../models/product.model.js";
+import moment from "moment";
 
 const router = express.Router();
 
@@ -23,8 +24,11 @@ router.get('/byCat/:id',async function (req,res){
     }
 
     const list = await productModel.findPageByCatIDNext(CatIDNext,limit,offset);
+    await productModel.isNew('5')
     for(const p of list){
         p.auth = req.session.auth;
+        p.isSold = await productModel.isSold(p.ProID);
+        p.isNew = await productModel.isNew(p.ProID,10);
     }
 
     let found = false;
@@ -61,14 +65,19 @@ router.get('/byCat/:id',async function (req,res){
 router.get('/detail/:id',async function (req,res){
     const ProID = req.params.id;
     const product = await productModel.findByProID(ProID);
+    const dateEnd = moment(product[0].DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+    const now = moment().format("YYYY-MM-DD hh:mm");
 
     if(product === null){
         return res.redirect('/');
     }
 
+    const isSold = await productModel.isSold(ProID);
+
     res.render('vwCategory/product',{
         layout:'Signin_login',
         product: product[0],
+        isExpired: moment(now).isAfter(dateEnd) || isSold,
     });
 });
 

@@ -162,41 +162,55 @@
             </div>
 
             {{#if auth}}
-                <div class="column is-12 ">
-                    <hr class="has-background-grey"/>
-                </div>
+                {{#if this.isExpired}}
+                    <div class="column is-12 ">
+                        <hr class="has-background-grey"/>
 
-                <div class="column is-12">
-                    <div class="is-inline-block">
+                    </div>
+                    <div class="column is-12 level">
+                        <div class="level-item has-text-centered">
+                            <div class="tag is-danger is-light is-large ">Hết phiên đấu giá</div>
+                        </div>
+                    </div>
+
+                {{else}}
+                    <div class="column is-12 ">
+                        <hr class="has-background-grey"/>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="is-inline-block">
                     <span>Người bán:
                         <strong><a href="#">#{{this.product.Seller}}</a></strong>
                         <div class="box has-text-centered has-background-primary">+5</div>
                     </span>
-                    </div>
+                        </div>
 
-                    <div class="is-inline-block ml-5">
+                        <div class="is-inline-block ml-5">
                     <span>Người đấu giá cao nhất:
                         <strong><a href="#">#{{this.product.Bidder}}</a></strong>
                         <div class="box has-text-centered has-background-danger">+5</div>
                     </span>
+                        </div>
+
                     </div>
 
-                </div>
 
 
+                    <div class="column is-8 ">
+                        <input class="input is-large " type="number" placeholder="Đấu giá">
+                    </div>
 
-                <div class="column is-8 ">
-                    <input class="input is-large " type="number" placeholder="Đấu giá">
-                </div>
+                    <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
+                    <div class="column is-4 has-text-centered">
+                        <div class="box"><a href="javascript: $('#frmFavorite').submit();">Yêu thích</a></div>
+                    </div>
 
-                <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
-                <div class="column is-4 has-text-centered">
-                    <div class="box"><a href="javascript: $('#frmFavorite').submit();">Yêu thích</a></div>
-                </div>
+                    <div class="column is-12 has-text-centered ">
+                        <a class="box has-background-primary">Mua ngay</a>
+                    </div>
+                {{/if}}
 
-                <div class="column is-12 has-text-centered ">
-                    <a class="box has-background-primary">Mua ngay</a>
-                </div>
             {{/if}}
 
         </div>

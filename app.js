@@ -30,5 +30,5 @@ errorMdw(app);
 
 // add listen port
 app.listen(port, function() {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Online auction app listening at http://localhost:${port}`)
 })

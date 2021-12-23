@@ -1,6 +1,7 @@
 import db from '../utils/db.js'
 import dateFormat from "../utils/dateFormat.js";
 import classifyTypeSort from "../utils/classifyTypeSort.js";
+import moment from "moment";
 
 
 export default {
@@ -101,4 +102,31 @@ export default {
         await db('historybid').where('ProIDHistory',ProID).del();
         await db('products').where('ProID',ProID).del();
     },
+
+    async isSold(ProID){
+        const list = await db('historybid').where({ProIDHistory:ProID,isSuccessful:true});
+
+        if(list.length !== 0){
+            return true;
+        }
+
+        return false;
+    },
+
+    async isNew(ProID,Nminutes){
+        const list = await db('products').where({ProID:ProID});
+        dateFormat({key:list});
+
+        const dateStart = moment(list[0].DateStart,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+        const now = moment().format("YYYY-MM-DD hh:mm");
+
+        const duration = moment(now).diff(moment(dateStart));
+        const m = moment.duration(duration).asMinutes();
+
+        if(+m <= Nminutes){
+            return true;
+        }
+        return false;
+
+    }
 }

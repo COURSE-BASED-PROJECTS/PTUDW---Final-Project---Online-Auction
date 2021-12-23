@@ -9,7 +9,14 @@
                         <p class="card-header-title is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
-                        <span class="tag is-success is-medium">new</span>
+
+                        {{#if isSold}}
+                            <span class="tag is-danger is-medium">sold</span>
+                        {{else}}
+                            {{#if isNew}}
+                                <span class="tag is-success is-medium">new</span>
+                            {{/if}}
+                        {{/if}}
                     </header>
                     <div class="card-image">
                         <figure class="image is-4by3">

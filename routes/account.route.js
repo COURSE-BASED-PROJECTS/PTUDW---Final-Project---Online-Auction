@@ -12,6 +12,12 @@ router.get('/register', async function (req, res) {
 });
 
 router.post('/register', async function (req, res) {
+    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.render('vwSignin_Login/Signin', {
+            layout: 'Signin_Login',
+            reCapcha: "chưa xác thực"
+        });
+    }
     const rawPassword = req.body.password;
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(rawPassword, salt);
@@ -36,14 +42,24 @@ router.post('/register', async function (req, res) {
 
 router.get('/is-available', async function (req, res) {
     const username = req.query.username;
+    const email = req.query.email;
 
-    const account = await accountModel.findByUsername(username);
+    const accountHasUsername = await accountModel.findByUsername(username);
+    const accountHasEmail = await accountModel.findByEmail(email);
 
-    if (account === null) {
+    if (accountHasUsername === null && accountHasEmail === null) {
         return res.json(true);
     }
 
-    return res.json(false);
+    const check = {username: true, email: true};
+    if (accountHasUsername !== null) {
+        check.username = false;
+    }
+    if (accountHasEmail !== null) {
+        check.email = false;
+    }
+
+    return res.json(check);
 });
 
 router.get('/is-password', async function (req, res) {

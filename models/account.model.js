@@ -19,6 +19,15 @@ export default {
         return list[0];
     },
 
+    async findByEmail(email) {
+        const list = await db('account').where('email', email);
+
+        if (list.length === 0)
+            return null;
+
+        return list[0];
+    },
+
     async findAll(){
         return db('account');
     },

@@ -1,14 +1,14 @@
 {{#section 'js_search'}}
     <script>
         function typePrice() {
-            if($(".manual-price").hasClass("is-active")){
+            if ($(".manual-price").hasClass("is-active")) {
                 $(".manual-price").removeClass("is-active");
                 $(".manual-list-price").toggleClass("is-hidden");
-            }else{
+            } else {
                 $(".manual-price").toggleClass("is-active");
                 $(".manual-list-price").removeClass("is-hidden");
 
-                if($(".manual-time").hasClass("is-active")) {
+                if ($(".manual-time").hasClass("is-active")) {
                     $(".manual-time").removeClass("is-active");
                     $(".manual-list-time").toggleClass("is-hidden");
                 }
@@ -16,15 +16,15 @@
 
         }
 
-        function typeTime(){
-            if($(".manual-time").hasClass("is-active")){
+        function typeTime() {
+            if ($(".manual-time").hasClass("is-active")) {
                 $(".manual-time").removeClass("is-active");
                 $(".manual-list-time").toggleClass("is-hidden");
-            }else{
+            } else {
                 $(".manual-time").toggleClass("is-active");
                 $(".manual-list-time").removeClass("is-hidden");
 
-                if($(".manual-price").hasClass("is-active")) {
+                if ($(".manual-price").hasClass("is-active")) {
                     $(".manual-price").removeClass("is-active");
                     $(".manual-list-price").toggleClass("is-hidden");
                 }
@@ -38,17 +38,26 @@
         <p class="menu-label is-size-6">Lọc</p>
         <ul class="menu-list">
             <li>
-                <a class="manual-price {{#if type_price}}is-active{{/if}}" onclick="typePrice();">Giá</a>
+                <a class="manual-price {{#if type_price}}is-active{{/if}}" onclick="typePrice();">
+                    <i class="fa fa-caret-down mr-3" aria-hidden="true" ></i>
+                    Giá
+                </a>
                 <ul class="manual-list-price {{#unless type_price}}is-hidden{{/unless}}">
-                    <li><a href="?type=1" class="{{#if type_1}}is-active{{/if}}">Giá tăng dần</a></li>
-                    <li><a href="?type=2" class="{{#if type_2}}is-active{{/if}}">Giá giảm dần</a></li>
+                    <li><a href="?type=1" class="{{#if type_1}}is-active{{/if}}">
+                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Giá tăng dần</a></li>
+                    <li><a href="?type=2" class="{{#if type_2}}is-active{{/if}}">
+                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Giá giảm dần</a></li>
                 </ul>
             </li>
             <li>
-                <a class="manual-time {{#if type_time}}is-active{{/if}}" onclick="typeTime();">Thời gian</a>
+                <a class="manual-time {{#if type_time}}is-active{{/if}}" onclick="typeTime();">
+                    <i class="fa fa-caret-down mr-3" aria-hidden="true"></i>Thời gian
+                </a>
                 <ul class="manual-list-time {{#unless type_time}}is-hidden{{/unless}}">
-                    <li><a href="?type=3" class="{{#if type_3}}is-active{{/if}}">Thời gian kết thúc tăng dần</a></li>
-                    <li><a href="?type=4" class="{{#if type_4}}is-active{{/if}}">Thời gian kết thúc giảm dần</a></li>
+                    <li><a href="?type=3" class="{{#if type_3}}is-active{{/if}}">
+                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Thời gian kết thúc tăng dần</a></li>
+                    <li><a href="?type=4" class="{{#if type_4}}is-active{{/if}}">
+                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Thời gian kết thúc giảm dần</a></li>
                 </ul>
             </li>
         </ul>

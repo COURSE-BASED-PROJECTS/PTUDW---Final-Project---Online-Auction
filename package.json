@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "author": "Huy,Thong,Tram",
+  "author": "",
   "name": "ptudw---final-project---online-auction",
   "version": "1.0.0",
   "description": "PTUDW - Final Project - Online Auction",
@@ -13,7 +13,6 @@
     "url": "git+https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/COURSE-BASED-PROJECTS/PTUDW---Final-Project---Online-Auction/issues"

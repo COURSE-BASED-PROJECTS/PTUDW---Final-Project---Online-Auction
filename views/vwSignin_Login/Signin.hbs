@@ -5,6 +5,7 @@
 {{#section 'js_datetime'}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
             referrerpolicy="origin"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
         $('#frmRegister').on('submit', function (e) {
             e.preventDefault();
@@ -15,24 +16,45 @@
             const password = $('#txtPassword').val();
             const passwordConfirm = $('#txtPasswordConfirm').val();
             const dob = $('#datetimepicker').val();
-            $.getJSON(`/account/is-available?username=${username}`, function (data) {
-                if (data === false) {
-                    if ($('#check-account').hasClass("is-hidden")) {
-                        $('#check-account').removeClass("is-hidden");
-                    }
-                    return;
-                } else {
-                    if (!$('#check-account').hasClass("is-hidden")){
+            $.getJSON(`/account/is-available?username=${username}&email=${email}`, function (data) {
+                if (data === true) {
+                    if (!$('#check-account').hasClass("is-hidden")) {
                         $('#check-account').toggleClass("is-hidden");
                     }
+                    if (!$('#check-email').hasClass("is-hidden")) {
+                        $('#check-email').toggleClass("is-hidden");
+                    }
+                } else {
+                    const check = JSON.parse(JSON.stringify(data))
+                    if (check.username == false) {
+                        if ($('#check-account').hasClass("is-hidden")) {
+                            $('#check-account').removeClass("is-hidden");
+                        }
+                    } else {
+                        if (!$('#check-account').hasClass("is-hidden")) {
+                            $('#check-account').toggleClass("is-hidden");
+                        }
+                    }
+
+                    if (check.email == false) {
+                        if ($('#check-email').hasClass("is-hidden")) {
+                            $('#check-email').removeClass("is-hidden");
+                        }
+                    } else {
+                        if (!$('#check-email').hasClass("is-hidden")) {
+                            $('#check-email').toggleClass("is-hidden");
+                        }
+                    }
+                    return;
                 }
+
                 if (password !== passwordConfirm) {
                     if ($('#check-pass').hasClass("is-hidden")) {
                         $('#check-pass').removeClass("is-hidden");
                     }
                     return;
                 } else {
-                    if (!$('#check-pass').hasClass("is-hidden")){
+                    if (!$('#check-pass').hasClass("is-hidden")) {
                         $('#check-pass').toggleClass("is-hidden");
                     }
                 }
@@ -42,34 +64,39 @@
                     }
                     return;
                 } else {
-                    if (!$('#check-box').hasClass("is-hidden")){
+                    if (!$('#check-box').hasClass("is-hidden")) {
                         $('#check-box').toggleClass("is-hidden");
                     }
                 }
-                if (name && address && email && dob
-                        && username && password && passwordConfirm){
-                    $('#frmRegister').off('submit').submit();
-                } else {
-                    $('.check-info').removeClass('is-hidden');
-                }
             });
+            if (name && address && email && dob
+                    && username && password && passwordConfirm) {
+                 $('#frmRegister').off('submit').submit();
+            } else {
+                $('.check-info').removeClass('is-hidden');
+            }
         });
         $('#datetimepicker').datetimepicker({
             timepicker: false,
             format: 'd/m/Y',
             mask: true,
         });
+
     </script>
 {{/section}}
 
 <form id="frmRegister" method="post">
     <div class="has-text-centered">
         <div class="column is-4 is-inline-block box my-5">
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG KÝ</div>
             <div class="notification is-warning is-hidden check-info">
                 <strong>Vui lòng điền đầy đủ thông tin</strong>
             </div>
-
-            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG KÝ</div>
+            {{#if this.reCapcha}}
+                <div class="notification is-warning">
+                    <strong>Đăng ký thất bại, </strong>{{reCapcha}}
+                </div>
+            {{/if}}
             <div class="field has-text-left">
                 <label class="label">Họ tên</label>
                 <div class="control">
@@ -88,7 +115,7 @@
                 <label class="label">Email</label>
                 <div class="control has-icons-left has-icons-right">
                     <input
-                            class="input "
+                            class="input"
                             type="email"
                             placeholder="Nhập Email"
                             name="email"
@@ -101,6 +128,7 @@
                     <span class="icon is-small is-right">
                     </span>
                 </div>
+                <p class="help is-success is-hidden" id="check-email">Email đã tồn tại</p>
                 <!--                    <p class="help is-danger">Email không hợp lệ</p>-->
             </div>
 
@@ -178,6 +206,7 @@
                 <p class="help is-danger is-hidden" id="check-pass">Mật khẩu không trùng khớp</p>
             </div>
 
+            <div class="g-recaptcha" data-sitekey="6LfuC8YdAAAAAHy-_c34Aej6HWVQ_kaXabz2ewI8"></div>
             <div class="field has-text-left">
                 <div class="control">
                     <label class="checkbox" for="txtCheckbox">

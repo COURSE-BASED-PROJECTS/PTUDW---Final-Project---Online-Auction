@@ -4,10 +4,18 @@
         <ul class="menu-list">
             {{#each lcCategories}}
                 <li>
-                    <a class="manual category-{{CatID}} {{#if isActive}}is-active{{/if}}" onclick="categoryClick({{CatID}})">{{CatName}}</a>
+                    <a class="manual category-{{CatID}} {{#if isActive}}is-active{{/if}}" onclick="categoryClick({{CatID}})">
+                        <i class="fa fa-caret-down mr-3" aria-hidden="true"></i>
+                        {{CatName}}
+                    </a>
                     <ul class="manual-list list-{{CatID}} {{#unless isActive}}is-hidden{{/unless}}">
                         {{#each listsub}}
-                            <li><a href="/product/byCat/{{CatIDNext}}" class="{{#if isActive}}is-active{{/if}}">{{CatNextName}}</a></li>
+                            <li>
+                                <a href="/product/byCat/{{CatIDNext}}" class="{{#if isActive}}is-active{{/if}}">
+                                    <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                    {{CatNextName}}
+                                </a>
+                            </li>
                         {{/each}}
                     </ul>
                 </li>

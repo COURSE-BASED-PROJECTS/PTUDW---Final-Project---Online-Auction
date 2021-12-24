@@ -18,12 +18,19 @@
 
             if (keycode == '13') {
                 const action = $('#text').val();
-                const url = "/search/"+action;
+                const url = "/search/" + action;
                 $('#frmSearch').attr('action', url);
                 $('#frmSearch').submit();
             }
         });
-
+        $('#btnSearch').click(function(event){
+            const action = $('#text').val();
+            if (action !== '') {
+                const url = "/search/" + action;
+                $('#frmSearch').attr('action', url);
+                $('#frmSearch').submit();
+            }
+        });
 
     </script>
 {{/section}}
@@ -58,6 +65,7 @@
 
             <div class="navbar-item">
                 <input class="input is-rounded" type="text" placeholder="Tìm kiếm" id="text">
+                <button class="button is-primary is-outlined is-rounded ml-3" id="btnSearch">Search</button>
                 <form action="" method="get" id="frmSearch"></form>
             </div>
 
@@ -94,7 +102,7 @@
             {{#if auth}}
                 <div class="navbar-item has-dropdown is-hoverable user">
                     <a class="navbar-link">{{authAccount.name}}</a>
-                    <div class="navbar-dropdown ">
+                    <div class="navbar-dropdown">
                         <p class="menu-label is-size-6 m-4">Thông tin</p>
                         <hr class="navbar-divider {{#unless Seller}}is-hidden{{/unless}}" />
                         <a class="navbar-item {{#unless Seller}}is-hidden{{/unless}}

@@ -2,11 +2,12 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 {{/section}}
-{{#section 'js'}}
+{{#section 'js_datetime'}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
             referrerpolicy="origin"></script>
     <script>
         $('#datetimepicker').datetimepicker({
+            timepicker: false,
             format: 'd/m/Y',
             mask: true,
         });
@@ -50,7 +51,7 @@
                 <label class="label" for="stepPrice">Ngày sinh</label>
                 <div class="control has-icons-left has-icons-right">
                     <input
-                            class="input is-info"
+                            class="input"
                             type="text"
                             name="dob"
                             id="datetimepicker"

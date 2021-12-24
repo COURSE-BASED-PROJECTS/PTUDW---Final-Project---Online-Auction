@@ -43,7 +43,7 @@ router.get('/is-available', async function (req, res) {
         return res.json(true);
     }
 
-    res.json(false);
+    return res.json(false);
 });
 
 router.get('/is-password', async function (req, res) {
@@ -51,12 +51,15 @@ router.get('/is-password', async function (req, res) {
     const passDb = await accountModel.findPasswordByUsername(username);
 
     const ret = bcrypt.compareSync(req.query.password, passDb);
-    res.json(ret);
+    if (ret === true) {
+        return res.json(true);
+    }
+    return res.json(false);
 });
 
 router.get('/login', async function (req, res) {
     if (req.headers.referer !== "/account/login" && req.headers.referer !== "/favicon.ico"
-    && req.headers.referer !== "/account/register") {
+        && req.headers.referer !== "/account/register") {
         req.session.retUrl = req.headers.referer;
     }
     res.render('vwSignin_Login/Login', {

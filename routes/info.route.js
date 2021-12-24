@@ -26,7 +26,13 @@ router.post('/reviewProfile', async function (req, res) {
     req.body.dob = moment(req.body.dob,'DD/MM/YYYY').format('YYYY-MM-DD');
 
     await accountModel.updateInfoAccount(req.body);
-    res.redirect('/info/reviewProfile');
+    const username = req.session.authAccount.username;
+    const user = await accountModel.findByUsername(username);
+    res.render('vwInfo/profileAccount', {
+        layout: 'Signin_login',
+        user,
+        isProfile: true,
+    });
 });
 
 router.get('/reviewProfile/changePassword', function (req, res) {
@@ -47,20 +53,6 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
     await accountModel.updatePassword(entity);
     res.redirect('/info/reviewProfile');
 });
-
-// router.get('/reviewProfile/is-changed',async function (req,res){
-//     const username = req.session.authAccount.username;
-//     const name = req.query.name;
-//
-//     const account = await accountModel.findByUsername(username);
-//
-//     if(account === null){
-//         return res.json(true);
-//     }
-//
-//     res.json(false);
-// });
-
 router.get('/reviewHistory', async function (req, res) {
     const username = req.session.authAccount.username;
     const list = await productHistoryModel.findHistoryProduct(username);

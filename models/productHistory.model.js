@@ -1,32 +1,64 @@
 import db from '../utils/db.js'
 import dateFormat from "../utils/dateFormat.js";
+import moment from "moment";
+import productModel from "./product.model.js";
+import accountModel from "./account.model.js";
 
 export default {
 
-    async findWonProduct(username){
-        let list = await db('historybid')
+    async findHistoryProduct(username){
+        const list = await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({BidderHistory:username,isWinner:true,isAllowed:true,isSuccessful:true})
+            .where({BidderHistory:username,Bidder:username})
             .select();
 
         dateFormat({key:list});
 
-        return list
-    },
-    async getPointAccount(username){
-        const list = await db('account').where('username',username);
-        return list[0].point;
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                if(+p.pointFromSeller > 0)
+                    p.isPositiveFromSeller = true;
+                else
+                    p.isPositiveFromSeller = false;
+                result.push(p);
+            }
+        }
+
+
+        return result;
     },
 
     async findSoldProduct(username){
-        let list = await db('historybid')
-            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({Seller:username,isAllowed:true,isSuccessful:true})
+        const list = await db('historybid')
+            .join('products', function (){
+                this.on('historybid.ProIDHistory', '=', 'products.ProID')
+                    .andOn('historybid.BidderHistory', '=', 'products.Bidder')
+            })
+            .where({Seller:username})
             .select();
 
         dateFormat({key:list});
 
-        return list
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                // if(+p.pointFromSeller > 0)
+                //     p.isPositiveFromBidder = true;
+                // else
+                //     p.isPositiveFromBidder = false;
+                result.push(p);
+            }
+        }
+
+
+        return result;
     },
 
     async updateCommentSeller(username,ProID,comment){
@@ -42,6 +74,7 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
             .update({ pointFromSeller: 1 });
+
     },
 
     async updateDislikeSeller(username,ProID){
@@ -49,5 +82,21 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
             .update({ pointFromSeller: -1 });
+    },
+
+    async cancelSold(username,ProID,bidder){
+        await db('historybid')
+            .join('products', function (){
+                this.on('historybid.ProIDHistory', '=', 'products.ProID')
+                    .andOn('historybid.BidderHistory', '=', 'products.Bidder')
+            })
+            .where({Seller:username})
+            .update({pointFromSeller: -1,commentSeller:"Người thắng không thanh toán",isCancel:true});
+
+        const point = await accountModel.getPointAccount(bidder);
+
+        await db('account')
+            .where({ username: bidder})
+            .update({ point: +point + -1 });
     },
 }

@@ -49,5 +49,10 @@ export default {
         }
 
         return list;
-    }
+    },
+
+    async getPointAccount(username){
+        const list = await db('account').where('username',username);
+        return list[0].point;
+    },
 }

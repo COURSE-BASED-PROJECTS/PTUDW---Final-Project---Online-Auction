@@ -3,6 +3,7 @@ import productFavoriteModel from "../models/productFavorite.model.js";
 import productHistoryModel from "../models/productHistory.model.js";
 import productAuctionModel from "../models/productOnAuction.model.js";
 import productWonModel from "../models/productWon.model.js";
+import accountModel from "../models/account.model.js";
 
 
 const router = express.Router();
@@ -10,9 +11,8 @@ const router = express.Router();
 
 router.get('/reviewHistory',async function (req,res){
     const username = req.session.authAccount.username;
-    const list = await productHistoryModel.findWonProduct(username);
-    const point = await productHistoryModel.getPointAccount(username);
-    console.log(point);
+    const list = await productHistoryModel.findHistoryProduct(username);
+    const point = await accountModel.getPointAccount(username);
 
     res.render('vwInfo/reviewHistory',{
         layout:'main',
@@ -79,7 +79,7 @@ router.get('/onlineAuction',async function (req,res){
 
 router.get('/wonProduct',async function (req,res){
     const username = req.session.authAccount.username;
-    const list = await productWonModel.findWonProduct(username);
+    const list = await productHistoryModel.findHistoryProduct(username);
 
     res.render('vwInfo/wonProduct',{
         layout:'main',

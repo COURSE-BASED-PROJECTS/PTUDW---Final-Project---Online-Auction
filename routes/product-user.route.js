@@ -24,7 +24,7 @@ router.get('/byCat/:id',async function (req,res){
     }
 
     const list = await productModel.findPageByCatIDNext(CatIDNext,limit,offset);
-    await productModel.isNew('5')
+
     for(const p of list){
         p.auth = req.session.auth;
         p.isSold = await productModel.isSold(p.ProID);

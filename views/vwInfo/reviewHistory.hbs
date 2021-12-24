@@ -4,7 +4,7 @@
     {{else}}
         <div class="column is-12 p-5 ">
             <span class="tag {{#if this.isPositive}}is-success{{else}}is-danger{{/if}} is-large">{{this.point}}</span>
-            <hr class="has-background-grey" />
+            <hr class="has-background-grey"/>
         </div>
 
         {{#each this.list}}
@@ -26,15 +26,21 @@
                     <div class="card-content py-2 px-0 is-size-7-mobile">
                         <strong class="is-block has-text-info-dark my-2"> Giá mua: <span
                                 class="has-text-success">#{{PriceWinAll}}</span></strong>
-                        <strong class="is-block has-text-info-dark my-2">Điểm đánh giá: <span
-                                class="icon is-small">
-                            {{#if point}}
-                                <i class="fa fa-thumbs-up"></i>
-                            {{else}}
-                                <i class="fa fa-thumbs-down has-text-danger"></i>
-                            {{/if}}
+                        <strong class="is-block has-text-info-dark my-2">Điểm đánh giá:
+                            {{#if pointFromSeller}}
+                                <span
+                                    class="icon is-small">
 
-                        </span></strong>
+                                    {{#if isPositiveFromSeller}}
+                                        <i class="fa fa-thumbs-up"></i>
+                                    {{else}}
+                                        <i class="fa fa-thumbs-down has-text-danger"></i>
+                                    {{/if}}
+                                </span>
+                            {{else}}
+                                <span class="has-text-dark">Chưa đánh giá</span>
+                            {{/if}}
+                        </strong>
                         <hr class="navbar-divider has-background-black"/>
                         <div class="content">
                             <p class="box">
@@ -45,6 +51,7 @@
                     </div>
                 </div>
             </div>
+
         {{/each}}
 
     {{/if}}

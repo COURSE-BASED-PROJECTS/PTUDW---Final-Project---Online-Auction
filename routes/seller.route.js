@@ -120,4 +120,14 @@ router.post('/soldProduct/dislike/:ProID',async function (req,res){
     res.redirect(url);
 });
 
+router.post('/cancelSoldProduct/:ProID',async function (req,res){
+    const username = req.session.authAccount.username;
+    const ProID = req.params.ProID;
+
+    await productHistoryModel.cancelSold(username,ProID,req.body.bidder);
+
+    const url = req.headers.referer || '/';
+    res.redirect(url);
+});
+
 export default router

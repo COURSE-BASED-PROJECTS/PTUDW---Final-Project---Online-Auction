@@ -1,7 +1,5 @@
 import db from '../utils/db.js'
-import dateFormat from "../utils/dateFormat.js";
-import moment from "moment";
-import productModel from "./product.model.js";
+import accountModel from "./account.model.js";
 
 export default {
 
@@ -17,11 +15,32 @@ export default {
             .where({ BidderHistory: username,ProIDHistory:ProID})
             .update({ pointFromBidder: 1 })
 
+        let seller = await db('products')
+            .where({ProID:ProID,Bidder:username})
+            .select('Seller');
+
+        seller = seller[0].Seller;
+        const point = await accountModel.getPointAccount(seller);
+
+        await db('account')
+            .where({ username: seller})
+            .update({ point: +point + 1 });
     },
 
     async updateDislike(username,ProID){
         await db('historybid')
             .where({ BidderHistory: username,ProIDHistory:ProID})
-            .update({ pointFromBidder: -1 })
+            .update({ pointFromBidder: -1 });
+
+        let seller = await db('products')
+            .where({ProID:ProID,Bidder:username})
+            .select('Seller');
+
+        seller = seller[0].Seller;
+        const point = await accountModel.getPointAccount(seller);
+
+        await db('account')
+            .where({ username: seller})
+            .update({ point: +point + 1 });
     }
 }

@@ -85,9 +85,7 @@
 
                     {{#unless isCancel}}
                         <footer class="card-footer is-size-7-mobile">
-                            <form action="/seller/cancelSoldProduct/{{ProID}}" method="post" id="cancelSold">
-                                <input class="input is-hidden" type="text" name="bidder" value="{{Bidder}}"/>
-                            </form>
+                            <form action="/seller/cancelSoldProduct/{{ProID}}" method="post" id="cancelSold"></form>
                             <a href="javascript: $('#cancelSold').submit();" class="card-footer-item">
                                 <span class="has-text-warning">Hủy giao dịch</span>
                             </a>

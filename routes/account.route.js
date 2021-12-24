@@ -29,7 +29,6 @@ router.post('/register', async function (req, res) {
 
     await accountModel.addAccount(account);
 
-
     res.render('vwSignin_Login/Signin', {
         layout: 'Signin_Login'
     });
@@ -56,7 +55,8 @@ router.get('/is-password', async function (req, res) {
 });
 
 router.get('/login', async function (req, res) {
-    if (req.headers.referer !== "/account/login" && req.headers.referer !== "/favicon.ico") {
+    if (req.headers.referer !== "/account/login" && req.headers.referer !== "/favicon.ico"
+    && req.headers.referer !== "/account/register") {
         req.session.retUrl = req.headers.referer;
     }
     res.render('vwSignin_Login/Login', {

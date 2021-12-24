@@ -96,7 +96,6 @@ router.post('/soldProduct/:ProID',async function (req,res){
     const ProID = req.params.ProID;
 
     await productHistoryModel.updateCommentSeller(username,ProID,req.body.comment);
-    console.log(req.body);
     const url = req.headers.referer || '/';
     res.redirect(url);
 });
@@ -124,7 +123,7 @@ router.post('/cancelSoldProduct/:ProID',async function (req,res){
     const username = req.session.authAccount.username;
     const ProID = req.params.ProID;
 
-    await productHistoryModel.cancelSold(username,ProID,req.body.bidder);
+    await productHistoryModel.cancelSold(username,ProID);
 
     const url = req.headers.referer || '/';
     res.redirect(url);

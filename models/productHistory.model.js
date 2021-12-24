@@ -73,18 +73,39 @@ export default {
         await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
-            .update({ pointFromSeller: 1 });
+            .update({ pointFromSeller: 1,isCancel:true });
 
+        let bidder = await db('products')
+            .where({ProID:ProID,Seller:username})
+            .select('Bidder');
+
+        bidder = bidder[0].Bidder;
+        const point = await accountModel.getPointAccount(bidder);
+
+        await db('account')
+            .where({ username: bidder})
+            .update({ point: +point + 1 });
     },
 
     async updateDislikeSeller(username,ProID){
         await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
-            .update({ pointFromSeller: -1 });
+            .update({ pointFromSeller: -1 ,isCancel:true});
+
+        let bidder = await db('products')
+            .where({ProID:ProID,Seller:username})
+            .select('Bidder');
+
+        bidder = bidder[0].Bidder;
+        const point = await accountModel.getPointAccount(bidder);
+
+        await db('account')
+            .where({ username: bidder})
+            .update({ point: +point + -1 });
     },
 
-    async cancelSold(username,ProID,bidder){
+    async cancelSold(username,ProID){
         await db('historybid')
             .join('products', function (){
                 this.on('historybid.ProIDHistory', '=', 'products.ProID')
@@ -93,6 +114,12 @@ export default {
             .where({Seller:username})
             .update({pointFromSeller: -1,commentSeller:"Người thắng không thanh toán",isCancel:true});
 
+
+        let bidder = await db('products')
+                                .where({ProID:ProID,Seller:username})
+                                .select('Bidder');
+
+        bidder = bidder[0].Bidder;
         const point = await accountModel.getPointAccount(bidder);
 
         await db('account')

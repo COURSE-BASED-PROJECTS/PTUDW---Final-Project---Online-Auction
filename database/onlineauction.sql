@@ -31,6 +31,7 @@ CREATE TABLE `account` (
   `name` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `dob` date NOT NULL,
   `point` int(11) NOT NULL,
   `level` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -41,9 +42,10 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`name`, `address`, `email`, `point`, `level`, `username`, `password`) VALUES
-('Nguyễn Đức Huy', '123 Nguyễn Văn Cừ', 'duchuy040421@gmail.com', 0, 'bidder', 'dhuy', 'huy123'),
-('Nguyen Duc Huy', '77 district 3', 'huyyy13538@gmail.com', -5, 'admin', 'dhuy01', '$2b$10$5W5DZ5/Xi0HKnZO9vTq7/.9dgI7eZEC6WCwzPfxeMa5FrWFyqPUe.');
+INSERT INTO `account` (`name`, `address`, `email`,`dob`, `point`, `level`, `username`, `password`) VALUES
+('Nguyễn Đức Huy', '123 Nguyễn Văn Cừ', 'duchuy040421@gmail.com','2001-04-04', 0, 'bidder', 'dhuy', 'huy123'),
+('Nguyễn Hoàng Thông', '123 Võ Văn Kiệt', 'nhthong30@gmail.com','2001-03-14', 0, 'bidder', 'nhthong', '$2b$10$N8FBL//oxV4m15VT1/.l0.19DFq.09qwXuyRFSSiMGhHlMdDQebWm'),
+('Nguyen Duc Huy', '77 district 3', 'huyyy13538@gmail.com','2001-04-04', -5, 'admin', 'dhuy01', '$2b$10$5W5DZ5/Xi0HKnZO9vTq7/.9dgI7eZEC6WCwzPfxeMa5FrWFyqPUe.');
 
 -- --------------------------------------------------------
 

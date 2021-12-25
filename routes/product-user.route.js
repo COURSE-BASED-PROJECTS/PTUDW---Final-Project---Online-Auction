@@ -63,6 +63,7 @@ router.get('/byCat/:id',async function (req,res){
 });
 
 router.get('/detail/:id',async function (req,res){
+    const ProName = req.params.name;
     const ProID = req.params.id;
     const product = await productModel.findByProID(ProID);
     const dateEnd = moment(product[0].DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");

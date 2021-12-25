@@ -39,25 +39,26 @@
         <ul class="menu-list">
             <li>
                 <a class="manual-price {{#if type_price}}is-active{{/if}}" onclick="typePrice();">
-                    <i class="fa fa-caret-down mr-3" aria-hidden="true" ></i>
-                    Giá
+                   <strong>Giá</strong>
                 </a>
                 <ul class="manual-list-price {{#unless type_price}}is-hidden{{/unless}}">
                     <li><a href="?type=1" class="{{#if type_1}}is-active{{/if}}">
-                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Giá tăng dần</a></li>
+                        <i class="fa fa-sort-amount-asc mr-3" aria-hidden="true"></i>Giá tăng dần
+                    </a></li>
                     <li><a href="?type=2" class="{{#if type_2}}is-active{{/if}}">
-                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Giá giảm dần</a></li>
+                        <i class="fa fa-sort-amount-desc mr-3" aria-hidden="true"></i>Giá giảm dần
+                    </a></li>
                 </ul>
             </li>
             <li>
                 <a class="manual-time {{#if type_time}}is-active{{/if}}" onclick="typeTime();">
-                    <i class="fa fa-caret-down mr-3" aria-hidden="true"></i>Thời gian
+                    <strong>Thời gian</strong>
                 </a>
                 <ul class="manual-list-time {{#unless type_time}}is-hidden{{/unless}}">
                     <li><a href="?type=3" class="{{#if type_3}}is-active{{/if}}">
-                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Thời gian kết thúc tăng dần</a></li>
+                        <i class="fa fa-sort-amount-asc mr-3" aria-hidden="true"></i>Thời gian kết thúc tăng dần</a></li>
                     <li><a href="?type=4" class="{{#if type_4}}is-active{{/if}}">
-                        <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Thời gian kết thúc giảm dần</a></li>
+                        <i class="fa fa-sort-amount-desc mr-3" aria-hidden="true"></i>Thời gian kết thúc giảm dần</a></li>
                 </ul>
             </li>
         </ul>

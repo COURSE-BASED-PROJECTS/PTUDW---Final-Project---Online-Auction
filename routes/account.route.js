@@ -31,6 +31,8 @@ router.post('/register', async function (req, res) {
         level: "bidder",
         username: req.body.username,
         password: hash,
+        active: 0,
+        otp: Math.floor(Math.random() * 8999) + 1000
     }
 
     await accountModel.addAccount(account);
@@ -64,10 +66,19 @@ router.get('/is-available', async function (req, res) {
 
 router.get('/is-password', async function (req, res) {
     const username = req.session.authAccount.username;
-    const passDb = await accountModel.findPasswordByUsername(username);
+    const account = await accountModel.findByUsername(username);
 
-    const ret = bcrypt.compareSync(req.query.password, passDb);
+    const ret = bcrypt.compareSync(req.query.password, account.password);
     if (ret === true) {
+        return res.json(true);
+    }
+    return res.json(false);
+});
+
+router.get('/is-otp', async function (req, res) {
+    const username = req.session.authAccount.username;
+    const account = await accountModel.findByUsername(username);
+    if (+req.query.otp === account.otp) {
         return res.json(true);
     }
     return res.json(false);

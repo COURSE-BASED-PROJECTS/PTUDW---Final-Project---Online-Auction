@@ -35,17 +35,19 @@ CREATE TABLE `account` (
   `point` int(11) NOT NULL,
   `level` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `active` boolean NOT NULL,
+  `otp` smallint
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`name`, `address`, `email`,`dob`, `point`, `level`, `username`, `password`) VALUES
-('Nguyễn Đức Huy', '123 Nguyễn Văn Cừ', 'duchuy040421@gmail.com','2001-04-04', 0, 'bidder', 'dhuy', 'huy123'),
-('Nguyễn Hoàng Thông', '123 Võ Văn Kiệt', 'nhthong30@gmail.com','2001-03-14', 0, 'bidder', 'nhthong', '$2b$10$N8FBL//oxV4m15VT1/.l0.19DFq.09qwXuyRFSSiMGhHlMdDQebWm'),
-('Nguyen Duc Huy', '77 district 3', 'huyyy13538@gmail.com','2001-04-04', -5, 'admin', 'dhuy01', '$2b$10$5W5DZ5/Xi0HKnZO9vTq7/.9dgI7eZEC6WCwzPfxeMa5FrWFyqPUe.');
+INSERT INTO `account` (`name`, `address`, `email`,`dob`, `point`, `level`, `username`, `password`, `active`,`otp`) VALUES
+('Nguyễn Đức Huy', '123 Nguyễn Văn Cừ', 'duchuy040421@gmail.com','2001-04-04', 0, 'bidder', 'dhuy', 'huy123', 1, 1234),
+('Nguyễn Hoàng Thông', '123 Võ Văn Kiệt', 'nhthong30@gmail.com','2001-03-14', 0, 'admin', 'nhthong', '$2b$10$N8FBL//oxV4m15VT1/.l0.19DFq.09qwXuyRFSSiMGhHlMdDQebWm', 1, 1234),
+('Nguyen Duc Huy', '77 district 3', 'huyyy13538@gmail.com','2001-04-04', -5, 'admin', 'dhuy01', '$2b$10$5W5DZ5/Xi0HKnZO9vTq7/.9dgI7eZEC6WCwzPfxeMa5FrWFyqPUe.', 1, 1234);
 
 -- --------------------------------------------------------
 

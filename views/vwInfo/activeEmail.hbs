@@ -1,0 +1,57 @@
+{{#section 'js_activeEmail'}}
+    <script>
+        $('#frmActiveEmail').on('submit', function (e) {
+            e.preventDefault();
+            const otp = $('#txtOtp').val();
+            if (otp === ''){
+                if ($('#check-otp').hasClass("is-hidden")) {
+                    $('#check-otp').removeClass("is-hidden");
+                }
+                return;
+            }
+
+            $.getJSON(`/account/is-otp?otp=${otp}`, function (data) {
+                if (data === false) {
+                    if ($('#check-otp').hasClass("is-hidden")) {
+                        $('#check-otp').removeClass("is-hidden");
+                    }
+                    return;
+                } else {
+                    $('#frmActiveEmail').off('submit').submit();
+                }
+            });
+        });
+    </script>
+{{/section}}
+<form id="frmActiveEmail" method="post">
+    <div class="has-text-centered">
+        <div class="column is-4 is-inline-block box my-5">
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">NHẬP MÃ OTP</div>
+
+            <div class="field has-text-centered">
+                <div class="notification is-warning">
+                    Mã OTP đã được gửi về email của bạn. <br> Vui lòng kiểm tra mail và nhập xác mã xác nhập vào ô bên dưới!
+                </div>
+            </div>
+
+            <div class="field has-text-left">
+                <label class="label">Mã OTP</label>
+                <div class="control">
+                    <input class="input" id="txtOtp" type="number"/>
+                </div>
+                <p class="help is-danger is-hidden" id="check-otp">Mã OTP không hợp lệ</p>
+            </div>
+            <div class="field is-grouped is-justify-content-center mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link has-background-success-dark" >Xác nhận</button>
+                </div>
+                <div class="control">
+                    <a class="button is-link is-dark" href="javascript:;" type="button">
+                        Gửi lại mã OTP
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

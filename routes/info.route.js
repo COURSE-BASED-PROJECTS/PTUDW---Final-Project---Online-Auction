@@ -6,6 +6,7 @@ import productWonModel from "../models/productWon.model.js";
 import accountModel from "../models/account.model.js";
 import moment from "moment";
 import bcrypt from "bcrypt";
+import nodemailer from "nodemailer";
 
 
 const router = express.Router();
@@ -15,24 +16,22 @@ router.get('/reviewProfile', async function (req, res) {
     const user = await accountModel.findByUsername(username);
     res.render('vwInfo/profileAccount', {
         layout: 'Signin_login',
-        user,
-        isProfile: true,
+        user
     });
 });
 
 router.post('/reviewProfile', async function (req, res) {
-    //console.log(req.headers.referer);
     req.body.username = req.session.authAccount.username;
-    req.body.dob = moment(req.body.dob,'DD/MM/YYYY').format('YYYY-MM-DD');
-
+    req.body.dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    const account  = accountModel.findByUsername(req.body.username);
+    if (account.email !== req.body.email){
+        req.body.active = 0;
+        req.body.otp = Math.floor(Math.random() * 8999) + 1000;
+    }
     await accountModel.updateInfoAccount(req.body);
-    const username = req.session.authAccount.username;
-    const user = await accountModel.findByUsername(username);
-    res.render('vwInfo/profileAccount', {
-        layout: 'Signin_login',
-        user,
-        isProfile: true,
-    });
+    res.locals.authAccount.name = req.body.name;
+
+    res.redirect('/info/reviewProfile');
 });
 
 router.get('/reviewProfile/changePassword', function (req, res) {
@@ -50,9 +49,43 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
         username: username,
         password: hash
     }
-    await accountModel.updatePassword(entity);
+    await accountModel.updateInfoAccount(entity);
     res.redirect('/info/reviewProfile');
 });
+
+router.get('/reviewProfile/activeEmail', async function (req, res) {
+    // gửi email
+    const username = req.session.authAccount.username;
+    const user = await accountModel.findByUsername(username);
+
+    const transporter = nodemailer.createTransport('smtps://group19ktpm%40gmail.com:13141152099@smtp.gmail.com');
+    const mailOptions = {
+        from: '"Online Auction System" <foo@blurdybloop.com>', // sender address
+        to: user.email, // list of receivers
+        subject: 'OTP code ✔', // Subject line
+        text: 'OTP', // plaintext body
+        html: 'Your OTP code: <b>' + user.otp + '</b>'
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
+    res.render('vwInfo/activeEmail', {
+        layout: 'Signin_login',
+    });
+});
+router.post('/reviewProfile/activeEmail', async function (req, res) {
+    const username = req.session.authAccount.username;
+    const entity = {
+        username: username,
+        active: 1
+    }
+    await accountModel.updateInfoAccount(entity);
+    res.redirect('/info/reviewProfile');
+});
+
 router.get('/reviewHistory', async function (req, res) {
     const username = req.session.authAccount.username;
     const list = await productHistoryModel.findHistoryProduct(username);

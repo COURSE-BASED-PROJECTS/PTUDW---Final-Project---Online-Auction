@@ -68,14 +68,5 @@ export default {
     async getPointAccount(username){
         const list = await db('account').where('username',username);
         return list[0].point;
-    },
-    async findPasswordByUsername(username) {
-        const pass = await db('account').where('username', username).select('password');
-        return pass[0].password;
-    },
-    updatePassword(entity) {
-        const username = entity.username;
-        delete entity.username;
-        return  db('account').where('username', username).update(entity);
     }
 }

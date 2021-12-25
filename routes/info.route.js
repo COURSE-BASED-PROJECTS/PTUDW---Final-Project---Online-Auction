@@ -6,7 +6,7 @@ import productWonModel from "../models/productWon.model.js";
 import accountModel from "../models/account.model.js";
 import moment from "moment";
 import bcrypt from "bcrypt";
-import nodemailer from "nodemailer";
+import sendMail from "../utils/sendMail.js";
 
 
 const router = express.Router();
@@ -56,21 +56,8 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
 router.get('/reviewProfile/activeEmail', async function (req, res) {
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
-
-    const transporter = nodemailer.createTransport('smtps://group19ktpm%40gmail.com:13141152099@smtp.gmail.com');
-    const mailOptions = {
-        from: '"Online Auction System" <foo@blurdybloop.com>', // sender address
-        to: user.email, // list of receivers
-        subject: 'OTP code ✔', // Subject line
-        text: 'OTP', // plaintext body
-        html: 'Your OTP code: <b>' + user.otp + '</b>'
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-    });
+    const content = 'Your OTP code: <b>' + user.otp + '</b>';
+    sendMail(user.email, content);
     res.render('vwInfo/activeEmail', {
         layout: 'Signin_login',
     });
@@ -92,23 +79,11 @@ router.get('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
         username: username,
         otp: otp
     });
-
     const user = await accountModel.findByUsername(username);
 
-    const transporter = nodemailer.createTransport('smtps://group19ktpm%40gmail.com:13141152099@smtp.gmail.com');
-    const mailOptions = {
-        from: '"Online Auction System" <foo@blurdybloop.com>', // sender address
-        to: user.email, // list of receivers
-        subject: 'OTP code ✔', // Subject line
-        text: 'OTP', // plaintext body
-        html: 'Your OTP code: <b>' + user.otp + '</b>'
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-    });
+    const content = 'Your OTP code: <b>' + user.otp + '</b>';
+    sendMail(user.email, content);
+
     res.redirect('/info/reviewProfile/activeEmail');
 });
 

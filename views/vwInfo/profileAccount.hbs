@@ -6,6 +6,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
             referrerpolicy="origin"></script>
     <script>
+        $('#frmChangeInfo').on('submit', function (e) {
+            e.preventDefault();
+            const email = $('#txtEmail').val();
+            $.getJSON(`/account/is-exist?email=${email}`, function (data) {
+                if (data === false) {
+                    if ($('#check-email').hasClass("is-hidden")) {
+                        $('#check-email').removeClass("is-hidden");
+                    }
+                    return;
+                } else {
+                    $('#frmChangeInfo').off('submit').submit();
+                }
+            });
+        });
         $('#datetimepicker').datetimepicker({
             timepicker: false,
             format: 'd/m/Y',
@@ -13,7 +27,7 @@
         });
     </script>
 {{/section}}
-<form id="frmInfo" method="post">
+<form id="frmChangeInfo" method="post">
     <div class="has-text-centered">
         <div class="column is-4 is-inline-block box my-5">
             <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">THÔNG TIN TÀI KHOẢN</div>
@@ -44,9 +58,11 @@
                     <span class="icon is-small is-left">
                   <i class="fa fa-envelope"></i>
                 </span>
+                    <p class="help is-danger is-hidden" id="check-email">Email đã tồn tại</p>
                 </div>
 
-                <a class="button is-small is-danger is-inverted {{#if this.user.active}}is-hidden{{/if}}" style="float: right"
+                <a class="button is-small is-danger is-inverted {{#if this.user.active}}is-hidden{{/if}}"
+                   style="float: right"
                    href="/info/reviewProfile/activeEmail" type="button">
                     Xác thực email
                 </a>

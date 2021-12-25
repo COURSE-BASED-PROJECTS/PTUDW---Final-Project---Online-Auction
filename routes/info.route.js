@@ -23,14 +23,14 @@ router.get('/reviewProfile', async function (req, res) {
 router.post('/reviewProfile', async function (req, res) {
     req.body.username = req.session.authAccount.username;
     req.body.dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    const account  = accountModel.findByUsername(req.body.username);
+    const account  = await accountModel.findByUsername(req.body.username);
     if (account.email !== req.body.email){
         req.body.active = 0;
         req.body.otp = Math.floor(Math.random() * 8999) + 1000;
     }
-    await accountModel.updateInfoAccount(req.body);
     res.locals.authAccount.name = req.body.name;
 
+    await accountModel.updateInfoAccount(req.body);
     res.redirect('/info/reviewProfile');
 });
 
@@ -54,7 +54,6 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
 });
 
 router.get('/reviewProfile/activeEmail', async function (req, res) {
-    // gửi email
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
 
@@ -84,6 +83,33 @@ router.post('/reviewProfile/activeEmail', async function (req, res) {
     }
     await accountModel.updateInfoAccount(entity);
     res.redirect('/info/reviewProfile');
+});
+
+router.get('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
+    const username = req.session.authAccount.username;
+    const otp = Math.floor(Math.random() * 8999) + 1000;
+    await accountModel.updateInfoAccount({
+        username: username,
+        otp: otp
+    });
+
+    const user = await accountModel.findByUsername(username);
+
+    const transporter = nodemailer.createTransport('smtps://group19ktpm%40gmail.com:13141152099@smtp.gmail.com');
+    const mailOptions = {
+        from: '"Online Auction System" <foo@blurdybloop.com>', // sender address
+        to: user.email, // list of receivers
+        subject: 'OTP code ✔', // Subject line
+        text: 'OTP', // plaintext body
+        html: 'Your OTP code: <b>' + user.otp + '</b>'
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
+    res.redirect('/info/reviewProfile/activeEmail');
 });
 
 router.get('/reviewHistory', async function (req, res) {

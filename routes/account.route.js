@@ -63,6 +63,16 @@ router.get('/is-available', async function (req, res) {
 
     return res.json(check);
 });
+router.get('/is-exist', async function (req, res) {
+    const username = req.session.authAccount.username;
+    const email = req.query.email;
+    const accountHasEmail = await accountModel.findByEmail(email);
+
+    if (accountHasEmail === null ||  accountHasEmail.username === username) {
+        return res.json(true);
+    }
+    return res.json(false);
+});
 
 router.get('/is-password', async function (req, res) {
     const username = req.session.authAccount.username;

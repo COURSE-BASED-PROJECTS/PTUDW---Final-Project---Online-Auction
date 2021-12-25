@@ -16,6 +16,7 @@
             const password = $('#txtPassword').val();
             const passwordConfirm = $('#txtPasswordConfirm').val();
             const dob = $('#datetimepicker').val();
+            alert(dob);
             $.getJSON(`/account/is-available?username=${username}&email=${email}`, function (data) {
                 if (data === true) {
                     if (!$('#check-account').hasClass("is-hidden")) {
@@ -47,12 +48,19 @@
                     }
                     return;
                 }
-
+                if (dob === null || dob === '') {
+                    if ($('#check-dob').hasClass("is-hidden")) {
+                        $('#check-dob').removeClass("is-hidden");
+                    }
+                } else {
+                    if (!$('#check-dob').hasClass("is-hidden")) {
+                        $('#check-dob').toggleClass("is-hidden");
+                    }
+                }
                 if (password !== passwordConfirm) {
                     if ($('#check-pass').hasClass("is-hidden")) {
                         $('#check-pass').removeClass("is-hidden");
                     }
-                    return;
                 } else {
                     if (!$('#check-pass').hasClass("is-hidden")) {
                         $('#check-pass').toggleClass("is-hidden");
@@ -62,13 +70,15 @@
                     if ($('#check-box').hasClass("is-hidden")) {
                         $('#check-box').removeClass("is-hidden");
                     }
-                    return;
                 } else {
                     if (!$('#check-box').hasClass("is-hidden")) {
                         $('#check-box').toggleClass("is-hidden");
                     }
                 }
             });
+            if (password !== passwordConfirm || !($('#txtCheckbox').is(':checked')) || dob === null){
+                return;
+            }
             if (name && address && email && dob
                     && username && password && passwordConfirm) {
                  $('#frmRegister').off('submit').submit();
@@ -80,8 +90,9 @@
             timepicker: false,
             format: 'd/m/Y',
             mask: true,
+            default: null
         });
-
+        $('#txtName').focus();
     </script>
 {{/section}}
 
@@ -100,7 +111,7 @@
             <div class="field has-text-left">
                 <label class="label">Họ tên</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Nhập họ tên" autofocus id="txtName" name="name"/>
+                    <input class="input" type="text" placeholder="Nhập họ tên" id="txtName" name="name"/>
                 </div>
             </div>
 
@@ -136,7 +147,7 @@
                 <label class="label" for="dob">Ngày sinh</label>
                 <div class="control has-icons-left has-icons-right">
                     <input
-                            class="input "
+                            class="input"
                             type="text"
                             id="datetimepicker"
                             name="dayOfBirth"
@@ -147,6 +158,7 @@
                     <span class="icon is-small is-right">
                     </span>
                 </div>
+                <p class="help is-danger is-hidden" id="check-dob">Chưa chọn ngày sinh</p>
             </div>
 
             <hr class="has-background-grey-dark">

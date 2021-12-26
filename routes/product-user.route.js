@@ -1,5 +1,7 @@
 import express from "express";
 import productModel from "../models/product.model.js";
+import accountModel from "../models/account.model.js";
+import historybidModel from "../models/historybid.model.js";
 import moment from "moment";
 
 const router = express.Router();
@@ -68,34 +70,102 @@ router.get('/detail/:id',async function (req,res){
     const product = await productModel.findByProID(ProID);
     const dateEnd = moment(product[0].DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
     const now = moment().format("YYYY-MM-DD hh:mm");
+    const isSold = await productModel.isSold(ProID);
+    const isExpired = moment(now).isAfter(dateEnd) || isSold;
 
     if(product === null){
         return res.redirect('/');
     }
 
-    const isSold = await productModel.isSold(ProID);
-
     res.render('vwCategory/product',{
         layout:'SignUp_login',
         product: product[0],
-        isExpired: moment(now).isAfter(dateEnd) || isSold,
+        isExpired,
     });
 });
 
+router.get('/infoProduct/:id',async function (req,res){
+    const id = req.params.id;
+    const product = await productModel.findByProID(id);
+    const account = await accountModel.findByUsername(req.session.authAccount.username);
+
+    const dateEnd = moment(product[0].DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+    const now = moment().format("YYYY-MM-DD hh:mm");
+    const isSold = await productModel.isSold(id);
+    const isExpired = moment(now).isAfter(dateEnd) || isSold;
+
+    product[0].isExpired = isExpired;
+
+    if(!account.isActive){
+        res.json(false);
+    }else if(product[0].isVerify){
+        if(+account.point/+account.sumBid < 0.8)
+            res.json("lowPoint")
+    }else{
+        res.json(product[0]);
+    }
+
+});
+
+router.post('/buynow',async function (req,res){
+    const id = req.body.id;
+    const product = await productModel.findByProID(id);
+    const account = await accountModel.findByUsername(req.session.authAccount.username);
+
+    const dateEnd = moment(product[0].DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+    const now = moment().format("YYYY-MM-DD hh:mm");
+    const isSold = await productModel.isSold(id);
+    const isExpired = moment(now).isAfter(dateEnd) || isSold;
+    const priceBid = req.body.number;
+    const username = req.session.authAccount.username;
+
+    if(isExpired){
+        res.redirect('/product/detail/'+id);
+    }else{
+        if(+priceBid >= +product[0].PriceWin){
+            const historybid = {
+                ProIDHistory : id,
+                BidderHistory: username,
+                PriceBid: priceBid,
+                PriceWinAll:product[0].PriceWin,
+                PriceStart: product[0].PriceCurrent,
+            }
+
+            await historybidModel.addHistory(historybid, id,product[0].BidderCount);
+            await productModel.updateBidderFlag(username,id);
+            await productModel.updateSuccessul(username,product[0].PriceWin);
+        }else{
+            const priceBidFlag = await historybidModel.getPriceBid(product[0].Bidder,id);
+            if(+priceBid<=+priceBidFlag){
+                const historybid = {
+                    ProIDHistory : id,
+                    BidderHistory: username,
+                    PriceBid: priceBid,
+                    PriceWinAll:priceBid,
+                    PriceStart: priceBid ,
+                }
+
+                await historybidModel.addHistory(historybid, id,product[0].BidderCount);
+                await productModel.updateCurrentPrice(id,priceBid)
+            }else{
+                const historybid = {
+                    ProIDHistory : id,
+                    BidderHistory: username,
+                    PriceBid: priceBid,
+                    PriceWinAll:+priceBidFlag + +product[0].stepPrice,
+                    PriceStart: +priceBidFlag + +product[0].stepPrice,
+                }
+
+                await historybidModel.addHistory(historybid, id,product[0].BidderCount);
+                await productModel.updateBidderFlag(username,id)
+            }
+        }
 
 
-router.post('/buynow/:id',async function (req,res){
-    // const ProID = req.params.id;
-    // const product = await productModel.findByProID(ProID);
-    //
-    // if(product === null){
-    //     return res.redirect('/');
-    // }
-    //
-    // res.render('vwCategory/product',{
-    //     layout:'SignUp_login',
-    //     product: product[0],
-    // });
+        const url = req.headers.referer || '/';
+        res.redirect(url);
+    }
+
 });
 
 // router.post('/favorite',async function (req,res){

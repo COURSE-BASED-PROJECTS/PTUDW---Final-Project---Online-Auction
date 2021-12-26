@@ -128,5 +128,30 @@ export default {
         }
         return false;
 
-    }
+    },
+    async updateSuccessul(username,priceWinAll){
+        await db('historybid')
+            .where({BidderHistory:username})
+            .update({isSuccessful:true,PriceWinAll:priceWinAll});
+    },
+    async updateBidderFlag(username,ProID){
+        await db('products')
+            .where({ProID:ProID})
+            .update({Bidder:username});
+    },
+    async updateCurrentPrice(ProID,PriceCurrent){
+        await db('products')
+            .where({ProID:ProID})
+            .update({PriceCurrent:PriceCurrent});
+    },
+    async incrementBidderCount(ProID,count){
+        await db('products')
+            .where({ProID:ProID})
+            .update({BidderCount:+count+1});
+    },
+    async updateIsAllowed(ProID,username){
+        await db('historybid')
+            .where({ProID:ProID,BidderHistory:username})
+            .update({isAllowed:true});
+    },
 }

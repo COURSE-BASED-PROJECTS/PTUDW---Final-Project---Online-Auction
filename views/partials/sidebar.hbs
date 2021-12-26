@@ -29,59 +29,62 @@
         <!--            <li><a href="/info/onlineAuction">Sản phẩm đang đấu giá</a></li>-->
         <!--            <li><a href="/info/wonProduct">Sản phẩm đã thắng</a></li>-->
         <!--        </ul>-->
-        <p class="menu-label is-size-6 {{#unless Seller}}is-hidden{{/unless}}"><strong>Bán</strong></p>
-        <ul class="menu-list {{#unless Seller}}is-hidden{{/unless}}">
-            <li>
-                <a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">
-                    <i class="fa fa-balance-scale-right mr-3" aria-hidden="true"></i>
-                    Sản phẩm đang đăng
-                </a>
-            </li>
-            <li>
-                <a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">
-                    <i class="fa fa-money mr-3" aria-hidden="true"></i>
-                    Sản phẩm đã bán
-                </a>
-            </li>
-        </ul>
+        {{#if Seller}}
+            <p class="menu-label is-size-6 "><strong>Bán</strong></p>
+            <ul class="menu-list">
+                <li>
+                    <a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">
+                        <i class="fa fa-balance-scale-right mr-3" aria-hidden="true"></i>
+                        Sản phẩm đang đăng
+                    </a>
+                </li>
+                <li>
+                    <a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">
+                        <i class="fa fa-money mr-3" aria-hidden="true"></i>
+                        Sản phẩm đã bán
+                    </a>
+                </li>
+            </ul>
+        {{/if}}
 
-        <p class="menu-label is-size-6 {{#unless Admin}}is-hidden{{/unless}}"><strong>Bán</strong></p>
-        <ul class="menu-list {{#unless Admin}}is-hidden{{/unless}}">
-            <li>
-                <a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">
-                    <i class="fa fa-balance-scale-right mr-3" aria-hidden="true"></i>
-                    Sản phẩm đang đăng
-                </a>
-            </li>
-            <li>
-                <a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">
-                    <i class="fa fa-money mr-3" aria-hidden="true"></i>
-                    Sản phẩm đã bán
-                </a>
-            </li>
-        </ul>
+        {{#if Admin}}
+            <p class="menu-label is-size-6 "><strong>Bán</strong></p>
+            <ul class="menu-list">
+                <li>
+                    <a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">
+                        <i class="fa fa-balance-scale-right mr-3" aria-hidden="true"></i>
+                        Sản phẩm đang đăng
+                    </a>
+                </li>
+                <li>
+                    <a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">
+                        <i class="fa fa-money mr-3" aria-hidden="true"></i>
+                        Sản phẩm đã bán
+                    </a>
+                </li>
+            </ul>
 
-        <p class="menu-label is-size-6 {{#unless Admin}}is-hidden{{/unless}}"><strong>Admin</strong></p>
-        <ul class="menu-list {{#unless Admin}}is-hidden{{/unless}}">
-            <li>
-                <a href="/admin/updateCategory" class="{{#if this.isUpdateCategory}}is-active{{/if}}">
-                    <i class="fa fa-list-alt mr-3" aria-hidden="true"></i>
-                    Danh mục
-                </a>
-            </li>
-            <li>
-                <a href="/admin/Account" class="{{#if this.isAccount}}is-active{{/if}}">
-                    <i class="fa fa-users mr-2" aria-hidden="true"></i>
-                    Tài khoản
-                </a>
-            </li>
-            <li>
-                <a href="/admin/verifySeller" class="{{#if this.isVerifySeller}}is-active{{/if}}">
-                    <i class="fa fa-angle-double-up ml-1 mr-3" aria-hidden="true"></i>
-                    Nâng cấp
-                </a>
-            </li>
-        </ul>
+            <p class="menu-label is-size-6 "><strong>Admin</strong></p>
+            <ul class="menu-list ">
+                <li>
+                    <a href="/admin/updateCategory" class="{{#if this.isUpdateCategory}}is-active{{/if}}">
+                        <i class="fa fa-list-alt mr-3" aria-hidden="true"></i>
+                        Danh mục
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/Account" class="{{#if this.isAccount}}is-active{{/if}}">
+                        <i class="fa fa-users mr-2" aria-hidden="true"></i>
+                        Tài khoản
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/verifySeller" class="{{#if this.isVerifySeller}}is-active{{/if}}">
+                        <i class="fa fa-angle-double-up ml-1 mr-3" aria-hidden="true"></i>
+                        Nâng cấp
+                    </a>
+                </li>
+            </ul>
+        {{/if}}
     </aside>
-
 </div>

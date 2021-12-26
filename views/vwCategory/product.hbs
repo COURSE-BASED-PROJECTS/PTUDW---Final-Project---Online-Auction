@@ -1,5 +1,158 @@
+{{#section 'js_showMessage'}}
+    <script>
+        function modal_verify(){
+           if($('.modal_verify').hasClass("is-active")){
+               $('.modal_verify').removeClass("is-active")
+           } else{
+               $('.modal_verify').toggleClass("is-active")
+           }
+        };
+
+        function modal_priceInvalid(){
+            if($('.modal_priceInvalid').hasClass("is-active")){
+                $('.modal_priceInvalid').removeClass("is-active")
+            } else{
+                $('.modal_priceInvalid').toggleClass("is-active")
+            }
+        };
+        function modal_isActive(){
+            if($('.modal_isActive').hasClass("is-active")){
+                $('.modal_isActive').removeClass("is-active")
+            } else{
+                $('.modal_isActive').toggleClass("is-active")
+            }
+        };
+        function modal_expired(){
+            if($('.modal_expired').hasClass("is-active")){
+                $('.modal_expired').removeClass("is-active")
+            } else{
+                $('.modal_expired').toggleClass("is-active")
+            }
+        };
+        function modal_lowpoint(){
+            if($('.modal_lowpoint').hasClass("is-active")){
+                $('.modal_lowpoint').removeClass("is-active")
+            } else{
+                $('.modal_lowpoint').toggleClass("is-active")
+            }
+        };
+
+        $('#frmAuction').on('submit', function (e) {
+            e.preventDefault();
+            $('.modal_verify').toggleClass("is-active")
+
+            const priceBid = $('#number_auction').val();
+            const ProID = $('#ProID').val();
+
+            $.getJSON(`/product/infoProduct/${ProID}`, function (data) {
+                if(data === false){
+                    $('.modal_isActive').toggleClass("is-active")
+                }else if(data === "lowPoint"){
+                    $('.modal_lowpoint').toggleClass("is-active")
+                } else{
+                    const infoProduct = JSON.parse(JSON.stringify(data))
+                    let error = false;
+
+                    if(infoProduct.isExpired){
+                        $('.modal_expired').toggleClass("is-active")
+                        $('#frmAuction').off('submit').submit();
+                        return
+                    }
+
+                    if(+priceBid <=  +infoProduct.PriceCurrent){
+                        $('.modal_priceInvalid').toggleClass("is-active")
+                        error = true;
+                        return
+                    }
+
+                    if(!error)
+                        $('#frmAuction').off('submit').submit();
+
+                }
+
+            });
+
+
+        });
+    </script>
+{{/section}}
+
+
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-6-tablet is-12-mobile mr-5">
+
+        <div class="modal modal_verify">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Xác nhận</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_verify();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>Bạn có đồng ý đấu giá món hàng: <strong>{{this.product.ProName}}</strong>
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <a class="button is-success"
+                       href="javascript: $('#frmAuction').submit();">Đồng ý</a>
+                    <a class="button" onclick="modal_verify();">Hủy</a>
+                </footer>
+            </div>
+        </div>
+        <div class="modal modal_priceInvalid">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Số tiền đấu giá chưa đủ</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_priceInvalid();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>Vui lòng nhập số tiền đấu giá lớn hơn giá hiện tại là:
+                        <strong>{{format_number this.product.PriceCurrent}}</strong>
+                    </p>
+                </section>
+            </div>
+        </div>
+        <div class="modal modal_isActive">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Xác thực tài khoản</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_isActive();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>Vui lòng <strong>xác thực tài khoản trước khi tham gia đấu giá</strong>
+                    </p>
+                </section>
+            </div>
+        </div>
+        <div class="modal modal_expired">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Rất tiếc</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_expired();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p><strong>Thời gian đặt lệnh của bạn quá trễ!</strong>
+                    </p>
+                </section>
+            </div>
+        </div>
+        <div class="modal modal_lowpoint">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Rất tiếc</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_lowpoint();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p><strong>Số điểm của bạn quá thấp (< 80%) để có thể đặt món hàng này!</strong>
+                    </p>
+                </section>
+            </div>
+        </div>
+
         <div class="box">
             <figure class="image is-4by3">
                 <img src="/img/product/{{this.product.ProID}}/1.png">
@@ -106,39 +259,44 @@
             </div>
 
             {{#if auth}}
-                <div class="column is-12 p-5">
-                    <div class="table-wrapper" style="overflow-x: auto">
-                        <table class="table is-hoverable is-striped is-fullwidth">
-                            <hr class="has-background-grey"/>
-                            <div class="card-header-title is-size-4">
-                                Lịch sử đấu giá
-                            </div>
-                            <thead>
-                            <tr>
-                                <th><abbr title="time">Thời điểm</abbr></th>
-                                <th><abbr title="bidder">Người mua</abbr></th>
-                                <th><abbr title="price">Giá</abbr></th>
-                            </tr>
-                            </thead>
+                {{#if Bidder}}
+                    <div class="column is-12 p-5">
+                        <div class="table-wrapper" style="overflow-x: auto">
+                            <table class="table is-hoverable is-striped is-fullwidth">
+                                <hr class="has-background-grey"/>
+                                <div class="card-header-title is-size-4">
+                                    Lịch sử đấu giá
+                                </div>
+                                <thead>
+                                <tr>
+                                    <th><abbr title="time">Thời điểm</abbr></th>
+                                    <th><abbr title="bidder">Người mua</abbr></th>
+                                    <th><abbr title="price">Giá</abbr></th>
+                                </tr>
+                                </thead>
 
-                            <tbody>
-                            <tr class="is-selected">
-                                <th>1/11/2019 10:43</th>
-                                <td>****Khoa</td>
-                                <td>6,000,000</td>
-                            </tr>
+                                <tbody>
+                                <tr class="is-selected">
+                                    <th>1/11/2019 10:43</th>
+                                    <td>****Khoa</td>
+                                    <td>6,000,000</td>
+                                </tr>
 
-                            <tr>
-                                <th>1/11/2019 9:43</th>
-                                <td>****Quang</td>
-                                <td>5,900,000</td>
-                            </tr>
+                                <tr>
+                                    <th>1/11/2019 9:43</th>
+                                    <td>****Quang</td>
+                                    <td>5,900,000</td>
+                                </tr>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                {{/if}}
+
             {{/if}}
+
+
         </div>
     </div>
     <div class="column is-5-tablet is-12-mobile ">
@@ -196,9 +354,15 @@
 
 
 
-                    <div class="column is-8 ">
-                        <input class="input is-large " type="number" placeholder="Đấu giá">
-                    </div>
+                        <div class="column is-8 ">
+                            <form action="/product/buynow" method="post" id="frmAuction">
+                                <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
+                                       name="number">
+                                <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
+                                id="ProID">
+                            </form>
+                        </div>
+
 
                     <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
                     <div class="column is-4 has-text-centered">
@@ -206,7 +370,8 @@
                     </div>
 
                     <div class="column is-12 has-text-centered ">
-                        <a class="box has-background-primary">Mua ngay</a>
+                        <a class="box has-background-primary"
+                           onclick="modal_verify();">Đấu giá</a>
                     </div>
                 {{/if}}
 

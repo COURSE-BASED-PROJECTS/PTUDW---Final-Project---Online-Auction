@@ -50,6 +50,7 @@ router.post('/upload',async function (req,res){
                 ProName: req.body.name,
                 PriceCurrent: req.body.FirstPrice,
                 PriceWin: req.body.Price,
+                stepPrice: req.body.stepPrice,
                 DateEnd: DateEnd,
                 Description: req.body.FullDesc,
                 renewal: req.body.checkbox === 'on' ? true:false,

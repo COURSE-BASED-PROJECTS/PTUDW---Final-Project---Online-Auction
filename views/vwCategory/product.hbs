@@ -262,13 +262,13 @@
                 {{#if Bidder}}
                     <div class="column is-12 p-5">
                         <div class="table-wrapper" style="overflow-x: auto">
-                            <table class="table is-hoverable is-striped is-fullwidth">
+                            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
                                 <hr class="has-background-grey"/>
                                 <div class="card-header-title is-size-4">
                                     Lịch sử đấu giá
                                 </div>
                                 <thead>
-                                <tr>
+                                <tr class="has-text-centered">
                                     <th><abbr title="time">Thời điểm</abbr></th>
                                     <th><abbr title="bidder">Người mua</abbr></th>
                                     <th><abbr title="price">Giá</abbr></th>
@@ -276,17 +276,14 @@
                                 </thead>
 
                                 <tbody>
-                                <tr class="is-selected">
-                                    <th>1/11/2019 10:43</th>
-                                    <td>****Khoa</td>
-                                    <td>6,000,000</td>
-                                </tr>
+                                {{#each this.listBid}}
+                                    <tr class="has-text-centered">
+                                        <th>{{time}}</th>
+                                        <td>{{mask_name name}}</td>
+                                        <td>{{format_number PriceWinAll}}</td>
+                                    </tr>
+                                {{/each}}
 
-                                <tr>
-                                    <th>1/11/2019 9:43</th>
-                                    <td>****Quang</td>
-                                    <td>5,900,000</td>
-                                </tr>
 
                                 </tbody>
                             </table>
@@ -294,6 +291,46 @@
                     </div>
                 {{/if}}
 
+                {{#if Seller}}
+                    <div class="column is-12 p-5">
+                        <div class="table-wrapper" style="overflow-x: auto">
+                            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                                <hr class="has-background-grey"/>
+                                <div class="card-header-title is-size-4">
+                                    Lịch sử đấu giá
+                                </div>
+                                <thead>
+                                <tr class="has-text-centered">
+                                    <th><abbr title="time">Thời điểm</abbr></th>
+                                    <th><abbr title="bidder">Người mua</abbr></th>
+                                    <th><abbr title="price">Giá</abbr></th>
+                                    <th><abbr title="delete">Xóa</abbr></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {{#each this.listBid}}
+                                    <tr class="has-text-centered">
+                                        <th>{{time}}</th>
+                                        <td>{{mask_name name}}</td>
+                                        <td>{{format_number PriceWinAll}}</td>
+                                        <form action="/product/del/{{BidderHistory}}" method="post" id="frmDelAuction-{{BidderHistory}}">
+                                            <input type="text" value="{{ProID}}" name="id" class="is-hidden">
+                                        </form>
+                                        <td>
+                                            <a href="javascript: $('#frmDelAuction-{{BidderHistory}}').submit();">
+                                                <button class="delete"></button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {{/if}}
             {{/if}}
 
 
@@ -353,15 +390,17 @@
                     </div>
 
 
-
+                    {{#if this.product.isAuction}}
                         <div class="column is-8 ">
                             <form action="/product/buynow" method="post" id="frmAuction">
                                 <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
                                        name="number">
                                 <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
-                                id="ProID">
+                                       id="ProID">
                             </form>
                         </div>
+                    {{/if}}
+
 
 
                     <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
@@ -369,10 +408,12 @@
                         <div class="box"><a href="javascript: $('#frmFavorite').submit();">Yêu thích</a></div>
                     </div>
 
-                    <div class="column is-12 has-text-centered ">
-                        <a class="box has-background-primary"
-                           onclick="modal_verify();">Đấu giá</a>
-                    </div>
+                    {{#if this.product.isAuction}}
+                        <div class="column is-12 has-text-centered ">
+                            <a class="box has-background-primary"
+                               onclick="modal_verify();">Đấu giá</a>
+                        </div>
+                    {{/if}}
                 {{/if}}
 
             {{/if}}

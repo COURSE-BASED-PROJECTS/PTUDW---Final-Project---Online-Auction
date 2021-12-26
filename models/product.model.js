@@ -151,7 +151,14 @@ export default {
     },
     async updateIsAllowed(ProID,username){
         await db('historybid')
-            .where({ProID:ProID,BidderHistory:username})
-            .update({isAllowed:true});
+            .where({ProIDHistory:ProID,BidderHistory:username})
+            .update({isAllowed:false});
     },
+    async updatePriceWinAll(ProID,username,PriceWinAll){
+        await db('historybid')
+            .where({ProIDHistory:ProID,BidderHistory:username})
+            .update({PriceWinAll:PriceWinAll});
+    },
+
+
 }

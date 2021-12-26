@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/upload',async function (req,res){
     res.render('vwSeller/sellProduct',{
-        layout:'Signin_login',
+        layout:'SignUp_Login',
         isUpload: true,
     });
 });
@@ -58,7 +58,7 @@ router.post('/upload',async function (req,res){
             productModel.addProduct(product)
 
             res.render('vwSeller/sellProduct',{
-                layout:'Signin_login',
+                layout:'SignUp_Login',
             });
         }
     });

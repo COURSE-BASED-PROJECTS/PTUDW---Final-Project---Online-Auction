@@ -6,15 +6,15 @@ import moment from "moment";
 const router = express.Router();
 
 router.get('/register', async function (req, res) {
-    res.render('vwSignin_Login/Signin', {
-        layout: 'Signin_Login'
+    res.render('vwSignUp_Login/SignUp', {
+        layout: 'SignUp_Login'
     });
 });
 
 router.post('/register', async function (req, res) {
     if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-        return res.render('vwSignin_Login/Signin', {
-            layout: 'Signin_Login',
+        return res.render('vwSignUp_Login/SignUp', {
+            layout: 'SignUp_Login',
             reCapcha: "chưa xác thực"
         });
     }
@@ -37,8 +37,8 @@ router.post('/register', async function (req, res) {
 
     await accountModel.addAccount(account);
 
-    res.render('vwSignin_Login/Signin', {
-        layout: 'Signin_Login'
+    res.render('vwSignUp_Login/SignUp', {
+        layout: 'SignUp_Login'
     });
 });
 
@@ -99,8 +99,8 @@ router.get('/login', async function (req, res) {
         && req.headers.referer !== "/account/register") {
         req.session.retUrl = req.headers.referer;
     }
-    res.render('vwSignin_Login/Login', {
-        layout: 'Signin_Login'
+    res.render('vwSignUp_Login/Login', {
+        layout: 'SignUp_Login'
     });
 });
 
@@ -108,15 +108,15 @@ router.post('/login', async function (req, res) {
     const account = await accountModel.findByUsername(req.body.username);
 
     if (account === null) {
-        return res.render('vwSignin_Login/Login', {
-            layout: 'Signin_Login',
+        return res.render('vwSignUp_Login/Login', {
+            layout: 'SignUp_Login',
             errMessage: "Tài khoản hoặc mật khẩu sai",
         });
     }
     const ret = bcrypt.compareSync(req.body.password, account.password);
     if (ret === false) {
-        return res.render('vwSignin_Login/Login', {
-            layout: 'Signin_Login',
+        return res.render('vwSignUp_Login/Login', {
+            layout: 'SignUp_Login',
             errMessage: "Tài khoản hoặc mật khẩu sai",
         });
     }

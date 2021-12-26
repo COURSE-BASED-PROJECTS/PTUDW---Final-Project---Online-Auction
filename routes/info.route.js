@@ -15,7 +15,7 @@ router.get('/reviewProfile', async function (req, res) {
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
     res.render('vwInfo/profileAccount', {
-        layout: 'Signin_login',
+        layout: 'SignUp_login',
         user
     });
 });
@@ -36,7 +36,7 @@ router.post('/reviewProfile', async function (req, res) {
 
 router.get('/reviewProfile/changePassword', function (req, res) {
     res.render('vwInfo/changePassword', {
-        layout: 'Signin_login',
+        layout: 'SignUp_login',
     });
 });
 router.post('/reviewProfile/changePassword', async function (req, res) {
@@ -59,7 +59,7 @@ router.get('/reviewProfile/activeEmail', async function (req, res) {
     const content = 'Your OTP code: <b>' + user.otp + '</b>';
     sendMail(user.email, content);
     res.render('vwInfo/activeEmail', {
-        layout: 'Signin_login',
+        layout: 'SignUp_login',
     });
 });
 router.post('/reviewProfile/activeEmail', async function (req, res) {
@@ -104,7 +104,7 @@ router.get('/reviewHistory', async function (req, res) {
 
 router.get('/updateInfo', async function (req, res) {
     res.render('vwInfo/updateInfo', {
-        layout: 'Signin_login',
+        layout: 'SignUp_login',
         isUpdateInfo: true,
     });
 });

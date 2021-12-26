@@ -76,7 +76,7 @@ router.get('/detail/:id',async function (req,res){
     const isSold = await productModel.isSold(ProID);
 
     res.render('vwCategory/product',{
-        layout:'Signin_login',
+        layout:'SignUp_login',
         product: product[0],
         isExpired: moment(now).isAfter(dateEnd) || isSold,
     });
@@ -93,7 +93,7 @@ router.post('/buynow/:id',async function (req,res){
     // }
     //
     // res.render('vwCategory/product',{
-    //     layout:'Signin_login',
+    //     layout:'SignUp_login',
     //     product: product[0],
     // });
 });
@@ -107,7 +107,7 @@ router.post('/buynow/:id',async function (req,res){
 //     }
 //
 //     res.render('vwCategory/product',{
-//         layout:'Signin_login',
+//         layout:'SignUp_login',
 //         product: product[0],
 //     });
 // });

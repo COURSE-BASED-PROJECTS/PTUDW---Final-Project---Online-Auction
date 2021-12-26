@@ -16,7 +16,7 @@
             const password = $('#txtPassword').val();
             const passwordConfirm = $('#txtPasswordConfirm').val();
             const dob = $('#datetimepicker').val();
-            alert(dob);
+
             $.getJSON(`/account/is-available?username=${username}&email=${email}`, function (data) {
                 if (data === true) {
                     if (!$('#check-account').hasClass("is-hidden")) {
@@ -218,8 +218,7 @@
                 <p class="help is-danger is-hidden" id="check-pass">Mật khẩu không trùng khớp</p>
             </div>
 
-            <div class="g-recaptcha" data-sitekey="6LfuC8YdAAAAAHy-_c34Aej6HWVQ_kaXabz2ewI8"></div>
-            <div class="field has-text-left">
+            <div class="field has-text-left mb-3">
                 <div class="control">
                     <label class="checkbox" for="txtCheckbox">
                         <input type="checkbox" id="txtCheckbox"/>
@@ -229,12 +228,17 @@
                 </div>
             </div>
 
-            <div class="field is-grouped has-text-left">
+            <div class="g-recaptcha"  data-sitekey="6LfuC8YdAAAAAHy-_c34Aej6HWVQ_kaXabz2ewI8"></div>
+
+
+            <div class="field is-grouped is-justify-content-center mt-5">
                 <div class="control">
-                    <button class="button is-link" type="submit">Đăng ký</button>
+                    <button class="button is-link is-medium" type="submit">Đăng ký</button>
                 </div>
                 <div class="control">
-                    <button class="button is-link is-light">Hủy</button>
+                    <a class="button is-link is-light is-medium" href="/" type="button">
+                        Hủy
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-{{#section 'js'}}
+{{#section 'js_login'}}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
@@ -44,14 +44,14 @@
 
             <div class="field has-text-left">
                 <label class="label" for="txtUsername">Tài khoản</label>
-                <div class="control has-icons-left has-icons-right " >
+                <div class="control has-icons-left has-icons-right ">
                     <input
-                        class="input"
-                        type="text"
-                        placeholder="Nhập tài khoản"
-                        id="txtUsername"
-                        name="username"
-                />
+                            class="input"
+                            type="text"
+                            placeholder="Nhập tài khoản"
+                            id="txtUsername"
+                            name="username"
+                    />
 
                     <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
@@ -65,29 +65,29 @@
 
             <div class="field has-text-left">
                 <label class="label">Mật khẩu</label>
-                <div class="control has-icons-left has-icons-right" >
+                <div class="control has-icons-left has-icons-right">
                     <input
-                        class="input"
-                        type="password"
-                        placeholder="Nhập mật khẩu"
-                        vid="txtPassword"
-                        name="password"
+                            class="input"
+                            type="password"
+                            placeholder="Nhập mật khẩu"
+                            vid="txtPassword"
+                            name="password"
                     />
-                <span class="icon is-small is-left">
+                    <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
-                <span class="icon is-small is-right">
+                    <span class="icon is-small is-right">
 <!--                  <i class="fa fa-exclamation-triangle"></i>-->
                 </span>
+                </div>
+                <p class="help is-danger is-hidden" id="check-account">Sai tài khoản hoặc mật khẩu</p>
             </div>
-            <p class="help is-danger is-hidden check-account">Sai tài khoản hoặc mật khẩu</p>
-        </div>
-
-        <div class="field is-grouped has-text-left">
-            <div class="control">
-                <button class="button is-link">Đăng nhập</button>
+            <a href="/account/login/forgotPassword">Quên mật khẩu?</a>
+            <div class="field is-grouped is-justify-content-center mt-4">
+                <div class="control">
+                    <button class="button is-link is-success is-medium">Đăng nhập</button>
+                </div>
             </div>
-        </div>
         </form>
     </div>
 </div>

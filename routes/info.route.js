@@ -7,6 +7,8 @@ import accountModel from "../models/account.model.js";
 import moment from "moment";
 import bcrypt from "bcrypt";
 import sendMail from "../utils/sendMail.js";
+import generateOtp from "../utils/generateOTP.js";
+
 
 
 const router = express.Router();
@@ -26,7 +28,7 @@ router.post('/reviewProfile', async function (req, res) {
     const account  = await accountModel.findByUsername(req.body.username);
     if (account.email !== req.body.email){
         req.body.active = 0;
-        req.body.otp = Math.floor(Math.random() * 8999) + 1000;
+        req.body.otp = generateOtp(4);
     }
     res.locals.authAccount.name = req.body.name;
 
@@ -41,6 +43,7 @@ router.get('/reviewProfile/changePassword', function (req, res) {
 });
 router.post('/reviewProfile/changePassword', async function (req, res) {
     const rawPassword = req.body.newPass;
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(rawPassword, salt);
 
@@ -58,8 +61,14 @@ router.get('/reviewProfile/activeEmail', async function (req, res) {
     const user = await accountModel.findByUsername(username);
     const content = 'Your OTP code: <b>' + user.otp + '</b>';
     sendMail(user.email, content);
+
+    let resendOtp = false;
+    if (req.query.resendOtp === 'true'){
+        resendOtp = true;
+    }
     res.render('vwInfo/activeEmail', {
         layout: 'SignUp_login',
+        resendOtp
     });
 });
 router.post('/reviewProfile/activeEmail', async function (req, res) {
@@ -72,9 +81,9 @@ router.post('/reviewProfile/activeEmail', async function (req, res) {
     res.redirect('/info/reviewProfile');
 });
 
-router.get('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
+router.post('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
     const username = req.session.authAccount.username;
-    const otp = Math.floor(Math.random() * 8999) + 1000;
+    const otp = generateOtp(4);
     await accountModel.updateInfoAccount({
         username: username,
         otp: otp
@@ -84,7 +93,7 @@ router.get('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
     const content = 'Your OTP code: <b>' + user.otp + '</b>';
     sendMail(user.email, content);
 
-    res.redirect('/info/reviewProfile/activeEmail');
+    res.redirect('/info/reviewProfile/activeEmail?resendOtp=true');
 });
 
 router.get('/reviewHistory', async function (req, res) {

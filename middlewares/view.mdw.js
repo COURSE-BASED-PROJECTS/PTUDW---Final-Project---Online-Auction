@@ -15,6 +15,15 @@ export default function (app){
             format_date(date){
                 return moment(date,'YYYY-MM-DD').format('DD/MM/YYYY');
             },
+            mask_name(name){
+                let masking = "";
+                let replace = "*";
+                for(let i = 0; i < name.lastIndexOf(' '); i++){
+                    if (name[i] === ' ') continue;
+                    masking = masking + replace;
+                }
+                return masking + name.substring(name.lastIndexOf(' ') + 1, name.length);
+            },
             section: hbs_sections(),
         }
     }));

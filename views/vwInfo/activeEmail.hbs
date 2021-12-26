@@ -3,7 +3,7 @@
         $('#frmActiveEmail').on('submit', function (e) {
             e.preventDefault();
             const otp = $('#txtOtp').val();
-            if (otp === ''){
+            if (otp === '') {
                 if ($('#check-otp').hasClass("is-hidden")) {
                     $('#check-otp').removeClass("is-hidden");
                 }
@@ -29,9 +29,17 @@
             <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">NHẬP MÃ OTP</div>
 
             <div class="field has-text-centered">
-                <div class="notification is-warning">
-                    Mã OTP đã được gửi về email của bạn. <br> Vui lòng kiểm tra mail và nhập xác mã xác nhập vào ô bên dưới!
-                </div>
+                {{#if this.resendOtp}}
+                    <div class="notification is-warning">
+                        Mã OTP đã được gửi lại về email của bạn.
+                    </div>
+                {{else}}
+                    <div class="notification is-warning">
+                        Mã OTP đã được gửi về email của bạn. <br> Vui lòng kiểm tra mail và nhập xác mã xác nhập vào ô
+                        bên dưới!
+                    </div>
+                {{/if}}
+
             </div>
 
             <div class="field has-text-left">
@@ -43,15 +51,17 @@
             </div>
             <div class="field is-grouped is-justify-content-center mt-5">
                 <div class="control">
-                    <button type="submit" class="button is-link has-background-success-dark" >Xác nhận</button>
+                    <button type="submit" class="button is-link has-background-success-dark">Xác nhận</button>
                 </div>
                 <div class="control">
-                    <a class="button is-link is-dark" href="/info/reviewProfile/activeEmail/resendOtp" type="button">
+                    <a class="button is-link is-dark" href="javascript:$('#frmResendOtp').submit();">
                         Gửi lại mã OTP
                     </a>
                 </div>
             </div>
+
         </div>
 
     </div>
 </form>
+<form action="/info/reviewProfile/activeEmail/resendOtp" method="post" id="frmResendOtp"></form>

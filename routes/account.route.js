@@ -1,7 +1,9 @@
-import express from "express";
+import express, {json} from "express";
 import bcrypt from 'bcrypt';
 import accountModel from "../models/account.model.js";
 import moment from "moment";
+import sendMail from "../utils/sendMail.js";
+import generateOtp from "../utils/generateOTP.js";
 
 const router = express.Router();
 
@@ -12,7 +14,7 @@ router.get('/register', async function (req, res) {
 });
 
 router.post('/register', async function (req, res) {
-    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.render('vwSignUp_Login/SignUp', {
             layout: 'SignUp_Login',
             reCapcha: "chưa xác thực"
@@ -44,9 +46,14 @@ router.post('/register', async function (req, res) {
 
 router.get('/is-available', async function (req, res) {
     const username = req.query.username;
-    const email = req.query.email;
-
     const accountHasUsername = await accountModel.findByUsername(username);
+    const email = req.query.email;
+    if (email === undefined) {
+        if (accountHasUsername === null) {
+            return res.json(false);
+        }
+        return res.json(true);
+    }
     const accountHasEmail = await accountModel.findByEmail(email);
 
     if (accountHasUsername === null && accountHasEmail === null) {
@@ -68,7 +75,7 @@ router.get('/is-exist', async function (req, res) {
     const email = req.query.email;
     const accountHasEmail = await accountModel.findByEmail(email);
 
-    if (accountHasEmail === null ||  accountHasEmail.username === username) {
+    if (accountHasEmail === null || accountHasEmail.username === username) {
         return res.json(true);
     }
     return res.json(false);
@@ -128,6 +135,33 @@ router.post('/login', async function (req, res) {
 
     const url = req.session.retUrl || '/';
     res.redirect(url);
+});
+
+router.get('/login/forgotPassword', function (req, res) {
+    res.render('vwSignUp_Login/ForgotPassword', {
+        layout: 'SignUp_Login'
+    });
+});
+
+router.post('/login/forgotPassword', async function (req, res) {
+    const username = req.query.username;
+    const newPass = generateOtp(6) +'';
+    console.log(typeof newPass);
+    console.log(newPass);
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newPass, salt);
+    const entity = {
+        username: username,
+        password: hash
+    }
+    await accountModel.updateInfoAccount(entity);
+
+    const account = await accountModel.findByUsername(username);
+
+    const content = 'Your new password is: <b>' + newPass + '</b>.<br/>Please change your password after successful login. If you do not change your password soon, we cannot guarantee your security.'
+    sendMail(account.email, content);
+
+    res.redirect('/account/login');
 });
 
 router.post('/logout', async function (req, res) {

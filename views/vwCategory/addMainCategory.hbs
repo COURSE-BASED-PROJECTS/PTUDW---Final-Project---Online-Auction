@@ -1,0 +1,49 @@
+{{#section 'js'}}
+    <script>
+        $('#frmAddMainCat').on('submit', function (e) {
+            e.preventDefault();
+            const CatName = $('#CatName').val();
+
+            if (CatName === ''){
+                if ($('#check-catName').hasClass("is-hidden")) {
+                    $('#check-catName').removeClass("is-hidden");
+                }
+                return;
+            } else {
+                $('#frmAddMainCat').off('submit').submit();
+            }
+
+        });
+    </script>
+{{/section}}
+<form method="post" id="frmAddMainCat">
+    <div class="has-text-centered">
+        <div class="column is-4 is-inline-block box my-5">
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">THÊM DANH MỤC</div>
+            <div class="field has-text-left">
+                <label class="label">Mã danh mục</label>
+                <div class="control">
+                    <input class="input" type="text" name="CatID" value={{this.CatID}} readonly/>
+                </div>
+            </div>
+            <div class="field has-text-left">
+                <label class="label">Tên danh mục</label>
+                <div class="control">
+                    <input class="input" name="CatName" id="CatName" type="text" autofocus/>
+                </div>
+                <p class="help is-danger is-hidden" id="check-catName">Tên không hợp lệ</p>
+            </div>
+            <div class="field is-grouped is-justify-content-center mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link has-background-success-dark" >Thêm</button>
+                </div>
+                <div class="control">
+                    <a class="button is-link is-dark" href="/admin/updateCategory" type="button">
+                        Hủy
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

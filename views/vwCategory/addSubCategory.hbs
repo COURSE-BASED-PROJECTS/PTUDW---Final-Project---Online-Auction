@@ -1,0 +1,63 @@
+{{#section 'js'}}
+    <script>
+        $('#frmAddSubCat').on('submit', function (e) {
+            e.preventDefault();
+            const catID = $('#catName').find('option:selected').attr("name");
+            const CatNextName = $('#CatNextName').val();
+            $('#CatID').val(catID);
+            if (CatNextName === ''){
+                if ($('#check-catNextName').hasClass("is-hidden")) {
+                    $('#check-catNextName').removeClass("is-hidden");
+                }
+                return;
+            } else {
+                $('#frmAddSubCat').off('submit').submit();
+            }
+
+        });
+    </script>
+{{/section}}
+<form id="frmAddSubCat" method="post">
+    <div class="has-text-centered">
+        <div class="column is-4 is-inline-block box my-5">
+            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">THÊM DANH MỤC PHỤ</div>
+            <div class="field has-text-left mt-5">
+                <div class="control has-icons-left">
+                    <label class="label">Tên danh mục chính</label>
+                    <div class="select is-fullwidth is-primary">
+                        <select id="catName">
+                            {{#each this.listCategory}}
+                                <option name={{CatID}}>
+                                    {{CatName}}
+                                </option>
+                            {{/each}}
+                        </select>
+                        <input type="number" hidden name="CatID" id="CatID"/>
+                        <span class="icon is-left">
+                            <i class="fa fa-list-ul"></i>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="field has-text-left">
+                <label class="label">Tên danh mục phụ</label>
+                <div class="control">
+                    <input class="input" name="CatNextName" type="text" id="CatNextName" autofocus/>
+                </div>
+                <p class="help is-danger is-hidden" id="check-catNextName">Tên không hợp lệ</p>
+            </div>
+            <div class="field is-grouped is-justify-content-center mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link has-background-success-dark">Thêm</button>
+                </div>
+                <div class="control">
+                    <a class="button is-link is-dark" href="/admin/updateCategory" type="button">
+                        Hủy
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

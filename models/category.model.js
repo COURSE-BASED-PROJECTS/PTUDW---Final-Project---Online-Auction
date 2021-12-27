@@ -36,7 +36,22 @@ export default {
         const Cat = await db('categoriesnext').where({CatIDNext: CatIDNext})
         return Cat[0].CatNextName;
     },
-
+    addCategory(category){
+        return db('categories').insert(category);
+    },
+    patchMainCategory(category) {
+        const CatId = category.CatID;
+        delete category.CatID;
+        return db('categories').update(category).where({'CatID': CatId});
+    },
+    addSubCategory(subCategory) {
+        return db('categoriesnext').insert(subCategory);
+    },
+    patchSubCategory(subCategory) {
+        const CatIdNext = subCategory.CatIDNext;
+        delete subCategory.CatIDNext;
+        return db('categoriesnext').update(subCategory).where({'CatIDNext': CatIdNext});
+    },
     async delCatIDNext(CatIDNext) {
         // del following by step to avoid foreign key error
         const amount = await productModel.countByCatIDNext(CatIDNext);
@@ -66,4 +81,12 @@ export default {
         }
 
     },
+    async findCategoryNextID() {
+        const id = await db('categoriesnext').count('CatIDNext as amount');
+        return id[0].amount + 1;
+    },
+    async findCatIDByCatIDNext(CatIDNext) {
+        const catID = await db('categoriesnext').where({CatIDNext: CatIDNext}).select('CatID');
+        return catID[0].CatID;
+    }
 }

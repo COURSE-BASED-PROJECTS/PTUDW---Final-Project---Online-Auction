@@ -19,6 +19,9 @@ export default {
 
 
     },
+    async addHistoryBuyNow(entity) {
+        await db('historybid').insert(entity);
+    },
     async getPriceBid(Bidder,ProID) {
         const result = await db('historybid')
             .where({BidderHistory:Bidder,ProIDHistory:ProID}).select('PriceBid');

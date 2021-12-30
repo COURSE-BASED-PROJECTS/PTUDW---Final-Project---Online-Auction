@@ -1,4 +1,48 @@
+{{#section 'js'}}
+    <script>
+        const listIDText = document.getElementById("listId").value;
+        const listID = listIDText.split(' ');
+
+        for(let i = 0; i < listID.length; i++){
+            const dateInput = document.getElementById("dateInput"+listID[i]).value;
+            const date = dateInput.split(" ")[0];
+            const time = dateInput.split(" ")[1];
+
+            const day = date.split('/')[0];
+            const month = date.split('/')[1];
+            const year = date.split('/')[2];
+
+            const h = time.split(':')[0];
+            const m = time.split(':')[1];
+
+            let countDownDate = new Date(+year, +month-1, +day, +h, +m, 0, 0).getTime();
+            let x = setInterval(function () {
+                // Get today's date and time
+                let now = new Date().getTime();
+                // Find the distance between now and the count down date
+                let distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("dateEnd"+listID[i]).innerHTML = days + "d " + hours + "h "
+                        + minutes + "m " + seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("dateEnd"+listID[i]).innerHTML = "Hết hạn"
+                }
+            }, 1000);
+        }
+    </script>
+{{/section}}
 <div class="columns is-multiline is-mobile p-2">
+    <input type="text" value="{{this.listID}}" id="listId" class="is-hidden">
     {{#if this.isEmpty}}
         <div class="card-header-title is-size-3">Không có dữ liệu</div>
     {{else}}
@@ -9,7 +53,6 @@
                         <p class="card-header-title is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
-
                         {{#if isSold}}
                             <span class="tag is-danger is-medium">sold</span>
                         {{else}}
@@ -40,8 +83,11 @@
                                 đăng:</strong>
                                 {{DateStart}}
                             </time>
-                            <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
-                                {{DateEnd}}
+
+                            <input class="is-block is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
+                            <time datetime="2016-1-1" class="is-block"><strong
+                                    class="has-text-primary-dark">Kết thúc:</strong>
+                                <span class="is-danger" id="dateEnd{{ProID}}"></span>
                             </time>
                         </div>
                     </div>
@@ -53,7 +99,8 @@
                                 <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>
                                 MUA NGAY</a>
 
-                            <form action="/info/addFavorite/{{ProID}}" method="post" id="frmAddFavorite-{{ProID}}"></form>
+                            <form action="/info/addFavorite/{{ProID}}" method="post"
+                                  id="frmAddFavorite-{{ProID}}"></form>
                             <a href="javascript: $('#frmAddFavorite-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="is-small mr-1 has-text-danger"><i class="fa fa-heart"></i></span>
                                 YÊU THÍCH
@@ -91,5 +138,4 @@
         </div>
 
     {{/if}}
-
 </div>

@@ -33,7 +33,7 @@ router.post('/register', async function (req, res) {
         level: "bidder",
         username: req.body.username,
         password: hash,
-        active: 0,
+        isActive: 0,
         otp: Math.floor(Math.random() * 8999) + 1000
     }
 

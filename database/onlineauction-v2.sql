@@ -209,23 +209,23 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                       1, 'dhuy01', 0, 0, null),
 
 
-(12, 'Apple iPad Mini 6'              , 9490000 , 19490000, 500000, 9490000 , 'dhuy01', '2021-12-23 17:22:51', '2021-12-29 09:26:12', 0,
+(12, 'Apple iPad Mini 6'              , 9490000 , 19490000, 500000, 9490000 , 'dhuy01', '2021-12-23 17:22:51', '2022-01-12 09:26:12', 0,
                                         '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>M&agrave;n h&igrave;nh: 8.3&quot; - Liquid Retina display - IPS</p> <p>Camera sau: 12MP</p> <p>Camera trước: 12MP</p> <p>CPU: Apple A15 Bionic</p> <p>RAM: 4GB</p> <p>Bộ nhớ trong: 64GB</p> <p>Hệ điều h&agrave;nh: iPadOS</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(13, 'Dell Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-27 09:26:12', 1,
+(13, 'Dell Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
                                         '<p>CPU: Intel Core i5-11400H</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; WVA (1920 x 1080), 120Hz</p> <p>RAM: 2 x 4GB DDR4 3200MHz</p> <p>Đồ họa: NVIDIA GeForce RTX 3050 4GB GDDR6 / Intel UHD Graphics</p> <p>Lưu trữ: 256GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 3 cell - Pin liền</p> <p>Khối lượng: 2.8 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(14, 'ASUS X415EA-EB640W'             , 9000000 , 16490000, 500000, 9000000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-29 09:26:12', 2,
+(14, 'ASUS X415EA-EB640W'             , 9000000 , 16490000, 500000, 9000000 , 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 2,
                                         '<p>CPU: Intel Core i5-1135G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 1 x 4GB Onboard DDR4</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 2 cell 37 Wh Pin liền</p> <p>Khối lượng: 1.6 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(15, 'Acer Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-27 09:26:12', 1,
+(15, 'Acer Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
                                         '<p>CPU: Intel Core i5-8300H ( 2.3 GHz - 4.0 GHz / 8MB / 4 nh&acirc;n, 8 lu&ocirc;̀ng )</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; IPS ( 1920 x 1080 ) , kh&ocirc;ng cảm ứng</p> <p>RAM: 1 x 8GB DDR4 2666MHz</p> <p>Đồ họa: Intel UHD Graphics 630 / NVIDIA GeForce GTX 1050Ti 4GB GDDR5</p> <p>Lưu trữ: 128GB SSD M.2 SATA / 1TB HDD 5400RPM</p> <p>Hệ điều h&agrave;nh: Linux</p> <p>Pin: 4 cell 48 Wh Pin liền , khối lượng: 2.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(16, 'Lenovo Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-29 09:26:12', 1,
+(16, 'Lenovo Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
                                         '<p>CPU: Intel Core i7-1165G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 8GB Onboard DDR4 3200MHz</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit</p> <p>Pin: 60 Wh Pin liền</p> <p>Khối lượng: 1.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
@@ -320,104 +320,104 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                                                 4, 'nbtram', 0, 0, null),
 
 
-(45, 'THOM BROWNE Medium Grey 4-bar Stripe Strap Camera Bag'  , 9000000 , 17472600 , 1300000, 9000000 , 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0, 
+(45, 'THOM BROWNE Medium Grey 4-bar Stripe Strap Camera Bag'  , 9000000 , 17472600 , 1300000, 9000000 , 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0, 
                                                                 '<p>T&uacute;i m&aacute;y ảnh nhỏ bằng len Melton hai mặt m&agrave;u x&aacute;m trung b&igrave;nh với d&acirc;y đeo bằng vải sọc v&agrave; chi tiết 4 vạch ton-sur-ton. Đ&oacute;ng zip k&eacute;o, t&uacute;i zip ph&iacute;a trước, bảng t&ecirc;n ở mặt. C&aacute;c chi tiết da dạng hạt sỏi. Tab v&ograve;ng lặp grosgrain sọc đặc trưng ở mặt.<br /> 93% len, 5% Casmhere, 2% da b&ecirc;.</p> <p>Sản xuất tại &Yacute;</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(46, 'LOUIS VUITTON Mini Soft Trunk Monogram Eclipse Canvas'  , 40000000, 58233914 , 1500000, 40000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(46, 'LOUIS VUITTON Mini Soft Trunk Monogram Eclipse Canvas'  , 40000000, 58233914 , 1500000, 40000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>Được tạo bởi Virgil Abloh cho triển l&atilde;m Xu&acirc;n-H&egrave; 2019, t&uacute;i Mini Soft Trunk được l&agrave;m từ vải canvas Monogram Eclipse v&agrave; c&oacute; d&acirc;y x&iacute;ch đen mờ bằng nhựa. Phụ kiện h&igrave;nh hộp nhưng trang nh&atilde; n&agrave;y gợi l&ecirc;n h&ograve;m kho b&aacute;u của ng&ocirc;i nh&agrave;. N&oacute; c&oacute; thể được đeo tr&ecirc;n vai hoặc mang ch&eacute;o.<br /> C&aacute;c t&iacute;nh năng chi tiết:</p> <ul> <li>18,5 x 13 x 8 cm (D&agrave;i x Cao x Rộng)</li> <li>Vải phủ Monogram Eclipse</li> <li>Dệt may l&oacute;t</li> <li>Da b&ograve; trang tr&iacute;</li> <li>Phần cứng đen mờ</li> <li>T&uacute;i c&oacute; kh&oacute;a k&eacute;o b&ecirc;n ngo&agrave;i</li> <li>B&ecirc;n trong t&uacute;i phẳng</li> <li>D&acirc;y đeo: Kh&ocirc;ng thể th&aacute;o rời, c&oacute; thể điều chỉnh</li> <li>Thả d&acirc;y đeo: 42.0 cm</li> <li>D&acirc;y đeo thả tối đa: 58,0 cm</li> </ul>',
                                                                 5, 'nbtram', 0, 0, null),
                                                                 
-(47, 'BERLUTI Ninorigami Canvas & Leather Clutch'             , 11000000, 23453407 , 1000000, 11000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(47, 'BERLUTI Ninorigami Canvas & Leather Clutch'             , 11000000, 23453407 , 1000000, 11000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>Sản xuất tại &Yacute;</p> <p>Line: ODYSSEE</p> <p>Lớp l&oacute;t bằng vải b&ocirc;ng đặc trưng của Venezia Da b&ecirc; (kh&ocirc;ng thể thay đổi lại) Chăm s&oacute;c da Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng một tấm vải mềm, sau đ&oacute; l&agrave; một lớp da trong nu&ocirc;i dưỡng and bảo vệ da. Sau đ&oacute;, x&aacute;t mạnh bằng tay đ&aacute;nh b&oacute;ng để phục hồi b&oacute;ng ban đầu của da. Để l&agrave;m sạch Signature Canvas, ch&uacute;ng t&ocirc;i khuy&ecirc;n bạn n&ecirc;n sử dụng một miếng vải mềm, thấm một ch&uacute;t nước x&agrave; ph&ograve;ng, tr&aacute;nh c&aacute;c phần da. Kh&ocirc;ng bao giờ sử dụng m&ocirc;i trường. Ch&uacute;ng t&ocirc;i đề nghị bạn n&ecirc;n bảo vệ sản phẩm của m&igrave;nh từ ẩm độ v&agrave; tr&aacute;nh xa c&aacute;c nguồn nhiệt trực tiếp.</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(48, 'BERLUTI Un Jour Mini Leather Briefcase'                 , 70000000, 96225605 , 2500000, 70000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(48, 'BERLUTI Un Jour Mini Leather Briefcase'                 , 70000000, 96225605 , 2500000, 70000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>D&ograve;ng: JOUR</p> <p>C&aacute;ch sử dụng:</p> <ul> <li>Cầm tay tay: hai tay cầm tr&ecirc;n c&ugrave;ng</li> <li>Tr&ecirc;n vai: d&acirc;y đeo vai nylon c&oacute; thể điều chỉnh v&agrave; th&aacute;o rời</li> </ul> <p>Đặc điểm:</p> <p>K&iacute;ch thước: Chiều cao: 27 cm, chiều rộng: 38 cm, độ d&agrave;y: 7 cm v&agrave; vừa với một m&aacute;y t&iacute;nh x&aacute;ch tay 15 inch.</p> <p>C&aacute;c t&iacute;nh năng b&ecirc;n ngo&agrave;i:</p> <ul> <li>Một ngăn c&oacute; kh&oacute;a k&eacute;o</li> <li>Một t&uacute;i trước c&oacute; kh&oacute;a k&eacute;o</li> <li>Một t&uacute;i sau phẳng với một t&uacute;i đựng điện thoại</li> <li>Đ&oacute;ng zip kim loại k&eacute;p</li> </ul> <p>C&aacute;c t&iacute;nh năng b&ecirc;n trong:</p> <ul> <li>Một t&uacute;i c&oacute; kh&oacute;a k&eacute;o</li> <li>Hai ống đựng b&uacute;t</li> <li>Một t&uacute;i điện thoại</li> <li>Đằng trước : Một t&uacute;i phẳng viền da, bao gồm d&acirc;y đeo</li> </ul> <p>Sản xuất tại &Yacute;</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(49, 'FENDI Brown fabric belt bag'                            , 15000000, 25403846 , 1000000, 15000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(49, 'FENDI Brown fabric belt bag'                            , 15000000, 25403846 , 1000000, 15000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>T&uacute;i thắt lưng c&oacute; kh&oacute;a k&eacute;o. Đai điều chỉnh. Được l&agrave;m bằng vải với họa tiết FF. Được t&ocirc; điểm bằng lớp phủ bằng da m&agrave;u tự nhi&ecirc;n. Đồ kim loại bằng paladi.<br /> Sản xuất tại &Yacute;<br /> Chiều d&agrave;i: 46, cm</p> <p>Chiều cao: 18 cm</p> <p>Chiều s&acirc;u: 9, cm</p> <p>Trọng lượng: 0,453 kg</p> <p>Th&agrave;nh phần: 45% Cotton, 40% Polyurethane, 15% Polyester, chất liệu 2: 100% Da b&ograve;, b&ecirc;n trong: 63% Cotton, 34% Polyester, 3% Acrylic, Ribb</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(50, 'Montblanc x Maison Kitsuné Sling Backpack'              , 13000000, 24210400 , 1000000, 13000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(50, 'Montblanc x Maison Kitsuné Sling Backpack'              , 13000000, 24210400 , 1000000, 13000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>Montblanc X Maison Kitsun&eacute;&nbsp;Sling Backpack kết hợp thiết kế đặc trưng của Montblanc với th&aacute;i độ t&ograve; m&ograve; v&agrave; vui tươi đ&atilde; định h&igrave;nh n&ecirc;n Kitsun&eacute; Art de Vivre. Được chế t&aacute;c từ da in Saffiano v&agrave; c&oacute; sự t&aacute;i hiện của bản in &lsquo;Camo Fox&rsquo; đặc trưng của Maison Kitsun&eacute;, bộ sưu tập bao gồm một chiếc ba l&ocirc; đeo c&oacute; họa tiết ch&uacute; c&aacute;o đặc biệt với t&ocirc;ng m&agrave;u xanh lam v&agrave; đỏ. N&oacute; ph&ugrave; hợp với lối sống th&agrave;nh thị: nhỏ gọn v&agrave; thể thao, với một phong th&aacute;i điềm tĩnh v&agrave; giản dị.<br /> M&agrave;u sắc, chất liệu: Da b&ecirc; t&aacute;ch đ&ocirc;i, thuộc da chrome, nhuộm qua, c&oacute; in saffiano v&agrave; hoa văn Kitsun&eacute;</p> <p>D&acirc;y đeo: D&acirc;y đeo c&oacute; thể điều chỉnh v&agrave; kh&ocirc;ng c&oacute; nh&atilde;n hiệu</p> <p>M&agrave;u sắc: M&agrave;u xanh lam</p> <p>Vải l&oacute;t: L&oacute;t b&ocirc;ng</p> <p>Kho&aacute;: Zip</p> <p>K&iacute;ch thước: 160x60x250 mm</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(51, 'SONGMONT Mini Niuye'                                    , 1000000 , 2693350  , 300000 , 1000000 , 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(51, 'SONGMONT Mini Niuye'                                    , 1000000 , 2693350  , 300000 , 1000000 , 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>Bộ sưu tập Niuye được thiết kế để kỷ niệm năm OX của Trung Quốc. Sửu, gắn liền với đất, cũng l&agrave; một con vật rất được coi trọng trong văn h&oacute;a Trung Quốc. Sừng b&ecirc; sơ sinh với một chiếc v&ograve;ng b&ograve; dễ thương tượng trưng cho sự kỳ vọng cho năm mới, điềm l&agrave;nh v&agrave; may mắn.</p> <p>Đặc điểm:</p> <ul> <li>Chất liệu: Da b&ecirc; mịn chạm nổi h&igrave;nh voi s&aacute;p dầu</li> <li>B&ecirc;n trong: Nhung, lụa Trung Quốc &amp; da nappa nguy&ecirc;n bản.</li> <li>K&iacute;ch thước: 19,5cm W &times; 11,5cm H &times; 6cm D</li> <li>Trọng lượng: 450g.</li> <li>Phần cứng cổ điển ho&agrave;n thiện bằng v&agrave;ng mờ</li> <li>D&acirc;y đeo chuỗi v&agrave;ng</li> <li>Kho&aacute; từ&nbsp;</li> <li>Hai t&uacute;i b&ecirc;n trong, một t&uacute;i c&oacute; kh&oacute;a k&eacute;o</li> <li>Một t&uacute;i trượt b&ecirc;n ngo&agrave;i c&oacute; đ&oacute;ng từ t&iacute;nh, thuận tiện để đặt điện thoại của bạn</li> </ul>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(52, 'SONGMONT Pillow Bag'                                    , 2000000 , 4291100  , 600000 , 2000000 , 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(52, 'SONGMONT Pillow Bag'                                    , 2000000 , 4291100  , 600000 , 2000000 , 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p><br /> Bộ sưu tập Gối được lấy cảm hứng từ chiếc gối cổ thời Nam Tống. H&igrave;nh d&aacute;ng cổ điển của n&oacute; được thiết kế d&agrave;nh cho phụ nữ hiện đại v&agrave; được biết đến với trọng lượng nhẹ v&agrave; khối lượng đ&aacute;ng kể.</p> <p>Đặc điểm:</p> <ul> <li>Chất liệu: M&agrave;u đen: Da b&ecirc; mịn dập v&acirc;n c&acirc;y; Kh&aacute;c: Da nappa dập nổi h&igrave;nh c&acirc;y</li> <li>Nội thất: Da Nappa &amp; lụa Trung Quốc</li> <li>K&iacute;ch thước: 29cm W &times; 15cm H &times; 6.5cm D</li> <li>Trọng lượng: 300g</li> <li>D&acirc;y da c&oacute; thể điều chỉnh l&agrave;m cho n&oacute; trở th&agrave;nh một chiếc t&uacute;i đeo dưới c&aacute;nh tay hoặc đeo vai</li> <li>Hai kh&oacute;a thắt lưng dưới c&ugrave;ng để cất d&acirc;y đeo khi kh&ocirc;ng sử dụng</li> <li>Đ&atilde; th&ecirc;m kh&oacute;a D ở mỗi b&ecirc;n để cho ph&eacute;p bạn th&ecirc;m phụ kiện mong muốn của m&igrave;nh</li> <li>Kho&aacute; zip</li> <li>Hai t&uacute;i b&ecirc;n trong, một t&uacute;i c&oacute; hai ngăn chứa thẻ</li> <li>Một t&uacute;i ph&iacute;a trước b&ecirc;n ngo&agrave;i c&oacute; đ&oacute;ng từ t&iacute;nh, thuận tiện để đặt điện thoại của bạn</li> <li>Phần cứng cổ điển ho&agrave;n thiện bằng v&agrave;ng mờ</li> </ul>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(53, 'DIOR Navy Blue Dior Oblique Jacquard'                   , 40000000, 55236500 , 1500000, 40000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(53, 'DIOR Navy Blue Dior Oblique Jacquard'                   , 40000000, 55236500 , 1500000, 40000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p><br /> Dior Oblique Jacquard Mini Saddle Backpack c&oacute; c&aacute;c chi tiết bằng da b&ecirc; m&agrave;u đen đặc trưng. Một chiếc kh&oacute;a &lsquo;Christian Dior&rsquo; đ&oacute;ng nắp trước v&agrave; kết nối với t&uacute;i da c&oacute; v&acirc;n kiểu y&ecirc;n ngựa b&ecirc;n ngo&agrave;i. Tay cầm tr&ecirc;n c&ugrave;ng được đặt ch&iacute;nh giữa hai d&acirc;y đai ph&iacute;a sau c&oacute; đệm nylon c&oacute; thể điều chỉnh được. C&oacute; một t&uacute;i v&aacute; b&ecirc;n trong để giữ c&aacute;c vật dụng cần thiết được ngăn nắp. C&oacute; thể được đeo sau lưng hoặc x&aacute;ch tay, đ&acirc;y l&agrave; phong c&aacute;ch cổ điển của Dior được cập nhật với c&aacute;c chi tiết hiện đại.</p> <p>Đặc điểm:</p> <ul> <li>Chữ k&yacute; &lsquo;Dior&rsquo; dập nổi bằng nhiệt b&ecirc;n trong</li> <li>M&agrave;u xanh hải qu&acirc;n Dior Oblique jacquard</li> <li>D&acirc;y đai lưng nylon c&oacute; đệm c&oacute; thể điều chỉnh</li> <li>Đ&oacute;ng nắp bằng kh&oacute;a &lsquo;Christian Dior&rsquo;</li> <li>T&uacute;i trước b&ecirc;n ngo&agrave;i</li> <li>T&uacute;i v&aacute; b&ecirc;n trong</li> <li>K&iacute;ch thước: 19 cm x 27,5 cm x 11,5 cm</li> <li>Sản xuất tại &Yacute;</li> </ul>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(54, 'THOM BROWNE Navy Pebble Grain Leather Mrs Thom Mini Bag', 55000000, 100359825, 2500000, 55000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(54, 'THOM BROWNE Navy Pebble Grain Leather Mrs Thom Mini Bag', 55000000, 100359825, 2500000, 55000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p>Chiếc t&uacute;i mini của Mrs. Thom bằng chất liệu da hạt cuội m&agrave;u xanh nước biển với khung da m&agrave;u trắng tương phản. Kh&oacute;a đ&oacute;ng bằng đồng thau. 2 tay cầm tr&ecirc;n c&ugrave;ng bằng da hạt cuội c&oacute; đệm với v&ograve;ng đồng. Thẻ h&agrave;nh l&yacute; bằng da với c&aacute;c chi tiết sọc. L&oacute;t sọc với t&uacute;i trượt b&ecirc;n trong. Logo in l&aacute; v&agrave;ng v&agrave; tab v&ograve;ng lặp grosgrain sọc ở mục nhập. Phần cứng bằng đồng thau.</p> <p>K&iacute;ch thước 20cm x 18cm x 10cm.</p> <p>Chất liệu: 80% len, 20% da b&ecirc;</p> <p>Sản xuất tại &Yacute;</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
-(55, 'DOLCE & GABBANA Small calfskin Sicily bag'              , 23000000, 47382625 , 1500000, 23000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(55, 'DOLCE & GABBANA Small calfskin Sicily bag'              , 23000000, 47382625 , 1500000, 23000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                                 '<p><br /> L&agrave; biểu tượng thương hiệu xuất sắc, chiếc t&uacute;i Sicily nhỏ n&agrave;y c&oacute; một phi&ecirc;n bản mới. H&igrave;nh d&aacute;ng tinh tế v&agrave; nữ t&iacute;nh, chiếc t&uacute;i Sicily n&agrave;y được l&agrave;m bằng da b&ecirc; Dauphine v&agrave; c&oacute; v&iacute; tiền xu ở mặt trước với thẻ thương hiệu với hai lớp mạ kim loại:<br /> &bull; Nắp trước với d&acirc;y buộc từ t&iacute;nh ẩn<br /> &bull; Tấm c&oacute; thương hiệu c&oacute; hai lớp ho&agrave;n thiện mạ kim loại<br /> &bull; Tay cầm tr&ecirc;n c&ugrave;ng v&agrave; d&acirc;y đeo c&oacute; thể điều chỉnh, c&oacute; thể th&aacute;o rời bằng da b&ecirc; Dauphine<br /> &bull; Lớp l&oacute;t vải in<br /> &bull; T&uacute;i b&ecirc;n trong c&oacute; kh&oacute;a k&eacute;o h&agrave;ng hiệu v&agrave; gi&aacute; đỡ điện thoại<br /> &bull; Sản phẩm đi k&egrave;m với một t&uacute;i đựng bụi h&agrave;ng hiệu<br /> &bull; C&aacute;c ph&eacute;p đo: 16 x 20 x 8 cm - 6,3 x 7,9 x 3,1 inch<br /> &bull; Sản xuất tại &Yacute;<br /> Chăm s&oacute;c v&agrave; chi tiết<br /> Th&agrave;nh phần b&ecirc;n ngo&agrave;i: 100% da b&ecirc; Th&agrave;nh phần b&ecirc;n trong: 90% cotton 10% da b&ecirc;</p>',
                                                                 5, 'nbtram', 0, 0, null),
 
 
-(56, 'THOM BROWNE Tech Runner Sneakers'                   , 8000000, 14389200, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(56, 'THOM BROWNE Tech Runner Sneakers'                   , 8000000, 14389200, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(57, 'PALLADIUM Pampa OX Organic Eucalyptus'              , 900000 , 1713000 , 200000, 900000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(57, 'PALLADIUM Pampa OX Organic Eucalyptus'              , 900000 , 1713000 , 200000, 900000 , 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(58, 'MLB Chunky High Low New York Yankees'               , 1000000, 2250000 , 300000, 1000000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(58, 'MLB Chunky High Low New York Yankees'               , 1000000, 2250000 , 300000, 1000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(59, 'ALEXANDER MCQUEEN Tread Slick Lace Up'              , 8000000, 15873800, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(59, 'ALEXANDER MCQUEEN Tread Slick Lace Up'              , 8000000, 15873800, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(60, 'XVESSEL Sneaker Violet Paisley'                     , 2300000, 5687160 , 400000, 2300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(60, 'XVESSEL Sneaker Violet Paisley'                     , 2300000, 5687160 , 400000, 2300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(61, 'XVESSEL G.O.P. Highs for Yohji Yamamoto Black'      , 9000000, 16490480, 800000, 9000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(61, 'XVESSEL G.O.P. Highs for Yohji Yamamoto Black'      , 9000000, 16490480, 800000, 9000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(62, 'ASH Sneaker Casual Walking Sporty Shoes'            , 2300000, 5024800 , 400000, 2300000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(62, 'ASH Sneaker Casual Walking Sporty Shoes'            , 2300000, 5024800 , 400000, 2300000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(63, 'RICK OWENS Geth Runner'                             , 9990000, 20135629, 900000, 9990000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(63, 'RICK OWENS Geth Runner'                             , 9990000, 20135629, 900000, 9990000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(64, 'DR.MARTENS 1460 Mono Smooth Leather Lace Up Boot'   , 2400000, 3426000 , 400000, 2400000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(64, 'DR.MARTENS 1460 Mono Smooth Leather Lace Up Boot'   , 2400000, 3426000 , 400000, 2400000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(65, 'PALLADIUM Pallabrousse Legion Star White'           , 1100000, 2169800 , 300000, 1100000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(65, 'PALLADIUM Pallabrousse Legion Star White'           , 1100000, 2169800 , 300000, 1100000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(66, 'PALLADIUM Pampa X Tech WPN Black'                   , 1900000, 4644057 , 500000, 1900000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(66, 'PALLADIUM Pampa X Tech WPN Black'                   , 1900000, 4644057 , 500000, 1900000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(67, 'PALLADIUM Off-Grid Hi Zip Waterproof + Olive Night' , 1700000, 3651600 , 400000, 1700000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(67, 'PALLADIUM Off-Grid Hi Zip Waterproof + Olive Night' , 1700000, 3651600 , 400000, 1700000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(68, 'PALLADIUM Pallabase Twill Butternut'                , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(68, 'PALLADIUM Pallabase Twill Butternut'                , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
-(69, 'PALLADIUM Pallabase Twill Star White'               , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2021-12-27 23:00:00', '2022-01-28 23:55:00', 0,
+(69, 'PALLADIUM Pallabase Twill Star White'               , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '',
                                                             6, 'dhuy01', 0, 0, null),
 
@@ -467,44 +467,44 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                                           7, 'nbtram', 0, 0, null),
 
 
-(89, 'Nồi cơm điện 1.8L Sunhouse'         , 300000, 600000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(89, 'Nồi cơm điện 1.8L Sunhouse'         , 300000, 600000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Sunhouse</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 1.8 l&iacute;t</p> <p>C&ocirc;ng suất: 700 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim nh&ocirc;m phủ chống d&iacute;nh</p> <p>K&iacute;ch thước DxRxC (mm): 302 mm x 295 mm x 335 mm</p> <p>Trọng lượng: 2600 g</p>',
                                             8, 'dhuy01', 0, 0, null),
 
-(90, 'Nồi cơm nắp gài Kangaroo 1.2L'      , 300000, 700000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(90, 'Nồi cơm nắp gài Kangaroo 1.2L'      , 300000, 700000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Kangaroo</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 1.2 l&iacute;t</p> <p>C&ocirc;ng suất: 400 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim phủ chống d&iacute;nh</p> <p>K&iacute;ch thước DxRxC (mm): 267 mm x 267 mm x 280 mm</p> <p>Trọng lượng: 2200g</p>',
                                             8, 'dhuy01', 0, 0, null),
                                             
-(91, 'Nồi cơm điện tử Kangaroo 1.8L'      , 300000, 800000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(91, 'Nồi cơm điện tử Kangaroo 1.8L'      , 300000, 800000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Kangaroo</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 1.8 l&iacute;t</p> <p>C&ocirc;ng suất: 700 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim nh&ocirc;m phủ chống d&iacute;nh</p> <p>K&iacute;ch thước DxRxC (mm): 310 mm x 310 mm x 330 mm</p> <p>Trọng lượng: 3200g</p>',
                                             8, 'dhuy01', 0, 0, null),
                                             
-(92, 'Nồi cơm điện Toshiba RC-18JFM(H)VN' , 300000, 800000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(92, 'Nồi cơm điện Toshiba RC-18JFM(H)VN' , 300000, 800000 , 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Toshiba</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 1.8 l&iacute;t</p> <p>C&ocirc;ng suất: 700 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim phủ chống d&iacute;nh</p> <p>K&iacute;ch thước DxRxC (mm): 286 mm x 282 mm x 263 mm</p> <p>Trọng lượng: 2.7 kg</p>',
                                             8, 'dhuy01', 0, 0, null),
                                             
-(93, 'Nồi chiên không dầu Sunhouse 3L'    , 300000, 1000000, 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0,
+(93, 'Nồi chiên không dầu Sunhouse 3L'    , 300000, 1000000, 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Sunhouse</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 3 l&iacute;t</p> <p>C&ocirc;ng suất: 1500 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim nh&ocirc;m phủ chống d&iacute;nh</p> <p>K&iacute;ch thước (DxRxC): 343 mm x 343 mm x 360 mm</p> <p>Trọng lượng: 4670 g</p>',
                                             8, 'dhuy01', 0, 0, null),
                                             
 
-(100, 'Quạt điều hòa Honeywell'           , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(100, 'Quạt điều hòa Honeywell'           , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu của: Mỹ</p> <p>H&atilde;ng: Honeywell</p> <p>Phạm vi l&agrave;m m&aacute;t: Ph&ograve;ng 25 - 30 m&sup2;</p> <p>C&ocirc;ng suất: 230 W</p> <p>Tốc độ gi&oacute;: 4 mức gi&oacute;</p> <p>Chế độ gi&oacute;: Gi&oacute; thường</p> <p>Điều khiển: C&oacute; remote đi k&egrave;m N&uacute;t nhấn</p> <p>Độ ồn cao nhất: 60 dB</p> <p>B&igrave;nh nước: 20 l&iacute;t</p> <p>K&iacute;ch thước, khối lượng: Ngang 49 cm - Cao 84 cm - S&acirc;u 34 cm - 10.3 kg</p>',
                                             9, 'nbtram', 0, 0, null),
                                             
-(101, 'Quạt điều hòa Sunhouse'            , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(101, 'Quạt điều hòa Sunhouse'            , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu của: Việt Nam</p> <p>H&atilde;ng: Sunhouse</p> <p>Phạm vi l&agrave;m m&aacute;t: Ph&ograve;ng 20 - 25 m&sup2;</p> <p>C&ocirc;ng suất: 120 W Tốc độ gi&oacute;: 8 mức gi&oacute;</p> <p>Chế độ gi&oacute;: Gi&oacute; tự nhi&ecirc;n, Gi&oacute; thường</p> <p>Điều khiển: Cảm ứng c&oacute; m&agrave;n h&igrave;nh hiển thị, C&oacute; remote đi k&egrave;m</p> <p>Độ ồn cao nhất: 60 dB</p> <p>B&igrave;nh nước: 13 l&iacute;t</p> <p>K&iacute;ch thước, khối lượng: Ngang 33 cm - Cao 98 cm - S&acirc;u 36 cm - 9.8 kg</p>',
                                             9, 'nbtram', 0, 0, null),
                                             
-(102, 'Quạt điều hòa Kangaroo'            , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(102, 'Quạt điều hòa Kangaroo'            , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu của: Việt Nam</p> <p>H&atilde;ng: Kangaroo.</p> <p>Phạm vi l&agrave;m m&aacute;t: Ph&ograve;ng 30 - 40 m&sup2;</p> <p>C&ocirc;ng suất: 180 W</p> <p>Tốc độ gi&oacute;: 3 mức gi&oacute;</p> <p>Điều khiển: N&uacute;m xoay, N&uacute;t nhấn</p> <p>Độ ồn cao nhất: 63 dB</p> <p>B&igrave;nh nước: 55 l&iacute;t</p> <p>Mức ti&ecirc;u thụ nước: Khoảng 3 - 4 l&iacute;t/giờ</p> <p>K&iacute;ch thước, khối lượng: Ngang 60 cm - Cao 117 cm - S&acirc;u 40 cm - 20.7 kg</p>',
                                             9, 'nbtram', 0, 0, null),
                                             
-(103, 'Quạt điều hoà Daikiosan'           , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(103, 'Quạt điều hoà Daikiosan'           , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu của: Việt Nam</p> <p>H&atilde;ng: Daikiosan</p> <p>Phạm vi l&agrave;m m&aacute;t: Ph&ograve;ng 25 - 30 m&sup2;</p> <p>C&ocirc;ng suất: 160 W</p> <p>Tốc độ gi&oacute;: 3 mức gi&oacute;</p> <p>Chế độ gi&oacute;: Gi&oacute; thường</p> <p>Điều khiển: N&uacute;t nhấn c&oacute; m&agrave;n h&igrave;nh hiển thị, C&oacute; remote đi k&egrave;m</p> <p>Độ ồn cao nhất: 56 dB</p> <p>B&igrave;nh nước: 40 l&iacute;t</p> <p>Mức ti&ecirc;u thụ nước: Khoảng 3 - 4 l&iacute;t/giờ</p>',
                                             9, 'nbtram', 0, 0, null),
                                             
-(104, 'Máy lọc nước R.O Hydrogen Kangaroo', 5000000, 7000000, 500000, 5000000, 'nbtram', '2021-12-01 09:26:12', '2021-12-28 16:55:20', 0, 
+(104, 'Máy lọc nước R.O Hydrogen Kangaroo', 5000000, 7000000, 500000, 5000000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu: Kangaroo</p> <p>Nơi sản xuất: Việt Nam</p> <p>Năm ra mắt: 2019</p> <p>K&iacute;ch thước, khối lượng: Ngang 42 cm - Cao 120.7 cm - S&acirc;u 42 cm - Nặng 27 kg</p> <p>Dung t&iacute;ch b&igrave;nh chứa: 8 l&iacute;t</p> <p>C&ocirc;ng nghệ lọc: Thẩm thấu ngược RO</p> <p>C&ocirc;ng suất lọc nước: 18 - 20 l&iacute;t/giờ</p> <p>C&ocirc;ng suất ti&ecirc;u thụ điện trung b&igrave;nh khoảng: 0.035 - 0.038 kW/h</p>',
                                             9, 'nbtram', 0, 0, null);
                                             

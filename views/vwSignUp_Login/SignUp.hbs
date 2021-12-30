@@ -27,7 +27,7 @@
                     }
                 } else {
                     const check = JSON.parse(JSON.stringify(data))
-                    if (check.username == false) {
+                    if (check.username === false) {
                         if ($('#check-account').hasClass("is-hidden")) {
                             $('#check-account').removeClass("is-hidden");
                         }
@@ -37,7 +37,7 @@
                         }
                     }
 
-                    if (check.email == false) {
+                    if (check.email === false) {
                         if ($('#check-email').hasClass("is-hidden")) {
                             $('#check-email').removeClass("is-hidden");
                         }

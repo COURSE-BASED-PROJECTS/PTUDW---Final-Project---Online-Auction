@@ -27,7 +27,7 @@ router.post('/reviewProfile', async function (req, res) {
     req.body.dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
     const account  = await accountModel.findByUsername(req.body.username);
     if (account.email !== req.body.email){
-        req.body.active = 0;
+        req.body.isActive = 0;
         req.body.otp = generateOtp(4);
     }
     res.locals.authAccount.name = req.body.name;
@@ -75,7 +75,7 @@ router.post('/reviewProfile/activeEmail', async function (req, res) {
     const username = req.session.authAccount.username;
     const entity = {
         username: username,
-        active: 1
+        isActive: 1
     }
     await accountModel.updateInfoAccount(entity);
     res.redirect('/info/reviewProfile');

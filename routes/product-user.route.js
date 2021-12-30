@@ -1,4 +1,4 @@
-import express from "express";
+import express, {request} from "express";
 import productModel from "../models/product.model.js";
 import accountModel from "../models/account.model.js";
 import historybidModel from "../models/historybid.model.js";
@@ -74,10 +74,12 @@ router.get('/detail/:id',async function (req,res){
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
 
-    if(product[0].Bidder === req.session.authAccount.username){
-        product[0].isAuction = false;
-    }else{
-        product[0].isAuction = true;
+    if(req.session.auth){
+        if(product[0].Bidder === req.session.authAccount.username){
+            product[0].isAuction = false;
+        }else{
+            product[0].isAuction = true;
+        }
     }
 
     if(product === null){

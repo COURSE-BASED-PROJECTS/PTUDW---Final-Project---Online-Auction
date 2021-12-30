@@ -21,3 +21,7 @@
     transform: scale(1.05);
 }
 
+.card-content > ul{
+    list-style-type: square;
+}
+

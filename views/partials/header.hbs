@@ -98,12 +98,24 @@
                     <a class="navbar-link">{{authAccount.name}}</a>
                     <div class="navbar-dropdown">
                         <p class="menu-label is-size-6 m-4">Thông tin</p>
-                        <hr class="navbar-divider {{#unless Seller}}is-hidden{{/unless}}" />
-                        <a class="navbar-item {{#unless Seller}}is-hidden{{/unless}}
-                            {{#if this.isUpload}}has-background-success{{/if}}" href="/seller/upload">
-                            <i class="fa fa-upload mr-2"></i>
-                            Đăng tải sản phẩm
-                        </a>
+                        {{#if Seller}}
+                            <hr class="navbar-divider " />
+                            <a class="navbar-item
+                                {{#if this.isUpload}}has-background-success{{/if}}" href="/seller/upload">
+                                <i class="fa fa-upload mr-2"></i>
+                                Đăng tải sản phẩm
+                            </a>
+                        {{/if}}
+
+                        {{#if Admin}}
+                            <hr class="navbar-divider " />
+                            <a class="navbar-item
+                                {{#if this.isUpload}}has-background-success{{/if}}" href="/seller/upload">
+                                <i class="fa fa-upload mr-2"></i>
+                                Đăng tải sản phẩm
+                            </a>
+                        {{/if}}
+
                         <hr class="navbar-divider" />
 
                         <a class="navbar-item {{#if isProfile}}has-background-success{{/if}}" href="/info/reviewProfile" >

@@ -36,6 +36,13 @@
                 $('.modal_lowpoint').toggleClass("is-active")
             }
         };
+        function modal_price_valid(){
+            if($('.modal_price_valid').hasClass("is-active")){
+                $('.modal_price_valid').removeClass("is-active")
+            } else{
+                $('.modal_price_valid').toggleClass("is-active")
+            }
+        };
 
         $('#frmAuction').on('submit', function (e) {
             e.preventDefault();
@@ -61,6 +68,10 @@
 
                     if(+priceBid <=  +infoProduct.PriceCurrent){
                         $('.modal_priceInvalid').toggleClass("is-active")
+                        error = true;
+                        return
+                    }else if((+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !==0 ){
+                        $('.modal_price_valid').toggleClass("is-active")
                         error = true;
                         return
                     }
@@ -132,6 +143,19 @@
                        href="javascript: $('#frmAuction').submit();">Đồng ý</a>
                     <a class="button" onclick="modal_verify();">Hủy</a>
                 </footer>
+            </div>
+        </div>
+        <div class="modal modal_price_valid">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Xác nhận</p>
+                    <button class="delete close_modal" aria-label="close" onclick="modal_price_valid();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p><strong>Bạn nên đấu giá theo bội số của bước giá</strong>
+                    </p>
+                </section>
             </div>
         </div>
         <div class="modal modal_priceInvalid">
@@ -387,7 +411,10 @@
                 <div class="card-header-title">
                     Thông tin sản phẩm
                 </div>
-                {{{this.product.Description}}}
+                <div class="card-content " >
+                    {{{this.product.Description}}}
+                </div>
+
             </div>
 
             {{#if auth}}
@@ -429,7 +456,7 @@
                         <div class="column is-8 ">
                             <form action="/product/buynow" method="post" id="frmAuction">
                                 <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
-                                       name="number">
+                                       name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*">
                                 <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
                                        id="ProID">
                             </form>

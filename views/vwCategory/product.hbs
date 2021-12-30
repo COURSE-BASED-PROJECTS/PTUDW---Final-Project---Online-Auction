@@ -76,7 +76,42 @@
         });
     </script>
 {{/section}}
+{{#section 'js'}}
+    <script>
+        function categoryClick(CatID) {
+            if ($(".category-" + CatID).hasClass("is-active")) {
+                $(".category-" + CatID).removeClass("is-active");
+                $(".list-" + CatID).toggleClass("is-hidden");
+            } else {
+                $(".manual").removeClass("is-active");
+                $(".manual-list").removeClass("is-hidden").toggleClass("is-hidden");
 
+                $(".category-" + CatID).toggleClass("is-active");
+                $(".list-" + CatID).removeClass("is-hidden");
+            }
+        }
+
+        $('#text').keypress(function(event){
+            const keycode = (event.keyCode ? event.keyCode : event.which);
+
+            if (keycode == '13') {
+                const action = $('#text').val();
+                const url = "/search/" + action;
+                $('#frmSearch').attr('action', url);
+                $('#frmSearch').submit();
+            }
+        });
+        $('#btnSearch').click(function(event){
+            const action = $('#text').val();
+            if (action !== '') {
+                const url = "/search/" + action;
+                $('#frmSearch').attr('action', url);
+                $('#frmSearch').submit();
+            }
+        });
+
+    </script>
+{{/section}}
 
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-6-tablet is-12-mobile mr-5">

@@ -39,7 +39,7 @@ router.post('/upload',async function (req,res){
     });
 
     const upload = multer({ storage: storage })
-    upload.array('image',4)(req, res, function(err){
+    upload.array('image',7)(req, res, function(err){
         // console.log(req.body)
         const DateEnd = moment(req.body.DateEnd,'DD/MM/YYYY hh:mm').format('YYYY-MM-DD hh:mm:ss');
 
@@ -47,6 +47,7 @@ router.post('/upload',async function (req,res){
             console.log(err);
         }else {
             const product = {
+                ProID: +count,
                 ProName: req.body.name,
                 PriceCurrent: req.body.FirstPrice,
                 PriceWin: req.body.Price,

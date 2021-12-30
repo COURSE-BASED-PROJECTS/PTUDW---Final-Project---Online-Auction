@@ -48,13 +48,15 @@
                     }
                     return;
                 }
-                if (dob === null || dob === '') {
-                    if ($('#check-dob').hasClass("is-hidden")) {
-                        $('#check-dob').removeClass("is-hidden");
+                if (name === '' || address === '' || email === '' || dob === '__/__/____' ||
+                        dob === '' || username === '' || password === '' || passwordConfirm === '') {
+                    if ($('#check-info').hasClass("is-hidden")) {
+                        $('#check-info').removeClass("is-hidden");
                     }
+                    return;
                 } else {
-                    if (!$('#check-dob').hasClass("is-hidden")) {
-                        $('#check-dob').toggleClass("is-hidden");
+                    if (!$('#check-info').hasClass("is-hidden")) {
+                        $('#check-info').toggleClass("is-hidden");
                     }
                 }
                 if (password !== passwordConfirm) {
@@ -75,16 +77,14 @@
                         $('#check-box').toggleClass("is-hidden");
                     }
                 }
+                if (password !== passwordConfirm || !($('#txtCheckbox').is(':checked'))) {
+                    return;
+                }
+                if (name && address && email && dob
+                        && username && password && passwordConfirm) {
+                    $('#frmRegister').off('submit').submit();
+                }
             });
-            if (password !== passwordConfirm || !($('#txtCheckbox').is(':checked')) || dob === null){
-                return;
-            }
-            if (name && address && email && dob
-                    && username && password && passwordConfirm) {
-                 $('#frmRegister').off('submit').submit();
-            } else {
-                $('.check-info').removeClass('is-hidden');
-            }
         });
         $('#datetimepicker').datetimepicker({
             timepicker: false,
@@ -92,7 +92,6 @@
             mask: true,
             default: null
         });
-        $('#txtName').focus();
     </script>
 {{/section}}
 
@@ -100,7 +99,7 @@
     <div class="has-text-centered">
         <div class="column is-4 is-inline-block box my-5">
             <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG KÝ</div>
-            <div class="notification is-warning is-hidden check-info">
+            <div class="notification is-warning is-hidden" id="check-info">
                 <strong>Vui lòng điền đầy đủ thông tin</strong>
             </div>
             {{#if this.reCapcha}}
@@ -111,7 +110,7 @@
             <div class="field has-text-left">
                 <label class="label">Họ tên</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Nhập họ tên" id="txtName" name="name"/>
+                    <input class="input" type="text" placeholder="Nhập họ tên" id="txtName" name="name" autofocus/>
                 </div>
             </div>
 
@@ -131,7 +130,6 @@
                             placeholder="Nhập Email"
                             name="email"
                             id="txtEmail"
-                            value="@gmail.com"
                     />
                     <span class="icon is-small is-left">
                       <i class="fa fa-envelope"></i>
@@ -158,7 +156,6 @@
                     <span class="icon is-small is-right">
                     </span>
                 </div>
-                <p class="help is-danger is-hidden" id="check-dob">Chưa chọn ngày sinh</p>
             </div>
 
             <hr class="has-background-grey-dark">
@@ -228,7 +225,7 @@
                 </div>
             </div>
 
-            <div class="g-recaptcha"  data-sitekey="6LfuC8YdAAAAAHy-_c34Aej6HWVQ_kaXabz2ewI8"></div>
+            <div class="g-recaptcha" data-sitekey="6LfuC8YdAAAAAHy-_c34Aej6HWVQ_kaXabz2ewI8"></div>
 
 
             <div class="field is-grouped is-justify-content-center mt-5">

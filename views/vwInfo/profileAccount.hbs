@@ -103,8 +103,8 @@
                 </span>
                     <p class="help is-danger is-hidden" id="check-email">Email đã tồn tại</p>
                 </div>
-
                 {{#if this.user.isActive}}
+                {{else}}
                     <a class="button is-small is-danger is-inverted"
                        style="float: right"
                        href="/info/reviewProfile/activeEmail" type="button">

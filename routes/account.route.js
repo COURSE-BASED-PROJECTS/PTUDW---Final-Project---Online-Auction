@@ -1,4 +1,4 @@
-import express, {json} from "express";
+import express from "express";
 import bcrypt from 'bcrypt';
 import accountModel from "../models/account.model.js";
 import moment from "moment";
@@ -34,12 +34,12 @@ router.post('/register', async function (req, res) {
         username: req.body.username,
         password: hash,
         isActive: 0,
-        otp: Math.floor(Math.random() * 8999) + 1000
+        otp: generateOtp(4)
     }
 
     await accountModel.addAccount(account);
 
-    res.render('vwSignUp_Login/SignUp', {
+    res.render('vwSignUp_Login/Login', {
         layout: 'SignUp_Login'
     });
 });
@@ -133,7 +133,9 @@ router.post('/login', async function (req, res) {
     req.session.auth = true;
     req.session.authAccount = account;
 
-    const url = req.session.retUrl || '/';
+    console.log(req.session.retUrl);
+    let url = req.session.retUrl || '/';
+
     res.redirect(url);
 });
 

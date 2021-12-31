@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/byCat/:id', async function (req, res) {
     const CatIDNext = req.params.id || 0;
 
+    //---
     const limit = 6;
     const page = req.query.page || 1;
     const offset = (page - 1) * limit;
@@ -31,6 +32,7 @@ router.get('/byCat/:id', async function (req, res) {
         listID += list[i].ProID + ' ';
     }
     listID = listID.trim()
+    //----
 
     for (const p of list) {
         p.auth = req.session.auth;

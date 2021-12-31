@@ -33,9 +33,9 @@
         <div class="card-header-title is-size-3">Không có sản phẩm đã bán</div>
     {{else}}
         {{#each this.list}}
-            <div class="column is-4-tablet is-12-mobile ">
+            <div class="column is-4-tablet is-12-mobile is-flex-desktop-only">
                 <div class="card p-5 m-4">
-                    <header class="card-header">
+                    <header class="card-header" style="height: 60px">
                         <p class="card-header-title is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
@@ -96,6 +96,31 @@
                 </div>
             </div>
         {{/each}}
+
+        <div class="column is-12">
+            <nav
+                    class="pagination is-centered"
+                    role="navigation"
+                    aria-label="pagination"
+            >
+                {{#if this.pagePrev.isVisible}}
+                    <a class="pagination-previous " href="?page={{this.pagePrev.page}}">Trang trước</a>
+                {{/if}}
+                {{#if this.pageNext.isVisible}}
+                    <a class="pagination-next" href="?page={{this.pageNext.page}}">Trang sau</a>
+                {{/if}}
+
+                <ul class="pagination-list">
+                    {{#each this.pageNumbers}}
+                        {{#if isCurrent}}
+                            <li><a class="pagination-link is-current" href="javascript:;">{{value}}</a></li>
+                        {{else}}
+                            <li><a class="pagination-link" href="?page={{value}}">{{value}}</a></li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
     {{/if}}
 
 </div>

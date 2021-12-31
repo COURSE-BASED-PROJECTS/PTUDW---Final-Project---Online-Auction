@@ -75,7 +75,23 @@ router.post('/upload',async function (req,res){
 
 router.get('/liveProduct', async function (req, res)  {
     const username = req.session.authAccount.username;
-    const list = await productOnAuctionModel.findOnAuctionSeller(username);
+
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
+
+    const list = await productOnAuctionModel.findPageOnAuctionSeller(username,limit,offset);
+    const total = await productOnAuctionModel.countTotalPages(username);
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
 
     res.render('vwSeller/liveProduct',{
         layout:'main',
@@ -83,19 +99,52 @@ router.get('/liveProduct', async function (req, res)  {
         isLive:true,
         list,
         isEmpty:list.length===0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        },
     });
 })
 
 router.get('/soldProduct', async function (req, res)  {
     const username = req.session.authAccount.username;
-    const list = await productHistoryModel.findSoldProduct(username);
 
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
+
+    const list = await productHistoryModel.findPageSoldProduct(username,limit,offset);
+    const total = await productHistoryModel.countPageSoldProduct(username);
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
     res.render('vwSeller/soldProduct',{
         layout:'main',
         isSeller: true,
         isSold:true,
         list,
-        isEmpty: list.length === 0
+        isEmpty: list.length === 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        },
     });
 })
 

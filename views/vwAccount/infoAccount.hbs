@@ -1,61 +1,204 @@
+{{#section 'js'}}
+    <script>
+        $.getJSON(`/account/hasAccountLock`, function (data) {
+            if (data === false) {
+                if (!$('#accountLock').hasClass("is-hidden")) {
+                    $('#accountLock').toggleClass("is-hidden");
+                }
+            } else {
+                if ($('#accountLock').hasClass("is-hidden")) {
+                    $('#accountLock').removeClass("is-hidden");
+                }
+            }
+        });
+    </script>
+{{/section}}
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12">
-        <div class="card-header-title is-size-4-tablet is-size-6-mobile">Danh sách tài khoản trong hệ thống</div>
-        <hr class="has-background-grey" />
+        <div class="card-header-title is-size-4-tablet is-size-5-mobile is-size-2-desktop has-text-danger-dark">
+            Danh sách tài khoản trong hệ thống
+        </div>
+        <hr class="has-background-grey"/>
+    </div>
+    <div class="is-12 column mt-0">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-3 has-text-success">
+                    Tài khoản SELLER
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="">Tài khoản</abbr></th>
+                    <th><abbr title="">Họ tên</abbr></th>
+                    <th><abbr title="">Địa chỉ</abbr></th>
+                    <th><abbr title="">Email</abbr></th>
+                    <th><abbr title="">Số điểm</abbr></th>
+                    <th><abbr title="">Hạ cấp/Khóa</abbr></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#each this.list}}
+                    {{#if info.isLock}}
+                    {{else}}
+                        {{#if info.isSeller}}
+                            <tr class="has-text-centered">
+                                <th>
+                                    <p>
+                                        <strong><a>#{{username}}</a></strong>
+                                    </p>
+                                </th>
+                                <td>{{name}}</td>
+                                <td>{{address}}</td>
+                                <td>{{email}}</td>
+                                <td>
+                                    {{#if info.isPositive}}
+                                        <i class="is-small tag has-text-info">+{{point}}</i>
+                                    {{else}}
+                                        <i class="is-small tag has-text-danger">{{point}}</i>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    <form action="/admin/Account/degrade/{{username}}" method="post"
+                                          id="degrade-{{username}}"></form>
+                                    <form action="/admin/Account/lock/{{username}}" method="post"
+                                          id="lock-{{username}}"></form>
+                                    <span>
+                                    <a href="javascript: $('#degrade-{{username}}').submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-angle-double-down has-text-success"></i>
+                                        </span>
+                                    </a>
+
+                                    <a href="javascript: $('#lock-{{username}}').submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-lock has-text-danger-dark"></i>
+                                        </span>
+                                    </a>
+                                </span>
+                                </td>
+                            </tr>
+                        {{/if}}
+                    {{/if}}
+
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    {{#each this.list}}
-        <div class="column is-6-tablet is-12-mobile is-flex-desktop-only">
-            <div class="card p-5 m-4">
-                <header class="card-header">
-                    <p class="card-header-title is-size-5 is-size-7-mobile">
-                        <strong>Tài khoản: <a>#{{username}}</a></strong>
-                    </p>
-                </header>
-                <div class="card-content py-2 px-0  is-size-7-mobile " style="overflow-x: auto">
-                    <div class="content">
-                        <strong class="is-block has-text-info-dark my-2"> Họ tên: <span
-                                class="has-text-primary-dark">{{name}}</span></strong>
-                        <strong class="is-block has-text-info-dark my-2"> Địa chỉ: <span
-                                class="has-text-primary-dark">{{address}}</span></strong>
-                        <strong class="is-block has-text-info-dark my-2"> Email: <span
-                                class="has-text-primary-dark">{{email}}</span></strong>
-                        <strong class="is-block has-text-info-dark my-2"> Tài khoản: <span
-                                class="has-text-primary-dark">{{level}}</span></strong>
+    <div class="is-12 column mt-0">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-3 has-text-success">
+                    Tài khoản BIDDER
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="">Tài khoản</abbr></th>
+                    <th><abbr title="">Họ tên</abbr></th>
+                    <th><abbr title="">Địa chỉ</abbr></th>
+                    <th><abbr title="">Email</abbr></th>
+                    <th><abbr title="">Số điểm</abbr></th>
+                    <th><abbr title="">Khóa</abbr></th>
+                </tr>
+                </thead>
 
-                        <strong class="is-block has-text-info-dark my-2 is-flex-direction-row" > Số điểm:
-                            <span>
+                <tbody>
+                {{#each this.list}}
+                    {{#if info.isLock}}
+                    {{else}}
+                        {{#if info.isBidder}}
+                            <tr class="has-text-centered">
+                                <th>
+                                    <p>
+                                        <strong><a>#{{username}}</a></strong>
+                                    </p>
+                                </th>
+                                <td>{{name}}</td>
+                                <td>{{address}}</td>
+                                <td>{{email}}</td>
+                                <td>
+                                    {{#if info.isPositive}}
+                                        <i class="is-small tag has-text-info">+{{point}}</i>
+                                    {{else}}
+                                        <i class="is-small tag has-text-danger">{{point}}</i>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    <form action="/admin/Account/lock/{{username}}" method="post"
+                                          id="lock-{{username}}"></form>
+                                    <a href="javascript: $('#lock-{{username}}').submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-lock has-text-danger-dark"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="is-12 column mt-0" id="accountLock">
+        <div class="table-wrapper" style="overflow-x: auto">
+            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                <div class="card-header-title is-size-3 has-text-success">
+                    Tài khoản đã bị khóa
+                </div>
+                <thead>
+                <tr class="has-text-centered">
+                    <th><abbr title="">Tài khoản</abbr></th>
+                    <th><abbr title="">Họ tên</abbr></th>
+                    <th><abbr title="">Địa chỉ</abbr></th>
+                    <th><abbr title="">Email</abbr></th>
+                    <th><abbr title="">Số điểm</abbr></th>
+                    <th><abbr title="">Mở khóa</abbr></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#each this.list}}
+                    {{#if info.isLock}}
+                        <tr class="has-text-centered">
+                            <th>
+                                <p>
+                                    <strong><a>#{{username}}</a></strong>
+                                </p>
+                            </th>
+                            <td>{{name}}</td>
+                            <td>{{address}}</td>
+                            <td>{{email}}</td>
+                            <td>
                                 {{#if info.isPositive}}
                                     <i class="is-small tag has-text-info">+{{point}}</i>
                                 {{else}}
                                     <i class="is-small tag has-text-danger">{{point}}</i>
                                 {{/if}}
-                            </span>
-                        </strong>
-                    </div>
-
-                </div>
-
-                <footer class="card-footer">
-                    {{#if info.isSeller}}
-                        <a href="javascript: $('#degrade').submit();" class="card-footer-item">
-                                        <span class="is-small mr-1 has-text-right">
-                                            <i class="fa fa-level-down-alt"></i>
+                            </td>
+                            <td>
+                                <form action="/admin/Account/unlock/{{username}}" method="post"
+                                      id="unlock-{{username}}"></form>
+                                <span>
+                                    <a href="javascript: $('#unlock-{{username}}').submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-unlock has-text-success-dark"></i>
                                         </span>
-                            HẠ CẤP
-                        </a>
-                        <form action="/admin/Account/degrade/{{username}}" method="post" id="degrade"></form>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
                     {{/if}}
-
-                    <a href="javascript: $('#frmBuynow').submit();" class="card-footer-item">
-                        <span class="is-small mr-1"><i class="fa fa-band-aid has-text-danger"></i></span>
-                        Khóa</a>
-                </footer>
-
-
-
-            </div>
+                {{/each}}
+                </tbody>
+            </table>
         </div>
-    {{/each}}
-
+    </div>
 </div>

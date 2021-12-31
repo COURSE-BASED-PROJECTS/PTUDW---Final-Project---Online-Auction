@@ -4,6 +4,7 @@ import productHistoryModel from "../models/productHistory.model.js";
 import productAuctionModel from "../models/productOnAuction.model.js";
 import productWonModel from "../models/productWon.model.js";
 import accountModel from "../models/account.model.js";
+import upgradeModel from "../models/upgrade.model.js";
 import moment from "moment";
 import bcrypt from "bcrypt";
 import sendMail from "../utils/sendMail.js";
@@ -16,9 +17,15 @@ const router = express.Router();
 router.get('/reviewProfile', async function (req, res) {
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
+    let isBidder = 0;
+    if (user.level === 'bidder'){
+        isBidder = 1;
+    }
+
     res.render('vwInfo/profileAccount', {
         layout: 'SignUp_login',
-        user
+        user,
+        isBidder
     });
 });
 
@@ -55,8 +62,13 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
     await accountModel.updateInfoAccount(entity);
     res.redirect('/info/reviewProfile');
 });
-
-router.get('/reviewProfile/activeEmail', async function (req, res) {
+function activeEmail (req,res,next){
+    if(req.session.authAccount.isActive === 1){
+        return res.redirect('/info/reviewProfile')
+    }
+    next();
+}
+router.get('/reviewProfile/activeEmail', activeEmail, async function (req, res) {
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
     const content = 'Your OTP code: <b>' + user.otp + '</b>';
@@ -71,6 +83,7 @@ router.get('/reviewProfile/activeEmail', async function (req, res) {
         resendOtp
     });
 });
+
 router.post('/reviewProfile/activeEmail', async function (req, res) {
     const username = req.session.authAccount.username;
     const entity = {
@@ -94,6 +107,16 @@ router.post('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
     sendMail(user.email, content);
 
     res.redirect('/info/reviewProfile/activeEmail?resendOtp=true');
+});
+
+router.post('/reviewProfile/upgrade', async function (req, res) {
+    const username = req.session.authAccount.username;
+    const entity = {
+        id: username,
+        isCheck: 0
+    }
+    await upgradeModel.addBidder(entity);
+    res.redirect('/info/reviewProfile');
 });
 
 router.get('/reviewHistory', async function (req, res) {

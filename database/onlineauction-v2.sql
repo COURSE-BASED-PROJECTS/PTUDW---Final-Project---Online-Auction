@@ -38,7 +38,8 @@ CREATE TABLE `account` (
   `password` varchar(100) NOT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 0,
   `sumBid` int(11) NOT NULL DEFAULT 0,
-  `otp` smallint
+  `otp` smallint,
+  `isLock` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

@@ -72,5 +72,15 @@ export default {
     async getNameByUsername(username){
         const obj = await db('account').where('username',username).select('name');
         return obj[0].name;
+    },
+    async lockAccount(username) {
+        await db('account')
+            .where({ username: username})
+            .update({ isLock: 1 })
+    },
+    async unlockAccount(username) {
+        await db('account')
+            .where({ username: username})
+            .update({ isLock: 0 })
     }
 }

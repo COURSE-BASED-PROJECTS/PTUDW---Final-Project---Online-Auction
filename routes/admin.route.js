@@ -98,10 +98,11 @@ router.get('/Account', async function (req, res) {
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,
-            isSeller: account.level === 'seller'
+            isSeller: account.level === 'seller',
+            isBidder: account.level === 'bidder',
+            isLock: account.isLock === 1
         }
     }
-
     res.render('vwAccount/infoAccount', {
         layout: 'main',
         isSeller: true,
@@ -134,6 +135,22 @@ router.get('/verifySeller', async function (req, res) {
 router.post('/Account/degrade/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.degradeAccount(username);
+
+    const url = req.headers.referer || '/';
+    res.redirect(url);
+});
+
+router.post('/Account/lock/:username', async function (req, res) {
+    const username = req.params.username;
+    await accountModel.lockAccount(username);
+
+    const url = req.headers.referer || '/';
+    res.redirect(url);
+});
+
+router.post('/Account/unlock/:username', async function (req, res) {
+    const username = req.params.username;
+    await accountModel.unlockAccount(username);
 
     const url = req.headers.referer || '/';
     res.redirect(url);

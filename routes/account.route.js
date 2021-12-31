@@ -8,6 +8,7 @@ import generateOtp from "../utils/generateOTP.js";
 const router = express.Router();
 
 router.get('/register', async function (req, res) {
+    req.session.retUrl = '/';
     res.render('vwSignUp_Login/SignUp', {
         layout: 'SignUp_Login'
     });
@@ -39,9 +40,7 @@ router.post('/register', async function (req, res) {
 
     await accountModel.addAccount(account);
 
-    res.render('vwSignUp_Login/Login', {
-        layout: 'SignUp_Login'
-    });
+    res.redirect('/account/login');
 });
 
 router.get('/is-available', async function (req, res) {
@@ -77,6 +76,16 @@ router.get('/is-exist', async function (req, res) {
 
     if (accountHasEmail === null || accountHasEmail.username === username) {
         return res.json(true);
+    }
+    return res.json(false);
+});
+
+router.get('/hasAccountLock', async function (req, res) {
+    const list = await accountModel.findAll();
+    for (const account of list) {
+        if (account.isLock === 1) {
+            return res.json(true);
+        }
     }
     return res.json(false);
 });
@@ -133,7 +142,7 @@ router.post('/login', async function (req, res) {
     req.session.auth = true;
     req.session.authAccount = account;
 
-    console.log(req.session.retUrl);
+    //console.log(req.session.retUrl);
     let url = req.session.retUrl || '/';
 
     res.redirect(url);
@@ -147,7 +156,7 @@ router.get('/login/forgotPassword', function (req, res) {
 
 router.post('/login/forgotPassword', async function (req, res) {
     const username = req.query.username;
-    const newPass = generateOtp(6) +'';
+    const newPass = generateOtp(6) + '';
     console.log(typeof newPass);
     console.log(newPass);
     const salt = bcrypt.genSaltSync(10);

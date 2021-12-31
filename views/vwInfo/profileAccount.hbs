@@ -139,6 +139,14 @@
                 <div class="control">
                     <input class="input" type="text" value="{{this.user.level}}" readonly/>
                 </div>
+
+                {{#if this.isBidder}}
+                    <a class="button is-small is-success is-inverted"
+                       style="float: right"
+                       href="javascript: $('#upgrade').submit();" type="button">
+                        <strong>Nâng cấp tài khoản</strong>
+                    </a>
+                {{/if}}
             </div>
 
             <div class="field has-text-left">
@@ -165,3 +173,4 @@
 
     </div>
 </form>
+<form action="/info/reviewProfile/upgrade" method="post" id="upgrade"></form>

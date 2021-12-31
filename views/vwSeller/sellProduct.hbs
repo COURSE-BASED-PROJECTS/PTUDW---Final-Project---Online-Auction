@@ -23,9 +23,11 @@
             e.preventDefault();
 
             const name = $('#txtName').val();
+            const subCatID = $('#subCatName').find('option:selected').attr("name");
             const firstPrice = $('#txtFirstPrice').val();
             const winPrice = $('#txtPrice').val();
             const dateEnd = $('#datetimepicker').val();
+            $('#CatIDNext').val(subCatID);
 
             if(name && firstPrice && winPrice && dateEnd)
                 $('#frmUpload').off('submit').submit();
@@ -78,7 +80,7 @@
                     <span class="file-icon">
                         <i class="fas fa-upload"></i>
                     </span>
-                    <span class="file-label">
+                    <span class="file-label is">
                         Tải lên hình ảnh…
                     </span>
                 </span>
@@ -88,6 +90,29 @@
                 </span>
             </label>
         </div>
+
+            <div class="field has-text-left">
+                <div class="control has-icons-left">
+                    <label class="label">Danh mục</label>
+
+                    <div class="select is-fullwidth is-primary">
+                        <select id="subCatName">
+                            {{#each this.listCategoryNext}}
+                                <option name={{CatIDNext}}>
+                                    {{CatNextName}}
+                                </option>
+                            {{/each}}
+                        </select>
+
+                        <input type="number" id="CatIDNext" hidden name="catIdNext" />
+
+                        <span class="icon is-left">
+                            <i class="fa fa-list-ul"></i>
+                        </span>
+
+                    </div>
+
+                </div>
 
         <div class="field has-text-left">
             <label class="label">Giá mua ngay</label>
@@ -178,6 +203,14 @@
                 </label>
             </div>
         </div>
+        <div class="field has-text-left">
+            <div class="control">
+                <label class="checkbox" for="txtPoint">
+                    <input type="checkbox" id="txtPoint" name="Point" />
+                    Chỉ cho phép người mua có điểm uy tín trên 80% tham gia
+                </label>
+            </div>
+        </div>
 
         <div class="field is-grouped has-text-left">
             <div class="control">
@@ -185,11 +218,10 @@
             </div>
             <div class="control">
                 <button class="button is-link is-light">Hủy</button>
-
             </div>
 
         </div>
-
+            </div>
         </div>
     </div>
 </form>

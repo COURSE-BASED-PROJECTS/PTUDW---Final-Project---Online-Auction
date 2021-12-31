@@ -5,13 +5,16 @@ import productModel from "../models/product.model.js";
 import productOnAuctionModel from "../models/productOnAuction.model.js";
 import productHistoryModel from "../models/productHistory.model.js";
 import fs from 'fs';
+import categoryModel from "../models/category.model.js";
 
 const router = express.Router();
 
 router.get('/upload',async function (req,res){
+    const listCategoryNext = await categoryModel.findCategoryNext();
     res.render('vwSeller/sellProduct',{
         layout:'SignUp_Login',
         isUpload: true,
+        listCategoryNext
     });
 });
 
@@ -40,7 +43,7 @@ router.post('/upload',async function (req,res){
 
     const upload = multer({ storage: storage })
     upload.array('image',7)(req, res, function(err){
-        // console.log(req.body)
+        console.log(req.body)
         const DateEnd = moment(req.body.DateEnd,'DD/MM/YYYY hh:mm').format('YYYY-MM-DD hh:mm:ss');
 
         if(err){
@@ -54,7 +57,9 @@ router.post('/upload',async function (req,res){
                 stepPrice: req.body.stepPrice,
                 DateEnd: DateEnd,
                 Description: req.body.FullDesc,
-                renewal: req.body.checkbox === 'on' ? true:false,
+                CatIDNext:req.body.catIdNext,
+                isVerify:req.body.Point === 'on',
+                renewal: req.body.checkbox === 'on',
             }
 
             productModel.addProduct(product)

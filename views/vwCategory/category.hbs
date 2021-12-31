@@ -29,8 +29,8 @@
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 // Display the result in the element with id="demo"
-                document.getElementById("dateEnd"+listID[i]).innerHTML = days + "d " + hours + "h "
-                        + minutes + "m " + seconds + "s ";
+                document.getElementById("dateEnd"+listID[i]).innerHTML = days + " ngày " + hours + " giờ "
+                        + minutes + " phút " + seconds + " giây ";
 
                 // If the count down is finished, write some text
                 if (distance < 0) {
@@ -85,7 +85,7 @@
                             </time>
 
                             <input class="is-block is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
-                            <time datetime="2016-1-1" class="is-block"><strong
+                            <time datetime="2016-1-1" class="is-block has-text-danger"><strong
                                     class="has-text-primary-dark">Kết thúc:</strong>
                                 <span class="is-danger" id="dateEnd{{ProID}}"></span>
                             </time>

@@ -57,8 +57,59 @@ export default {
             }
         }
 
-
         return result;
+    },
+    async countPageSoldProduct(username){
+        const list = await db('historybid')
+            .join('products', function (){
+                this.on('historybid.ProIDHistory', '=', 'products.ProID')
+                    .andOn('historybid.BidderHistory', '=', 'products.Bidder')
+            })
+            .where({Seller:username})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                result.push(p);
+            }
+        }
+
+        return result.length;
+    },
+    async findPageSoldProduct(username,limit,offset){
+        const list = await db('historybid')
+            .join('products', function (){
+                this.on('historybid.ProIDHistory', '=', 'products.ProID')
+                    .andOn('historybid.BidderHistory', '=', 'products.Bidder')
+            })
+            .where({Seller:username})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+        const final = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                result.push(p);
+            }
+        }
+
+        for(let i=offset;(i<(limit+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
+
+        return final;
+
     },
 
     async updateCommentSeller(username,ProID,comment){
@@ -116,8 +167,8 @@ export default {
 
 
         let bidder = await db('products')
-                                .where({ProID:ProID,Seller:username})
-                                .select('Bidder');
+            .where({ProID:ProID,Seller:username})
+            .select('Bidder');
 
         bidder = bidder[0].Bidder;
         const point = await accountModel.getPointAccount(bidder);

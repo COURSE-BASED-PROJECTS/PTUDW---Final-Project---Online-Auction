@@ -190,31 +190,54 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPrice`, `firstPrice`, `Bidder`, `DateStart`, `DateEnd`, `BidderCount`, `Description`, `CatIDNext`, `Seller`, `renewal`, `isVerify`, `Image`) VALUES
 
-(1, 'Realme 8 Pro 8GB - 128GB'        , 8000000 , 10000000, 500000, 7900000 , 'dhuy01', '2021-12-12 23:23:11', '2022-01-31 23:55:00', 1,
+(1, 'REALME 8 Pro 8GB - 128GB'        , 8000000 , 10000000, 500000, 7900000 , 'dhuy01', '2021-12-12 23:23:11', '2022-01-31 23:55:00', 1,
                                         '<p>Thương hiệu: Realme</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.4&quot;, FHD+, Super AMOLED, 1080 x 2400 Pixel</p> <p>Camera sau: 108.0 MP + 8.0 MP + 2.0 MP + 2.0 MP</p> <p>Camera trước: 16.0 MP</p> <p>CPU: 2 x Kryo 465 2.3 GHz + 6 x Kryo 465 1.8 GHz</p> <p>RAM: 8GB</p> <p>Bộ nhớ trong: 128GB</p>',
                                         1, 'dhuy01', 0, 0, null),
 
-(2, 'Oppo Reno6 5G'                   , 10000000, 15000000, 500000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
+(2, 'OPPO Reno6 5G'                   , 10000000, 15000000, 500000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
                                       '<p>Thương hiệu: Oppo</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.43&quot;, FHD+, AMOLED, 1080 x 2400 Pixel</p> <p>Camera sau: 64.0 MP + 8.0 MP + 2.0 MP</p> <p>Camera trước: 32.0 MP</p> <p>CPU: MediaTek Dimensity 900 5G</p> <p>RAM: 8GB</p> <p>Bộ nhớ trong: 128GB</p>', 
                                       1, 'dhuy01', 0, 0, null),
 
-(3, 'IPhone XR 128GB '                , 10000000, 17000000, 700000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
+(3, 'APPLE iPhone XR 128GB '          , 10000000, 17000000, 700000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
                                       '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.1&quot;, Liquid Retina HD, IPS LCD, 828 x 1792 Pixel</p> <p>Camera sau: 12.0 MP</p> <p>Camera trước: 7.0 MP</p> <p>CPU: A12 Bionic - 4 x 2.5 GHz Vortex + 4 x 1.6 GHz Tempest</p> <p>RAM: 3GB</p> <p>Bộ nhớ trong: 128GB</p>',
                                       1, 'dhuy01', 0, 0, null),
-(4, 'iPhone 12 Pro Max 128GB'         , 20000000, 31000000, 800000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
+(4, 'APPLE iPhone 12 Pro Max 128GB'         , 20000000, 31000000, 800000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 0,
                                       '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.7&quot;, Super Retina XDR, OLED, 2778 x 1284 Pixel</p> <p>Camera sau: 12.0 MP + 12.0 MP + 12.0 MP</p> <p>Camera trước: 12.0 MP - CPU: A14 Bionic - 2 x Firestorm 3.1 GHz + 4 x Icestorm 1.8 GHz</p> <p>RAM: 6GB</p> <p>Bộ nhớ trong: 128GB</p>',
                                       1, 'dhuy01', 0, 0, null),
 
-(5, 'Samsung Galaxy Z Fold3 5G 256GB' , 30000000, 41000000, 900000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+(5, 'SAMSUNG Galaxy Z Fold3 5G 256GB' , 30000000, 41000000, 900000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
                                       '<p>Thương hiệu: Samsung</p> <p>Xuất xứ: Việt Nam/Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh ch&iacute;nh: 7.6&rdquo;, M&agrave;n h&igrave;nh phụ: 6.2&rdquo;, HD+, Ch&iacute;nh: Dynamic AMOLED 2X, phụ: Dynamic AMOLED 2X, 1768 x 2208 Pixel</p> <p>Camera sau: 12.0 MP + 12.0 MP + 12.0 MP</p> <p>Camera trước: 12.0 MP</p> <p>CPU: Snapdragon 888</p> <p>RAM: 12GB</p> <p>Bộ nhớ trong: 256GB</p>',
                                       1, 'dhuy01', 0, 0, null),
 
+(6, 'XIAOMI Mi 11 5G'                 , 11990000, 23990000, 500000, 11990000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Xiaomi Mi 11 một si&ecirc;u phẩm đến từ Xiaomi, m&aacute;y cho trải nghiệm hiệu năng h&agrave;ng đầu với vi xử l&yacute; Qualcomm Snapdragon 888, c&ugrave;ng loạt c&ocirc;ng nghệ đỉnh cao, khiến bất kỳ ai cũng sẽ cho&aacute;ng ngợp về smartphone n&agrave;y.</p> <ul> <li>M&agrave;n h&igrave;nh: AMOLED6.81&quot;Quad HD+ (2K+)</li> <li>Hệ điều h&agrave;nh: Android 11</li> <li>Camera sau: Ch&iacute;nh 108 MP &amp; Phụ 13 MP, 5 MP</li> <li>Camera trước: 20 MP</li> <li>Chip: Snapdragon 888</li> <li>RAM: 8 GB</li> <li>Bộ nhớ trong: 256 GB</li> <li>SIM: 2 Nano SIMHỗ trợ 5G</li> <li>Pin, Sạc: 4600 mAh55 W</li> <li>H&atilde;ng Xiaomi.</li> </ul>'
+                                      ,1, 'nbtram', 0, 0, null),
 
-(12, 'Apple iPad Mini 6'              , 9490000 , 19490000, 500000, 9490000 , 'dhuy01', '2021-12-23 17:22:51', '2022-01-12 09:26:12', 0,
+(7, 'APPLE iPhone 11 64GB'            , 13990000, 20990000, 600000, 13990000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Th&ocirc;ng số sản phẩm</p> <ul> <li>M&agrave;n h&igrave;nh: IPS LCD6.1&quot;Liquid Retina</li> <li>Hệ điều h&agrave;nh: iOS 15</li> <li>Camera sau: 2 camera 12 MP</li> <li>Camera trước: 12 MP</li> <li>Chip: Apple A13 Bionic</li> <li>RAM: 4 GB</li> <li>Bộ nhớ trong: 64 GB</li> <li>SIM: 1 Nano SIM &amp; 1 eSIMHỗ trợ 4G</li> <li>Pin, Sạc: 3110 mAh18 W</li> </ul> '
+                                      ,1, 'nbtram', 0, 0, null),
+
+(8, 'XIAOMI 11T 5G 128GB'             , 6000000, 10390000, 400000, 6000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Th&ocirc;ng tin sản phẩm</p> <ul> <li>M&agrave;n h&igrave;nh: AMOLED6.67&quot;Full HD+</li> <li>Hệ điều h&agrave;nh: Android 11</li> <li>Camera sau: Ch&iacute;nh 108 MP &amp; Phụ 8 MP, 5 MP</li> <li>Camera trước: 16 MP</li> <li>Chip: MediaTek Dimensity 1200</li> <li>RAM: 8 GB</li> <li>Bộ nhớ trong: 128 GB</li> <li>SIM: 2 Nano SIMHỗ trợ 5G</li> <li>Pin, Sạc: 5000 mAh67 W</li> <li>H&atilde;ng: Xiaomi</li> </ul> '
+                                      ,1, 'nbtram', 0, 0, null),
+
+(9, 'SAMSUNG Galaxy A32'              , 3000000, 6100000, 300000, 3000000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Th&ocirc;ng tin sản phẩm</p> <ul> <li>M&agrave;n h&igrave;nh: Super AMOLED6.4&quot;Full HD+</li> <li>Hệ điều h&agrave;nh: Android 11</li> <li>Camera sau: Ch&iacute;nh 64 MP &amp; Phụ 8 MP, 5MP, 5MP</li> <li>Camera trước: 20 MP</li> <li>Chip: MediaTek Helio G80</li> <li>RAM: 6 GB</li> <li>Bộ nhớ trong: 128 GB</li> <li>SIM: 2 Nano SIMHỗ trợ 4G</li> <li>Pin, Sạc: 5000 mAh15 W</li> </ul> '
+                                      ,1, 'nbtram', 0, 0, null),
+
+(10, 'SAMSUNG Galaxy S21 Ultra 5G 128GB', 11990000, 23990000, 500000, 11990000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Sự đẳng cấp được Samsung gửi gắm th&ocirc;ng qua chiếc smartphone Galaxy S21 Ultra 5G với h&agrave;ng loạt sự n&acirc;ng cấp v&agrave; cải tiến kh&ocirc;ng chỉ ngoại h&igrave;nh b&ecirc;n ngo&agrave;i m&agrave; c&ograve;n sức mạnh b&ecirc;n trong, hứa hẹn đ&aacute;p ứng trọn vẹn nhu cầu ng&agrave;y c&agrave;ng cao của người d&ugrave;ng.</p> <p>Th&ocirc;ng số kĩ thuật:</p> <ul> <li>M&agrave;n h&igrave;nh: Dynamic AMOLED 2X6.8&quot;Quad HD+ (2K+)</li> <li>Hệ điều h&agrave;nh: Android 11</li> <li>Camera sau: Ch&iacute;nh 108 MP &amp; Phụ 12 MP, 10 MP, 10 MP</li> <li>Camera trước: 40 MP</li> <li>Chip: Exynos 2100</li> <li>RAM: 12 GB</li> <li>Bộ nhớ trong: 128 GB</li> <li>SIM: 2 Nano SIM hoặc 1 Nano SIM + 1 eSIMHỗ trợ 5G</li> <li>Pin, Sạc: 5000 mAh25 W</li> </ul>'
+                                      ,1, 'nbtram', 0, 0, null),
+
+(11, 'VIVO V23e'                      , 7190000, 10190000, 500000, 7190000, 'dhuy01', '2021-12-12 09:26:12', '2021-12-31 16:55:20', 2,
+                                      '<p>Th&ocirc;ng tin sản phẩm</p> <ul> <li>M&agrave;n h&igrave;nh: AMOLED6.44&quot;Full HD+</li> <li>Hệ điều h&agrave;nh: Android 11</li> <li>Camera sau: Ch&iacute;nh 64 MP &amp; Phụ 8 MP, 2 MP</li> <li>Camera trước: 50 MP</li> <li>Chip: MediaTek Helio G96 8 nh&acirc;n</li> <li>RAM: 8 GB</li> <li>Bộ nhớ trong: 128 GB</li> <li>SIM: 2 Nano SIM (SIM 2 chung khe thẻ nhớ)Hỗ trợ 4G</li> <li>Pin, Sạc: 4050 mAh44 W</li> <li>H&atilde;ng: Vivo</li> </ul> '
+                                      ,1, 'nbtram', 0, 0, null),
+
+(12, 'APPLE iPad Mini 6'              , 9490000 , 19490000, 500000, 9490000 , 'dhuy01', '2021-12-23 17:22:51', '2022-01-12 09:26:12', 0,
                                         '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>M&agrave;n h&igrave;nh: 8.3&quot; - Liquid Retina display - IPS</p> <p>Camera sau: 12MP</p> <p>Camera trước: 12MP</p> <p>CPU: Apple A15 Bionic</p> <p>RAM: 4GB</p> <p>Bộ nhớ trong: 64GB</p> <p>Hệ điều h&agrave;nh: iPadOS</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(13, 'Dell Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
+(13, 'DELL Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
                                         '<p>CPU: Intel Core i5-11400H</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; WVA (1920 x 1080), 120Hz</p> <p>RAM: 2 x 4GB DDR4 3200MHz</p> <p>Đồ họa: NVIDIA GeForce RTX 3050 4GB GDDR6 / Intel UHD Graphics</p> <p>Lưu trữ: 256GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 3 cell - Pin liền</p> <p>Khối lượng: 2.8 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
@@ -222,13 +245,37 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                         '<p>CPU: Intel Core i5-1135G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 1 x 4GB Onboard DDR4</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 2 cell 37 Wh Pin liền</p> <p>Khối lượng: 1.6 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(15, 'Acer Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
+(15, 'ACER Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
                                         '<p>CPU: Intel Core i5-8300H ( 2.3 GHz - 4.0 GHz / 8MB / 4 nh&acirc;n, 8 lu&ocirc;̀ng )</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; IPS ( 1920 x 1080 ) , kh&ocirc;ng cảm ứng</p> <p>RAM: 1 x 8GB DDR4 2666MHz</p> <p>Đồ họa: Intel UHD Graphics 630 / NVIDIA GeForce GTX 1050Ti 4GB GDDR5</p> <p>Lưu trữ: 128GB SSD M.2 SATA / 1TB HDD 5400RPM</p> <p>Hệ điều h&agrave;nh: Linux</p> <p>Pin: 4 cell 48 Wh Pin liền , khối lượng: 2.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(16, 'Lenovo Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+(16, 'LENOVO Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
                                         '<p>CPU: Intel Core i7-1165G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 8GB Onboard DDR4 3200MHz</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit</p> <p>Pin: 60 Wh Pin liền</p> <p>Khối lượng: 1.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
+
+(17, 'LENOVO Thinkpad X13 '           , 24000000, 34490000, 800000, 24000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Lenovo Thinkpad X13 20T2S01E00 l&agrave; chiếc laptop cao cấp được thiết kế đẹp mắt, hiện đại, nhỏ gọn với hiệu suất hoạt động v&agrave; t&iacute;nh bảo mật n&acirc;ng cao.&nbsp;N&oacute; c&oacute; khối lượng chỉ 1.2 kg, k&iacute;ch thước 31.19x21.7x1.65cm sử dụng vỏ nh&ocirc;m cao cấp mỏng, nhẹ v&agrave; rất chắc chắn. Với thiết kế n&agrave;y, ch&uacute;ng ta c&oacute; thể dễ d&agrave;ng đem theo mọi l&uacute;c mọi nơi, linh hoạt cho việc sử dụng.</p> <p>Th&ocirc;ng số kĩ thuật:</p> <ul> <li>CPU: Intel Core i5-10210U</li> <li>M&agrave;n h&igrave;nh: 13.3&quot; WVA (1920 x 1080)</li> <li>RAM: 1 x 8GB DDR4 2666MHz</li> <li>Đồ họa: Intel UHD Graphics</li> <li>Lưu trữ: 512GB SSD M.2 NVMe /</li> <li>Hệ điều h&agrave;nh: Windows 10 Pro 64-bit</li> <li>Pin: 6 cell 48 Wh Pin liền</li> <li>Khối lượng: 1.2 kg</li> </ul>'
+                                        ,2, 'nbtram', 0, 1, null),
+
+(18, 'MICROSOFT Surface Pro'          , 23290000, 33290000, 800000, 23290000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Th&ocirc;ng số kĩ thuật</p> <ul> <li>Part-number: QWT-00001</li> <li>M&agrave;u sắc: Bạc</li> <li>Th&ecirc;́ h&ecirc;̣ CPU: Core i3 , Intel Core thế hệ thứ 10</li> <li>CPU: Intel Core i3-1005G1 ( 1.2 GHz - 3.4 GHz / 4MB / 2 nh&acirc;n, 4 lu&ocirc;̀ng )</li> <li>Chip đ&ocirc;̀ họa: Intel UHD Graphics</li> <li>RAM: 4GB LPDDR4</li> <li>Màn hình: 12.3&quot; ( 2736 x 1824 ) cảm ứng , HD webcam</li> <li>Lưu trữ: 128GB SSD /</li> <li>Cổng kết nối: 1 x USB Type C , 1 x USB 3.0 , 1 x micro SD card slot</li> <li>K&ecirc;́t n&ocirc;́i kh&ocirc;ng d&acirc;y: WiFi 802.11ax (Wifi 6) , Bluetooth 5.0</li> <li>H&ecirc;̣ đi&ecirc;̀u hành: Windows 10</li> <li>Kích thước: 29.21 x 20.14 x 0.85 cm</li> <li>Pin: Pin liền</li> <li>Kh&ocirc;́i lượng: 0.8 kg</li> </ul> '
+                                        ,2, 'nbtram', 0, 1, null),
+
+(19, 'HP 340s G7 224L1PA '            , 13890000, 14890000, 500000, 13890000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Th&ocirc;ng số kỹ thuật</p> <ul> <li>CPU: Intel Core i3-1005G1</li> <li>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</li> <li>RAM: 1 x 4GB DDR4 2666MHz</li> <li>Đồ họa: Intel UHD Graphics</li> <li>Lưu trữ: 512GB SSD M.2 NVMe /</li> <li>Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit</li> <li>Pin: 3 cell 41 Wh Pin liền</li> <li>Khối lượng: 1.35 kg</li> </ul> '
+                                        ,2, 'nbtram', 0, 1, null),
+
+(20, 'DELL Vostro 14 3405'            , 16190000, 17190000, 400000, 16190000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Th&ocirc;ng số kỹ thuật</p> <ul> <li>CPU: AMD Ryzen 5 3500U</li> <li>M&agrave;n h&igrave;nh: 14&quot; WVA (1920 x 1080)</li> <li>RAM: 1 x 4GB DDR4 2400MHz</li> <li>Đồ họa: AMD Radeon Vega 8 Graphics</li> <li>Lưu trữ: 256GB SSD M.2 NVMe /</li> <li>Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit</li> <li>Pin: 3 cell 42 Wh Pin liền</li> <li>Khối lượng: 1.7 kg</li> </ul> '
+                                        ,2, 'nbtram', 0, 1, null),
+
+(21, 'ASUS ZenBook UX363EA-HP532T'    , 20999000, 28999000, 600000, 20999000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Th&ocirc;ng số sản phẩm</p> <ul> <li>CPU: Intel Core i5 1135G7</li> <li>RAM: 8GB</li> <li>Ổ cứng: 512GB SSD</li> <li>VGA: Onboard</li> <li>M&agrave;n h&igrave;nh: 13.3 FHD Cảm ứng</li> <li>HĐH: Win 10</li> <li>M&agrave;u: X&aacute;m</li> </ul> '
+                                        ,2, 'nbtram', 0, 1, null),
+
+(22, 'LENOVO IdeaPad Slim 5 Pro'      , 20999000, 25999000, 500000, 20999000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+                                        '<p>Th&ocirc;ng số sản phẩm</p> <ul> <li>CPU: AMD R5 5600U</li> <li>RAM: 16GB</li> <li>Ổ cứng: 512GB SSD</li> <li>VGA: Nvidia MX450 2GB</li> <li>M&agrave;n h&igrave;nh: 14 inch 2k</li> <li>HĐH: Win 10</li> <li>M&agrave;u: X&aacute;m</li> </ul> '
+                                        ,2, 'nbtram', 0, 1, null),
 
 
 (23, 'THOM BROWNE Grosgrain Armband Oxford Shirt'         , 5000000 , 9204520 , 500000 , 5000000 , 'nbtram', '2021-12-11 11:16:11', '2022-01-12 16:11:11', 0, 
@@ -367,59 +414,59 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
 
 
 (56, 'THOM BROWNE Tech Runner Sneakers'                   , 8000000, 14389200, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
-                                                            '',
+                                                            '<p>Những người theo đuổi giấc mơ mang gi&agrave;y thể thao. Được trang tr&iacute; bằng một v&ograve;ng grosgrain đặc trưng. Tech runner sneakers&nbsp;Thom Browne l&agrave; sự lựa chọn ho&agrave;n hảo để đảm bảo bạn lu&ocirc;n theo đuổi phong c&aacute;ch của m&igrave;nh. Thiết kế mũi gi&agrave;y tr&ograve;n, d&acirc;y buộc ph&iacute;a trước bằng ren, lưỡi trai in nổi thương hiệu, mặt tr&ecirc;n bằng lưới, c&aacute;c tấm da hỗn hợp v&agrave; đế cao su.</p> <p>Th&agrave;nh phần:</p> <ul> <li>Đế: Cao su 100%</li> <li>Lớp l&oacute;t: Da 100%</li> <li>B&ecirc;n ngo&agrave;i: Da hỗn hợp 100%, Nylon 100%</li> <li>Sản xuất tại &Yacute;</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (57, 'PALLADIUM Pampa OX Organic Eucalyptus'              , 900000 , 1713000 , 200000, 900000 , 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
-                                                            '',
+                                                            '<p>Một sản phẩm thiết yếu trong Bộ sưu tập th&acirc;n thiện với m&ocirc;i trường, những đ&ocirc;i ủng Pampa cổ thấp n&agrave;y cung cấp khả năng t&ugrave;y chỉnh v&agrave; t&iacute;nh bền vững. C&aacute;c th&agrave;nh phẩn hữu cơ c&oacute; thể th&aacute;o rời, sẽ giải th&iacute;ch sứ mệnh của n&oacute;, trong khi b&ocirc;ng hữu cơ 100% v&agrave; c&aacute;c đầu ren c&oacute; thể ph&acirc;n hủy sinh học kết hợp phong c&aacute;ch với đạo đức m&ocirc;i trường.</p> <p>Chất liệu:</p> <ul> <li>Vải 100% b&ocirc;ng hữu cơ,&nbsp;cotton 100% hữu cơ</li> <li>Đế: Cao su với 15% cao su t&aacute;i chế + Khu&ocirc;n cắt EVA</li> <li>T&ecirc;n thương hiệu được dệt ở l&ograve;ng v&agrave; g&oacute;t ch&acirc;n</li> <li>C&aacute;c chi tiết: khoen / ren tr&ograve;n bằng polyester t&aacute;i chế</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (58, 'MLB Chunky High Low New York Yankees'               , 1000000, 2250000 , 300000, 1000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
-                                                            '',
+                                                            '<p>Xuất hiện v&agrave;o cuối năm 2017 nhưng đến nay những đ&ocirc;i gi&agrave;y MLB mang phong c&aacute;ch Chunky Sneakers đ&atilde; trở th&agrave;nh cơn sốt v&agrave; tạo n&ecirc;n trending.</p> <p>Thương Hiệu: MLB-Korea. C&aacute;c thiết kế của thương hiệu n&agrave;y lu&ocirc;n mang đậm tinh thần thể thao đường phố v&agrave; c&oacute; t&iacute;nh ứng dụng cao, được truyền cảm hứng từ bộ m&ocirc;n b&oacute;ng ch&agrave;y. Một l&agrave;n s&oacute;ng tr&agrave;o lưu mới đ&atilde; được tạo ra từ sự kết hợp giữa b&oacute;ng ch&agrave;y v&agrave; thời trang.</p> <p>Chất liệu:&nbsp;</p> <ul> <li>Th&acirc;n: Da tổng hợp</li> <li>Đế: Cao su tổng hợp</li> <li>Đế giầy MLB Big Ball Chunky với 2 lớp d&iacute;nh liền với nhau c&ugrave;ng đường c&aacute;ch điệu mềm mại khiến ch&uacute;ng ta c&oacute; cảm gi&aacute;c như đ&ocirc;i gi&agrave;y c&oacute; 3 lớp đế. Nếu nh&igrave;n kỹ đế giầy, bạn sẽ nhận thấy họa tiết chữ MLB được c&aacute;ch điệu v&ocirc; c&ugrave;ng tinh tế.&nbsp;</li> <li>Điểm nhấn của những đ&ocirc;i MLB Big Ball Chunky l&agrave; họa tiết logo lớn của c&aacute;c đội b&oacute;ng ch&agrave;y Big Ball y&ecirc;u qu&yacute; của MLB.</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (59, 'ALEXANDER MCQUEEN Tread Slick Lace Up'              , 8000000, 15873800, 500000, 8000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
-                                                            '',
+                                                            '<p>Gi&agrave;y thể thao đế thấp Tread Slick m&agrave;u trắng / vải cotton nhiều m&agrave;u của Alexander McQueen c&oacute; phần cổ tương phản, mũi gi&agrave;y tr&ograve;n, đ&iacute;nh ren ph&iacute;a trước, kh&oacute;a k&eacute;o ở g&oacute;t v&agrave; đế cao su chunky.<br /> C&oacute; nguồn gốc từ Savile Row, Alexander McQueen kết hợp di sản may đo của Anh với tinh thần nổi loạn r&otilde; rệt. Dưới sự quản l&yacute; của Sarah Burton - người đ&atilde; tạo ra tầm nh&igrave;n l&atilde;ng mạn của ri&ecirc;ng m&igrave;nh trong khi vẫn duy tr&igrave; một g&oacute;c cạnh khi&ecirc;u kh&iacute;ch - ng&ocirc;i nh&agrave; tiếp tục g&acirc;y ấn tượng với bộ trang phục kh&ocirc;ng lỗi, những bản in r&ugrave;ng rợn v&agrave; d&ograve;ng gi&agrave;y thể thao tuy&ecirc;n bố đặc trưng.</p> <p>Đặc điểm:</p> <ul> <li>G&oacute;t: 5,5 cm;</li> <li>Nền: 4 cm;</li> <li>B&ecirc;n ngo&agrave;i: 100% cotton, L&oacute;t: 100% da, Đế: 100% cao su</li> <li>Sản xuất tại &Yacute;</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (60, 'XVESSEL Sneaker Violet Paisley'                     , 2300000, 5687160 , 400000, 2300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
-                                                            '',
+                                                            '<ul> <li>Thương hiệu: Xvessel</li> <li>Phong c&aacute;ch: Sneaker</li> <li>M&agrave;u sắc: Violet</li> <li>Sản xuất tại Trung Quốc</li> </ul> <p>Ra mắt v&agrave;o th&aacute;ng 12/2018, Xvessel l&agrave; thương hiệu thời trang của Van Ness Wu, người Đ&agrave;i Loan, Ng&ocirc; Kiến H&agrave;o, th&agrave;nh vi&ecirc;n nh&oacute;m F4 nổi tiếng một thời, l&agrave; tuổi thơ của nhiều thế hệ 8x 9x tại Việt Nam. Với thiết kế gi&agrave;y thể thao độc đ&aacute;o gợi nhớ đến c&aacute;c xu hướng như converse chuck taylor, gi&agrave;y Xvessel rất dễ mặc với mọi trang phục.</p> <p>Hiện tại, tr&agrave;o lưu Xvessel đ&atilde; lan sang c&aacute;c nước Ch&acirc;u &Aacute; như H&agrave;n Quốc, Nhật Bản, Trung Quốc v&agrave; nay l&agrave; Việt Nam.</p>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (61, 'XVESSEL G.O.P. Highs for Yohji Yamamoto Black'      , 9000000, 16490480, 800000, 9000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Gi&agrave;y XVESSEL G.O.P. Highs for Yohji Yamamoto Black mẫu gi&agrave;y phong c&aacute;ch đến từ nh&agrave; thiết kế Van Ness Wu - người Đ&agrave;i Loan</p> <ul> <li>Xuất xứ: Ch&acirc;u &Aacute;</li> <li>Kiểu d&aacute;ng: Gi&agrave;y thể thao</li> <li>Chất liệu: Vải/Cao su đế gỗ kết hợp với gỗ v&agrave; cao su</li> </ul> <p>Đ&acirc;y l&agrave; mẫu gi&agrave;y vải kết hợp với gỗ v&agrave; cao su chuy&ecirc;n chất, v&agrave; được l&agrave;m lại từ c&aacute;c xưởng Trung Quốc với chất lượng tương đương, n&ecirc;n bạn cũng cần bảo quản kĩ sau mỗi lần đi chơi hay c&aacute;c hoạt động li&ecirc;n quan đến gi&agrave;y qu&aacute; nhiều, sau đ&acirc;y l&agrave; 1 v&agrave;i mẹo để bạn c&oacute; thể gi&uacute;p đ&ocirc;i gi&agrave;y lu&ocirc;n đươc sạch sẽ hơn,</p> <ul> <li>Lau vết bẩn bằng khăn mềm</li> <li>Hạn chế tiếp x&uacute;c với nước</li> <li>Tr&aacute;nh phơi dưới &aacute;nh nắng gắt</li> <li>Cất giữ nơi tho&aacute;ng m&aacute;t</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (62, 'ASH Sneaker Casual Walking Sporty Shoes'            , 2300000, 5024800 , 400000, 2300000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>D&ograve;ng &lsquo;Spider 620&rsquo; mới mẻ v&agrave; hợp thời trang, đẩy giới hạn của gi&agrave;y chạy bộ bằng c&aacute;ch kết hợp c&aacute;c yếu tố s&aacute;ng tạo, chẳng hạn như chất liệu th&acirc;n thiện với m&ocirc;i trường v&agrave; t&ocirc;ng m&agrave;u truyền cảm hứng. Chi tiết hai lưỡi v&agrave; đế chunky cũng thể hiện tốt. Mũ ni l&ocirc;ng c&oacute; trang tr&iacute; bằng da m&agrave;u phấn.<br /> Chi tiết:</p> <ul> <li>Chiều cao g&oacute;t (cm): 6</li> <li>Chiều cao nền tảng (cm): 0 - 1,5cm</li> <li>Chất liệu: Chrome Free Calf Suede; Thảm Nylon Vintage; T&aacute;i chế Pu b&ecirc; mềm; T&aacute;i chế Brasil mềm; Matte Hotmelt</li> <li>Chất liệu nội thất: Da lợn</li> <li>Chất liệu đế ngo&agrave;i: cao su</li> <li>H&igrave;nh dạng mũi: Tr&ograve;n</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (63, 'RICK OWENS Geth Runner'                             , 9990000, 20135629, 900000, 9990000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Gi&agrave;y thể thao Geth Runner từ bộ sưu tập FW21 Gethsemane by Rick Owens DRKSHDW c&oacute; phần cuối d&aacute;ng thấp với phần g&oacute;t v&agrave; lưỡi thu&ocirc;n d&agrave;i, phần tr&ecirc;n bằng da b&ecirc; hai t&ocirc;ng m&agrave;u v&agrave; đế xốp EVA d&agrave;y mang lại sự thoải m&aacute;i v&agrave; phong c&aacute;ch cho mỗi bước đi .</p> <p>Th&ocirc;ng tin chi tiết</p> <ul> <li>Bọc da</li> <li>Hệ thống viền</li> <li>L&oacute;t da</li> <li>Đệm g&oacute;t</li> <li>M&agrave;u: SỮA / CARNELIAN</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (64, 'DR.MARTENS 1460 Mono Smooth Leather Lace Up Boot'   , 2400000, 3426000 , 400000, 2400000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>1460 Mono l&agrave; đ&ocirc;i bốt Dr.Martens nguy&ecirc;n bản với đế đồng m&agrave;u, d&acirc;y da, đường kh&acirc;u, khoen, d&acirc;y buộc, v&ograve;ng g&oacute;t v&agrave; thậm ch&iacute; cả lớp l&oacute;t&mdash; cho một c&aacute;i nh&igrave;n đơn sắc từ đầu. Giữ lại tất cả cấu tr&uacute;c của phong c&aacute;ch&nbsp; cổ điển, bao gồm c&aacute;c mặt c&oacute; r&atilde;nh, đường kh&acirc;u c&oacute; thể nh&igrave;n thấy v&agrave; v&ograve;ng nối g&oacute;t ch&acirc;n.</p> <ul> <li>Được l&agrave;m bằng da mịn Dr.Martens bền bỉ.</li> <li>Được x&acirc;y dựng tr&ecirc;n đế đệm kh&iacute; mang t&iacute;nh biểu tượng của Dr. Martens, c&oacute; khả năng chống dầu v&agrave; mỡ, chống m&agrave;i m&ograve;n v&agrave; trơn trượt tốt</li> <li>Chất liệu: Bền bỉ v&agrave; nổi tiếng cứng khi bắt đầu, Da mịn, c&oacute; thể được đ&aacute;nh b&oacute;ng sang b&oacute;ng s&aacute;ng hoặc đ&aacute;nh vảy một c&aacute;ch nghệ thuật t&ugrave;y thuộc v&agrave;o sở th&iacute;ch của bạn.</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (65, 'PALLADIUM Pallabrousse Legion Star White'           , 1100000, 2169800 , 300000, 1100000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Trụ cột của huyền thoại Palladium, Pallabrousse Legion l&agrave; chiếc ủng bằng vải ban đầu được sản xuất v&agrave;o năm 1947. Giờ đ&acirc;y, huyền thoại của n&oacute; đang được khởi chạy lại cho một thế hệ nh&agrave; th&aacute;m hiểm mới.</p> <ul> <li>L&agrave; chiếc ủng đ&atilde; diễu h&agrave;nh khắp thế giới với Binh đo&agrave;n Ngoại giao Ph&aacute;p, t&aacute;c phẩm to lớn nhưng thoải m&aacute;i n&agrave;y đ&atilde; được t&aacute;i sinh bằng vật liệu hiện đại đồng thời t&ocirc;n trọng di sản vượt thời gian của n&oacute;.</li> <li>Sử dụng khu&ocirc;n v&agrave; gi&agrave;y Pallabrousse ban đầu l&agrave;m đ&egrave;n dẫn đường cho dự &aacute;n n&agrave;y, c&aacute;c yếu tố ban đầu của thiết kế đ&atilde; được l&agrave;m cho thoải m&aacute;i v&agrave; tinh vi hơn để ph&ugrave; hợp với nhu cầu ng&agrave;y nay.</li> <li>Phần tr&ecirc;n bằng vải cotton 100% hữu cơ của n&oacute; được x&acirc;y dựng dựa tr&ecirc;n đế ngo&agrave;i vấu mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i để giảm mỏi ch&acirc;n v&agrave; c&oacute; c&aacute;c chi tiết trang tr&iacute; trang nh&atilde;, t&ocirc;n vinh vị tr&iacute; của n&oacute; trong lịch sử.</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (66, 'PALLADIUM Pampa X Tech WPN Black'                   , 1900000, 4644057 , 500000, 1900000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Palladium X Michelin ... Hai thương hiệu Ph&aacute;p với c&aacute;c sản phẩm chức năng mang t&iacute;nh biểu tượng đ&atilde; hợp t&aacute;c để mang lại cảm gi&aacute;c cầm nắm tốt nhất. Đế ngo&agrave;i mới n&agrave;y dựa tr&ecirc;n lốp CrossClimate mang lại độ b&aacute;m tuyệt đối nhờ chất liệu cao su đặc biệt v&agrave; bề mặt của n&oacute;. Pampa X Tech l&agrave; một đ&ocirc;i ủng chống thấm nước + bằng vải nubuck / nylon mềm để giữ cho đ&ocirc;i ch&acirc;n của bạn lu&ocirc;n thoải m&aacute;i v&agrave; kh&ocirc; r&aacute;o trong những chuyến kh&aacute;m ph&aacute; th&agrave;nh phố nặng nề của bạn.</p> <ul> <li>UPPER: gi&agrave;y kh&ocirc;ng thấm nước được l&agrave;m chủ yếu bằng da nubuck; qu&yacute; v&agrave; lưỡi bằng vải dệt tổng hợp</li> <li>LINING: chất liệu h&agrave;ng đầu l&agrave; 70% repreve, 30% polyester, chất liệu ph&iacute;a dưới l&agrave; 100% polyester</li> <li>SOCKLINER: EVA đ&uacute;c với tổ ong để tạo sự thoải m&aacute;i v&agrave; đệm - phủ 70% vải bố, 30% polyester</li> <li>BOTTOM + TOE CAP: Đế ngo&agrave;i của Michelin với thiết kế đặc biệt để mang lại độ b&aacute;m tuyệt vời cho mọi điều kiện thời tiết; 100% cao su</li> <li>THƯƠNG HIỆU: Nh&atilde;n dệt tr&ecirc;n lưỡi / nh&atilde;n cao su ở phần tư b&ecirc;n / in ở phần b&ecirc;n / logo GPS tr&ecirc;n phần tư ở giữa</li> <li>C&Aacute;C T&Iacute;NH NĂNG: cấu tạo bootie với m&agrave;ng / gusset / khoen v&agrave; khoen v&ograve;ng ở phần tr&ecirc;n c&ugrave;ng / ren phẳng bằng polyester / gia cố tr&ecirc;n g&oacute;t / Bộ đếm g&oacute;t TPU / đế c&oacute; thể th&aacute;o rời</li> </ul>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (67, 'PALLADIUM Off-Grid Hi Zip Waterproof + Olive Night' , 1700000, 3651600 , 400000, 1700000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Sly, phong c&aacute;ch tương lai với những gợi &yacute; về truyền thống đ&atilde; được kết hợp v&agrave;o sản phẩm mới nhất để th&uacute;c đẩy c&aacute;c giới hạn. Được thiết kế để th&aacute;ch thức quy ước v&agrave; x&aacute;c định lại kh&aacute;m ph&aacute; trong cuộc sống sau khi kh&oacute;a m&aacute;y.</p> <p>Đặc điểm:</p> <ul> <li>Off-Grid nổi bật với đế ngo&agrave;i h&igrave;nh tổ ong qu&aacute; khổ mang đến cảm gi&aacute;c cầm nắm vượt trội, ph&ugrave; hợp về mặt giải phẫu v&agrave; kiểu d&aacute;ng sang trọng.</li> <li>Sự lặp lại của gi&agrave;y sneakerboot n&agrave;y đ&atilde; được x&acirc;y dựng về mặt kỹ thuật để bảo vệ bạn khỏi c&aacute;c yếu tố.</li> <li>Bọc ngo&agrave;i chống nước bao gồm phần tr&ecirc;n v&agrave; một lớp zip chống thấm nước cho ph&eacute;p bạn dễ d&agrave;ng đi v&agrave;o.</li> <li>Th&ecirc;m v&agrave;o d&acirc;y buộc nhanh ch&oacute;ng, m&agrave;u sắc b&oacute;ng bẩy v&agrave; thương hiệu tinh tế, bạn c&oacute; một đ&ocirc;i gi&agrave;y thể thao của tương lai.</li> </ul> <p>Ra khỏi lưới v&agrave; kh&aacute;m ph&aacute; lại thế giới của bạn.</p>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (68, 'PALLADIUM Pallabase Twill Butternut'                , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (69, 'PALLADIUM Pallabase Twill Star White'               , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
-                                                            '',
+                                                            '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>',
                                                             6, 'dhuy01', 0, 0, null),
 
 (70, 'ASH Addict Fur'                                     , 4030000, 6734850 , 700000, 4030000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
@@ -455,21 +502,21 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                                             6, 'dhuy01', 0, 0, null),
 
 
-(78, 'ADAMSTORESAIGON Giày Nhung Thêu Logo'             , 800000 , 2500000, 200000, 800000 ,'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0, 
-                                                         '<p>Gi&agrave;y lười Adam nhung th&ecirc;u logo TXGM27L3 cao cấp thời trang dễ d&agrave;ng kết hợp nhiều loại trang phục đi tiệc được với qu&yacute; &ocirc;ng mọi độ tuổi ưa chuộng. Chất liệu nhung trơn đen c&ugrave;ng điểm nhấn logo TUXEDO th&ecirc;u chỉ v&agrave;ng nổi bật.</p> <p>Gi&agrave;y lười Adam nhung th&ecirc;u logo TXGM27L3 c&oacute; đường may tỉ mỉ chi tiết, đế gi&agrave;y chắc chắn chống trơn trượt. Gi&agrave;y c&oacute; form &ocirc;m ch&acirc;n n&ecirc;n qu&yacute; kh&aacute;ch lưu &yacute; chọn lớn hơn một số đối với qu&yacute; kh&aacute;ch c&oacute; b&agrave;n ch&acirc;n bề ngang lớn.</p>',
+(78, 'BERLUTI Alessandro Demesure Norwegian Leather Oxford', 42328441, 58793973, 1200000, 42328441 ,'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0, 
+                                                         '<p>Đặc điểm:</p> <ul> <li>Oxford</li> <li>Type: Na Uy</li> <li>Da Venezia</li> <li>Một miếng da duy nhất</li> <li>Lớp l&oacute;t v&agrave; đế m&agrave;u tự nhi&ecirc;n</li> <li>Đế ngo&agrave;i d&agrave;y hơn Demesure th&ocirc;ng thường</li> <li>Thiết kế kh&acirc;u trang tr&iacute; ở phần g&oacute;t</li> </ul> <p>Chất lượng v&agrave; thiết lập:</p> <ul> <li>Da b&ecirc; Venezia -&nbsp;non-Patinable</li> <li>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng vải mềm, sau đ&oacute; l&agrave; b&ocirc;i s&aacute;p c&oacute; m&agrave;u ph&ugrave; hợp để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute; d&ugrave;ng găng tay đ&aacute;nh b&oacute;ng ch&agrave; x&aacute;t mạnh để l&agrave;m s&aacute;ng b&oacute;ng.</li> </ul>',
                                                          7, 'dhuy01', 0, 0, null),
                                                          
-(79, 'ADAMSTORESAIGON Giày Nhung Chuông Đầu Bóng'       , 800000 , 2500000, 200000, 800000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0, 
-                                                          '<p>Gi&agrave;y Adam nhung chu&ocirc;ng đầu b&oacute;ng M5L23 thời trang dễ d&agrave;ng kết hợp nhiều loại trang phục đi tiệc được với qu&yacute; &ocirc;ng mọi độ tuổi ưa chuộng. Chất liệu mũi gi&agrave;y da trơn b&oacute;ng, phần th&acirc;n ngang c&aacute;ch t&acirc;n vải nhung, mũi form nhọn hiện đại, trẻ trung.</p> <p>Gi&agrave;y Adam nhung chu&ocirc;ng đầu b&oacute;ng M5L23 c&oacute; đường may tỉ mỉ chi tiết, đế gi&agrave;y chắc chắn chống trơn trượt.</p>',
+(79, 'BERLUTI Patchwork Demesure Scritto Leather Oxford'   , 23000000 , 47855644, 1110000, 23000000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0, 
+                                                          '<p>Đặc điểm:</p> <ul> <li>Kiểu Blake</li> <li>Gi&agrave;y ren ba lỗ</li> <li>Patchwork pha Scritto v&agrave; Venezia trơn b&oacute;ng</li> <li>Lớp l&oacute;t v&agrave; đế ngo&agrave;i m&agrave;u đen</li> <li>Đế ngo&agrave;i bằng da d&agrave;y</li> <li>Sản xuất tại &Yacute;</li> </ul> <p>Chất liệu &amp; Chăm s&oacute;c:</p> <ul> <li>Da b&ecirc; Venezia Scritto - Patinable</li> <li>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng vải mềm, sau đ&oacute; l&agrave; b&ocirc;i s&aacute;p c&oacute; m&agrave;u ph&ugrave; hợp để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute; d&ugrave;ng găng tay đ&aacute;nh b&oacute;ng ch&agrave; x&aacute;t mạnh để l&agrave;m s&aacute;ng b&oacute;ng.</li> </ul>',
                                                           7, 'dhuy01', 0, 0, null),
 
-(80, 'ADAMSTORESAIGON Giày Da Nam Loafer Nâu'           , 800000 , 2500000, 200000, 800000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0,
-                                                          '<p>Gi&agrave;y da nam loafer n&acirc;u kiểu d&aacute;ng trẻ trung, lịch l&atilde;m dễ d&agrave;ng kết hợp nhiều loại trang phục đi l&agrave;m, đi tiệc đều được c&aacute;c qu&yacute; &ocirc;ng mọi độ tuổi ưa chuộng.</p> <p>Gi&agrave;y da nam loafer n&acirc;u c&oacute; thiết kế form d&aacute;ng mũi nhọn, chất liệu da n&acirc;u trơn l&igrave; viền mũi đan thừng c&ugrave;ng quai ngang kho&eacute;t mắt, đường may tỉ mỉ chi tiết, đế gi&agrave;y chắc chắn chống trơn trượt.</p>',
-                                                          7, 'dhuy01', 0, 0, null),
+(80, 'BERLUTI Alessandro Galet Calf Leather Oxford | MOGANO', 37000000 , 45284187, 1200000, 37000000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0,
+                                                          '<p>Đặc điểm:</p> <ul> <li>Da b&ecirc; Venezia</li> <li>Gi&agrave;y ren ba lỗ</li> <li>Gi&agrave;y da một mảnh</li> <li>L&oacute;t, đế v&agrave; gi&agrave;y c&oacute; độ tương phản</li> <li>Ho&agrave;n thiện của thợ đ&oacute;ng gi&agrave;y: cạnh đế tr&ograve;n sử dụng b&aacute;nh xe xoắn</li> <li>Chữ k&yacute; &#39;Berluti&#39; được l&agrave;m thủ c&ocirc;ng th&ecirc;m phần ho&agrave;n thiện trang nh&atilde; cho đế</li> <li>Kiến tr&uacute;c: Blake</li> <li>Sản xuất tại &Yacute;</li> </ul> <p>Chăm s&oacute;c:</p> <p>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng một miếng vải mềm, sau đ&oacute; l&agrave; d&ugrave;ng s&aacute;p da trong để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute;, ch&agrave; x&aacute;t mạnh bằng găng tay đ&aacute;nh b&oacute;ng để kh&ocirc;i phục độ b&oacute;ng ban đầu của da.</p>'
+                                                          ,7, 'dhuy01', 0, 0, null),
 
-(81, 'ADAMSTORESAIGON Giày Da Oxford trơn bóng buộc dây', 800000 , 2500000, 200000, 800000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0,
-                                                          '<p>Gi&agrave;y da oxford nam trơn b&oacute;ng buộc d&acirc;y thời trang dễ d&agrave;ng kết hợp nhiều loại trang phục đi tiệc được qu&yacute; &ocirc;ng mọi độ tuổi ưa chuộng. Gi&agrave;y da oxford nam trơn b&oacute;ng buộc d&acirc;y c&oacute; thiết kế form d&aacute;ng mũi nhọn đẹp mắt, chất liệu trơn b&oacute;ng dễ vệ sinh c&ugrave;ng viền da c&ugrave;ng đường may tỉ mỉ chi tiết, đế gi&agrave;y chắc chắn chống trơn trượt.</p>',
-                                                          7, 'dhuy01', 0, 0, null),
+(81, 'BERLUTI Alessandro Galet Calf Leather Oxford | NERO LUCIDO', 37000000 , 45284187, 1200000, 37000000 , 'dhuy01', '2021-12-01 09:26:12', '2021-12-31 16:55:20', 0,
+                                                          '<p>Đặc điểm:</p> <ul> <li>Gi&agrave;y ren ba lỗ</li> <li>Gi&agrave;y da một mảnh</li> <li>Kiến tr&uacute;c: Blake</li> <li>Sản xuất tại &Yacute;</li> <li>Da b&ecirc; Venezia</li> </ul> <p>Chăm s&oacute;c:</p> <p>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng một miếng vải mềm, sau đ&oacute; l&agrave; d&ugrave;ng s&aacute;p da trong để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute;, ch&agrave; x&aacute;t mạnh bằng găng tay đ&aacute;nh b&oacute;ng để kh&ocirc;i phục độ b&oacute;ng ban đầu của da.</p>'
+                                                          ,7, 'dhuy01', 0, 0, null),
 
 (82, 'MASTRO ZAVATTI Double Monk-Strap'                 , 3000000, 5822988, 500000, 3000000, 'nbtram', '2021-12-31 11:11:11', '2021-01-28 23:55:00', 0,
                                                           '<p>Một sự thay thế đẹp mắt cho gi&agrave;y ren, Double Monk được c&aacute;c qu&yacute; &ocirc;ng tr&ecirc;n thế giới ưa chuộng.<br /> Tỷ lệ c&acirc;n đối v&agrave; c&aacute;c chi tiết tối giản được tinh chỉnh để truyền tải một c&aacute;i nh&igrave;n cổ điển. Được chế t&aacute;c từ da đen mịn, d&acirc;y đeo Double Monk được đặt tr&ecirc;n một đế da ho&agrave;n to&agrave;n duy nhất.<br /> T&iacute;nh linh hoạt của n&oacute;&nbsp; l&agrave;m cho phong c&aacute;ch n&agrave;y trở th&agrave;nh một trong những đ&ocirc;i gi&agrave;y tiện dụng nhất cho nam giới, v&igrave; n&oacute; kết hợp tốt cho những dịp trang trọng như đ&aacute;m cưới v&agrave; c&aacute;c sự kiện li&ecirc;n quan đến kinh doanh. V&igrave; vậy, n&oacute; tăng th&ecirc;m sự sắc sảo v&agrave; tinh tế cho những bộ trang phục b&igrave;nh thường hơn.</p>',
@@ -519,7 +566,31 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
 (93, 'Nồi chiên không dầu Sunhouse 3L'    , 300000, 1000000, 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
                                             '<p>Thương hiệu: Sunhouse</p> <p>Xuất xứ: Trung Quốc</p> <p>Dung t&iacute;ch thực: 3 l&iacute;t</p> <p>C&ocirc;ng suất: 1500 W</p> <p>Chất liệu l&ograve;ng nồi: Hợp kim nh&ocirc;m phủ chống d&iacute;nh</p> <p>K&iacute;ch thước (DxRxC): 343 mm x 343 mm x 360 mm</p> <p>Trọng lượng: 4670 g</p>',
                                             8, 'dhuy01', 0, 0, null),
+
+(94, 'Máy Rửa Bát Bosch SMS46GI01P'       , 9000000, 15000000, 800000, 9000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
+                                            '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>Hệ thống giỏ VarioFlex với tia s&aacute;ng đỏ b&aacute;o hiệu hệ thống đang vận h&agrave;nh tốt.</li> <li>M&agrave;n h&igrave;nh 7 đoạn: hiển thị thời gian c&ograve;n lại cho đến khi kết th&uacute;c chương tr&igrave;nh</li> <li>M&aacute;y rửa ch&eacute;n Silence Plus với chương tr&igrave;nh Im lặng: hoạt động y&ecirc;n tĩnh chỉ ở 46dB</li> <li>Chất liệu vỏ bằng inox chống v&acirc;n tay</li> </ul>'
+                                            ,8, 'dhuy01', 0, 0, null),
+
+(95, 'Nồi đất nắp kính 1.85L DongHwa Tucbeghi', 150000, 200000, 50000, 150000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
+                                            '<p>Đặc điểm nổi bật</p> <ul> <li>Nồi bằng sứ d&agrave;y chắc, nấu ăn ngon v&agrave; nhanh.</li> <li>Dung t&iacute;ch 1.85 l&iacute;t d&ugrave;ng kho thịt, c&aacute;, nấu lẩu cho 4 - 6 người d&ugrave;ng.</li> <li>Tay cầm liền khối chắc chắn, nắp k&iacute;nh chịu nhiệt tiện quan s&aacute;t.</li> <li>Nồi d&ugrave;ng được tr&ecirc;n bếp gas, bếp hồng ngoại, kh&ocirc;ng d&ugrave;ng tr&ecirc;n bếp từ.</li> <li>Thương hiệu Donghwa - H&agrave;n Quốc, sản xuất tại Việt Nam.</li> </ul>'
+                                            ,8, 'dhuy01', 0, 0, null),
+
+(96, 'Bộ dao KORKMAZ Vetra Knife'         , 1290000, 3290000, 200000, 1290000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>&nbsp;&nbsp;</p> <p>T&iacute;nh năng nổi bật:</p> <ul> <li>Chu&ocirc;i dao được nhựa tổng hợp bao phủ dễ d&agrave;ng trong việc cầm nắm, sử dụng</li> <li>C&ocirc;ng nghệ cắt laser mang lại tuổi thọ v&agrave; độ bền cao hơn</li> <li>Thiết kế tinh tế, gọn nhẹ với nhiều k&iacute;ch cỡ thuận tiện sử dụng để đ&aacute;p ứng mọi nhu cầu của nh&agrave; bếp của bạn &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</li> <li>Lưỡi dao kh&ocirc;ng bị gỉ s&eacute;t c&oacute; độ bền cao, thiết kế sang trọng, t&ocirc; điểm kh&ocirc;ng gian nh&agrave; bếp</li> </ul>'
+                                            ,8, 'dhuy01', 0, 0, null),
                                             
+(97, 'Bếp Gas SA-2151GB'                  , 649000, 1649000, 10000, 649000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
+                                            '<p><strong>Th&ocirc;ng Số Kỹ Thuật</strong></p> <ul> <li>K&iacute;ch thước (RxSxC) (mm): 700 x 380 x 100mm</li> <li>Trọng lượng (Kg): 6.5Kg</li> <li>Điện &Aacute;p: 220V- 50hz</li> <li>Lượng Gas Ti&ecirc;u Thụ: 0.21 kg/h/l&ograve;</li> <li style=""display: block; width: 0px; height: 0px; padding: 0px; border: 0px; margin: 0px; position: absolute; top: 0px; left: -9999px; opacity: 0; overflow: hidden;"">&nbsp;</li> </ul> '
+                                            ,8, 'dhuy01', 0, 0, null),
+
+(98, 'Lò Vi Sóng P70T20P-V6'              , 1149000, 2649000, 20000, 1149000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
+                                            '<ul> <li><strong>Th&ocirc;ng Số Kỹ Thuật</strong></li> <li> <p>K&iacute;ch Thước (mm): D&agrave;i 32.3 cm - S&acirc;u 24.3 cm - Cao 44.6 cm. K&iacute;ch thước khoang l&ograve;: D&agrave;i 30.1 cm - S&acirc;u 20.2 cm - Cao 17.5 cm</p> </li> <li> <p>Điện &Aacute;p: 220V-50Hz</p> </li> <li> <p>C&ocirc;ng Suất: 1100W</p> </li> </ul> '
+                                            ,8, 'dhuy01', 0, 0, null),
+
+(99, 'Bếp hồng ngoại đơn Hommy 809'       , 300000, 1000000, 100000, 300000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0,
+                                            '<p>Đặc điểm nổi bật</p> <ul> <li><strong>Bảng điều khiển cảm ứng bằng tiếng Việt</strong>&nbsp;dễ quan s&aacute;t v&agrave; t&ugrave;y chỉnh.</li> <li><strong>8 mức c&ocirc;ng suất, 8 mức nhiệt</strong>&nbsp;tiện thiết lập ph&ugrave; hợp với&nbsp;<strong>6 chế độ nấu c&agrave;i đặt sẵn.</strong></li> <li><strong>Hẹn giờ l&ecirc;n đến 3 tiếng</strong>, kiểm so&aacute;t thời gian nấu hiệu quả.</li> <li><strong>Kh&oacute;a bảng điều khiển</strong>&nbsp;bảo vệ an to&agrave;n cho gia đ&igrave;nh c&oacute; trẻ nhỏ.</li> <li>Thiết kế bếp đơn 1 v&ugrave;ng nấu nhỏ gọn.</li> <li><strong>Mặt k&iacute;nh Ceramic Kanger</strong>&nbsp;(Trung Quốc) chịu nhiệt cao.</li> <li>C&oacute; hệ thống bảo vệ khi qu&aacute; nhiệt, sử dụng an to&agrave;n.&nbsp;</li> <li><strong>Sử dụng với mọi chất liệu nồi chảo</strong>.</li> <li>Thương hiệu Hommy - Việt Nam, sản xuất tại Trung Quốc.</li> </ul> '
+                                            ,8, 'dhuy01', 0, 0, null),
+
 
 (100, 'Quạt điều hòa Honeywell'           , 1600000, 3000000, 200000, 1600000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu của: Mỹ</p> <p>H&atilde;ng: Honeywell</p> <p>Phạm vi l&agrave;m m&aacute;t: Ph&ograve;ng 25 - 30 m&sup2;</p> <p>C&ocirc;ng suất: 230 W</p> <p>Tốc độ gi&oacute;: 4 mức gi&oacute;</p> <p>Chế độ gi&oacute;: Gi&oacute; thường</p> <p>Điều khiển: C&oacute; remote đi k&egrave;m N&uacute;t nhấn</p> <p>Độ ồn cao nhất: 60 dB</p> <p>B&igrave;nh nước: 20 l&iacute;t</p> <p>K&iacute;ch thước, khối lượng: Ngang 49 cm - Cao 84 cm - S&acirc;u 34 cm - 10.3 kg</p>',
@@ -539,8 +610,36 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                             
 (104, 'Máy lọc nước R.O Hydrogen Kangaroo', 5000000, 7000000, 500000, 5000000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>Thương hiệu: Kangaroo</p> <p>Nơi sản xuất: Việt Nam</p> <p>Năm ra mắt: 2019</p> <p>K&iacute;ch thước, khối lượng: Ngang 42 cm - Cao 120.7 cm - S&acirc;u 42 cm - Nặng 27 kg</p> <p>Dung t&iacute;ch b&igrave;nh chứa: 8 l&iacute;t</p> <p>C&ocirc;ng nghệ lọc: Thẩm thấu ngược RO</p> <p>C&ocirc;ng suất lọc nước: 18 - 20 l&iacute;t/giờ</p> <p>C&ocirc;ng suất ti&ecirc;u thụ điện trung b&igrave;nh khoảng: 0.035 - 0.038 kW/h</p>',
-                                            9, 'nbtram', 0, 0, null);
-                                            
+                                            9, 'nbtram', 0, 0, null),
+
+(105, 'Máy Nước Nóng Lạnh KG41W'          , 3890000, 5890000, 200000, 3890000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>Th&ocirc;ng số kĩ thuật</p> <ul> <li>Điện &aacute;p: 220~240V/50Hz</li> <li>C&ocirc;ng nghệ l&agrave;m lạnh: BLOCK</li> <li>C&ocirc;ng suất l&agrave;m n&oacute;ng: 500 W</li> <li>C&ocirc;ng suất l&agrave;m lạnh: 100 W</li> <li>Nhiệt độ nước n&oacute;ng: 85-95 độ C</li> <li>Nhiệt độ nước lạnh: 4-20 độ C</li> <li>Loại Gas: R-134a</li> <li>K&iacute;ch thước: 375 x 415 x 1080 mm</li> </ul>'
+                                            ,9, 'nbtram', 0, 0, null),
+
+(106, 'Máy hút bụi Samsung VC18M21M0VN/SV-N', 1170000, 2170000, 200000, 1170000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>Th&ocirc;ng số sản phẩm</p> <ul> <li>C&ocirc;ng suất hoạt động:&nbsp;1800W</li> <li>C&ocirc;ng suất h&uacute;t bụi: 380W</li> <li>Khoang chứa bụi: Hộp chứa - 1.5 l&iacute;t</li> <li>Bộ lọc: Bộ lọc th&ocirc;</li> <li>Độ ồn: 87 dB</li> <li>Thời gian sử dụng: Sạc Kh&ocirc;ng c&oacute;, d&ugrave;ng H&atilde;ng kh&ocirc;ng c&ocirc;ng bố</li> <li>Tiện &iacute;ch: D&acirc;y điện tự thu gọn</li> <li>Đầu h&uacute;t bụi: Đầu h&uacute;t kheĐầu h&uacute;t s&agrave;n</li> <li>Chiều d&agrave;i d&acirc;y điện: 6m</li> <li>Sản xuất tại: Việt Nam</li> <li>H&atilde;ng: Samsung</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null),
+
+(107, 'Máy Lọc Không Khí FP-J30E-A'       , 1400000, 2400000, 200000, 1400000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>Phạm vi hoạt động: &lt;23 m2</li> <li>Lưu lượng gi&oacute; (High/Medium/Low):&nbsp;180/120/60&nbsp;m3/ph&uacute;t</li> <li>C&ocirc;ng suất&nbsp;(High/Medium/Low):&nbsp;50/30/13&nbsp;W</li> <li>Độ ồn (High/Medium/Low):&nbsp;44/36/23&nbsp;dB</li> <li>Plasmacluster ion mật độ cao diệt khuẩn v&agrave; khử sạch m&ugrave;i</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null),
+
+(108, 'Máy hút bụi cầm tay Midea MVC-SC861B 600W', 560000, 1000000, 50000, 560000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p><strong>Th&ocirc;ng số kĩ thuật</strong></p> <ul> <li>C&ocirc;ng suất hoạt động: 600W</li> <li>Khoang chứa bụi: Hộp chứa - 0.8 l&iacute;t</li> <li>Bộ lọc: Bộ lọc Hepa</li> <li>Thời gian sử dụng: Sạc Kh&ocirc;ng c&oacute;, d&ugrave;ng H&atilde;ng kh&ocirc;ng c&ocirc;ng bố</li> <li>Đầu h&uacute;t bụi: Đầu h&uacute;t khe Đầu h&uacute;t s&agrave;n</li> <li>Chiều d&agrave;i d&acirc;y điện: 5m</li> <li>Sản xuất tại: Trung Quốc</li> <li>H&atilde;ng: Midea</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null),
+
+(109, 'Máy Làm Nóng Lạnh Nước Uống RWF-W1664TV', 2290000, 4290000, 100000, 2290000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>C&ocirc;ng suất l&agrave;m n&oacute;ng: 550W</li> <li>C&ocirc;ng suất l&agrave;m lạnh: 120W</li> <li>Nhiệt độ l&agrave;m lạnh: &le;10 độ C/2L/h</li> <li>Nhiệt độ l&agrave;m n&oacute;ng:&nbsp;&ge;85 độ C/4L/h</li> <li>Sử dụng nước b&igrave;nh 11L&iacute;t hoặc 19L&iacute;t</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null),
+
+(110, 'Máy Nước Nóng SB35E-VN'            , 500000, 1000000, 50000, 500000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>Loại m&aacute;y nước n&oacute;ng: Trực tiếp</li> <li>Bơm trợ lực: Kh&ocirc;ng</li> <li>Hiển thị nhiệt độ: N&uacute;m vặn</li> <li>Nhiệt độ ổn định: Kh&ocirc;ng</li> <li>V&ograve;i sen: 1 chế độ</li> <li>Hệ thống chống bỏng th&ocirc;ng minh: Kh&ocirc;ng</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null),
+
+(111, 'Máy Lọc Nước RO Nóng Lạnh Slimbio' , 7490000, 10000000, 300000, 7490000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+                                            '<p><strong>Th&ocirc;ng Tin Sản Phẩm</strong></p> <ul> <li>Loại Sản Phẩm: Tủ Đứng</li> <li>Model: SHA76213CK</li> </ul> <p><strong>Th&ocirc;ng Số Kỹ Thuật</strong></p> <ul> <li>Số L&otilde;i Lọc: 10 l&otilde;i</li> <li>K&iacute;ch Thước: S&acirc;u x Rộng x Cao: 440 x 360 x 1050mm</li> <li>C&ocirc;ng Suất Lọc: 15 l&iacute;t/h</li> <li>C&ocirc;ng Suất: 650W</li> </ul> '
+                                            ,9, 'nbtram', 0, 0, null);
+
 
 -- --------------------------------------------------------
 

@@ -46,7 +46,7 @@ router.post('/upload',async function (req,res){
     upload.array('image',7)(req, res, function(err){
         console.log(req.body)
         const DateEnd = moment(req.body.DateEnd,'DD/MM/YYYY hh:mm').format('YYYY-MM-DD hh:mm:ss');
-
+        const username = req.session.authAccount.username;
         if(err){
             console.log(err);
         }else {
@@ -56,9 +56,12 @@ router.post('/upload',async function (req,res){
                 PriceCurrent: req.body.FirstPrice,
                 PriceWin: req.body.Price,
                 stepPrice: req.body.stepPrice,
+                firstPrice: req.body.FirstPrice,
                 DateEnd: DateEnd,
                 Description: req.body.FullDesc,
                 CatIDNext:req.body.catIdNext,
+                Bidder:username,
+                Seller:username,
                 isVerify:req.body.Point === 'on',
                 renewal: req.body.checkbox === 'on',
             }

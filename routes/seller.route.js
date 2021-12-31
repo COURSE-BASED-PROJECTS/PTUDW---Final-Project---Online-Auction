@@ -25,6 +25,7 @@ router.post('/upload',async function (req,res){
     count = count[0].count + 1;
     const dir = './public/img/product/'+count;
 
+    console.log(count,dir)
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir, { recursive: true });
     }

@@ -26,13 +26,21 @@
             const subCatID = $('#subCatName').find('option:selected').attr("name");
             const firstPrice = $('#txtFirstPrice').val();
             const winPrice = $('#txtPrice').val();
+            const stepPrice = $('#txtstepPrice').val();
             const dateEnd = $('#datetimepicker').val();
+            const FullDesc = $('#txtFullDesc').val();
             $('#CatIDNext').val(subCatID);
 
-            if(name && firstPrice && winPrice && dateEnd)
+            if(name && firstPrice && winPrice && dateEnd && subCatID
+            && stepPrice && FullDesc )
                 $('#frmUpload').off('submit').submit();
             else {
-                $('.check-info').removeClass('is-hidden');
+                if ($('#check-info').hasClass("is-hidden")) {
+                    $('#check-info').removeClass("is-hidden");
+                }else{
+                    $('.check-info').toggleClass('is-hidden');
+                }
+
             }
         });
 
@@ -68,7 +76,7 @@
         <div class="field has-text-left">
             <label class="label">Tên sản phẩm</label>
             <div class="control"  >
-                <input class="input" type="text" placeholder="Nhập tên sản phẩm" />
+                <input class="input" type="text" placeholder="Nhập tên sản phẩm" id="txtName" />
             </div>
         </div>
 
@@ -157,7 +165,7 @@
                         class="input is-dark"
                         type="number"
                         placeholder="Bước giá"
-                        id="stepPrice"
+                        id="txtstepPrice"
                         name="stepPrice"
                 />
                 <span class="icon is-small is-left">

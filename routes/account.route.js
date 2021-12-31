@@ -4,10 +4,18 @@ import accountModel from "../models/account.model.js";
 import moment from "moment";
 import sendMail from "../utils/sendMail.js";
 import generateOtp from "../utils/generateOTP.js";
+import sliceURL from "../utils/sliceURL.js";
 
 const router = express.Router();
 
 router.get('/register', async function (req, res) {
+    const url = sliceURL(req.headers.referer);
+    if(url !== '/account/register/' && url !=='/account/login'){
+        req.session.retUrl = req.headers.referer;
+    }else{
+        req.session.retUrl = '/';
+    }
+
     res.render('vwSignUp_Login/SignUp', {
         layout: 'SignUp_Login'
     });
@@ -39,9 +47,7 @@ router.post('/register', async function (req, res) {
 
     await accountModel.addAccount(account);
 
-    res.render('vwSignUp_Login/Login', {
-        layout: 'SignUp_Login'
-    });
+    res.redirect('/account/login');
 });
 
 router.get('/is-available', async function (req, res) {
@@ -102,10 +108,13 @@ router.get('/is-otp', async function (req, res) {
 });
 
 router.get('/login', async function (req, res) {
-    if (req.headers.referer !== "/account/login" && req.headers.referer !== "/favicon.ico"
-        && req.headers.referer !== "/account/register") {
+    const prevURL = sliceURL(req.headers.referer);
+
+    if (prevURL !== "/account/login/" && req.headers.referer !== "/favicon.ico"
+        && prevURL !== "/account/register/") {
         req.session.retUrl = req.headers.referer;
     }
+
     res.render('vwSignUp_Login/Login', {
         layout: 'SignUp_Login'
     });
@@ -133,9 +142,7 @@ router.post('/login', async function (req, res) {
     req.session.auth = true;
     req.session.authAccount = account;
 
-    console.log(req.session.retUrl);
     let url = req.session.retUrl || '/';
-
     res.redirect(url);
 });
 

@@ -5,14 +5,14 @@
     </div>
 
     {{#each this.list}}
-        <div class="column is-4-tablet is-12-mobile">
+        <div class="column is-6-tablet is-12-mobile is-flex-desktop-only">
             <div class="card p-5 m-4">
                 <header class="card-header">
                     <p class="card-header-title is-size-5 is-size-7-mobile">
                         <strong>Tài khoản: <a>#{{username}}</a></strong>
                     </p>
                 </header>
-                <div class="card-content py-2 px-0  is-size-7-mobile" style="overflow-x: auto">
+                <div class="card-content py-2 px-0  is-size-7-mobile " style="overflow-x: auto">
                     <div class="content">
                         <strong class="is-block has-text-info-dark my-2"> Họ tên: <span
                                 class="has-text-primary-dark">{{name}}</span></strong>
@@ -30,23 +30,27 @@
                                 {{else}}
                                     <i class="is-small tag has-text-danger">{{point}}</i>
                                 {{/if}}
-
-                                {{#if info.isSeller}}
-                                    <a href="javascript: $('#degrade').submit();" class="ml-4">
-                                        <span class="is-small mr-1 has-text-right">
-                                            <i class="fa fa-level-down-alt"></i>
-                                        </span>
-                                        HẠ CẤP
-                                    </a>
-                                <form action="/admin/Account/degrade/{{username}}" method="post" id="degrade"></form>
-                                {{/if}}
-
-
                             </span>
                         </strong>
                     </div>
 
                 </div>
+
+                <footer class="card-footer">
+                    {{#if info.isSeller}}
+                        <a href="javascript: $('#degrade').submit();" class="card-footer-item">
+                                        <span class="is-small mr-1 has-text-right">
+                                            <i class="fa fa-level-down-alt"></i>
+                                        </span>
+                            HẠ CẤP
+                        </a>
+                        <form action="/admin/Account/degrade/{{username}}" method="post" id="degrade"></form>
+                    {{/if}}
+
+                    <a href="javascript: $('#frmBuynow').submit();" class="card-footer-item">
+                        <span class="is-small mr-1"><i class="fa fa-band-aid has-text-danger"></i></span>
+                        Khóa</a>
+                </footer>
 
 
 

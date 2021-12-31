@@ -152,8 +152,8 @@
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
-            document.getElementById("dateEnd").innerHTML = days + "d " + hours + "h "
-                    + minutes + "m " + seconds + "s ";
+            document.getElementById("dateEnd").innerHTML = days + " ngày " + hours + " giờ "
+                    + minutes + " phút " + seconds + " giây ";
 
             // If the count down is finished, write some text
             if (distance < 0) {
@@ -251,6 +251,7 @@
                 </section>
             </div>
         </div>
+
         <div class="box">
             <figure class="image is-4by3">
                 <img src="/img/product/{{this.product.ProID}}/1.png">
@@ -447,7 +448,7 @@
             <hr class="has-background-grey"/></span>
             <span class="column is-12  pt-0">Thời điểm đăng: <strong>{{this.product.DateStart}}</strong></span>
             <input class="is-block is-hidden" id="dateInput" value="{{this.product.DateEnd}}"/>
-            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong id="dateEnd" class="is-danger">{{this.product.DateEnd}}</strong>
+            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong id="dateEnd" class="has-text-danger">{{this.product.DateEnd}}</strong>
             <hr class="has-background-grey"/></span>
             <div class="column is-12 card-content box m-0">
                 <div class="card-header-title">

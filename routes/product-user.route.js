@@ -106,7 +106,6 @@ router.get('/infoProduct/:id', async function (req, res) {
     const id = req.params.id;
     const product = await productModel.findByProID(id);
     const account = await accountModel.findByUsername(req.session.authAccount.username);
-
     const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
     const now = moment().format("YYYY-MM-DD hh:mm");
     const isSold = await productModel.isSold(id);
@@ -116,9 +115,12 @@ router.get('/infoProduct/:id', async function (req, res) {
 
     if (!account.isActive) {
         res.json(false);
-    } else if (product[0].isVerify) {
-        if (+account.point / +account.sumBid < 0.8)
+    }else if (product[0].isVerify) {
+        if (+account.point / +account.sumBid < 0.8){
+            console.log('2,5')
             res.json("lowPoint")
+        }
+        res.json(product[0]);
     } else {
         res.json(product[0]);
     }

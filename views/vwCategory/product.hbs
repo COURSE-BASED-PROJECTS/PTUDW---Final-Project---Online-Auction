@@ -97,11 +97,13 @@
 
 
         });
+
         $('#frmBuynow').on('submit', function (e) {
             e.preventDefault();
-            const ProID = $('#proId').val();
+
+            const ProID = $('#ProductID').val();
             $.getJSON(`/product/infoProduct/${ProID}`, function (data) {
-                alert(data);
+
                 $('.modal_announce').removeClass("is-active");
                 if (data === false) {
                     $('.modal_isActive').toggleClass("is-active");
@@ -208,7 +210,7 @@
 
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-6-tablet is-12-mobile mr-5">
-        <input type="text" id="proId" value="{{this.product.ProID}}" class="is-hidden">
+        <input type="text" id="ProductID" value="{{this.product.ProID}}" class="is-hidden">
         <div class="modal modal_announce">
             <div class="modal-background"></div>
             <div class="modal-card">

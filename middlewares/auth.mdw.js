@@ -31,3 +31,9 @@ export function authAdmin(req,res,next){
 
     next();
 }
+export function activeEmail (req,res,next){
+    if(req.session.authAccount.isActive === 1){
+        return res.redirect('/info/reviewProfile')
+    }
+    next();
+}

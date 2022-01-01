@@ -1,5 +1,13 @@
 {{#section 'js_showMessage'}}
     <script>
+        function modal_announce() {
+            $('.modal_announce').toggleClass("is-active")
+        };
+
+        function close_modal() {
+            $('.modal_announce').removeClass("is-active")
+        };
+
         function modal_verify() {
             if ($('.modal_verify').hasClass("is-active")) {
                 $('.modal_verify').removeClass("is-active")
@@ -89,6 +97,30 @@
 
 
         });
+        $('#frmBuynow').on('submit', function (e) {
+            e.preventDefault();
+            const ProID = $('#proId').val();
+            $.getJSON(`/product/infoProduct/${ProID}`, function (data) {
+                alert(data);
+                $('.modal_announce').removeClass("is-active");
+                if (data === false) {
+                    $('.modal_isActive').toggleClass("is-active");
+                    return;
+                } else if (data === "lowPoint") {
+                    $('.modal_lowpoint').toggleClass("is-active");
+                    return;
+                } else {
+                    const infoProduct = JSON.parse(JSON.stringify(data))
+                    if (!infoProduct.isExpired) {
+                        $('#frmBuynow').off('submit').submit();
+                    } else {
+                        $('.modal_announce').removeClass("is-active");
+                        return;
+                    }
+                }
+
+            });
+        });
     </script>
 {{/section}}
 {{#section 'js'}}
@@ -176,7 +208,25 @@
 
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-6-tablet is-12-mobile mr-5">
-
+        <input type="text" id="proId" value="{{this.product.ProID}}" class="is-hidden">
+        <div class="modal modal_announce">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Xác nhận</p>
+                    <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>Bạn có muốn mua ngay: <strong>{{this.product.ProName}}</strong> ?
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <a class="button is-success"
+                       href="javascript: $('#frmBuynow').submit();">Đồng ý</a>
+                    <a class="button" onclick="close_modal();">Hủy</a>
+                </footer>
+            </div>
+        </div>
         <div class="modal modal_verify">
             <div class="modal-background"></div>
             <div class="modal-card">
@@ -483,6 +533,11 @@
                     </div>
 
                 {{else}}
+                    <div class="column is-12 ">
+                        <form action="/product/buynow/{{this.product.ProID}}" method="post" id="frmBuynow"></form>
+                        <a class="box has-background-warning has-text-centered has-text-weight-bold"
+                           onclick="modal_announce();">MUA NGAY</a>
+                    </div>
                     <div class="column is-12 ">
                         <hr class="has-background-grey"/>
                     </div>

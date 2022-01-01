@@ -11,11 +11,19 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({BidderHistory:username,Bidder:username})
             .select();
+        return list;
+    },
+    async findPageHistory(username, limit, offset) {
+        const list = await db('historybid')
+            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
+            .where({BidderHistory:username,Bidder:username})
+            .limit(limit)
+            .offset(offset)
+            .select();
 
         dateFormat({key:list});
 
         const result = [];
-
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
             const now = moment().format("YYYY-MM-DD hh:mm");
@@ -177,10 +185,16 @@ export default {
             .where({ username: bidder})
             .update({ point: +point + -1 });
     },
-    async findPage(username, limit, offset) {
+    async findWonProduct(username) {
+        const list = await db('historybid')
+            .where({BidderHistory:username,isSuccessful:1})
+            .select();
+        return list;
+    },
+    async findPageWonProduct(username, limit, offset) {
         const list = await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({BidderHistory:username,Bidder:username})
+            .where({BidderHistory:username, isSuccessful:1})
             .limit(limit)
             .offset(offset)
             .select();

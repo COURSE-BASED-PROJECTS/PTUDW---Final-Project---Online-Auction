@@ -2,8 +2,8 @@
     <script>
         const listIDText = document.getElementById("listId").value;
         const listID = listIDText.split(' ');
-        for(let i = 0; i < listID.length; i++){
-            const dateInput = document.getElementById("dateInput"+listID[i]).value;
+        for (let i = 0; i < listID.length; i++) {
+            const dateInput = document.getElementById("dateInput" + listID[i]).value;
             const date = dateInput.split(" ")[0];
             const time = dateInput.split(" ")[1];
             const day = date.split('/')[0];
@@ -11,7 +11,7 @@
             const year = date.split('/')[2];
             const h = time.split(':')[0];
             const m = time.split(':')[1];
-            let countDownDate = new Date(+year, +month-1, +day, +h, +m, 0, 0).getTime();
+            let countDownDate = new Date(+year, +month - 1, +day, +h, +m, 0, 0).getTime();
             let x = setInterval(function () {
                 // Get today's date and time
                 let now = new Date().getTime();
@@ -24,40 +24,113 @@
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 // Display the result in the element with id="demo"
                 let countdown = '';
-                if (days != 0){
+                if (days != 0) {
                     countdown += days + " ngày "
                 }
-                if (hours != 0){
+                if (hours != 0) {
                     countdown += hours + " giờ "
                 }
-                if (minutes != 0){
+                if (minutes != 0) {
                     countdown += minutes + " phút "
                 }
                 countdown += seconds + " giây";
-                document.getElementById("dateEnd"+listID[i]).innerHTML = countdown;
+                document.getElementById("dateEnd" + listID[i]).innerHTML = countdown;
 
                 // document.getElementById("dateEnd"+listID[i]).innerHTML = days + " ngày " + hours + " giờ "
                 //         + minutes + " phút " + seconds + " giây";
                 // If the count down is finished, write some text
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("dateEnd"+listID[i]).innerHTML = "Hết hạn"
+                    document.getElementById("dateEnd" + listID[i]).innerHTML = "Hết hạn"
                 }
             }, 1000);
         }
     </script>
     <script>
-        function modal_announce() {
-            if ($('.modal_announce').hasClass("is-active")) {
-                $('.modal_announce').removeClass("is-active")
-            } else {
-                $('.modal_announce').toggleClass("is-active")
-            }
+        function modal_announce(proID) {
+            $('.modal_announce-' + proID).toggleClass("is-active")
         };
+
+        function close_modal(proID) {
+            $('.modal_announce-' + proID).removeClass("is-active")
+            $('.modal_isActive').removeClass("is-active")
+            $('.modal_lowpoint').removeClass("is-active")
+            $('.modal_outdate').removeClass("is-active")
+        };
+    </script>
+
+    <script>
+        const listIdText = $('#listId').val();
+        const listId = listIdText.split(' ');
+        for (let i = 0; i < listId.length; i++) {
+            $('#frmBuynow-' + listId[i]).on('submit', function (e) {
+                e.preventDefault();
+                $.getJSON(`/product/infoProduct/${listId[i]}`, function (data) {
+                    $('.modal_announce-' + listId[i]).removeClass("is-active");
+                    if (data === false) {
+                        $('.modal_isActive').toggleClass("is-active");
+                        return;
+                    } else if (data === "lowPoint") {
+                        $('.modal_lowpoint').toggleClass("is-active");
+                        return;
+                    } else {
+                        const infoProduct = JSON.parse(JSON.stringify(data))
+                        if (!infoProduct.isExpired) {
+                            $('#frmBuynow-' + listId[i]).off('submit').submit();
+                        } else {
+                            $('.modal_outdate').toggleClass("is-active");
+                            return;
+                        }
+                    }
+
+                });
+            });
+        }
     </script>
 {{/section}}
 <div class="columns is-multiline is-mobile p-2">
     <input type="text" value="{{this.listID}}" id="listId" class="is-hidden">
+    <div class="modal modal_isActive">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Xác thực tài khoản</p>
+                <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Vui lòng <strong>xác thực tài khoản trước khi mua</strong>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal modal_lowpoint">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Rất tiếc</p>
+                <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+            </header>
+            <section class="modal-card-body">
+                <p><strong>Số điểm của bạn quá thấp (< 80%). Không thể mua sản phẩm này!</strong>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal modal_outdate">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Sản phẩm không khả dụng</p>
+                <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Không thể mua sản phẩm này do đã hết thời hạn đăng hoặc đã được bán cho người khác.</strong>
+                </p>
+            </section>
+        </div>
+    </div>
     {{#if this.isEmpty}}
         <div class="card-header-title is-size-3">Không có dữ liệu</div>
     {{else}}
@@ -110,7 +183,7 @@
                     {{#if auth}}
                         <footer class="card-footer">
                             <form action="/product/buynow/{{ProID}}" method="post" id="frmBuynow-{{ProID}}"></form>
-                            <a onclick="modal_announce();" class="card-footer-item">
+                            <a onclick="modal_announce({{ProID}});" class="card-footer-item">
                                 <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>
                                 MUA NGAY</a>
 
@@ -122,24 +195,23 @@
                             </a>
                         </footer>
                     {{/if}}
-
                 </div>
             </div>
-            <div class="modal modal_announce">
+            <div class="modal modal_announce-{{ProID}}">
                 <div class="modal-background"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">Xác nhận</p>
-                        <button class="delete close_modal" aria-label="close"></button>
+                        <button class="delete close_modal" aria-label="close" onclick="close_modal({{ProID}});"></button>
                     </header>
                     <section class="modal-card-body">
-                        <p>Bạn có đồng ý mua ngay: <strong></strong>
+                        <p>Bạn có muốn mua ngay: <strong>{{ProName}}</strong> ?
                         </p>
                     </section>
                     <footer class="modal-card-foot">
                         <a class="button is-success"
-                           href="javascript: $('#frmBuynow').submit();">Đồng ý</a>
-                        <a class="button">Hủy</a>
+                           href="javascript: $('#frmBuynow-{{ProID}}').submit();">Đồng ý</a>
+                        <a class="button" onclick="close_modal({{ProID}});">Hủy</a>
                     </footer>
                 </div>
             </div>

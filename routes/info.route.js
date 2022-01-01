@@ -9,6 +9,7 @@ import moment from "moment";
 import bcrypt from "bcrypt";
 import sendMail from "../utils/sendMail.js";
 import generateOtp from "../utils/generateOTP.js";
+import {activeEmail} from "../middlewares/auth.mdw.js";
 
 
 const router = express.Router();
@@ -62,12 +63,7 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
     await accountModel.updateInfoAccount(entity);
     res.redirect('/info/reviewProfile');
 });
-function activeEmail (req,res,next){
-    if(req.session.authAccount.isActive === 1){
-        return res.redirect('/info/reviewProfile')
-    }
-    next();
-}
+
 router.get('/reviewProfile/activeEmail', activeEmail, async function (req, res) {
     const username = req.session.authAccount.username;
     const user = await accountModel.findByUsername(username);
@@ -140,7 +136,7 @@ router.get('/reviewHistory', async function (req, res) {
         });
     }
 
-    const list = await productHistoryModel.findPage(username, limit, offset);
+    const list = await productHistoryModel.findPageHistory(username, limit, offset);
 
     res.render('vwInfo/reviewHistory', {
         layout: 'main',
@@ -267,8 +263,7 @@ router.get('/onlineAuction', async function (req, res) {
 
 router.get('/wonProduct', async function (req, res) {
     const username = req.session.authAccount.username;
-    const product = await productHistoryModel.findHistoryProduct(username);
-
+    const product = await productHistoryModel.findWonProduct(username);
     const limit = 6;
     const page = req.query.page || 1;
     const offset = (page - 1) * limit;
@@ -285,7 +280,7 @@ router.get('/wonProduct', async function (req, res) {
         });
     }
 
-    const list = await productHistoryModel.findPage(username, limit, offset);
+    const list = await productHistoryModel.findPageWonProduct(username, limit, offset);
     res.render('vwInfo/wonProduct', {
         layout: 'main',
         isWon: true,

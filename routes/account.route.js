@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/register', async function (req, res) {
     const url = sliceURL(req.headers.referer);
-    if(url !== '/account/register/' && url !=='/account/login'){
+    if(url !== '/account/register/' && url !=='/account/login/'){
         req.session.retUrl = req.headers.referer;
     }else{
         req.session.retUrl = '/';

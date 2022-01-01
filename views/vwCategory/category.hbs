@@ -2,36 +2,29 @@
     <script>
         const listIDText = document.getElementById("listId").value;
         const listID = listIDText.split(' ');
-
         for(let i = 0; i < listID.length; i++){
             const dateInput = document.getElementById("dateInput"+listID[i]).value;
             const date = dateInput.split(" ")[0];
             const time = dateInput.split(" ")[1];
-
             const day = date.split('/')[0];
             const month = date.split('/')[1];
             const year = date.split('/')[2];
-
             const h = time.split(':')[0];
             const m = time.split(':')[1];
-
             let countDownDate = new Date(+year, +month-1, +day, +h, +m, 0, 0).getTime();
             let x = setInterval(function () {
                 // Get today's date and time
                 let now = new Date().getTime();
                 // Find the distance between now and the count down date
                 let distance = countDownDate - now;
-
                 // Time calculations for days, hours, minutes and seconds
                 let days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
                 // Display the result in the element with id="demo"
                 document.getElementById("dateEnd"+listID[i]).innerHTML = days + " ngày " + hours + " giờ "
                         + minutes + " phút " + seconds + " giây ";
-
                 // If the count down is finished, write some text
                 if (distance < 0) {
                     clearInterval(x);
@@ -39,6 +32,15 @@
                 }
             }, 1000);
         }
+    </script>
+    <script>
+        function modal_announce() {
+            if ($('.modal_announce').hasClass("is-active")) {
+                $('.modal_announce').removeClass("is-active")
+            } else {
+                $('.modal_announce').toggleClass("is-active")
+            }
+        };
     </script>
 {{/section}}
 <div class="columns is-multiline is-mobile p-2">
@@ -94,8 +96,8 @@
 
                     {{#if auth}}
                         <footer class="card-footer">
-                            <form action="/product/buynow/{{ProID}}" method="post" id="frmBuynow"></form>
-                            <a href="javascript: $('#frmBuynow').submit();" class="card-footer-item">
+                            <form action="/product/buynow/{{ProID}}" method="post" id="frmBuynow-{{ProID}}"></form>
+                            <a onclick="modal_announce();" class="card-footer-item">
                                 <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>
                                 MUA NGAY</a>
 
@@ -108,6 +110,24 @@
                         </footer>
                     {{/if}}
 
+                </div>
+            </div>
+            <div class="modal modal_announce">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Xác nhận</p>
+                        <button class="delete close_modal" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <p>Bạn có đồng ý mua ngay: <strong></strong>
+                        </p>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <a class="button is-success"
+                           href="javascript: $('#frmBuynow').submit();">Đồng ý</a>
+                        <a class="button">Hủy</a>
+                    </footer>
                 </div>
             </div>
         {{/each}}

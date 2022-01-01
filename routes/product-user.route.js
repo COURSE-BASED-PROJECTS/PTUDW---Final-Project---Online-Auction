@@ -125,7 +125,7 @@ router.get('/infoProduct/:id', async function (req, res) {
 
 });
 
-router.post('/buynow', async function (req, res) {
+router.post('/setPrice', async function (req, res) {
     const id = req.body.id;
     const product = await productModel.findByProID(id);
     const account = await accountModel.findByUsername(req.session.authAccount.username);

@@ -39,13 +39,13 @@
                     </div>
 
                     <footer class="card-footer">
-                        <form action="/admin/Account/upgrade/:{{username}}" method="post" id="frmUpgrade"></form>
-                        <form action="/admin/Account/cancel/:{{username}}" method="post" id="frmCancel"></form>
+                        <form action="/admin/Account/upgrade/:{{username}}" method="post" id="frmUpgrade-{{username}}"></form>
+                        <form action="/admin/Account/cancel/:{{username}}" method="post" id="frmCancel-{{username}}"></form>
 
-                        <a href="javascript: $('#frmUpgrade').submit();" class="card-footer-item">
+                        <a href="javascript: $('#frmUpgrade-{{username}}').submit();" class="card-footer-item">
                             <span class="is-small mr-1"><i class="fa fa-level-up-alt"></i></span>
                             NÂNG CẤP</a>
-                        <a href="javascript: $('#frmCancel').submit();" class="card-footer-item">
+                        <a href="javascript: $('#frmCancel-{{username}}').submit();" class="card-footer-item">
                             <span class="is-small mr-1 has-text-danger"><i class="fa fa-ban"></i></span>
                             HỦY
                         </a>

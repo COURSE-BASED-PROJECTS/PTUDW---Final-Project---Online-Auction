@@ -27,4 +27,16 @@ export default {
     },
 
 
+    async findPageFavorite(username, limit, offset) {
+        let list = await db('favorite')
+            .join('products', 'favorite.ProID', '=', 'products.ProID')
+            .where('username',username)
+            .limit(limit)
+            .offset(offset)
+            .select();
+
+        dateFormat({key:list});
+
+        return list
+    }
 }

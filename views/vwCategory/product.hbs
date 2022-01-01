@@ -497,7 +497,7 @@
 
                     {{#if this.product.isAuction}}
                         <div class="column is-8 ">
-                            <form action="/product/buynow" method="post" id="frmAuction">
+                            <form action="/product/setPrice" method="post" id="frmAuction">
                                 <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
                                        name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*">
                                 <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"

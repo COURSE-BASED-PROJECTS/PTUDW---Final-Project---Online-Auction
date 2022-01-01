@@ -46,10 +46,10 @@ export default {
     },
 
     async cancelUpgradeAccount(username){
-        await db('account')
-            .join('upgrade', 'account.username', '=', 'upgrade.id')
-            .where({username:username})
-            .update({isCheck:false});
+        console.log('abc');
+        await db('upgrade')
+            .where({id: username})
+            .update({isCheck:true});
     },
 
     async findUpgradeAccount(){

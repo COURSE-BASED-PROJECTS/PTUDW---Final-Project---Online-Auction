@@ -1,6 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
-// import async_errors from 'express-async-errors';
+import async_errors from 'express-async-errors';
 
 
 import localMdw from "./middlewares/locals.mdw.js"

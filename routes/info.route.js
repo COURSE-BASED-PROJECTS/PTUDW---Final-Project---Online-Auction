@@ -11,7 +11,6 @@ import sendMail from "../utils/sendMail.js";
 import generateOtp from "../utils/generateOTP.js";
 
 
-
 const router = express.Router();
 
 router.get('/reviewProfile', async function (req, res) {
@@ -25,6 +24,7 @@ router.get('/reviewProfile', async function (req, res) {
     res.render('vwInfo/profileAccount', {
         layout: 'SignUp_login',
         user,
+        isProfile: true,
         isBidder
     });
 });
@@ -121,8 +121,26 @@ router.post('/reviewProfile/upgrade', async function (req, res) {
 
 router.get('/reviewHistory', async function (req, res) {
     const username = req.session.authAccount.username;
-    const list = await productHistoryModel.findHistoryProduct(username);
+    const product = await productHistoryModel.findHistoryProduct(username);
     const point = await accountModel.getPointAccount(username);
+
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
+
+    const total = product.length;
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
+
+    const list = await productHistoryModel.findPage(username, limit, offset);
 
     res.render('vwInfo/reviewHistory', {
         layout: 'main',
@@ -130,7 +148,16 @@ router.get('/reviewHistory', async function (req, res) {
         list,
         isEmpty: list.length === 0,
         point,
-        isPositive: +point >= 0
+        isPositive: +point >= 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        }
     });
 });
 
@@ -142,13 +169,38 @@ router.get('/updateInfo', async function (req, res) {
 });
 
 router.get('/favouriteProduct', async function (req, res) {
-    const list = await productFavoriteModel.findFavorite(req.session.authAccount.username)
+    const product = await productFavoriteModel.findFavorite(req.session.authAccount.username)
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
 
+    const total = product.length;
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
+
+    const list = await productFavoriteModel.findPageFavorite(req.session.authAccount.username, limit, offset);
     res.render('vwInfo/favouriteProduct', {
         layout: 'main',
         isFavorite: true,
         list,
         isEmpty: list.length === 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        }
     });
 });
 
@@ -177,25 +229,77 @@ router.post('/addFavorite/:ProID', async function (req, res) {
 
 router.get('/onlineAuction', async function (req, res) {
     const username = req.session.authAccount.username;
-    const list = await productAuctionModel.findOnAuction(username);
+    const product = await productAuctionModel.findOnAuction(username);
 
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
+
+    const total = product.length;
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
+
+    const list = await productAuctionModel.findPageOnAuction(username, limit, offset);
     res.render('vwInfo/auctionProduct', {
         layout: 'main',
         isOnlineAuction: true,
         list,
-        isEmpty: list.length === 0
+        isEmpty: list.length === 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        }
     });
 });
 
 router.get('/wonProduct', async function (req, res) {
     const username = req.session.authAccount.username;
-    const list = await productHistoryModel.findHistoryProduct(username);
+    const product = await productHistoryModel.findHistoryProduct(username);
 
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
+
+    const total = product.length;
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
+
+    const list = await productHistoryModel.findPage(username, limit, offset);
     res.render('vwInfo/wonProduct', {
         layout: 'main',
         isWon: true,
         list,
         isEmpty: list.length === 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        }
     });
 });
 

@@ -81,6 +81,7 @@ router.get('/detail/:id', async function (req, res) {
     const isSold = await productModel.isSold(ProID);
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
+    const relatives = await productModel.findRelatedProducts(product[0].CatIDNext);
 
     if (req.session.auth) {
         if (product[0].Bidder === req.session.authAccount.username) {
@@ -99,6 +100,7 @@ router.get('/detail/:id', async function (req, res) {
         product: product[0],
         isExpired,
         listBid,
+        relatedProducts:relatives.limit(5)
     });
 });
 

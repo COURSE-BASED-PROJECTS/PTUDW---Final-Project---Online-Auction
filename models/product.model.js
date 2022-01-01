@@ -24,6 +24,13 @@ export default {
         return list
     },
 
+    async findRelatedProducts(CatIDNext){
+        let list = await db.select().table('products').where('CatIDNext',CatIDNext);
+        dateFormat({key:list});
+
+        return list
+    },
+
     async findByCatIDNext(CatIDNext){
         let list = await db.select().table('products').where('CatIDNext',CatIDNext);
         dateFormat({key:list});

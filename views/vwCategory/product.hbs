@@ -594,133 +594,38 @@
     <div class="column is-12 p-2">
         <hr class="has-background-grey"/>
         <section class="section">
-            <div class="is-size-4-tablet is-size-5-mobile m-3 has-text-centered">
-                Sản phẩm liên quan
+            <div class="is-size-4-tablet is-size-5-mobile m-3 has-text-centered has-text-weight-bold">
+                Bạn có thể thích
             </div>
             <div id="slider" style="overflow: hidden">
                 <!-- Start Carousel -->
                 <div class="carousel">
-                    <div class="item-1 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <a href="">
-                                        <img
-                                                src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                                alt=""
-                                        />
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-2 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
+                    {{#each this.relatedProducts}}
+                        <div class="item-{{ProID}} mx-2">
+                            <!-- Slide Content -->
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-16by9 is-covered">
+                                        <a href="/product/detail/{{ProID}}">
+                                            <img
+                                                src="/img/product/{{ProID}}/1.png"
+                                                alt="{{ProName}}"
+                                            />
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="has-text-centered has-text-weight-bold">{{ProName}}</div>
+<!--                                <div class="item__description">-->
+<!--                                    Ici une petite description pour tester le slider-->
+<!--                                </div>-->
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-3 mx-2">
-                        <!-- Slide Content -->
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-16by9 is-covered">
-                                    <img
-                                            src="https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
-                                            alt=""
-                                    />
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="item__title">Mon titre 1</div>
-                                <div class="item__description">
-                                    Ici une petite description pour tester le slider
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    {{/each}}
                 <!-- End Carousel -->
+                </div>
             </div>
         </section>
     </div>

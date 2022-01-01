@@ -25,7 +25,7 @@ export default {
     },
 
     async findRelatedProducts(CatIDNext){
-        let list = await db.select().table('products').where('CatIDNext',CatIDNext);
+        let list = await db.select().table('products').where('CatIDNext',CatIDNext).limit(5);
         dateFormat({key:list});
 
         return list

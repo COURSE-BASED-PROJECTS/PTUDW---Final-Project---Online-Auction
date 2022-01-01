@@ -100,7 +100,7 @@ router.get('/detail/:id', async function (req, res) {
         product: product[0],
         isExpired,
         listBid,
-        relatedProducts:relatives.limit(5)
+        relatedProducts:relatives
     });
 });
 

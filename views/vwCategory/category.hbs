@@ -23,8 +23,21 @@
                 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 // Display the result in the element with id="demo"
-                document.getElementById("dateEnd"+listID[i]).innerHTML = days + " ngày " + hours + " giờ "
-                        + minutes + " phút " + seconds + " giây ";
+                let countdown = '';
+                if (days != 0){
+                    countdown += days + " ngày "
+                }
+                if (hours != 0){
+                    countdown += days + " giờ "
+                }
+                if (minutes != 0){
+                    countdown += days + " phút "
+                }
+                countdown += seconds + " giây";
+                document.getElementById("dateEnd"+listID[i]).innerHTML = countdown;
+
+                // document.getElementById("dateEnd"+listID[i]).innerHTML = days + " ngày " + hours + " giờ "
+                //         + minutes + " phút " + seconds + " giây";
                 // If the count down is finished, write some text
                 if (distance < 0) {
                     clearInterval(x);

@@ -3,6 +3,8 @@ import productModel from "../models/product.model.js";
 import accountModel from "../models/account.model.js";
 import historybidModel from "../models/historybid.model.js";
 import moment from "moment";
+import fs from "fs";
+import multer from "multer";
 
 const router = express.Router();
 
@@ -82,8 +84,11 @@ router.get('/detail/:id', async function (req, res) {
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
     const relatives = await productModel.findRelatedProducts(product[0].CatIDNext);
+    let isAuth = false;
 
     if (req.session.auth) {
+        isAuth = await productModel.isAuthProduct(ProID, req.session.authAccount.username);
+
         if (product[0].Bidder === req.session.authAccount.username) {
             product[0].isAuction = false;
         } else {
@@ -98,10 +103,22 @@ router.get('/detail/:id', async function (req, res) {
     res.render('vwCategory/product', {
         layout: 'SignUp_login',
         product: product[0],
+        isAuth,
         isExpired,
         listBid,
-        relatedProducts:relatives
+        relatedProducts:relatives,
     });
+});
+
+router.post('/update/:id', async function (req, res) {
+    const ProID = req.params.id;
+    const product = await productModel.findByProID(ProID);
+    const now = moment().format("DD-MM-YYYY HH:mm:ss");
+
+    await productModel.updateDescription(ProID, product[0].Description, now, req.body.FullDesc)
+
+    res.redirect('/product/detail/' + ProID);
+
 });
 
 router.get('/infoProduct/:id', async function (req, res) {
@@ -194,6 +211,7 @@ router.post('/setPrice', async function (req, res) {
     }
 
 });
+
 router.post('/buynow/:id', async function (req, res) {
     const id = req.params.id;
     const product = await productModel.findByProID(id);
@@ -208,6 +226,7 @@ router.post('/buynow/:id', async function (req, res) {
     await historybidModel.addHistoryBuyNow(historybid);
     res.redirect('/info/wonProduct');
 });
+
 router.post('/del/:username', async function (req, res) {
     const username = req.params.username;
     const ProID = req.body.id;

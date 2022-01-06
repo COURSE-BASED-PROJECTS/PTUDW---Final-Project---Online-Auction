@@ -120,6 +120,15 @@ export default {
         return false;
     },
 
+    async isAuthProduct(ProID, seller){
+        const list = await db('products').where({ProID:ProID, Seller:seller});
+
+        if(list.length !== 0){
+            return true;
+        }
+        return false;
+    },
+
     async isNew(ProID,Nminutes){
         const list = await db('products').where({ProID:ProID});
         dateFormat({key:list});
@@ -166,6 +175,10 @@ export default {
             .where({ProIDHistory:ProID,BidderHistory:username})
             .update({PriceWinAll:PriceWinAll});
     },
-
+    async updateDescription(ProID, Description, Time, newDescription){
+        await db('products')
+            .where({ProID:ProID})
+            .update({Description: Description + "<p>&nbsp;</p>" + Time + "<p>&nbsp;</p>" + newDescription});
+    },
 
 }

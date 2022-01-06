@@ -20,7 +20,7 @@ router.get('/upload',async function (req,res){
 
 // const upload = multer({ dest: 'uploads/' });
 
-router.post('/upload',async function (req,res){
+router.post('/upload',async function (req, res) {
     let count = await productModel.countProduct();
     count = count[0].count + 1;
     const dir = './public/img/product/'+count;

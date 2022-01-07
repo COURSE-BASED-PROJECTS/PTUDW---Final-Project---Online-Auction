@@ -10,7 +10,7 @@
             e.preventDefault();
             const name = $('#txtName').val();
             const address = $('#txtAddress').val();
-            const dob =  $('#datetimepicker').val();
+            const dob = $('#datetimepicker').val();
             const email = $('#txtEmail').val();
             $.getJSON(`/account/is-exist?email=${email}`, function (data) {
                 if (data === false) {
@@ -46,21 +46,24 @@
                             $('#check-dob').toggleClass("is-hidden");
                         }
                     }
-                    if (name === '' || dob === '' || address === ''){
+                    if (name === '' || dob === '' || address === '') {
                         return;
                     }
-
                     $('#frmChangeInfo').off('submit').submit();
                 }
             });
         });
         $(':input[type="submit"]').prop('disabled', true);
-        $('input[type="text"]').keyup(function() {
-            if($(this).val() != '') {
+        $('input[type="text"]').keyup(function () {
+            if ($(this).val() != '') {
                 $(':input[type="submit"]').prop('disabled', false);
             }
         });
-
+        $('input[type="email"]').keyup(function () {
+            if ($(this).val() != '') {
+                $(':input[type="submit"]').prop('disabled', false);
+            }
+        });
         $('#datetimepicker').datetimepicker({
             timepicker: false,
             format: 'd/m/Y',
@@ -139,13 +142,23 @@
                 <div class="control">
                     <input class="input" type="text" value="{{this.user.level}}" readonly/>
                 </div>
-
-                {{#if this.isBidder}}
-                    <a class="button is-small is-success is-inverted"
-                       style="float: right"
-                       href="javascript: $('#upgrade').submit();" type="button">
-                        <strong>Nâng cấp tài khoản</strong>
-                    </a>
+                {{#if this.isPending}}
+                    <div class="field is-grouped is-justify-content-center has-text-success has-text-weight-bold">
+                        Đang Chờ Xét Duyệt
+                    </div>
+                {{else}}
+                    {{#if this.user.isActive}}
+                        {{#if this.isBidder}}
+                            <div class="field is-grouped is-justify-content-center mt-2">
+                                <div class="control">
+                                    <a class="button is-small has-text-grey-dark has-background-warning"
+                                       href="javascript: $('#upgrade').submit();" type="button">
+                                        <strong>NÂNG CẤP TÀI KHOẢN SELLER</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{/if}}
                 {{/if}}
             </div>
 

@@ -42,14 +42,13 @@ export default {
         await db('account')
             .join('upgrade', 'account.username', '=', 'upgrade.id')
             .where({username:username})
-            .update({isCheck:false,level:'seller'});
+            .update({isCheck:true,level:'seller'});
     },
 
     async cancelUpgradeAccount(username){
-        console.log('abc');
         await db('upgrade')
             .where({id: username})
-            .update({isCheck:true});
+            .delete();
     },
 
     async findUpgradeAccount(){

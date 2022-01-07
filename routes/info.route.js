@@ -21,12 +21,18 @@ router.get('/reviewProfile', async function (req, res) {
     if (user.level === 'bidder'){
         isBidder = 1;
     }
-
+    let isPending = 1;
+    const info = await upgradeModel.findUsername(user.username);
+    if (info === null || info.isCheck === 1){
+        isPending = 0;
+    };
+    console.log(isPending);
     res.render('vwInfo/profileAccount', {
-        layout: 'SignUp_login',
+        layout: 'SignUp_Login',
         user,
         isProfile: true,
-        isBidder
+        isBidder,
+        isPending
     });
 });
 

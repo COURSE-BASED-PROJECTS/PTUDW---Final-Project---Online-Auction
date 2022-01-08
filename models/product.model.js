@@ -6,19 +6,22 @@ import moment from "moment";
 
 export default {
     async findTopClose(){
-        const list = await db.select().table('products').orderBy('DateEnd').limit(5);
+        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        const list = await db.select().table('products').orderBy('DateEnd').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
         return list
     },
     async findTopBidder(){
-        let list = await db.select().table('products').orderBy('BidderCount', 'desc').limit(5);
+        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        let list = await db.select().table('products').orderBy('BidderCount', 'desc').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
         return list
     },
     async findTopPrice(){
-        let list = await db.select().table('products').orderBy('PriceCurrent', 'desc').limit(5);
+        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        let list = await db.select().table('products').orderBy('PriceCurrent', 'desc').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
         return list

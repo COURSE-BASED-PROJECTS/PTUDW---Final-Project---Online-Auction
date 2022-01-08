@@ -1,5 +1,6 @@
 import express from "express"
 import accountModel from "../models/account.model.js";
+import upgradeModel from "../models/upgrade.model.js";
 import categoryModel from "../models/category.model.js";
 import productModel from "../models/product.model.js"
 
@@ -114,21 +115,46 @@ router.get('/Account', async function (req, res) {
 });
 
 router.get('/verifySeller', async function (req, res) {
-    const list = await accountModel.findUpgradeAccount();
+    const listUpgradeAcc = await upgradeModel.findAmountUpgradeAccount();
+    const limit = 6;
+    const page = req.query.page || 1;
+    const offset = (page - 1) * limit;
 
+    const total = listUpgradeAcc.length;
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= nPages; i++) {
+        pageNumbers.push({
+            value: i,
+            isCurrent: +page === i
+        });
+    }
+
+    const list = await accountModel.findUpgradeAccount(limit, offset);
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,
+            isSeller: account.level === 'seller'
         }
     }
-
     res.render('vwAccount/upgradeAccount', {
         layout: 'main',
-        isSeller: true,
-        isAdmin: true,
+        //isSeller: true,
+        //isAdmin: true,
         isVerifySeller: true,
         list,
         isEmpty: list.length === 0,
+        pageNumbers,
+        pageNext: {
+            page: +page + 1,
+            isVisible: (+page === 1 && nPages === 1) ? false : (+page === nPages ? false : true),
+        },
+        pagePrev: {
+            page: +page - 1,
+            isVisible: (+page === 1) ? false : true,
+        }
     });
 });
 

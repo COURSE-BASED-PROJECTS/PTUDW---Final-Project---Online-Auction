@@ -12,5 +12,15 @@ export default {
             return null;
 
         return list[0];
+    },
+    async patch(entity){
+        await db('upgrade').update(entity).where({'id': entity.id});
+    },
+    async findAmountUpgradeAccount(){
+        const list = await db('upgrade')
+            .where({isCheck:false, isCancel:false})
+            .select();
+
+        return list;
     }
 }

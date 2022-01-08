@@ -21,18 +21,23 @@ router.get('/reviewProfile', async function (req, res) {
     if (user.level === 'bidder'){
         isBidder = 1;
     }
+    let isSeller = 0;
+    if (user.level === 'seller'){
+        isSeller = 1;
+    }
     let isPending = 1;
     const info = await upgradeModel.findUsername(user.username);
     if (info === null || info.isCheck === 1){
         isPending = 0;
     };
-    console.log(isPending);
+
     res.render('vwInfo/profileAccount', {
         layout: 'SignUp_Login',
         user,
         isProfile: true,
         isBidder,
-        isPending
+        isPending,
+        isSeller
     });
 });
 
@@ -113,11 +118,32 @@ router.post('/reviewProfile/activeEmail/resendOtp', async function (req, res) {
 
 router.post('/reviewProfile/upgrade', async function (req, res) {
     const username = req.session.authAccount.username;
+    const info = await upgradeModel.findUsername(username);
+    if (info === null){
+        const entity = {
+            id: username,
+            isCheck: 0
+        }
+        await upgradeModel.addBidder(entity);
+    } else {
+        const entity = {
+            id: username,
+            isCheck: 0,
+            isCancel: 0
+        }
+        await upgradeModel.patch(entity)
+    }
+    res.redirect('/info/reviewProfile');
+});
+
+router.post('/reviewProfile/reUpgrade', async function (req, res) {
+    const username = req.session.authAccount.username;
     const entity = {
         id: username,
-        isCheck: 0
+        isCheck: 0,
+        isCancel: 0
     }
-    await upgradeModel.addBidder(entity);
+    await upgradeModel.patch(entity);
     res.redirect('/info/reviewProfile');
 });
 

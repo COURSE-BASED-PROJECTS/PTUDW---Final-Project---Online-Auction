@@ -23,14 +23,15 @@ export default function (app) {
                     const date1 = new Date(startDate);
                     const date2 = new Date(now);
                     const Difference_In_Days = (date2.getTime() - date1.getTime()) / (1000 * 3600 * 24);
-
+                    //const Difference_In_Days = 7.5;
                     if (Difference_In_Days > 7){
                         res.locals.expired = true;
                     } else {
                         res.locals.expired = false;
                     }
+                } else {
+                    res.locals.expired = false;
                 }
-                res.locals.expired = false;
                 res.locals.Seller = true;
             } else if (account.level === 'admin')
                 res.locals.Admin = true;

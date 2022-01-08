@@ -48,13 +48,15 @@ export default {
     async cancelUpgradeAccount(username){
         await db('upgrade')
             .where({id: username})
-            .delete();
+            .update({isCheck:true, isCancel:true});
     },
 
-    async findUpgradeAccount(){
+    async findUpgradeAccount(limit, offset){
         const list = await db('account')
             .join('upgrade', 'account.username', '=', 'upgrade.id')
-            .where({isCheck:false})
+            .where({isCheck:false, isCancel:false})
+            .limit(limit)
+            .offset(offset)
             .select();
 
         for(let i=0;i<list.length;i++){

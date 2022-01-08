@@ -25,6 +25,8 @@
                                     class="has-text-primary-dark">{{email}}</span></strong>
                             <strong class="is-block has-text-info-dark my-2"> Ngày xin nâng cấp: <span
                                     class="has-text-primary-dark">{{dateStart}}</span></strong>
+                            <strong class="is-block has-text-info-dark my-2"> Level: <span
+                                    class="has-text-primary-dark">{{level}}</span></strong>
                             <strong class="is-block has-text-info-dark my-2"> Số điểm:
                                 <span>
                                     {{#if info.isPositive}}
@@ -41,10 +43,16 @@
                     <footer class="card-footer">
                         <form action="/admin/Account/upgrade/{{username}}" method="post" id="frmUpgrade-{{username}}"></form>
                         <form action="/admin/Account/cancel/{{username}}" method="post" id="frmCancel-{{username}}"></form>
+                        {{#if info.isSeller}}
+                            <a href="javascript: $('#frmUpgrade-{{username}}').submit();" class="card-footer-item">
+                                <span class="is-small mr-1"><i class="fa fa-line-chart"></i></span>
+                                GIA HẠN</a>
+                        {{else}}
+                            <a href="javascript: $('#frmUpgrade-{{username}}').submit();" class="card-footer-item">
+                                <span class="is-small mr-1"><i class="fa fa-level-up-alt"></i></span>
+                                NÂNG CẤP</a>
+                        {{/if}}
 
-                        <a href="javascript: $('#frmUpgrade-{{username}}').submit();" class="card-footer-item">
-                            <span class="is-small mr-1"><i class="fa fa-level-up-alt"></i></span>
-                            NÂNG CẤP</a>
                         <a href="javascript: $('#frmCancel-{{username}}').submit();" class="card-footer-item">
                             <span class="is-small mr-1 has-text-danger"><i class="fa fa-ban"></i></span>
                             HỦY
@@ -55,8 +63,28 @@
         {{/each}}
 
     {{/if}}
+    <div class="column is-12">
+        <nav
+                class="pagination is-centered"
+                role="navigation"
+                aria-label="pagination"
+        >
+            {{#if this.pagePrev.isVisible}}
+                <a class="pagination-previous " href="?page={{this.pagePrev.page}}">Trang trước</a>
+            {{/if}}
+            {{#if this.pageNext.isVisible}}
+                <a class="pagination-next" href="?page={{this.pageNext.page}}">Trang sau</a>
+            {{/if}}
 
-
-
-
+            <ul class="pagination-list">
+                {{#each this.pageNumbers}}
+                    {{#if isCurrent}}
+                        <li><a class="pagination-link is-current" href="javascript:;">{{value}}</a></li>
+                    {{else}}
+                        <li><a class="pagination-link" href="?page={{value}}">{{value}}</a></li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </nav>
+    </div>
 </div>

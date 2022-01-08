@@ -669,6 +669,7 @@ INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
 CREATE TABLE `upgrade` (
   `id` varchar(50) NOT NULL,
   `isCheck` tinyint(1) NOT NULL DEFAULT 0,
+  `isCancel` tinyint(1) NOT NULL DEFAULT 0,
   `dateStart` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

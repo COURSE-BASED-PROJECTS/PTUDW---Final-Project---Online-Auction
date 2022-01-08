@@ -13,7 +13,17 @@ export default function (app){
         const topClose = await productModel.findTopClose();
         const topBidder = await productModel.findTopBidder();
         const topPrice = await productModel.findTopPrice();
-
+        let listID = '';
+        for(let i = 0; i < topClose.length; i++){
+            listID += topClose[i].ProID + ' ';
+        }
+        for(let i = 0; i < topBidder.length; i++){
+            listID += topBidder[i].ProID + ' ';
+        }
+        for(let i = 0; i < topPrice.length; i++){
+            listID += topPrice[i].ProID + ' ';
+        }
+        listID = listID.trim()
         // console.log(req.session.auth);
         // console.log(req.session.authAccount);
 
@@ -22,6 +32,7 @@ export default function (app){
             topProductClose: topClose,
             topBidderCount: topBidder,
             topProductPrice: topPrice,
+            listID
         });
     });
 

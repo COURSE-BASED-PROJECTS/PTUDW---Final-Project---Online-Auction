@@ -137,6 +137,12 @@ router.post('/login', async function (req, res) {
             errMessage: "Tài khoản hoặc mật khẩu sai",
         });
     }
+    if (account.isLock === 1) {
+        return res.render('vwSignUp_Login/Login', {
+            layout: 'SignUp_Login',
+            errMessage: "Tài khoản đã bị khóa",
+        });
+    }
     const ret = bcrypt.compareSync(req.body.password, account.password);
     if (ret === false) {
         return res.render('vwSignUp_Login/Login', {

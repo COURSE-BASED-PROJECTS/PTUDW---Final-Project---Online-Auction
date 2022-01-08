@@ -83,7 +83,9 @@ router.get('/detail/:id', async function (req, res) {
     const isSold = await productModel.isSold(ProID);
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
-    const relatives = await productModel.findRelatedProducts(product[0].CatIDNext);
+    const relatives = await productModel.findRelatedProducts(ProID,product[0].CatIDNext);
+    const seller = await accountModel.findByUsername(product[0].Seller);
+    const bidderFlag = await accountModel.findByUsername(product[0].Bidder);
     let isRightSeller = false;
     let isAuth = false;
 
@@ -112,8 +114,11 @@ router.get('/detail/:id', async function (req, res) {
         isAuth,
         isExpired,
         listBid,
+        isHasBidder: listBid.length !==0,
         relatedProducts:relatives,
-        isRightSeller
+        isRightSeller,
+        seller,
+        bidderFlag,
     });
 });
 

@@ -35,6 +35,11 @@ export default function (app){
             listID
         });
     });
+    app.get('/terms', async function (req,res){
+        res.render('terms',{
+            layout:'main.hbs'
+        });
+    });
 
 // route
     app.use('/account',accountRoute);

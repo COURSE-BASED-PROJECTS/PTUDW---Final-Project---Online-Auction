@@ -24,8 +24,13 @@ export default {
         return list
     },
 
-    async findRelatedProducts(CatIDNext){
-        let list = await db.select().table('products').where('CatIDNext',CatIDNext).limit(5);
+    async findRelatedProducts(ProID,CatIDNext){
+        let list = await db.select()
+            .table('products')
+            .where('CatIDNext',CatIDNext)
+            .andWhereNot('ProID',ProID)
+            .orderByRaw('RAND()')
+            .limit(5);
         dateFormat({key:list});
 
         return list

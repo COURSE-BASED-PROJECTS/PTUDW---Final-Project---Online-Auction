@@ -62,7 +62,7 @@ router.get('/:word',async function (req,res){
         },
         pagePrev: {
             page: +page-1,
-            isVisible: (+page === 1 && nPages === 1) ? false : true,
+            isVisible: (+page === 1) ? false : true,
         },
     });
 });

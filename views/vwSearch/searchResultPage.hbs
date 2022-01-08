@@ -1,3 +1,26 @@
+{{#section 'search_engine'}}
+    <script>
+        $('#text').keypress(function(event){
+            const keycode = (event.keyCode ? event.keyCode : event.which);
+
+            if (keycode == '13') {
+                const action = $('#text').val();
+                const url = "/search/" + action;
+                $('#frmSearch').attr('action', url);
+                $('#frmSearch').submit();
+            }
+        });
+        $('#btnSearch').click(function(event){
+            const action = $('#text').val();
+            if (action !== '') {
+                const url = "/search/" + action;
+                $('#frmSearch').attr('action', url);
+                $('#frmSearch').submit();
+            }
+        });
+    </script>
+{{/section}}
+
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12">
         <div class="card-header-title is-size-4-tablet is-size-5-mobile">Tìm thấy {{count}} kết quả cho từ khóa "{{word}}"</div>
@@ -20,10 +43,10 @@
     </div>
 
     {{#each this.product}}
-        <div class="column is-4-tablet is-12-mobile is-flex-desktop-only is-flex-widescreen-only">
-            <div class="card p-5 m-4 card-hover">
-                <header class="card-header">
-                    <p class="card-header-title is-size-5 is-size-7-mobile" >
+        <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover ">
+            <div class="card p-5 m-4">
+                <header class="card-header" style="height: 60px">
+                    <p class="card-header-title is-size-5-desktop is-size-6-tablet is-size-7-mobile" >
                         {{ProName}}
                     </p>
                 </header>
@@ -34,11 +57,11 @@
                         </a>
                     </figure>
                 </div>
-                <div class="card-content py-2 px-0 is-size-7-mobile">
+                <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                     <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
-                            class="has-text-danger-dark">{{PriceCurrent}}</span></strong>
+                            class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
                     <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
-                            class="has-text-danger-dark">{{PriceWin}}</span></strong>
+                            class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
                     <hr class="navbar-divider has-background-grey-dark"/>
                     <div class="content">
                         <strong class="is-block"> Bidder: <a>@{{Bidder}}</a></strong>
@@ -65,29 +88,33 @@
         </div>
     {{/each}}
 
-    <div class="column is-12">
-        <nav
-                class="pagination is-centered"
-                role="navigation"
-                aria-label="pagination"
-        >
+    {{#if this.count}}
+        <div class="column is-12">
+            <nav
+                    class="pagination is-centered"
+                    role="navigation"
+                    aria-label="pagination"
+            >
 
 
-            {{#if this.pagePrev.isVisible}}
-                <a class="pagination-previous " href="?page={{this.pagePrev.page}}">Trang trước</a>
-            {{/if}}
-            {{#if this.pageNext.isVisible}}
-                <a class="pagination-next" href="?page={{this.pageNext.page}}">Trang sau</a>
-            {{/if}}
-            <ul class="pagination-list">
-                {{#each this.pageNumbers}}
-                    {{#if isCurrent}}
-                        <li><a class="pagination-link is-current" href="javascript:;">{{value}}</a></li>
-                    {{else}}
-                        <li><a class="pagination-link" href="?page={{value}}">{{value}}</a></li>
-                    {{/if}}
-                {{/each}}
-            </ul>
-        </nav>
-    </div>
+                {{#if this.pagePrev.isVisible}}
+                    <a class="pagination-previous " href="?page={{this.pagePrev.page}}">Trang trước</a>
+                {{/if}}
+                {{#if this.pageNext.isVisible}}
+                    <a class="pagination-next" href="?page={{this.pageNext.page}}">Trang sau</a>
+                {{/if}}
+                <ul class="pagination-list">
+                    {{#each this.pageNumbers}}
+                        {{#if isCurrent}}
+                            <li><a class="pagination-link is-current" href="javascript:;">{{value}}</a></li>
+                        {{else}}
+                            <li><a class="pagination-link" href="?page={{value}}">{{value}}</a></li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    {{/if}}
+
+
 </div>

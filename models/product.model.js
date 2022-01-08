@@ -150,10 +150,10 @@ export default {
             .where({BidderHistory:username})
             .update({isSuccessful:true,PriceWinAll:priceWinAll});
     },
-    async updateBidderFlag(username,ProID){
+    async updateBidderFlag(username,ProID, PriceCurrent){
         await db('products')
             .where({ProID:ProID})
-            .update({Bidder:username});
+            .update({Bidder:username, PriceCurrent:PriceCurrent});
     },
     async updateCurrentPrice(ProID,PriceCurrent){
         await db('products')

@@ -151,17 +151,6 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
             .update({ pointFromSeller: -1 ,isCancel:true});
-
-        let bidder = await db('products')
-            .where({ProID:ProID,Seller:username})
-            .select('Bidder');
-
-        bidder = bidder[0].Bidder;
-        const point = await accountModel.getPointAccount(bidder);
-
-        await db('account')
-            .where({ username: bidder})
-            .update({ point: +point + -1 });
     },
 
     async cancelSold(username,ProID){

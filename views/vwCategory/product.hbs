@@ -1,12 +1,20 @@
 {{#section 'js_showMessage'}}
     <script>
+        function modifyDesc() {
+            if ($('.modifyDescription').hasClass("is-hidden")) {
+                $('.modifyDescription').removeClass("is-hidden")
+            } else {
+                $('.modifyDescription').toggleClass("is-hidden")
+            }
+        }
+
         function modal_announce() {
             $('.modal_announce').toggleClass("is-active")
-        };
+        }
 
         function close_modal() {
             $('.modal_announce').removeClass("is-active")
-        };
+        }
 
         function modal_verify() {
             if ($('.modal_verify').hasClass("is-active")) {
@@ -14,7 +22,7 @@
             } else {
                 $('.modal_verify').toggleClass("is-active")
             }
-        };
+        }
 
         function modal_priceInvalid() {
             if ($('.modal_priceInvalid').hasClass("is-active")) {
@@ -22,7 +30,7 @@
             } else {
                 $('.modal_priceInvalid').toggleClass("is-active")
             }
-        };
+        }
 
         function modal_isActive() {
             if ($('.modal_isActive').hasClass("is-active")) {
@@ -30,7 +38,7 @@
             } else {
                 $('.modal_isActive').toggleClass("is-active")
             }
-        };
+        }
 
         function modal_expired() {
             if ($('.modal_expired').hasClass("is-active")) {
@@ -38,7 +46,7 @@
             } else {
                 $('.modal_expired').toggleClass("is-active")
             }
-        };
+        }
 
         function modal_lowpoint() {
             if ($('.modal_lowpoint').hasClass("is-active")) {
@@ -46,7 +54,7 @@
             } else {
                 $('.modal_lowpoint').toggleClass("is-active")
             }
-        };
+        }
 
         function modal_price_valid() {
             if ($('.modal_price_valid').hasClass("is-active")) {
@@ -54,7 +62,7 @@
             } else {
                 $('.modal_price_valid').toggleClass("is-active")
             }
-        };
+        }
 
         $('#frmAuction').on('submit', function (e) {
             e.preventDefault();
@@ -82,7 +90,7 @@
                         $('.modal_priceInvalid').toggleClass("is-active")
                         error = true;
                         return
-                    } else if ((+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !== 0) {
+                    } else if (+priceBid <= +infoProduct.PriceCurrent && (+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !== 0) {
                         $('.modal_price_valid').toggleClass("is-active")
                         error = true;
                         return
@@ -107,17 +115,17 @@
                 $('.modal_announce').removeClass("is-active");
                 if (data === false) {
                     $('.modal_isActive').toggleClass("is-active");
-                    return;
+
                 } else if (data === "lowPoint") {
                     $('.modal_lowpoint').toggleClass("is-active");
-                    return;
+
                 } else {
                     const infoProduct = JSON.parse(JSON.stringify(data))
                     if (!infoProduct.isExpired) {
                         $('#frmBuynow').off('submit').submit();
                     } else {
                         $('.modal_announce').removeClass("is-active");
-                        return;
+
                     }
                 }
 
@@ -128,16 +136,16 @@
 
 {{#section 'js_updateInfo'}}
     <script>
-        $('#frmUpdate').on('submit',function(e){
+        $('#frmUpdate').on('submit', function (e) {
             e.preventDefault();
 
             const FullDesc = $('#txtFullDesc').val();
-            if(FullDesc)
+            if (FullDesc)
                 $('#frmUpdate').off('submit').submit();
             else {
                 if ($('#check-info').hasClass("is-hidden")) {
                     $('#check-info').removeClass("is-hidden");
-                }else{
+                } else {
                     $('.check-info').toggleClass('is-hidden');
                 }
             }
@@ -221,13 +229,13 @@
 
             // Display the result in the element with id="demo"
             let countdown = '';
-            if (days != 0){
+            if (days != 0) {
                 countdown += days + " ngày "
             }
-            if (hours != 0){
+            if (hours != 0) {
                 countdown += hours + " giờ "
             }
-            if (minutes != 0){
+            if (minutes != 0) {
                 countdown += minutes + " phút "
             }
             countdown += seconds + " giây";
@@ -495,45 +503,77 @@
                 {{/if}}
 
                 {{#if Seller}}
-                    <div class="column is-12 p-5">
-                        <div class="table-wrapper" style="overflow-x: auto">
-                            <table class="table is-hoverable is-striped is-fullwidth is-bordered">
-                                <hr class="has-background-grey"/>
-                                <div class="card-header-title is-size-4">
-                                    Lịch sử đấu giá
-                                </div>
-                                <thead>
-                                <tr class="has-text-centered">
-                                    <th><abbr title="time">Thời điểm</abbr></th>
-                                    <th><abbr title="bidder">Người mua</abbr></th>
-                                    <th><abbr title="price">Giá</abbr></th>
-                                    <th><abbr title="delete">Xóa</abbr></th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                {{#each this.listBid}}
+                    {{#if this.isRightSeller}}
+                        <div class="column is-12 p-5">
+                            <div class="table-wrapper" style="overflow-x: auto">
+                                <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                                    <hr class="has-background-grey"/>
+                                    <div class="card-header-title is-size-4">
+                                        Lịch sử đấu giá
+                                    </div>
+                                    <thead>
                                     <tr class="has-text-centered">
-                                        <th>{{time}}</th>
-                                        <td>{{mask_name name}}</td>
-                                        <td>{{format_number PriceWinAll}}</td>
-                                        <form action="/product/del/{{BidderHistory}}" method="post"
-                                              id="frmDelAuction-{{BidderHistory}}">
-                                            <input type="text" value="{{ProID}}" name="id" class="is-hidden">
-                                        </form>
-                                        <td>
-                                            <a href="javascript: $('#frmDelActionu-{{BidderHistory}}').submit();">
-                                                <button class="delete"></button>
-                                            </a>
-                                        </td>
+                                        <th><abbr title="time">Thời điểm</abbr></th>
+                                        <th><abbr title="bidder">Người mua</abbr></th>
+                                        <th><abbr title="price">Giá</abbr></th>
+                                        <th><abbr title="delete">Xóa</abbr></th>
                                     </tr>
-                                {{/each}}
+                                    </thead>
+
+                                    <tbody>
+                                    {{#each this.listBid}}
+                                        <tr class="has-text-centered">
+                                            <th>{{time}}</th>
+                                            <td>{{mask_name name}}</td>
+                                            <td>{{format_number PriceWinAll}}</td>
+                                            <form action="/product/del/{{BidderHistory}}" method="post"
+                                                  id="frmDelAuction-{{BidderHistory}}">
+                                                <input type="text" value="{{ProID}}" name="id" class="is-hidden">
+                                            </form>
+                                            <td>
+                                                <a href="javascript: $('#frmDelAuction-{{BidderHistory}}').submit();">
+                                                    <button class="delete"></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    {{else}}
+                        <div class="column is-12 p-5">
+                            <div class="table-wrapper" style="overflow-x: auto">
+                                <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                                    <hr class="has-background-grey"/>
+                                    <div class="card-header-title is-size-4">
+                                        Lịch sử đấu giá
+                                    </div>
+                                    <thead>
+                                    <tr class="has-text-centered">
+                                        <th><abbr title="time">Thời điểm</abbr></th>
+                                        <th><abbr title="bidder">Người mua</abbr></th>
+                                        <th><abbr title="price">Giá</abbr></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {{#each this.listBid}}
+                                        <tr class="has-text-centered">
+                                            <th>{{time}}</th>
+                                            <td>{{mask_name name}}</td>
+                                            <td>{{format_number PriceWinAll}}</td>
+                                        </tr>
+                                    {{/each}}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {{/if}}
                 {{/if}}
             {{/if}}
 
@@ -550,19 +590,38 @@
             </div>
             <span class="column is-12 ">Mã sản phẩm: <strong>{{this.product.ProID}}</strong></span>
 
-            <span class="column is-12 ">Giá hiện tại: <strong>{{format_number
-                    this.product.PriceCurrent}}</strong></span>
+            <div class="column is-12">
+                <div class="level">
+                <span class="level-left">Giá hiện tại: <strong> {{format_number
+                        this.product.PriceCurrent}}</strong></span>
+                    <span class="level-right">Giá mua ngay: <strong> {{format_number
+                            this.product.PriceWin}}</strong></span>
+                </div>
+            </div>
+
+            <div class="column is-12">
+                <div class="level">
+                     <span>Người bán:
+                        <strong><a>#{{this.product.Seller}}</a></strong>
+                     </span>
+
+                    <span>Người đấu giá cao nhất:
+                        <strong><a href="#">#{{this.product.Bidder}}</a></strong>
+                    </span>
+                </div>
+            </div>
 
             <span class="column is-12 ">Bước giá: <strong>{{format_number
-                    this.product.stepPrice}}</strong></span>
+                    this.product.stepPrice}}</strong>
+                <hr class="has-background-grey"/>
+            </span>
 
-            <span class="column is-12  pb-0">Giá mua ngay: <strong>{{format_number this.product.PriceWin}}</strong>
-            <hr class="has-background-grey"/></span>
 
             <span class="column is-12  pt-0">Thời điểm đăng: <strong>{{this.product.DateStart}}</strong></span>
             <input class="is-block is-hidden" id="dateInput" value="{{this.product.DateEnd}}"/>
 
-            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong id="dateEnd" class="has-text-danger">{{this.product.DateEnd}}</strong>
+            <span class="column is-12  pb-0">Thời điểm kết thúc: <strong id="dateEnd"
+                                                                         class="has-text-danger">{{this.product.DateEnd}}</strong>
             <hr class="has-background-grey"/></span>
 
             {{#if this.isAuth}}
@@ -571,9 +630,13 @@
                         <p class="card-header-title">
                             Thông tin sản phẩm
                         </p>
-                        <a class="card-header-icon card-toggle">
-                            <i class="fas fa-edit"></i>
-                        </a>
+
+                        {{#if this.isRightSeller}}
+                            <a class="card-header-icon card-toggle" onclick="modifyDesc();">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        {{/if}}
+
                     </header>
 
                     <div class="card-content">
@@ -582,25 +645,29 @@
 
                     <div class="card-content">
 
-                        <div class="notification is-warning is-hidden check-info">
-                            <strong>Vui lòng thêm mô tả sản phẩm</strong>
-                        </div>
+                        <div class="modifyDescription is-hidden">
+                            <div class="notification is-warning check-info is-hidden">
+                                <strong>Vui lòng thêm mô tả sản phẩm</strong>
+                            </div>
+                            <label class="label" for="txtFullDesc">Bổ sung:</label>
 
-                        <label class="label" for="txtFullDesc">Bổ sung:</label>
-
-                        <div class="control">
-                            <form action="/product/update/{{this.product.ProID}}" method="post" id="frmUpdate">
+                            <div class="control">
+                                <form action="/product/update/{{this.product.ProID}}" method="post" id="frmUpdate">
                                 <textarea class="textarea"
                                           id="txtFullDesc"
-                                          name="FullDesc"> Nhập ở đây...
+                                          name="FullDesc"
+                                          placeholder="Nhập ở đây">
+
                                 </textarea>
 
-                            </form>
+                                </form>
 
-                            <a class="button is-success fa fa-check"
-                               href="javascript: $('#frmUpdate').submit();"> Lưu</a>
+                                <a class="button is-success fa fa-check"
+                                   href="javascript: $('#frmUpdate').submit();"> Lưu</a>
 
+                            </div>
                         </div>
+
 
                     </div>
 
@@ -646,8 +713,11 @@
                     <div class="column is-12">
                         <div class="is-inline-block">
                     <span>Người bán:
-                        <strong><a href="#">#{{this.product.Seller}}</a></strong>
-                        <div class="box has-text-centered has-background-primary">+5</div>
+                        <strong>
+                            <a>#{{this.product.Seller}}
+                            </a>
+                        </strong>
+                        <div class="box has-text-centered has-background-primary pointSellerAccount">+5</div>
                     </span>
                         </div>
 
@@ -665,7 +735,8 @@
                         <div class="column is-8 ">
                             <form action="/product/setPrice" method="post" id="frmAuction">
                                 <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
-                                       name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*">
+                                       name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*"
+                                       value="{{this.product.PriceCurrent}}">
                                 <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
                                        id="ProID">
                             </form>
@@ -688,7 +759,6 @@
                 {{/if}}
 
             {{/if}}
-
         </div>
     </div>
 
@@ -711,22 +781,22 @@
                                     <figure class="image is-16by9 is-covered">
                                         <a href="/product/detail/{{ProID}}">
                                             <img
-                                                src="/img/product/{{ProID}}/1.png"
-                                                alt="{{ProName}}"
+                                                    src="/img/product/{{ProID}}/1.png"
+                                                    alt="{{ProName}}"
                                             />
                                         </a>
                                     </figure>
                                 </div>
                                 <div class="card-content">
                                     <div class="has-text-centered has-text-weight-bold">{{ProName}}</div>
-<!--                                <div class="item__description">-->
-<!--                                    Ici une petite description pour tester le slider-->
-<!--                                </div>-->
+                                    <!--                                <div class="item__description">-->
+                                    <!--                                    Ici une petite description pour tester le slider-->
+                                    <!--                                </div>-->
                                 </div>
                             </div>
                         </div>
                     {{/each}}
-                <!-- End Carousel -->
+                    <!-- End Carousel -->
                 </div>
             </div>
         </section>

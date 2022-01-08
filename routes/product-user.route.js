@@ -69,7 +69,7 @@ router.get('/byCat/:id', async function (req, res) {
         },
         pagePrev: {
             page: +page - 1,
-            isVisible: (+page === 1 && nPages === 1) ? false : true,
+            isVisible: (+page === 1 ) ? false : true,
         },
     });
 });
@@ -84,7 +84,9 @@ router.get('/detail/:id', async function (req, res) {
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
     const relatives = await productModel.findRelatedProducts(product[0].CatIDNext);
+    let isRightSeller = false;
     let isAuth = false;
+
 
     if (req.session.auth) {
         isAuth = await productModel.isAuthProduct(ProID, req.session.authAccount.username);
@@ -94,6 +96,10 @@ router.get('/detail/:id', async function (req, res) {
         } else {
             product[0].isAuction = true;
         }
+
+        if (product[0].Seller === req.session.authAccount.username)
+            isRightSeller = true;
+
     }
 
     if (product === null) {
@@ -107,6 +113,7 @@ router.get('/detail/:id', async function (req, res) {
         isExpired,
         listBid,
         relatedProducts:relatives,
+        isRightSeller
     });
 });
 
@@ -136,7 +143,6 @@ router.get('/infoProduct/:id', async function (req, res) {
         res.json(false);
     }else if (product[0].isVerify) {
         if (+account.point / +account.sumBid < 0.8){
-            console.log('2,5')
             res.json("lowPoint")
         }
         res.json(product[0]);
@@ -206,6 +212,8 @@ router.post('/setPrice', async function (req, res) {
         }
 
 
+
+
         const url = req.headers.referer || '/';
         res.redirect(url);
     }
@@ -231,21 +239,32 @@ router.post('/del/:username', async function (req, res) {
     const username = req.params.username;
     const ProID = req.body.id;
     const product = await productModel.findByProID(ProID);
+    const historybidDel = await historybidModel.findHistorybidByUsername(username,ProID)
+
+    let isFirst = false;
+    if(await historybidModel.checkFirst(username,ProID)){
+        isFirst = true;
+    }
 
     await productModel.updateIsAllowed(ProID, username);
-    const ListBidderAfterDel = await historybidModel.findListBidderAfterDel(ProID);
+    let ListBidderAfterDel = await historybidModel.findListBidderAfterDel(ProID);
+
+    await historybidModel.filterListAfterDel(ListBidderAfterDel,historybidDel.PriceBid,ProID
+        ,product[0].stepPrice,isFirst,product[0].firstPrice);
+    ListBidderAfterDel = await historybidModel.findListBidderAfterDel(ProID);
 
     if (ListBidderAfterDel.length === 0) {
         await productModel.updateBidderFlag(null, ProID);
         await productModel.updateCurrentPrice(ProID, +product[0].firstPrice);
     } else if (ListBidderAfterDel.length === 1) {
         await productModel.updateBidderFlag(ListBidderAfterDel[0].BidderHistory, ProID);
-        await productModel.updateCurrentPrice(ProID, +product[0].firstPrice + +product[0].stepPrice);
-        await productModel.updatePriceWinAll(ProID, ListBidderAfterDel[0].BidderHistory, +product[0].firstPrice + +product[0].stepPrice)
+        await productModel.updateCurrentPrice(ProID, +product[0].firstPrice);
+        await productModel.updatePriceWinAll(ProID, ListBidderAfterDel[0].BidderHistory, +product[0].firstPrice);
     } else {
         const length = ListBidderAfterDel.length;
-        await productModel.updateBidderFlag(ListBidderAfterDel[0].BidderHistory, ProID);
-        await productModel.updateCurrentPrice(ProID, +ListBidderAfterDel[length - 1].PriceWinAll);
+        await productModel.updateBidderFlag(ListBidderAfterDel[0].BidderHistory, ProID,
+            +ListBidderAfterDel[0].PriceWinAll);
+        await productModel.updateCurrentPrice(ProID, +ListBidderAfterDel[0].PriceWinAll);
     }
 
     res.redirect('/product/detail/' + ProID);

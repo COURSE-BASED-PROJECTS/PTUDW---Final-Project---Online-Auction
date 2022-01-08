@@ -2,7 +2,7 @@
     <script>
         const listIDText = document.getElementById("listId").value;
         const listID = listIDText.split(' ');
-        alert(typeof listID);
+
         for (let i = 0; i < listID.length; i++) {
             const dateInput = document.getElementById("dateInput" + listID[i]).value;
             const date = dateInput.split(" ")[0];
@@ -35,7 +35,6 @@
                     countdown += minutes + " phút "
                 }
                 countdown += seconds + " giây";
-                alert(countdown);
                 document.getElementById("dateEnd" + listID[i]).innerHTML = countdown;
 
                 if (distance < 0) {
@@ -46,9 +45,9 @@
         }
     </script>
 {{/section}}
+<input type="text" value="{{this.listID}}" id="listId" class="is-hidden">
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12 p-2">
-        <input type="text" value="{{this.listID}}" id="listId">
         <section class="section">
             <div class="is-size-4-tablet is-size-5-mobile m-3">
                 Top 5 Sản phẩm gần kết thúc
@@ -57,7 +56,7 @@
                 <!-- Start Carousel -->
                 <div class="carousel">
 
-                    {{#each this.topBidderCount}}
+                    {{#each this.topProductClose}}
                         <div class="item-{{ProID}} mx-2">
                             <!-- Slide Content -->
                             <div class="card">
@@ -83,9 +82,10 @@
                                             class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
                                     <hr class="navbar-divider"/>
                                     <div class="content">
-                                        <input class="is-block is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
+
                                         <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
-                                            <span class="is-danger" id="dateEnd{{ProID}}"></span>
+                                            <input class="is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
+                                            <span class="has-text-danger" id="dateEnd{{ProID}}"></span>
                                         </time>
                                     </div>
                                 </div>
@@ -136,9 +136,9 @@
                                             class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
                                     <hr class="navbar-divider"/>
                                     <div class="content">
-                                        <input class="is-block is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
                                         <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
-                                            <span class="is-danger" id="dateEnd{{ProID}}"></span>
+                                            <input class="is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
+                                            <span class="has-text-danger" id="dateEnd{{ProID}}"></span>
                                         </time>
                                     </div>
                                 </div>
@@ -188,9 +188,9 @@
                                             class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
                                     <hr class="navbar-divider"/>
                                     <div class="content">
-                                        <input class="is-block is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
                                         <time datetime="2016-1-1" class="is-block"><strong class="has-text-primary-dark">Kết thúc:</strong>
-                                            <span class="is-danger" id="dateEnd{{ProID}}"></span>
+                                            <input class="is-hidden" id="dateInput{{ProID}}" value="{{DateEnd}}">
+                                            <span class="has-text-danger" id="dateEnd{{ProID}}"></span>
                                         </time>
                                     </div>
                                 </div>

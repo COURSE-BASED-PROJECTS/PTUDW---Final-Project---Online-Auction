@@ -1,14 +1,13 @@
 {{#section 'js'}}
     <script>
 
-        $('#comment').keypress(function(event){
-            const keycode = (event.keyCode ? event.keyCode : event.which);
+        function postCommentFromBidder(ProID){
+            const key = window.event.keyCode;
 
-            if (keycode == '13') {
-                $('#frmComment').submit();
+            if(key === 13){
+                $('#frmComment-'+ProID).submit();
             }
-        });
-
+        }
 
     </script>
 {{/section}}
@@ -45,8 +44,9 @@
                                     <div class="field">
                                         <label class="label">Nhận xét</label>
                                         <div class="control">
-                                            <form action="/info/wonProduct/{{ProID}}" method="post" id="frmComment">
-                                                <textarea class="textarea" placeholder="" name="comment" id="comment"></textarea>
+                                            <form action="/info/wonProduct/{{ProID}}" method="post" id="frmComment-{{ProID}}">
+                                                <textarea class="textarea" placeholder="" name="comment" id="comment"
+                                                          onkeydown="postCommentFromBidder({{ProID}});"></textarea>
                                             </form>
                                         </div>
                                     </div>
@@ -57,12 +57,12 @@
 
                     {{#unless pointFromBidder}}
                         <footer class="card-footer is-size-7-mobile">
-                            <form action="/info/wonProduct/like/{{ProID}}" method="post" id="like"></form>
-                            <a href="javascript: $('#like').submit();" class="card-footer-item">
+                            <form action="/info/wonProduct/like/{{ProID}}" method="post" id="like-{{ProID}}"></form>
+                            <a href="javascript: $('#like-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="has-text-info"><i class="fa fa-thumbs-up"></i></span></a>
 
-                            <form action="/info/wonProduct/dislike/{{ProID}}" method="post" id="dislike"></form>
-                            <a href="javascript: $('#dislike').submit();" class="card-footer-item">
+                            <form action="/info/wonProduct/dislike/{{ProID}}" method="post" id="dislike-{{ProID}}"></form>
+                            <a href="javascript: $('#dislike-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="has-text-danger"><i class="fa fa-thumbs-down"></i></span>
                             </a>
                         </footer>

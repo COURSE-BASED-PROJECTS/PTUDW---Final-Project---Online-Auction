@@ -5,8 +5,9 @@ import moment from "moment";
 
 export default {
     async addHistory(entity,id, count) {
+        console.log(id)
         const list = await db('historybid')
-            .where({ProIDHistory:entity.ProIDHistory,BidderHistory:entity.BidderHistory})
+            .where({ProIDHistory:id,BidderHistory:entity.BidderHistory})
             .select();
 
 
@@ -17,7 +18,7 @@ export default {
             entity.time = new Date();
             entity.isAllowed = true;
             await db('historybid')
-                .where({ProIDHistory:entity.ProIDHistory,BidderHistory:entity.BidderHistory})
+                .where({ProIDHistory:id,BidderHistory:entity.BidderHistory})
                 .update(entity);
         }
 

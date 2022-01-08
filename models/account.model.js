@@ -70,6 +70,10 @@ export default {
         const list = await db('account').where('username',username);
         return list[0].point;
     },
+    async getSumBidAccount(username){
+        const list = await db('account').where('username',username);
+        return list[0].sumBid;
+    },
     async getNameByUsername(username){
         const obj = await db('account').where('username',username).select('name');
         return obj[0].name;

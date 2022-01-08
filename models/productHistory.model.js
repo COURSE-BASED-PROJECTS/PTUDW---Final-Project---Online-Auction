@@ -124,7 +124,7 @@ export default {
         await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({Seller: username,ProIDHistory:ProID})
-            .update({ commentSeller: comment });
+            .update({ commentSeller: comment,isCancel:true});
     },
 
     async updateLikeSeller(username,ProID){
@@ -140,10 +140,11 @@ export default {
 
         bidder = bidder[0].Bidder;
         const point = await accountModel.getPointAccount(bidder);
+        const sumBid = await accountModel.getSumBidAccount(bidder)
 
         await db('account')
             .where({ username: bidder})
-            .update({ point: +point + 1 });
+            .update({ point: +point + 1 ,sumBid : +sumBid+1});
     },
 
     async updateDislikeSeller(username,ProID){
@@ -151,6 +152,17 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({ Seller: username,ProIDHistory:ProID})
             .update({ pointFromSeller: -1 ,isCancel:true});
+
+        let bidder = await db('products')
+            .where({ProID:ProID,Seller:username})
+            .select('Bidder');
+
+        bidder = bidder[0].Bidder;
+        const sumBid = await accountModel.getSumBidAccount(bidder)
+
+        await db('account')
+            .where({ username: bidder})
+            .update({sumBid : +sumBid+1});
     },
 
     async cancelSold(username,ProID){

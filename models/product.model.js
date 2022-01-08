@@ -153,9 +153,9 @@ export default {
         return false;
 
     },
-    async updateSuccessul(username,priceWinAll){
+    async updateSuccessul(username,priceWinAll,ProID){
         await db('historybid')
-            .where({BidderHistory:username})
+            .where({BidderHistory:username,ProIDHistory:ProID})
             .update({isSuccessful:true,PriceWinAll:priceWinAll});
     },
     async updateBidderFlag(username,ProID, PriceCurrent){

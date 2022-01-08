@@ -183,7 +183,7 @@ router.post('/setPrice', async function (req, res) {
 
             await historybidModel.addHistory(historybid, id, product[0].BidderCount);
             await productModel.updateBidderFlag(username, id);
-            await productModel.updateSuccessul(username, product[0].PriceWin);
+            await productModel.updateSuccessul(username, product[0].PriceWin,id);
         } else {
             const priceBidFlag = await historybidModel.getPriceBid(product[0].Bidder, id);
             if (+priceBid <= +priceBidFlag) {

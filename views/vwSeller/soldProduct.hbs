@@ -14,15 +14,13 @@
         }
 
 
-        $('#comment_seller').keypress(function(event){
-            const keycode = (event.keyCode ? event.keyCode : event.which);
+        function postCommentFromSeller(ProID){
+            const key = window.event.keyCode;
 
-            if (keycode == '13') {
-                $('#frmComment-seller').submit();
+            if(key === 13){
+                $("#frmComment-seller-"+ProID).submit();
             }
-        });
-
-
+        }
 
     </script>
 {{/section}}
@@ -60,8 +58,9 @@
                                     <div class="field">
                                         <label class="label">Nhận xét</label>
                                         <div class="control">
-                                            <form action="/seller/soldProduct/{{ProID}}" method="post" id="frmComment-seller">
-                                                <textarea class="textarea" placeholder="" name="comment" id="comment_seller"></textarea>
+                                            <form action="/seller/soldProduct/{{ProID}}" method="post" id="frmComment-seller-{{ProID}}">
+                                                <textarea class="textarea" placeholder="" name="comment" id="comment_seller"
+                                                onkeydown="postCommentFromSeller({{ProID}})"></textarea>
                                             </form>
                                         </div>
                                     </div>
@@ -72,12 +71,12 @@
 
                     {{#unless pointFromSeller}}
                         <footer class="card-footer is-size-7-mobile">
-                            <form action="/seller/soldProduct/like/{{ProID}}" method="post" id="like_bidder"></form>
-                            <a href="javascript: $('#like_bidder').submit();" class="card-footer-item">
+                            <form action="/seller/soldProduct/like/{{ProID}}" method="post" id="like_bidder-{{ProID}}"></form>
+                            <a href="javascript: $('#like_bidder-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="has-text-info"><i class="fa fa-thumbs-up"></i></span></a>
 
-                            <form action="/seller/soldProduct/dislike/{{ProID}}" method="post" id="dislike_bidder"></form>
-                            <a href="javascript: $('#dislike_bidder').submit();" class="card-footer-item">
+                            <form action="/seller/soldProduct/dislike/{{ProID}}" method="post" id="dislike_bidder-{{ProID}}"></form>
+                            <a href="javascript: $('#dislike_bidder-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="has-text-danger"><i class="fa fa-thumbs-down"></i></span>
                             </a>
                         </footer>
@@ -85,8 +84,8 @@
 
                     {{#unless isCancel}}
                         <footer class="card-footer is-size-7-mobile">
-                            <form action="/seller/cancelSoldProduct/{{ProID}}" method="post" id="cancelSold"></form>
-                            <a href="javascript: $('#cancelSold').submit();" class="card-footer-item">
+                            <form action="/seller/cancelSoldProduct/{{ProID}}" method="post" id="cancelSold-{{ProID}}"></form>
+                            <a href="javascript: $('#cancelSold-{{ProID}}').submit();" class="card-footer-item">
                                 <span class="has-text-warning">Hủy giao dịch</span>
                             </a>
                         </footer>

@@ -1,4 +1,4 @@
-<div class="column is-2-tablet is-hidden-mobile">
+<div class="column is-2-tablet is-hidden-touch">
     <aside class="menu is-size-6-tablet">
         <p class="menu-label is-size-6"><strong>Danh mục</strong></p>
         <ul class="menu-list">
@@ -11,7 +11,8 @@
                     <ul class="manual-list list-{{CatID}} {{#unless isActive}}is-hidden{{/unless}}">
                         {{#each listsub}}
                             <li>
-                                <a href="/product/byCat/{{CatIDNext}}" class="{{#if isActive}}is-active{{/if}}">
+                                <a href="/product/byCat/{{CatIDNext}}" class="{{#if isActive}}is-active{{/if}}
+                                is-size-6-desktop is-size-6-tablet">
                                     <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                     {{CatNextName}}
                                 </a>

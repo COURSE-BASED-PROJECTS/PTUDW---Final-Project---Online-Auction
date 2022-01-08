@@ -33,10 +33,10 @@
         <div class="card-header-title is-size-3">Không có sản phẩm đã bán</div>
     {{else}}
         {{#each this.list}}
-            <div class="column is-4-tablet is-12-mobile is-flex-desktop-only">
+            <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover">
                 <div class="card p-5 m-4">
                     <header class="card-header" style="height: 60px">
-                        <p class="card-header-title is-size-5-tablet is-size-7-mobile">
+                        <p class="card-header-title is-size-5-desktop is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
                         <span class="tag is-danger is-medium">sold</span>
@@ -48,7 +48,7 @@
                             </a>
                         </figure>
                     </div>
-                    <div class="card-content py-2 px-0 is-size-7-mobile">
+                    <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark my-2"> Giá thắng: <span
                                 class="has-text-success">#{{format_number PriceWinAll}}</span></strong>
                         <strong class="is-block has-text-info-dark"> Người mua: <a class="has-text-grey-dark">@{{Bidder}}</a></strong>

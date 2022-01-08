@@ -135,10 +135,10 @@
         <div class="card-header-title is-size-3">Không có dữ liệu</div>
     {{else}}
         {{#each this.list}}
-            <div class="column is-4-tablet is-12-mobile card-hover is-flex-desktop-only">
+            <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover">
                 <div class="card p-5 m-4">
                     <header class="card-header" style="height: 60px">
-                        <p class="card-header-title is-size-5-tablet is-size-7-mobile">
+                        <p class="card-header-title is-size-5-desktop is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
                         {{#if isSold}}
@@ -157,7 +157,7 @@
 
                         </figure>
                     </div>
-                    <div class="card-content py-2 px-0 is-size-7-mobile">
+                    <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
                                 class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
                         <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
@@ -181,7 +181,7 @@
                     </div>
 
                     {{#if auth}}
-                        <footer class="card-footer">
+                        <footer class="card-footer is-size-7-mobile">
                             <form action="/product/buynow/{{ProID}}" method="post" id="frmBuynow-{{ProID}}"></form>
                             <a onclick="modal_announce({{ProID}});" class="card-footer-item">
                                 <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>

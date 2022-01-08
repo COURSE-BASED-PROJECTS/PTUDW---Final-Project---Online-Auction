@@ -3,10 +3,10 @@
         <div class="card-header-title is-size-3">Không có lịch sử đấu giá</div>
     {{else}}
         {{#each this.list}}
-            <div class="column is-4-tablet is-12-mobile is-flex-desktop-only">
+            <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover">
                 <div class="card p-5 m-4">
                     <header class="card-header" style="height: 60px">
-                        <p class="card-header-title is-size-4">
+                        <p class="card-header-title is-size-5-desktop is-size-5-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
                         <span class="tag is-medium is-danger">live</span>
@@ -18,7 +18,7 @@
                             </a>
                         </figure>
                     </div>
-                    <div class="card-content py-2 px-0">
+                    <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
                                 class="has-text-danger-dark">{{PriceCurrent}}</span></strong>
                         <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <footer class="card-footer">
+                    <footer class="card-footer is-size-7-mobile">
                         <a href="#" class="card-footer-item">
                             <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>
                             MUA NGAY</a>

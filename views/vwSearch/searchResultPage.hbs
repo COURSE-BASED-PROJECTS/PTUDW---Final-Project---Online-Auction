@@ -43,10 +43,10 @@
     </div>
 
     {{#each this.product}}
-        <div class="column is-4-tablet is-12-mobile is-flex-desktop-only is-flex-widescreen-only">
-            <div class="card p-5 m-4 card-hover">
+        <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover ">
+            <div class="card p-5 m-4">
                 <header class="card-header" style="height: 60px">
-                    <p class="card-header-title is-size-5 is-size-7-mobile" >
+                    <p class="card-header-title is-size-5-desktop is-size-6-tablet is-size-7-mobile" >
                         {{ProName}}
                     </p>
                 </header>
@@ -57,7 +57,7 @@
                         </a>
                     </figure>
                 </div>
-                <div class="card-content py-2 px-0 is-size-7-mobile">
+                <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                     <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
                             class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
                     <strong class="is-block has-text-info-dark"> Giá mua ngay: <span

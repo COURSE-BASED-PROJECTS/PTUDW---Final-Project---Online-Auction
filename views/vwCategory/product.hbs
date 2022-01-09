@@ -4,10 +4,11 @@
         function close_img_modal() {
             $('.modal_image').removeClass("is-active");
         }
-        function modal_img(ProID,img) {
 
-            const src = "/img/product/"+ProID+"/"+img+".png";
-            $(".img_src").attr("src",src);
+        function modal_img(ProID, img) {
+
+            const src = "/img/product/" + ProID + "/" + img + ".png";
+            $(".img_src").attr("src", src);
             $('.modal_image').toggleClass("is-active");
         }
 
@@ -166,7 +167,8 @@
 
 {{#section 'js'}}
 
-    <script src="https://cdn.tiny.cloud/1/k24nz30cf3gjs50204ex4s6pi5wyll3m2qyffv64zathzntm/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/k24nz30cf3gjs50204ex4s6pi5wyll3m2qyffv64zathzntm/tinymce/5/tinymce.min.js"
+            referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '#txtFullDesc',
@@ -691,7 +693,6 @@
     </div>
 
 
-
     <div class="column is-5-tablet is-12-mobile ">
         <div class="columns is-multiline">
             <div class="column is-12 card-header-title is-size-4-tablet is-size-5-mobile ">
@@ -707,10 +708,19 @@
                     {{#if auth}}
                         <div class="level-right has-text-centered">
                             <div class="">
-                                <form action="/info/addFavorite/{{this.product.ProID}}" method="post" id="frmFavorite"></form>
-                                <a href="javascript: $('#frmFavorite').submit();">Yêu thích
-                                    <i class="fa fa-heart has-text-danger"></i>
-                                </a>
+                                {{#if isLiked}}
+                                    <form action="/info/cancelFavorite/{{this.product.ProID}}" method="post"
+                                          id="frmCancelFavorite"></form>
+                                    <a href="javascript: $('#frmCancelFavorite').submit();">Hủy yêu thích
+                                        <i class="fa fa-heart has-text-danger"></i>
+                                    </a>
+                                {{else}}
+                                    <form action="/info/addFavorite/{{this.product.ProID}}" method="post"
+                                          id="frmFavorite"></form>
+                                    <a href="javascript: $('#frmFavorite').submit();" class="has-text-danger">Yêu thích
+                                        <i class="fa fa-heart has-text-danger-light"></i>
+                                    </a>
+                                {{/if}}
                             </div>
                         </div>
                     {{/if}}
@@ -724,7 +734,7 @@
                 <div class="level">
                 <span>Giá hiện tại: <strong> {{format_number
                         this.product.PriceCurrent}}</strong></span>
-                    <span >Giá mua ngay: <strong> {{format_number
+                    <span>Giá mua ngay: <strong> {{format_number
                             this.product.PriceWin}}</strong></span>
                 </div>
             </div>
@@ -843,7 +853,7 @@
                             <div class="column is-12 ">
                                 <hr class="has-background-grey"/>
                             </div>
-                        
+
                             <div class="column is-12 level">
                                 <div class="level-item has-text-centered">
                                     <div class="tag is-danger is-light is-large ">Bạn không được phép đấu giá</div>
@@ -855,7 +865,8 @@
                             </div>
                             <div class="column is-8 ">
                                 <form action="/product/setPrice" method="post" id="frmAuction">
-                                    <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
+                                    <input class="input is-large" type="number" placeholder="Đấu giá"
+                                           id="number_auction"
                                            name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*"
                                            value="{{this.product.PriceCurrent}}">
                                     <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
@@ -869,7 +880,8 @@
                             </div>
 
                             <div class="column is-12 ">
-                                <form action="/product/buynow/{{this.product.ProID}}" method="post" id="frmBuynow"></form>
+                                <form action="/product/buynow/{{this.product.ProID}}" method="post"
+                                      id="frmBuynow"></form>
                                 <a class="box has-background-warning has-text-centered has-text-weight-bold"
                                    onclick="modal_announce();">MUA NGAY</a>
                             </div>
@@ -885,7 +897,6 @@
             {{/if}}
         </div>
     </div>
-
 
 
     <div class="column is-12 p-2">

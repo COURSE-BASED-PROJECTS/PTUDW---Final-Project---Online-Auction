@@ -186,13 +186,22 @@
                             <a onclick="modal_announce({{ProID}});" class="card-footer-item">
                                 <span class="is-small mr-1"><i class="fa fa-shopping-cart"></i></span>
                                 MUA NGAY</a>
+                            {{#if isLiked}}
+                                <form action="/info/cancelFavorite/{{ProID}}" method="post"
+                                      id="frmCancelFavorite-{{ProID}}"></form>
+                                <a href="javascript: $('#frmCancelFavorite-{{ProID}}').submit();" class="card-footer-item">
+                                    <span class="is-small mr-1 has-text-danger"><i class="fa fa-heart"></i></span>
+                                    ĐÃ THÍCH
+                                </a>
+                            {{else}}
+                                <form action="/info/addFavorite/{{ProID}}" method="post"
+                                      id="frmAddFavorite-{{ProID}}"></form>
+                                <a href="javascript: $('#frmAddFavorite-{{ProID}}').submit();" class="card-footer-item has-text-danger">
+                                    <span class="is-small mr-1 has-text-danger-light"><i class="fa fa-heart"></i></span>
+                                    YÊU THÍCH
+                                </a>
+                            {{/if}}
 
-                            <form action="/info/addFavorite/{{ProID}}" method="post"
-                                  id="frmAddFavorite-{{ProID}}"></form>
-                            <a href="javascript: $('#frmAddFavorite-{{ProID}}').submit();" class="card-footer-item">
-                                <span class="is-small mr-1 has-text-danger"><i class="fa fa-heart"></i></span>
-                                YÊU THÍCH
-                            </a>
                         </footer>
                     {{/if}}
                 </div>

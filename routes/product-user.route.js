@@ -1,6 +1,7 @@
 import express, {request} from "express";
 import productModel from "../models/product.model.js";
 import accountModel from "../models/account.model.js";
+import productFavoriteModel from "../models/productFavorite.model.js";
 import historybidModel from "../models/historybid.model.js";
 import lockAuctionAccountModel from "../models/lockAuction.model.js";
 import moment from "moment";
@@ -57,7 +58,12 @@ router.get('/byCat/:id', async function (req, res) {
         if (found)
             break;
     }
-
+    if (req.session.auth) {
+        const username = req.session.authAccount.username;
+        for (const p of list) {
+            p.isLiked = await productFavoriteModel.isFavorite(username, p.ProID);
+        }
+    }
     res.render('vwCategory/category', {
         layout: 'main',
         list,
@@ -90,8 +96,7 @@ router.get('/detail/:id', async function (req, res) {
     let isLockAuction = false;
     let isRightSeller = false;
     let isAuth = false;
-
-
+    let isLiked = false;
     if (req.session.auth) {
         isAuth = await productModel.isAuthProduct(ProID, req.session.authAccount.username);
         isLockAuction = await lockAuctionAccountModel.isLock(req.session.authAccount.username, ProID);
@@ -105,6 +110,8 @@ router.get('/detail/:id', async function (req, res) {
         if (product[0].Seller === req.session.authAccount.username)
             isRightSeller = true;
 
+        const username = req.session.authAccount.username;
+        isLiked = await productFavoriteModel.isFavorite(username, ProID);
 
     }
 
@@ -116,6 +123,7 @@ router.get('/detail/:id', async function (req, res) {
         layout: 'SignUp_login',
         product: product[0],
         isAuth,
+        isLiked,
         isLockAuction,
         isExpired,
         listBid,
@@ -397,7 +405,7 @@ router.post('/del/:username', async function (req, res) {
             "Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
         sendMail(accountCurrent.email, content);
 
-        // gửi email cho ng giữ giá mới. 
+        // gửi email cho ng giữ giá mới.
         const accountNew = await accountModel.findByUsername(newBidder);
         const contentNew = "Giá sản phẩm: " + product[0].ProName
             + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +

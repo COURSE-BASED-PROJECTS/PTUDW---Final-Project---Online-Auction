@@ -13,6 +13,17 @@ export default {
 
         return list
     },
+    async isFavorite(username, ProID){
+        const favorite = await db('favorite')
+            .where({username:username,ProID:ProID})
+            .select();
+
+        if (favorite.length === 0){
+            return false;
+        }
+
+        return true;
+    },
     async cancelFavorite(ProID,username){
         await db('favorite')
             .where({ProID:ProID,username:username})

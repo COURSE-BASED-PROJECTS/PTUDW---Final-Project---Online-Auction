@@ -3,6 +3,7 @@ import accountModel from "../models/account.model.js";
 import upgradeModel from "../models/upgrade.model.js";
 import categoryModel from "../models/category.model.js";
 import productModel from "../models/product.model.js"
+import sendMail from "../utils/sendMail.js";
 
 const router = express.Router();
 
@@ -162,6 +163,11 @@ router.post('/Account/degrade/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.degradeAccount(username);
 
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản của bạn đã bị hạ cấp thành Bidder. Vui lòng liên hệ với chúng tôi để biết thêm chi tiết. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
+
     const url = req.headers.referer || '/';
     res.redirect(url);
 });
@@ -169,6 +175,11 @@ router.post('/Account/degrade/:username', async function (req, res) {
 router.post('/Account/lock/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.lockAccount(username);
+
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã bị khóa. Bạn sẽ không thể đăng nhập vào hệ thống. ' +
+        'Vui lòng liên hệ lại chúng tôi đễ biết thêm chi tiết';
+    sendMail(user.email, content);
 
     const url = req.headers.referer || '/';
     res.redirect(url);
@@ -178,6 +189,11 @@ router.post('/Account/unlock/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.unlockAccount(username);
 
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã được mở khóa. Bạn đã có thể đăng nhập vào hệ thống. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
+
     const url = req.headers.referer || '/';
     res.redirect(url);
 });
@@ -185,6 +201,12 @@ router.post('/Account/unlock/:username', async function (req, res) {
 router.post('/Account/upgrade/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.upgradeAccount(username);
+
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã được xét duyệt nâng cấp thành Seller. ' +
+        'Bạn đã được quyền đăng tải sản phẩm. Vui lòng đăng nhập lại để cập nhật chức năng. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
 
     const url = req.headers.referer || '/';
     res.redirect(url);
@@ -194,6 +216,10 @@ router.post('/Account/cancel/:username', async function (req, res) {
     const username = req.params.username;
     await accountModel.cancelUpgradeAccount(username);
 
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã bị từ chối nâng cấp thành Seller. ' +
+        'Vui lòng liên hệ lại chúng tôi đễ biết thêm chi tiết';
+    sendMail(user.email, content);
     const url = req.headers.referer || '/';
     res.redirect(url);
 });
@@ -201,6 +227,14 @@ router.post('/Account/cancel/:username', async function (req, res) {
 router.post('/delProduct/:ProID', async function (req, res) {
     const ProID = req.params.ProID;
     await productModel.delProduct(ProID);
+
+    const product = await productModel.findByProID(ProID);
+    const accountSeller = await accountModel.findByUsername(product[0].Seller);
+    const content = "Sản phẩm: " + product[0].ProName
+        + " của bạn đăng vào lúc: " + product[0].DateStart + " đã bị xóa khỏi hệ thống vì lí do nào đó. " +
+        "Vui lòng liên hệ với chúng tôi để biết thêm thông tin chi tiết."
+        + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
+    sendMail(accountSeller.email, content);
 
     const url = req.headers.referer || '/';
     res.redirect(url);

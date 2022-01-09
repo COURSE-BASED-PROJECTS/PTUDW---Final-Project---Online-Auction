@@ -190,7 +190,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPrice`, `firstPrice`, `Bidder`, `DateStart`, `DateEnd`, `BidderCount`, `Description`, `CatIDNext`, `Seller`, `renewal`, `isVerify`, `Image`) VALUES
 
-(1, 'REALME 8 Pro 8GB - 128GB'        , 8000000 , 10000000, 500000, 7900000 , 'dhuy01', '2021-12-12 23:23:11', '2022-01-31 23:55:00', 1,
+(1, 'REALME 8 Pro 8GB - 128GB'        , 8000000 , 10000000, 500000, 7900000 , 'dhuy01', '2021-12-12 23:23:11', '2022-01-31 23:55:00', 0,
                                         '<p>Thương hiệu: Realme</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.4&quot;, FHD+, Super AMOLED, 1080 x 2400 Pixel</p> <p>Camera sau: 108.0 MP + 8.0 MP + 2.0 MP + 2.0 MP</p> <p>Camera trước: 16.0 MP</p> <p>CPU: 2 x Kryo 465 2.3 GHz + 6 x Kryo 465 1.8 GHz</p> <p>RAM: 8GB</p> <p>Bộ nhớ trong: 128GB</p>',
                                         1, 'dhuy01', 0, 0, null),
 
@@ -205,7 +205,7 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                       '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.7&quot;, Super Retina XDR, OLED, 2778 x 1284 Pixel</p> <p>Camera sau: 12.0 MP + 12.0 MP + 12.0 MP</p> <p>Camera trước: 12.0 MP - CPU: A14 Bionic - 2 x Firestorm 3.1 GHz + 4 x Icestorm 1.8 GHz</p> <p>RAM: 6GB</p> <p>Bộ nhớ trong: 128GB</p>',
                                       1, 'dhuy01', 0, 0, null),
 
-(5, 'SAMSUNG Galaxy Z Fold3 5G 256GB' , 30000000, 41000000, 900000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2022-01-31 16:55:20', 2,
+(5, 'SAMSUNG Galaxy Z Fold3 5G 256GB' , 30000000, 41000000, 900000, 10000000, 'dhuy01', '2021-12-12 09:26:12', '2022-01-31 16:55:20', 0,
                                       '<p>Thương hiệu: Samsung</p> <p>Xuất xứ: Việt Nam/Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh ch&iacute;nh: 7.6&rdquo;, M&agrave;n h&igrave;nh phụ: 6.2&rdquo;, HD+, Ch&iacute;nh: Dynamic AMOLED 2X, phụ: Dynamic AMOLED 2X, 1768 x 2208 Pixel</p> <p>Camera sau: 12.0 MP + 12.0 MP + 12.0 MP</p> <p>Camera trước: 12.0 MP</p> <p>CPU: Snapdragon 888</p> <p>RAM: 12GB</p> <p>Bộ nhớ trong: 256GB</p>',
                                       1, 'dhuy01', 0, 0, null),
 
@@ -237,19 +237,19 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                         '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>M&agrave;n h&igrave;nh: 8.3&quot; - Liquid Retina display - IPS</p> <p>Camera sau: 12MP</p> <p>Camera trước: 12MP</p> <p>CPU: Apple A15 Bionic</p> <p>RAM: 4GB</p> <p>Bộ nhớ trong: 64GB</p> <p>Hệ điều h&agrave;nh: iPadOS</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(13, 'DELL Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
+(13, 'DELL Gaming G15 5511'           , 17000000, 26990000, 500000, 17000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 0,
                                         '<p>CPU: Intel Core i5-11400H</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; WVA (1920 x 1080), 120Hz</p> <p>RAM: 2 x 4GB DDR4 3200MHz</p> <p>Đồ họa: NVIDIA GeForce RTX 3050 4GB GDDR6 / Intel UHD Graphics</p> <p>Lưu trữ: 256GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 3 cell - Pin liền</p> <p>Khối lượng: 2.8 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(14, 'ASUS X415EA-EB640W'             , 9000000 , 16490000, 500000, 9000000 , 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 2,
+(14, 'ASUS X415EA-EB640W'             , 9000000 , 16490000, 500000, 9000000 , 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 0,
                                         '<p>CPU: Intel Core i5-1135G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 1 x 4GB Onboard DDR4</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 11 Home</p> <p>Pin: 2 cell 37 Wh Pin liền</p> <p>Khối lượng: 1.6 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(15, 'ACER Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 1,
+(15, 'ACER Nitro 5 AN515-52-51LW'     , 12990000, 25000000, 500000, 12990000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-13 09:26:12', 0,
                                         '<p>CPU: Intel Core i5-8300H ( 2.3 GHz - 4.0 GHz / 8MB / 4 nh&acirc;n, 8 lu&ocirc;̀ng )</p> <p>M&agrave;n h&igrave;nh: 15.6&quot; IPS ( 1920 x 1080 ) , kh&ocirc;ng cảm ứng</p> <p>RAM: 1 x 8GB DDR4 2666MHz</p> <p>Đồ họa: Intel UHD Graphics 630 / NVIDIA GeForce GTX 1050Ti 4GB GDDR5</p> <p>Lưu trữ: 128GB SSD M.2 SATA / 1TB HDD 5400RPM</p> <p>Hệ điều h&agrave;nh: Linux</p> <p>Pin: 4 cell 48 Wh Pin liền , khối lượng: 2.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
-(16, 'LENOVO Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 1,
+(16, 'LENOVO Yoga Slim 7 '            , 14000000, 26690000, 500000, 14000000, 'dhuy01', '2021-12-01 09:26:12', '2022-01-12 09:26:12', 0,
                                         '<p>CPU: Intel Core i7-1165G7</p> <p>M&agrave;n h&igrave;nh: 14&quot; IPS (1920 x 1080)</p> <p>RAM: 8GB Onboard DDR4 3200MHz</p> <p>Đồ họa: Intel Iris Xe Graphics</p> <p>Lưu trữ: 512GB SSD M.2 NVMe /</p> <p>Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit</p> <p>Pin: 60 Wh Pin liền</p> <p>Khối lượng: 1.4 kg</p>',
                                         2, 'dhuy01', 0, 1, null),
 
@@ -439,67 +439,67 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
 
 (62, 'ASH Sneaker Casual Walking Sporty Shoes'            , 2300000, 5024800 , 400000, 2300000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>D&ograve;ng &lsquo;Spider 620&rsquo; mới mẻ v&agrave; hợp thời trang, đẩy giới hạn của gi&agrave;y chạy bộ bằng c&aacute;ch kết hợp c&aacute;c yếu tố s&aacute;ng tạo, chẳng hạn như chất liệu th&acirc;n thiện với m&ocirc;i trường v&agrave; t&ocirc;ng m&agrave;u truyền cảm hứng. Chi tiết hai lưỡi v&agrave; đế chunky cũng thể hiện tốt. Mũ ni l&ocirc;ng c&oacute; trang tr&iacute; bằng da m&agrave;u phấn.<br /> Chi tiết:</p> <ul> <li>Chiều cao g&oacute;t (cm): 6</li> <li>Chiều cao nền tảng (cm): 0 - 1,5cm</li> <li>Chất liệu: Chrome Free Calf Suede; Thảm Nylon Vintage; T&aacute;i chế Pu b&ecirc; mềm; T&aacute;i chế Brasil mềm; Matte Hotmelt</li> <li>Chất liệu nội thất: Da lợn</li> <li>Chất liệu đế ngo&agrave;i: cao su</li> <li>H&igrave;nh dạng mũi: Tr&ograve;n</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (63, 'RICK OWENS Geth Runner'                             , 9990000, 20135629, 900000, 9990000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Gi&agrave;y thể thao Geth Runner từ bộ sưu tập FW21 Gethsemane by Rick Owens DRKSHDW c&oacute; phần cuối d&aacute;ng thấp với phần g&oacute;t v&agrave; lưỡi thu&ocirc;n d&agrave;i, phần tr&ecirc;n bằng da b&ecirc; hai t&ocirc;ng m&agrave;u v&agrave; đế xốp EVA d&agrave;y mang lại sự thoải m&aacute;i v&agrave; phong c&aacute;ch cho mỗi bước đi .</p> <p>Th&ocirc;ng tin chi tiết</p> <ul> <li>Bọc da</li> <li>Hệ thống viền</li> <li>L&oacute;t da</li> <li>Đệm g&oacute;t</li> <li>M&agrave;u: SỮA / CARNELIAN</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (64, 'DR.MARTENS 1460 Mono Lace-Up Boot'   , 2400000, 3426000 , 400000, 2400000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>1460 Mono l&agrave; đ&ocirc;i bốt Dr.Martens nguy&ecirc;n bản với đế đồng m&agrave;u, d&acirc;y da, đường kh&acirc;u, khoen, d&acirc;y buộc, v&ograve;ng g&oacute;t v&agrave; thậm ch&iacute; cả lớp l&oacute;t&mdash; cho một c&aacute;i nh&igrave;n đơn sắc từ đầu. Giữ lại tất cả cấu tr&uacute;c của phong c&aacute;ch&nbsp; cổ điển, bao gồm c&aacute;c mặt c&oacute; r&atilde;nh, đường kh&acirc;u c&oacute; thể nh&igrave;n thấy v&agrave; v&ograve;ng nối g&oacute;t ch&acirc;n.</p> <ul> <li>Được l&agrave;m bằng da mịn Dr.Martens bền bỉ.</li> <li>Được x&acirc;y dựng tr&ecirc;n đế đệm kh&iacute; mang t&iacute;nh biểu tượng của Dr. Martens, c&oacute; khả năng chống dầu v&agrave; mỡ, chống m&agrave;i m&ograve;n v&agrave; trơn trượt tốt</li> <li>Chất liệu: Bền bỉ v&agrave; nổi tiếng cứng khi bắt đầu, Da mịn, c&oacute; thể được đ&aacute;nh b&oacute;ng sang b&oacute;ng s&aacute;ng hoặc đ&aacute;nh vảy một c&aacute;ch nghệ thuật t&ugrave;y thuộc v&agrave;o sở th&iacute;ch của bạn.</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (65, 'PALLADIUM Pallabrousse Legion Star White'           , 1100000, 2169800 , 300000, 1100000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Trụ cột của huyền thoại Palladium, Pallabrousse Legion l&agrave; chiếc ủng bằng vải ban đầu được sản xuất v&agrave;o năm 1947. Giờ đ&acirc;y, huyền thoại của n&oacute; đang được khởi chạy lại cho một thế hệ nh&agrave; th&aacute;m hiểm mới.</p> <ul> <li>L&agrave; chiếc ủng đ&atilde; diễu h&agrave;nh khắp thế giới với Binh đo&agrave;n Ngoại giao Ph&aacute;p, t&aacute;c phẩm to lớn nhưng thoải m&aacute;i n&agrave;y đ&atilde; được t&aacute;i sinh bằng vật liệu hiện đại đồng thời t&ocirc;n trọng di sản vượt thời gian của n&oacute;.</li> <li>Sử dụng khu&ocirc;n v&agrave; gi&agrave;y Pallabrousse ban đầu l&agrave;m đ&egrave;n dẫn đường cho dự &aacute;n n&agrave;y, c&aacute;c yếu tố ban đầu của thiết kế đ&atilde; được l&agrave;m cho thoải m&aacute;i v&agrave; tinh vi hơn để ph&ugrave; hợp với nhu cầu ng&agrave;y nay.</li> <li>Phần tr&ecirc;n bằng vải cotton 100% hữu cơ của n&oacute; được x&acirc;y dựng dựa tr&ecirc;n đế ngo&agrave;i vấu mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i để giảm mỏi ch&acirc;n v&agrave; c&oacute; c&aacute;c chi tiết trang tr&iacute; trang nh&atilde;, t&ocirc;n vinh vị tr&iacute; của n&oacute; trong lịch sử.</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (66, 'PALLADIUM Pampa X Tech WPN Black'                   , 1900000, 4644057 , 500000, 1900000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Palladium X Michelin ... Hai thương hiệu Ph&aacute;p với c&aacute;c sản phẩm chức năng mang t&iacute;nh biểu tượng đ&atilde; hợp t&aacute;c để mang lại cảm gi&aacute;c cầm nắm tốt nhất. Đế ngo&agrave;i mới n&agrave;y dựa tr&ecirc;n lốp CrossClimate mang lại độ b&aacute;m tuyệt đối nhờ chất liệu cao su đặc biệt v&agrave; bề mặt của n&oacute;. Pampa X Tech l&agrave; một đ&ocirc;i ủng chống thấm nước + bằng vải nubuck / nylon mềm để giữ cho đ&ocirc;i ch&acirc;n của bạn lu&ocirc;n thoải m&aacute;i v&agrave; kh&ocirc; r&aacute;o trong những chuyến kh&aacute;m ph&aacute; th&agrave;nh phố nặng nề của bạn.</p> <ul> <li>UPPER: gi&agrave;y kh&ocirc;ng thấm nước được l&agrave;m chủ yếu bằng da nubuck; qu&yacute; v&agrave; lưỡi bằng vải dệt tổng hợp</li> <li>LINING: chất liệu h&agrave;ng đầu l&agrave; 70% repreve, 30% polyester, chất liệu ph&iacute;a dưới l&agrave; 100% polyester</li> <li>SOCKLINER: EVA đ&uacute;c với tổ ong để tạo sự thoải m&aacute;i v&agrave; đệm - phủ 70% vải bố, 30% polyester</li> <li>BOTTOM + TOE CAP: Đế ngo&agrave;i của Michelin với thiết kế đặc biệt để mang lại độ b&aacute;m tuyệt vời cho mọi điều kiện thời tiết; 100% cao su</li> <li>THƯƠNG HIỆU: Nh&atilde;n dệt tr&ecirc;n lưỡi / nh&atilde;n cao su ở phần tư b&ecirc;n / in ở phần b&ecirc;n / logo GPS tr&ecirc;n phần tư ở giữa</li> <li>C&Aacute;C T&Iacute;NH NĂNG: cấu tạo bootie với m&agrave;ng / gusset / khoen v&agrave; khoen v&ograve;ng ở phần tr&ecirc;n c&ugrave;ng / ren phẳng bằng polyester / gia cố tr&ecirc;n g&oacute;t / Bộ đếm g&oacute;t TPU / đế c&oacute; thể th&aacute;o rời</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (67, 'PALLADIUM Off-Grid Hi Zip Waterproof' , 1700000, 3651600 , 400000, 1700000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Sly, phong c&aacute;ch tương lai với những gợi &yacute; về truyền thống đ&atilde; được kết hợp v&agrave;o sản phẩm mới nhất để th&uacute;c đẩy c&aacute;c giới hạn. Được thiết kế để th&aacute;ch thức quy ước v&agrave; x&aacute;c định lại kh&aacute;m ph&aacute; trong cuộc sống sau khi kh&oacute;a m&aacute;y.</p> <p>Đặc điểm:</p> <ul> <li>Off-Grid nổi bật với đế ngo&agrave;i h&igrave;nh tổ ong qu&aacute; khổ mang đến cảm gi&aacute;c cầm nắm vượt trội, ph&ugrave; hợp về mặt giải phẫu v&agrave; kiểu d&aacute;ng sang trọng.</li> <li>Sự lặp lại của gi&agrave;y sneakerboot n&agrave;y đ&atilde; được x&acirc;y dựng về mặt kỹ thuật để bảo vệ bạn khỏi c&aacute;c yếu tố.</li> <li>Bọc ngo&agrave;i chống nước bao gồm phần tr&ecirc;n v&agrave; một lớp zip chống thấm nước cho ph&eacute;p bạn dễ d&agrave;ng đi v&agrave;o.</li> <li>Th&ecirc;m v&agrave;o d&acirc;y buộc nhanh ch&oacute;ng, m&agrave;u sắc b&oacute;ng bẩy v&agrave; thương hiệu tinh tế, bạn c&oacute; một đ&ocirc;i gi&agrave;y thể thao của tương lai.</li> </ul> <p>Ra khỏi lưới v&agrave; kh&aacute;m ph&aacute; lại thế giới của bạn.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (68, 'PALLADIUM Pallabase Twill Butternut'                , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (69, 'PALLADIUM Pallabase Twill Star White'               , 1000000, 2054025 , 200000, 1000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (70, 'ASH Addict Fur'                                     , 4030000, 6734850 , 700000, 4030000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>L&agrave; một phần mở rộng của loạt Addict nổi tiếng, Addict Fur bổ sung th&ecirc;m l&ocirc;ng giả, l&agrave;m cho cặp kh&ocirc;ng chỉ thời trang m&agrave; c&ograve;n ấm &aacute;p khi bước v&agrave;o đặc biệt l&agrave; trong thời tiết lạnh. Đừng lo, đế chunky cổ điển của Ash vẫn c&ograve;n, c&ugrave;ng với lớp l&oacute;t lưới cho đ&ocirc;i ch&acirc;n của bạn lu&ocirc;n thoải m&aacute;i. M&ocirc; h&igrave;nh n&agrave;y c&oacute; sự kết hợp của c&aacute;c m&agrave;u sắc tương phản.</p> <p>CHI TIẾT:</p> <ul> <li>Chiều cao g&oacute;t (cm): 6,6</li> <li>Chiều cao nền tảng (cm): 0 - 1,5cm</li> <li>Chất liệu: Chrome Free Nubuck; Da b&ecirc; hỗn hợp; L&ocirc;ng th&uacute; giả</li> <li>Chất liệu nội thất: Faux Fur</li> <li>Chất liệu đế ngo&agrave;i: cao su</li> <li>Mũi gi&agrave;y: Tr&ograve;n</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (71, 'ALEXANDER MCQUEEN Hybrid Lace-Up Boot'              , 9800700, 17780100, 800000, 9800700, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Gi&agrave;y cao cổ bằng da b&ecirc; m&agrave;u đen s&aacute;ng b&oacute;ng với chi tiết brogue v&agrave; đế cao su qu&aacute; khổ. Boot d&aacute;ng với h&igrave;nh tr&ograve;n mũi gi&agrave;y. Kết hợp với chữ k&yacute; Alexander McQueen tương phản tr&ecirc;n c&aacute;c tab dải băng.</p> <p>Chất liệu: 100% da b&ecirc;</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (72, 'ASH Fidji'                                          , 3020500, 5242850 , 500000, 3020500, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>TH&Ocirc;NG TIN CHI TIẾT</p> <ul> <li>Chiều cao g&oacute;t (cm): 4</li> <li>Chiều cao đế (cm): 0 - 1,5cm</li> <li>Chất liệu: Chrome Free Calf Suede; Brasil mềm th&acirc;n thiện với m&ocirc;i trường; Metal Free Nappa Calf; T&aacute;i chế Brasil mềm</li> <li>Chất liệu nội thất: Da lợn</li> <li>Chất liệu đế ngo&agrave;i: cao su</li> <li>H&igrave;nh dạng mũi: Tr&ograve;n</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (73, 'ASH Octopus'                                        , 4000000, 6587755 , 400000, 4000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Chọn đ&uacute;ng đ&ocirc;i gi&agrave;y thể thao rất quan trọng - v&igrave; ai lại kh&ocirc;ng th&iacute;ch mặc thứ g&igrave; đ&oacute; thoải m&aacute;i trong khi tr&ocirc;ng thật bắt mắt? V&igrave; vậy, ở đ&acirc;y c&oacute; Octopus - một đ&ocirc;i mới, th&uacute; vị ngồi tr&ecirc;n đế đệm chunky được thiết kế đặc biệt, được ho&agrave;n thiện với c&aacute;c trang tr&iacute; nhiều m&agrave;u tr&ecirc;n mũ. Mỗi m&agrave;u sắc mang đến một rung cảm kh&aacute;c nhau, nhưng tất cả đều vui nhộn v&agrave; phong c&aacute;ch.</p> <p>TH&Ocirc;NG TIN CHI TIẾT</p> <ul> <li>Chiều cao g&oacute;t (cm): 5</li> <li>Chiều cao đế (cm): 0 - 1,5cm</li> <li>Chất liệu: Nubuck; Pu B&ecirc; mềm; Brasil mềm; Nylon cổ điển; Chorme Free Nubuck</li> <li>Chất liệu nội thất: Da lợn</li> <li>Chất liệu đế ngo&agrave;i: cao su</li> <li>H&igrave;nh dạng mũi: Tr&ograve;n</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (74, 'MASTRO ZAVATTI Suede Leather Sneakers'              , 2300000, 4942240 , 300000, 2300000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Gi&agrave;y sneaker da hỗn hợp l&agrave; phong c&aacute;ch gi&agrave;y thể thao tiện dụng, tối giản nhưng sang trọng.</p> <p>Được chế t&aacute;c từ da hỗn hợp mềm mại, n&oacute; c&oacute; kiểu d&aacute;ng đẹp v&agrave; c&aacute;c chi tiết gọn g&agrave;ng.</p> <p>Được thiết kế để tr&ocirc;ng tuyệt vời v&agrave; thoải m&aacute;i khi mặc h&agrave;ng ng&agrave;y. Ho&agrave;n hảo để tạo ra một c&aacute;i nh&igrave;n th&agrave;nh thị sắc n&eacute;t với denim hoặc quần chinos y&ecirc;u th&iacute;ch của bạn.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (75, 'DOLCE & GABBANA Daymaster sneakers' , 9900990, 20907750, 900000, 9900990, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Sự mi&ecirc;u tả</p> <ul> <li>Tinh tế v&agrave; nhẹ nh&agrave;ng, đ&ocirc;i gi&agrave;y thể thao Daymaster nylon n&agrave;y c&oacute; c&aacute;c chi tiết bằng da b&ecirc; được tr&aacute;ng cao su. Ho&agrave;n hảo cho việc sử dụng h&agrave;ng ng&agrave;y, ch&uacute;ng được t&ocirc; điểm bởi logo DG ch&eacute;o mới v&agrave; thể hiện một đế cao su si&ecirc;u dẻo:</li> <li>Nylon tr&ecirc;n</li> <li>C&uacute;p g&oacute;t h&agrave;ng hiệu</li> <li>Ren h&igrave;nh ống với d&acirc;y r&uacute;t</li> <li>Da ch&acirc;n với nh&atilde;n h&agrave;ng hiệu</li> <li>Cụm đ&aacute;y cao su si&ecirc;u nhẹ</li> <li>Mặt h&agrave;ng đi k&egrave;m với bao b&igrave; theo chủ đề</li> <li>Sản xuất tại &Yacute;</li> </ul> <p>Chăm s&oacute;c v&agrave; chi tiết</p> <ul> <li>Th&agrave;nh phần b&ecirc;n ngo&agrave;i: 38% Polyamide 23% Da b&ecirc; 20% Viscose 17% Polyurethane 2% Spandex</li> <li>Th&agrave;nh phần b&ecirc;n trong: 80% Da cừu 20% Da d&ecirc;</li> </ul>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (76, 'BERLUTI Fly Leather Sneaker'                        , 32090000, 47264311 , 900000, 32090000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Gi&agrave;y thể thao cổ thấp&nbsp;</p> <ul> <li>Da b&ecirc; Venezia</li> <li>Da đen v&agrave; l&oacute;t nylon v&agrave; đế bằng vải nỉ</li> <li>Đế gi&agrave;y cao su</li> <li>Sản xuất tại &Yacute;</li> </ul> <p>Chăm s&oacute;c:</p> <p>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng vải mềm, sau đ&oacute; l&agrave; b&ocirc;i s&aacute;p c&oacute; m&agrave;u ph&ugrave; hợp để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute; d&ugrave;ng găng tay đ&aacute;nh b&oacute;ng ch&agrave; x&aacute;t mạnh để l&agrave;m s&aacute;ng b&oacute;ng.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 (77, 'BERLUTI Playtime Scritto Leather Sneaker'           , 14000000, 29745901 , 900000, 14000000, 'nbtram', '2022-01-13 23:00:00', '2022-01-28 23:55:00', 0,
                                                             '<p>Đặc điểm:</p> <ul> <li>Sneaker Low-cut</li> <li>X&acirc;y dựng Incollato</li> <li>Venezia Scritto</li> <li>L&oacute;t v&agrave; đế m&agrave;u trắng</li> <li>Đệm lưỡi v&agrave; đế</li> <li>Đế gi&agrave;y cao su</li> <li>Bộ đếm g&oacute;t đệm b&ecirc;n trong</li> <li>Thiết kế scritto kh&ocirc;ng đối xứng ở hai b&ecirc;n gi&agrave;y</li> <li>Khoen c&oacute; thể nh&igrave;n thấy bằng Palladium</li> <li>Sản xuất tại &Yacute;</li> </ul> <p>Chăm s&oacute;c:</p> <p>Qu&aacute; tr&igrave;nh chăm s&oacute;c đồ da của Venezia bắt đầu bằng việc loại bỏ bụi bẩn bằng c&aacute;ch sử dụng vải mềm, sau đ&oacute; l&agrave; b&ocirc;i s&aacute;p c&oacute; m&agrave;u ph&ugrave; hợp để nu&ocirc;i dưỡng v&agrave; bảo vệ đồ da. Sau đ&oacute; d&ugrave;ng găng tay đ&aacute;nh b&oacute;ng ch&agrave; x&aacute;t mạnh để l&agrave;m s&aacute;ng b&oacute;ng.</p> <p>Để chăm s&oacute;c đế ngo&agrave;i bằng cao su, h&atilde;y sử dụng khăn ẩm ướt c&oacute; x&agrave; ph&ograve;ng để l&agrave;m sạch.</p>',
-                                                            6, 'dhuy01', 0, 0, null),
+                                                            6, 'nbtram', 0, 0, null),
 
 
 (78, 'BERLUTI Alessandro Norwegian Oxford', 42328441, 58793973, 1200000, 42328441 ,'dhuy01', '2021-12-01 09:26:12', '2022-01-31 16:55:20', 0,
@@ -676,6 +676,22 @@ CREATE TABLE `upgrade` (
 --
 -- Indexes for dumped tables
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lockauction`
+--
+
+CREATE TABLE `lockauction` (
+  `id` varchar(50) NOT NULL,
+  `product` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
 
 --
 -- Indexes for table `account`

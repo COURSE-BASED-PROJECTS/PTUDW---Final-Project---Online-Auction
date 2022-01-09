@@ -181,7 +181,7 @@ CREATE TABLE `products` (
   `Seller` varchar(50) DEFAULT NULL,
   `renewal` tinyint(1) NOT NULL DEFAULT 0,
   `isVerify` tinyint(1) NOT NULL DEFAULT 1,
-  `Image` varchar(200) DEFAULT NULL
+  `emailed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

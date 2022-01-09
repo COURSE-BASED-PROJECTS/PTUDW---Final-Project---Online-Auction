@@ -110,6 +110,13 @@ export default {
 
         return list;
     },
+    async findProductEnd(){
+        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        let list = await db('products').where('DateEnd', '<', now);
+        dateFormat({key:list});
+
+        return list
+    },
 
     async delProduct(ProID){
         // del following by step to avoid foreign key error
@@ -187,6 +194,11 @@ export default {
         await db('products')
             .where({ProID:ProID})
             .update({Description: Description + "<p>&nbsp;</p>" + Time + "<p>&nbsp;</p>" + newDescription});
+    },
+    async updateEmailed(ProID){
+        await db('products')
+            .where({ProID:ProID})
+            .update({emailed:1});
     },
 
 }

@@ -72,6 +72,12 @@ router.post('/reviewProfile/changePassword', async function (req, res) {
         password: hash
     }
     await accountModel.updateInfoAccount(entity);
+
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã đổi mật khẩu thành công. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
+
     res.redirect('/info/reviewProfile');
 });
 
@@ -98,6 +104,10 @@ router.post('/reviewProfile/activeEmail', async function (req, res) {
         isActive: 1
     }
     await accountModel.updateInfoAccount(entity);
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn kích hoạt thành công. Chúng tôi sẽ sử dụng email này của bạn để liên hệ với bạn.' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
     res.redirect('/info/reviewProfile');
 });
 
@@ -133,6 +143,11 @@ router.post('/reviewProfile/upgrade', async function (req, res) {
         }
         await upgradeModel.patch(entity)
     }
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã xin xét duyệt trở thành Seller thành công. ' +
+        'Vui lòng chờ kết quả xét duyệt của admin. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
     res.redirect('/info/reviewProfile');
 });
 
@@ -144,6 +159,11 @@ router.post('/reviewProfile/reUpgrade', async function (req, res) {
         isCancel: 0
     }
     await upgradeModel.patch(entity);
+    const user = await accountModel.findByUsername(username);
+    const content = 'Tài khoản ' + user.username + ' của bạn đã xin gia hạn Seller thành công. ' +
+        'Vui lòng chờ kết quả xét duyệt của admin. ' +
+        'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
+    sendMail(user.email, content);
     res.redirect('/info/reviewProfile');
 });
 

@@ -828,7 +828,6 @@
                 {{#if this.isExpired}}
                     <div class="column is-12 ">
                         <hr class="has-background-grey"/>
-
                     </div>
                     <div class="column is-12 level">
                         <div class="level-item has-text-centered">
@@ -838,36 +837,49 @@
 
                 {{else}}
 
-                    <div class="column is-12 ">
-                        <hr class="has-background-grey"/>
-                    </div>
-
 
                     {{#if this.product.isAuction}}
-                        <div class="column is-8 ">
-                            <form action="/product/setPrice" method="post" id="frmAuction">
-                                <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
-                                       name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*"
-                                       value="{{this.product.PriceCurrent}}">
-                                <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
-                                       id="ProID">
-                            </form>
-                        </div>
+                        {{#if this.isLockAuction}}
+                            <div class="column is-12 ">
+                                <hr class="has-background-grey"/>
+                            </div>
+                        
+                            <div class="column is-12 level">
+                                <div class="level-item has-text-centered">
+                                    <div class="tag is-danger is-light is-large ">Bạn không được phép đấu giá</div>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="column is-12 ">
+                                <hr class="has-background-grey"/>
+                            </div>
+                            <div class="column is-8 ">
+                                <form action="/product/setPrice" method="post" id="frmAuction">
+                                    <input class="input is-large" type="number" placeholder="Đấu giá" id="number_auction"
+                                           name="number" step="{{this.product.stepPrice}}" pattern="[0-9]*"
+                                           value="{{this.product.PriceCurrent}}">
+                                    <input type="number" value="{{this.product.ProID}}" class="is-hidden" name="id"
+                                           id="ProID">
+                                </form>
+                            </div>
+
+                            <div class="column is-4 has-text-centered has-text-weight-bold">
+                                <a class="box has-background-primary"
+                                   onclick="modal_verify();">Đấu giá</a>
+                            </div>
+
+                            <div class="column is-12 ">
+                                <form action="/product/buynow/{{this.product.ProID}}" method="post" id="frmBuynow"></form>
+                                <a class="box has-background-warning has-text-centered has-text-weight-bold"
+                                   onclick="modal_announce();">MUA NGAY</a>
+                            </div>
+                        {{/if}}
+
+
                     {{/if}}
 
 
-                    {{#if this.product.isAuction}}
-                        <div class="column is-4 has-text-centered has-text-weight-bold">
-                            <a class="box has-background-primary"
-                               onclick="modal_verify();">Đấu giá</a>
-                        </div>
-                    {{/if}}
 
-                    <div class="column is-12 ">
-                        <form action="/product/buynow/{{this.product.ProID}}" method="post" id="frmBuynow"></form>
-                        <a class="box has-background-warning has-text-centered has-text-weight-bold"
-                           onclick="modal_announce();">MUA NGAY</a>
-                    </div>
                 {{/if}}
 
             {{/if}}

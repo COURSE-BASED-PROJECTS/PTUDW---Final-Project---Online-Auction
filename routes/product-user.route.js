@@ -218,6 +218,7 @@ router.post('/setPrice', async function (req, res) {
 
                 await historybidModel.addHistory(historybid, id, product[0].BidderCount);
                 await productModel.updateCurrentPrice(id, priceBid)
+
                 // email người bán giá thay đổi
                 const accountSeller = await accountModel.findByUsername(product[0].Seller);
                 const contentSeller = "Sản phẩm: " + product[0].ProName
@@ -332,8 +333,12 @@ router.post('/buynow/:id', async function (req, res) {
 router.post('/del/:username', async function (req, res) {
     const username = req.params.username;
     const ProID = req.body.id;
-    const product = await productModel.findByProID(ProID);
-    const historybidDel = await historybidModel.findHistorybidByUsername(username, ProID)
+    let product = await productModel.findByProID(ProID)
+
+    // tìm username ng giữ giá hiện tại - 1
+    const currentBidder = product[0].Bidder;
+
+    const historybidDel = await historybidModel.findHistorybidByUsername(username, ProID);
 
     let isFirst = false;
     if (await historybidModel.checkFirst(username, ProID)) {
@@ -368,13 +373,41 @@ router.post('/del/:username', async function (req, res) {
 
     await lockAuctionAccountModel.addLockAuctionAccount(lockAccount);
 
-    // tìm username ng giữ giá hiện tại - 1
+
     // tìm username ng giữ giá sau khi xóa - 2
-    //TH1: 1===2
+    product = await productModel.findByProID(ProID);
+    const newBidder = product[0].Bidder;
+
+    //TH1: 1===2 -> người giữ giá không bị xóa
     // gửi email cho ng bị xóa đã bị từ chối từ seller
-    // TH2: 1 khác 2
-    // gửi email cho ng đang giữ giá hiện tại đã bị lock đấu giá sp này
-    // gửi email cho ng giữ giá mới. chúc mừng chú em
+    if (currentBidder === newBidder){
+        const accountCancel = await accountModel.findByUsername(username);
+        const content = "Bạn đã bị từ chối đấu giá sản phẩm: " + product[0].ProName
+            + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+            product[0].Seller +
+            ". Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+        sendMail(accountCancel.email, content);
+    } else {
+        // TH2: 1 khác 2
+        // gửi email cho ng đang giữ giá cũ đã bị lock đấu giá sp này
+        const accountCurrent = await accountModel.findByUsername(currentBidder);
+        const content = "Bạn đã bị từ chối đấu giá sản phẩm: " + product[0].ProName
+            + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+            product[0].Seller + ". Bạn không thể tiếp tục đấu giá sản phẩm này. " +
+            "Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+        sendMail(accountCurrent.email, content);
+
+        // gửi email cho ng giữ giá mới. 
+        const accountNew = await accountModel.findByUsername(newBidder);
+        const contentNew = "Giá sản phẩm: " + product[0].ProName
+            + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+            product[0].Seller + " hiện tại là: " + product[0].PriceCurrent
+            + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
+            "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+        sendMail(accountNew.email, contentNew);
+    }
+
+
 
     res.redirect('/product/detail/' + ProID);
 });

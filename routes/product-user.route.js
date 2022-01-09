@@ -2,9 +2,9 @@ import express, {request} from "express";
 import productModel from "../models/product.model.js";
 import accountModel from "../models/account.model.js";
 import historybidModel from "../models/historybid.model.js";
+import lockAuctionAccountModel from "../models/lockAuction.model.js";
 import moment from "moment";
-import fs from "fs";
-import multer from "multer";
+
 
 const router = express.Router();
 
@@ -86,12 +86,14 @@ router.get('/detail/:id', async function (req, res) {
     const relatives = await productModel.findRelatedProducts(ProID,product[0].CatIDNext);
     const seller = await accountModel.findByUsername(product[0].Seller);
     const bidderFlag = await accountModel.findByUsername(product[0].Bidder);
+    let isLockAuction = false;
     let isRightSeller = false;
     let isAuth = false;
 
 
     if (req.session.auth) {
         isAuth = await productModel.isAuthProduct(ProID, req.session.authAccount.username);
+        isLockAuction = await lockAuctionAccountModel.isLock(req.session.authAccount.username,ProID);
 
         if (product[0].Bidder === req.session.authAccount.username) {
             product[0].isAuction = false;
@@ -101,6 +103,7 @@ router.get('/detail/:id', async function (req, res) {
 
         if (product[0].Seller === req.session.authAccount.username)
             isRightSeller = true;
+
 
     }
 
@@ -112,6 +115,7 @@ router.get('/detail/:id', async function (req, res) {
         layout: 'SignUp_login',
         product: product[0],
         isAuth,
+        isLockAuction,
         isExpired,
         listBid,
         isHasBidder: listBid.length !==0,
@@ -229,14 +233,20 @@ router.post('/buynow/:id', async function (req, res) {
     const id = req.params.id;
     const product = await productModel.findByProID(id);
     const username = req.session.authAccount.username;
+
     const historybid = {
         ProIDHistory: id,
         BidderHistory: username,
+        PriceBid: product[0].PriceWin,
         PriceWinAll: product[0].PriceWin,
-        isSuccessful: 1
+        PriceStart: product[0].PriceCurrent,
+        isSuccessful: 1,
     }
 
-    await historybidModel.addHistoryBuyNow(historybid);
+    await historybidModel.addHistory(historybid, id, product[0].BidderCount);
+    await productModel.updateBidderFlag(username, id);
+    await productModel.updateSuccessul(username, product[0].PriceWin,id);
+
     res.redirect('/info/wonProduct');
 });
 
@@ -272,8 +282,14 @@ router.post('/del/:username', async function (req, res) {
         await productModel.updateCurrentPrice(ProID, +ListBidderAfterDel[0].PriceWinAll);
     }
 
-    res.redirect('/product/detail/' + ProID);
+    const lockAccount = {
+        id:username,
+        product: ProID
+    }
 
+    await lockAuctionAccountModel.addLockAuctionAccount(lockAccount);
+
+    res.redirect('/product/detail/' + ProID);
 });
 
 

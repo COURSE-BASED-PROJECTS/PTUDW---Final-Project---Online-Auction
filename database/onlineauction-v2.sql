@@ -632,7 +632,7 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
                                             '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>C&ocirc;ng suất l&agrave;m n&oacute;ng: 550W</li> <li>C&ocirc;ng suất l&agrave;m lạnh: 120W</li> <li>Nhiệt độ l&agrave;m lạnh: &le;10 độ C/2L/h</li> <li>Nhiệt độ l&agrave;m n&oacute;ng:&nbsp;&ge;85 độ C/4L/h</li> <li>Sử dụng nước b&igrave;nh 11L&iacute;t hoặc 19L&iacute;t</li> </ul> '
                                             ,9, 'nbtram', 0, 0),
 
-(110, 'Máy Nước Nóng SB35E-VN'            , 500000, 1000000, 50000, 500000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
+(110, 'Máy Nước Nóng Ariston SB35E-VN'    , 500000, 1000000, 50000, 500000, 'nbtram', '2021-12-01 09:26:12', '2022-01-13 16:55:20', 0, 
                                             '<p>T&iacute;nh năng nổi bật:</p> <ul> <li>Loại m&aacute;y nước n&oacute;ng: Trực tiếp</li> <li>Bơm trợ lực: Kh&ocirc;ng</li> <li>Hiển thị nhiệt độ: N&uacute;m vặn</li> <li>Nhiệt độ ổn định: Kh&ocirc;ng</li> <li>V&ograve;i sen: 1 chế độ</li> <li>Hệ thống chống bỏng th&ocirc;ng minh: Kh&ocirc;ng</li> </ul> '
                                             ,9, 'nbtram', 0, 0),
 

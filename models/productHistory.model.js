@@ -121,9 +121,13 @@ export default {
     },
 
     async updateCommentSeller(username,ProID,comment){
+        let bidder = await db('products')
+            .where({ProID:ProID,Seller:username})
+            .select('Bidder');
+
         await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({Seller: username,ProIDHistory:ProID})
+            .where({Seller: username,ProIDHistory:ProID,BidderHistory: bidder})
             .update({ commentSeller: comment,isCancel:true});
     },
 

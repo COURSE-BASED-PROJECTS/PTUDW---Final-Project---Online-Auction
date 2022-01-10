@@ -5,6 +5,7 @@ import categoryModel from "../models/category.model.js";
 import productModel from "../models/product.model.js"
 import sendMail from "../utils/sendMail.js";
 import numeral from "numeral";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -158,6 +159,24 @@ router.get('/verifySeller', async function (req, res) {
             isVisible: (+page === 1) ? false : true,
         }
     });
+});
+
+router.post('/Account/resetPassword', async function (req, res) {
+    const list = await accountModel.findAll();
+    let content = '';
+    for (let acc of list){
+        let rawPassword = acc.username;
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(rawPassword, salt);
+        await accountModel.updateInfoAccount({username: acc.username, password: hash});
+
+        content = 'Tài khoản ' + acc.username + ' của bạn đã được hệ thống đặt lại mật khẩu. ' +
+            'Mật khẩu được đặt lại trùng với tên đăng nhập của bạn. Vui lòng kiểm tra lại và đổi mật khẩu mới';
+        sendMail(acc.email, content);
+    }
+
+    const url = req.headers.referer || '/';
+    res.redirect(url);
 });
 
 router.post('/Account/degrade/:username', async function (req, res) {

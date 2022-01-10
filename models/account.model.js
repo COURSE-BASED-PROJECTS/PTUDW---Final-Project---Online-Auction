@@ -35,7 +35,10 @@ export default {
     async degradeAccount(username){
         await db('account')
             .where({ username: username})
-            .update({ level: 'bidder' })
+            .update({ level: 'bidder' });
+        await db('upgrade')
+            .where({ id: username})
+            .update({ isCancel: 1 })
     },
 
     async upgradeAccount(username){

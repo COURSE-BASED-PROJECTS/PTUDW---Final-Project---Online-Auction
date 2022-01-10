@@ -12,14 +12,50 @@
             }
         });
     </script>
+    <script>
+        function modal_announce() {
+            $('.modal_announce').toggleClass("is-active")
+        };
+
+        function close_modal() {
+            $('.modal_announce').removeClass("is-active")
+        };
+    </script>
 {{/section}}
 <div class="columns is-multiline is-mobile p-2">
+    <div class="modal modal_announce">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Xác nhận</p>
+                <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Bạn có muốn đặt lại toàn bộ mật khẩu của các tài khoản trong hệ thống?
+                </p>
+            </section>
+            <footer class="modal-card-foot">
+                <a class="button is-success"
+                   href="javascript: $('#frmReset').submit();">Đồng ý</a>
+                <a class="button" onclick="close_modal();">Hủy</a>
+            </footer>
+        </div>
+    </div>
     <div class="column is-12">
         <div class="card-header-title is-size-4-tablet is-size-5-mobile is-size-2-desktop has-text-danger-dark">
             Danh sách tài khoản trong hệ thống
         </div>
         <hr class="has-background-grey"/>
     </div>
+
+    <div class="column is-12">
+        <form action="/admin/Account/resetPassword" method="post" id="frmReset"></form>
+        <a onclick="modal_announce();" class="button">
+            <i class="fa fa-refresh mr-2"></i>
+            Đặt lại mật khẩu
+        </a>
+    </div>
+
     <div class="is-12 column mt-0">
         <div class="table-wrapper" style="overflow-x: auto">
             <table class="table is-hoverable is-striped is-fullwidth is-bordered">

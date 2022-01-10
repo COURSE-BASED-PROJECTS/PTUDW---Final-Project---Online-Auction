@@ -16,8 +16,15 @@ export default function (app) {
         } else if (req.session.auth !== false) {
             const account = req.session.authAccount;
 
-            if (account.level === 'bidder')
+            if (account.level === 'bidder'){
+                const info = await upgradeModel.findUsername(account.username);
+                if (info !== null) {
+                    res.locals.oldSeller = true;
+                } else {
+                    res.locals.oldSeller = false;
+                }
                 res.locals.Bidder = true;
+            }
             else if (account.level === 'seller') {
                 const info = await upgradeModel.findUsername(account.username);
                 if (info !== null) {

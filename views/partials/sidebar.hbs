@@ -48,6 +48,24 @@
             </ul>
         {{/if}}
 
+        {{#if oldSeller}}
+            <p class="menu-label is-size-6 "><strong>Bán</strong></p>
+            <ul class="menu-list">
+                <li>
+                    <a href="/seller/liveProduct" class="{{#if this.isLive}}is-active{{/if}}">
+                        <i class="fa fa-balance-scale-right mr-3" aria-hidden="true"></i>
+                        Sản phẩm đang đăng
+                    </a>
+                </li>
+                <li>
+                    <a href="/seller/soldProduct" class="{{#if this.isSold}}is-active{{/if}}">
+                        <i class="fa fa-money mr-3" aria-hidden="true"></i>
+                        Sản phẩm đã bán
+                    </a>
+                </li>
+            </ul>
+        {{/if}}
+
         {{#if Admin}}
             <p class="menu-label is-size-6 "><strong>Bán</strong></p>
             <ul class="menu-list">

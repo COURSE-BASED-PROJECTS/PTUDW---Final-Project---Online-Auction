@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/:word',async function (req,res){
     const word = req.params.word;
     const type = req.query.type;
+
     let type_1 = false,type_2=false,type_3=false,type_4=false;
     let type_price = false,type_time = false
 
@@ -36,7 +37,8 @@ router.get('/:word',async function (req,res){
         product = await productModel.searchProductByType(word,type,limit,offset);
     }
 
-    const count = product.length;
+    const list = await productModel.searchProductBySearching(word)
+    const count = list.length;
     let nPages = Math.floor(count/limit);
     if(count%limit >0) nPages++;
 
@@ -44,7 +46,8 @@ router.get('/:word',async function (req,res){
     for(let i=1;i<=nPages;i++){
         pageNumbers.push({
             value: i,
-            isCurrent: +page === i
+            isCurrent: +page === i,
+            type:type,
         });
     }
 
@@ -53,6 +56,7 @@ router.get('/:word',async function (req,res){
         product,
         word,
         count,
+        type,
         type_1,type_2,type_3,type_4,
         type_price, type_time,
         pageNumbers,

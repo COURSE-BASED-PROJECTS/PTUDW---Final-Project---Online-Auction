@@ -112,5 +112,27 @@ export default {
 
 
         return result;
+    },
+    async isOnAuction(username, ProID) {
+        const list = await db('historybid')
+            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
+            .where({BidderHistory:username,Bidder:username})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(!(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID))){
+                if(p.ProID === ProID)
+                    return true;
+            }
+        }
+
+
+        return false;
     }
 }

@@ -145,8 +145,17 @@
                             <span class="tag is-danger is-medium">sold</span>
                         {{else}}
                             {{#if isNew}}
-                                <span class="tag is-success is-medium">new</span>
+                                {{#if isOnAuction}}
+                                    <span class="tag is-info is-medium">Bidding</span>
+                                {{else}}
+                                    <span class="tag is-success is-medium">new</span>
+                                {{/if}}
+                            {{else}}
+                                {{#if isOnAuction}}
+                                    <span class="tag is-info is-medium">Bidding</span>
+                                {{/if}}
                             {{/if}}
+
                         {{/if}}
                     </header>
                     <div class="card-image">

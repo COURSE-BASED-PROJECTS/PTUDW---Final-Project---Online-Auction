@@ -2,6 +2,7 @@ import express, {request} from "express";
 import productModel from "../models/product.model.js";
 import accountModel from "../models/account.model.js";
 import productFavoriteModel from "../models/productFavorite.model.js";
+import productOnAuctionModel from "../models/productOnAuction.model.js";
 import historybidModel from "../models/historybid.model.js";
 import lockAuctionAccountModel from "../models/lockAuction.model.js";
 import moment from "moment";
@@ -42,6 +43,8 @@ router.get('/byCat/:id', async function (req, res) {
         p.auth = req.session.auth;
         p.isSold = await productModel.isSold(p.ProID);
         p.isNew = await productModel.isNew(p.ProID, 10);
+        if(req.session.auth)
+            p.isOnAuction = await productOnAuctionModel.isOnAuction(req.session.authAccount.username,p.ProID);
     }
 
     let found = false;

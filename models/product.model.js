@@ -87,6 +87,16 @@ export default {
 
         return list[0];
     },
+    async searchProductBySearching(word){
+        const sql = `SELECT *
+                     FROM products
+                     WHERE MATCH (ProName) AGAINST ('${word}')`
+
+        const list = await db.raw(sql);
+        dateFormat({key:list[0]});
+
+        return list[0];
+    },
 
     async searchProductByType(word,t,limit,offset){
         const type = classifyTypeSort(t);
@@ -200,5 +210,14 @@ export default {
             .where({ProID:ProID})
             .update({emailed:1});
     },
+    async findByOffset(limit,offset){
+        const list = await db('products')
+            .limit(limit)
+            .offset(offset)
+            .select();
+        dateFormat({key:list});
+
+        return list;
+    }
 
 }

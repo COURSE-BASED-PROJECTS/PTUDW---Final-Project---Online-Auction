@@ -4,13 +4,14 @@ import upgradeModel from "../models/upgrade.model.js";
 import categoryModel from "../models/category.model.js";
 import productModel from "../models/product.model.js"
 import sendMail from "../utils/sendMail.js";
+import numeral from "numeral";
 
 const router = express.Router();
 
 router.get('/updateCategory', async function (req, res) {
     const listCategory = await categoryModel.findCategory();
     const listCategoryNext = await categoryModel.findCategoryNext();
-    const listProduct = await productModel.findAll();
+    const listProduct = await productModel.findByOffset(6,0);
 
     for (const product of listProduct) {
         product.NameCatIDNext = await categoryModel.findByCatIDNext(product.CatIDNext);
@@ -254,6 +255,17 @@ router.post('/delCat/:CatID', async function (req, res) {
 
     const url = req.headers.referer || '/';
     res.redirect(url);
+});
+
+router.get('/loadmore', async function (req, res) {
+    const offset = req.query.offset;
+    const list = await productModel.findByOffset(6,(offset)*6);
+
+    for (const product of list) {
+        product.NameCatIDNext = await categoryModel.findByCatIDNext(product.CatIDNext);
+        product.PriceCurrent = await numeral(product.PriceCurrent).format('0,0');
+    }
+    res.json(list);
 });
 
 export default router

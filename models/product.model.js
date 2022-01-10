@@ -210,5 +210,14 @@ export default {
             .where({ProID:ProID})
             .update({emailed:1});
     },
+    async findByOffset(limit,offset){
+        const list = await db('products')
+            .limit(limit)
+            .offset(offset)
+            .select();
+        dateFormat({key:list});
+
+        return list;
+    }
 
 }

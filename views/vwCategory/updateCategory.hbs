@@ -1,3 +1,40 @@
+{{#section 'loadmore'}}
+    <script>
+        let offset = 1;
+
+        function loadmore(){
+            $.getJSON(`/admin/loadmore?offset=${offset}`, function (data) {
+                const list = JSON.parse(JSON.stringify(data));
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    html += "<tr class='has-text-centered'>";
+                    html += `<th>${data[i].ProID}</th>`;
+                    html += `<td>${data[i].ProName}</td>`;
+                    html += `<td>${data[i].PriceCurrent}</td>`;
+                    html += `<th>${data[i].NameCatIDNext}</th>`;
+                    html += `<td>${data[i].Seller}</td>`;
+                    html += `<td>${data[i].DateStart}</td>`;
+                    html += `<td>${data[i].DateEnd}</td>`;
+                    html += `<form action="/admin/delProduct/${data[i].ProID}" method="post" id="frmDelProduct-${data[i].ProID}"></form>`;
+                    html += `<td><a href="javascript: $('#frmDelProduct-${data[i].ProID}').submit();">
+                                <button class="delete mt-2"></button>
+                            </a></td>`;
+
+                    html += "</tr>";
+                }
+
+                // Appending the data below old data in <tbody> tag
+                document.getElementById("data").innerHTML += html;
+
+                offset = offset + 1;
+
+            });
+        }
+
+    </script>
+{{/section}}
+
+
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-12">
         <div class="card-header-title is-size-4-tablet is-size-5-mobile is-size-2-desktop has-text-danger-dark">
@@ -120,7 +157,7 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="data">
 
                 {{#each this.listProduct}}
                     <tr class="has-text-centered">
@@ -136,6 +173,7 @@
 <!--                            <a href="/admin/updateCategory/*" class="button is-size-7 is-rounded is-light">-->
 <!--                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>-->
 <!--                            </a>-->
+
                             <a href="javascript: $('#frmDelProduct-{{ProID}}').submit();">
                                 <button class="delete mt-2"></button>
                             </a>
@@ -143,8 +181,12 @@
                     </tr>
                 {{/each}}
 
+
                 </tbody>
             </table>
+            <div class="has-text-centered">
+                <a class="button is-primary is-outlined" onclick="loadmore();">Tải thêm...</a>
+            </div>
         </div>
     </div>
 </div>

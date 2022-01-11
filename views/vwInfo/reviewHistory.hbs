@@ -1,3 +1,22 @@
+{{#section 'js_wonProduct'}}
+    <script>
+
+    </script>
+{{/section}}
+{{#section 'js_modal_comment_from_seller'}}
+    <script>
+
+        function open_modal_see_comment(ProID){
+            $('.modal_see_comment_'+ProID).toggleClass("is-active");
+        };
+
+        function close_modal_see_comment(ProID){
+            $('.modal_see_comment_'+ProID).removeClass("is-active");
+        }
+
+    </script>
+{{/section}}
+
 <div class="columns is-multiline is-mobile p-2">
     {{#if this.isEmpty}}
         <div class="card-header-title is-size-3">Không có lịch sử đấu giá</div>
@@ -8,7 +27,7 @@
         </div>
 
         {{#each this.list}}
-            <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover is-flex">
+            <div class="column is-4-desktop is-6-tablet is-12-mobile">
                 <div class="card p-5 m-4">
                     <header class="card-header" style="height: 60px">
                         <p class="card-header-title is-size-5-desktop is-size-5-tablet is-size-7-mobile">
@@ -26,33 +45,52 @@
                     <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark my-2"> Giá mua: <span
                                 class="has-text-success">#{{format_number PriceWinAll}}</span></strong>
-                        <strong class="is-block has-text-info-dark my-2">Điểm đánh giá:
-                            {{#if pointFromSeller}}
-                                <span
-                                        class="icon is-small">
-
-                                    {{#if isPositiveFromSeller}}
-                                        <i class="fa fa-thumbs-up"></i>
-                                    {{else}}
-                                        <i class="fa fa-thumbs-down has-text-danger"></i>
-                                    {{/if}}
-                                </span>
-                            {{else}}
-                                <span class="has-text-dark">Chưa đánh giá</span>
-                            {{/if}}
-                        </strong>
-                        <hr class="navbar-divider has-background-black"/>
-                        <div class="content">
-                            <p class="box">
-                                <span><strong>Nhận xét từ người bán:</strong></span>
-                                <br>
-                                {{commentSeller}}</p>
-                        </div>
+                        <button class="tag button is-info is-medium"
+                                onclick="open_modal_see_comment('{{ProID}}');">
+                            Nhận xét từ người bán</button>
                     </div>
                 </div>
             </div>
 
+            <div class="modal modal_see_comment_{{ProID}}">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Nhận xét</p>
+                        <button class="delete" aria-label="close" onclick="close_modal_see_comment('{{ProID}}');"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <p class="">
+                            <span><strong>Nhận xét từ người bán:</strong></span>
+                            <br>
+                            {{#if commentSeller}}
+                                <span class="card-header-title has-text-info">{{commentSeller}}</span>
+                            {{else}}
+                                <span class="card-header-title has-text-info">Chưa có nhận xét từ người bán</span>
+                            {{/if}}
+
+                            <strong class="is-block has-text-dark">Điểm đánh giá:
+                                {{#if pointFromSeller}}
+                                    <span
+                                            class="icon is-small">
+
+                                        {{#if isPositiveFromSeller}}
+                                            <i class="fa fa-thumbs-up"></i>
+                                        {{else}}
+                                            <i class="fa fa-thumbs-down has-text-danger"></i>
+                                        {{/if}}
+                                    </span>
+                                {{else}}
+                                    <span class="card-header-title has-text-info">Chưa đánh giá</span>
+                                {{/if}}
+                            </strong>
+                        </p>
+
+                    </section>
+                </div>
+            </div>
         {{/each}}
+
         <div class="column is-12">
             <nav
                     class="pagination is-centered"

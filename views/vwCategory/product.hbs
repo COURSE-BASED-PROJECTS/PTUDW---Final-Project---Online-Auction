@@ -145,7 +145,6 @@
         });
     </script>
 {{/section}}
-
 {{#section 'js_updateInfo'}}
     <script>
         $('#frmUpdate').on('submit', function (e) {
@@ -164,7 +163,6 @@
         });
     </script>
 {{/section}}
-
 {{#section 'js'}}
 
     <script src="https://cdn.tiny.cloud/1/k24nz30cf3gjs50204ex4s6pi5wyll3m2qyffv64zathzntm/tinymce/5/tinymce.min.js"
@@ -266,116 +264,113 @@
 
 {{/section}}
 
+
+<div class="modal modal_announce">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Xác nhận</p>
+            <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Bạn có muốn mua ngay: <strong>{{this.product.ProName}}</strong> ?
+            </p>
+        </section>
+        <footer class="modal-card-foot">
+            <a class="button is-success"
+               href="javascript: $('#frmBuynow').submit();">Đồng ý</a>
+            <a class="button" onclick="close_modal();">Hủy</a>
+        </footer>
+    </div>
+</div>
+<div class="modal modal_verify">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Xác nhận</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_verify();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Bạn có đồng ý đấu giá món hàng: <strong>{{this.product.ProName}}</strong>
+            </p>
+        </section>
+        <footer class="modal-card-foot">
+            <a class="button is-success"
+               href="javascript: $('#frmAuction').submit();" >Đồng ý</a>
+            <a class="button" onclick="modal_verify();">Hủy</a>
+        </footer>
+    </div>
+</div>
+<div class="modal modal_price_valid">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Xác nhận</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_price_valid();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p><strong>Bạn nên đấu giá theo bội số của bước giá</strong>
+            </p>
+        </section>
+    </div>
+</div>
+<div class="modal modal_priceInvalid">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Số tiền đấu giá chưa đủ</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_priceInvalid();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Vui lòng nhập số tiền đấu giá lớn hơn giá hiện tại là:
+                <strong>{{format_number this.product.PriceCurrent}}</strong>
+            </p>
+        </section>
+    </div>
+</div>
+<div class="modal modal_isActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Xác thực tài khoản</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_isActive();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Vui lòng <strong>xác thực tài khoản trước khi tham gia đấu giá</strong>
+            </p>
+        </section>
+    </div>
+</div>
+<div class="modal modal_expired">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Rất tiếc</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_expired();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p><strong>Thời gian đặt lệnh của bạn quá trễ!</strong>
+            </p>
+        </section>
+    </div>
+</div>
+<div class="modal modal_lowpoint">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Rất tiếc</p>
+            <button class="delete close_modal" aria-label="close" onclick="modal_lowpoint();"></button>
+        </header>
+        <section class="modal-card-body">
+            <p><strong>Số điểm của bạn quá thấp (< 80%) để có thể đặt món hàng này!</strong>
+            </p>
+        </section>
+    </div>
+</div>
+
 <div class="columns is-multiline is-mobile p-2">
     <div class="column is-6-tablet is-12-mobile mr-5">
         <input type="text" id="ProductID" value="{{this.product.ProID}}" class="is-hidden">
-        <div class="modal modal_announce">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Xác nhận</p>
-                    <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p>Bạn có muốn mua ngay: <strong>{{this.product.ProName}}</strong> ?
-                    </p>
-                </section>
-                <footer class="modal-card-foot">
-                    <a class="button is-success"
-                       href="javascript: $('#frmBuynow').submit();">Đồng ý</a>
-                    <a class="button" onclick="close_modal();">Hủy</a>
-                </footer>
-            </div>
-        </div>
-        <div class="modal modal_verify">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Xác nhận</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_verify();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p>Bạn có đồng ý đấu giá món hàng: <strong>{{this.product.ProName}}</strong>
-                    </p>
-                </section>
-                <footer class="modal-card-foot">
-                    <a class="button is-success"
-                       href="javascript: $('#frmAuction').submit();">Đồng ý</a>
-                    <a class="button" onclick="modal_verify();">Hủy</a>
-                </footer>
-            </div>
-        </div>
-
-        <div class="modal modal_price_valid">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Xác nhận</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_price_valid();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p><strong>Bạn nên đấu giá theo bội số của bước giá</strong>
-                    </p>
-                </section>
-            </div>
-        </div>
-
-        <div class="modal modal_priceInvalid">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Số tiền đấu giá chưa đủ</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_priceInvalid();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p>Vui lòng nhập số tiền đấu giá lớn hơn giá hiện tại là:
-                        <strong>{{format_number this.product.PriceCurrent}}</strong>
-                    </p>
-                </section>
-            </div>
-        </div>
-
-        <div class="modal modal_isActive">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Xác thực tài khoản</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_isActive();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p>Vui lòng <strong>xác thực tài khoản trước khi tham gia đấu giá</strong>
-                    </p>
-                </section>
-            </div>
-        </div>
-
-        <div class="modal modal_expired">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Rất tiếc</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_expired();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p><strong>Thời gian đặt lệnh của bạn quá trễ!</strong>
-                    </p>
-                </section>
-            </div>
-        </div>
-
-        <div class="modal modal_lowpoint">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Rất tiếc</p>
-                    <button class="delete close_modal" aria-label="close" onclick="modal_lowpoint();"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p><strong>Số điểm của bạn quá thấp (< 80%) để có thể đặt món hàng này!</strong>
-                    </p>
-                </section>
-            </div>
-        </div>
 
         <div class="box">
             <figure class="image is-4by3">

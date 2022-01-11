@@ -124,6 +124,7 @@ export default {
         let bidder = await db('products')
             .where({ProID:ProID,Seller:username})
             .select('Bidder');
+        bidder = bidder[0].Bidder;
 
         await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
@@ -184,11 +185,11 @@ export default {
             .select('Bidder');
 
         bidder = bidder[0].Bidder;
-        const point = await accountModel.getPointAccount(bidder);
+        const sumBid = await accountModel.getSumBidAccount(bidder)
 
         await db('account')
             .where({ username: bidder})
-            .update({ point: +point + -1 });
+            .update({sumBid : +sumBid+1});
     },
     async findWonProduct(username) {
         const list = await db('historybid')

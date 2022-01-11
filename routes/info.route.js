@@ -333,6 +333,12 @@ router.get('/wonProduct', async function (req, res) {
     }
 
     const list = await productHistoryModel.findPageWonProduct(username, limit, offset);
+    for(const p of list){
+        p.isComment = true;
+        if(p.commentBidder && p.pointFromBidder){
+            p.isComment = false;
+        }
+    }
     res.render('vwInfo/wonProduct', {
         layout: 'main',
         isWon: true,

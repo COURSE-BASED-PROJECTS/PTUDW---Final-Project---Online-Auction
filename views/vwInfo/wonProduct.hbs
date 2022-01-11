@@ -2,25 +2,36 @@
     <script>
 
         function postCommentFromBidder(ProID){
-            const key = window.event.keyCode;
-
-            if(key === 13){
-                $('#frmComment-'+ProID).submit();
-            }
+            $('#frmComment-'+ProID).submit();
         }
 
     </script>
 {{/section}}
+{{#section 'js_modal_comment'}}
+    <script>
+
+        function show_dialog_comment(ProID){
+            $('.modal_comment_'+ProID).toggleClass("is-active");
+        };
+
+        function close_modal_comment(ProID){
+            $('.modal_comment_'+ProID).removeClass("is-active");
+        }
+
+    </script>
+{{/section}}
+
+
 
 <div class="columns is-multiline is-mobile p-2">
     {{#if this.isEmpty}}
         <div class="card-header-title is-size-3">Không có sản phẩm thắng đấu giá</div>
     {{else}}
         {{#each this.list}}
-            <div class="column is-4-desktop is-6-tablet is-12-mobile card-hover">
+            <div class="column is-4-desktop is-6-tablet is-12-mobile">
                 <div class="card p-5 m-4">
                     <header class="card-header" style="height: 60px">
-                        <p class="card-header-title is-size-5-desktop is-size-5-tablet is-size-7-mobile">
+                        <p class="card-header-title is-size-5-desktop is-size-6-tablet is-size-7-mobile">
                             {{ProName}}
                         </p>
                         <span class="tag is-success is-medium">won</span>
@@ -35,41 +46,65 @@
                     <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark my-2"> Giá thắng: <span
                                 class="has-text-success">#{{format_number PriceWinAll}}</span></strong>
-                        <strong class="is-block has-text-info-dark"> Người bán: <a class="has-text-grey-dark">@{{Seller}}</a></strong>
+                        <div class="level">
+                            <strong class="is-block has-text-info-dark"> Người bán: <a class="has-text-grey-dark">@{{Seller}}</a></strong>
+                            <button class="tag button is-primary is-medium"
+                                    onclick="show_dialog_comment('{{ProID}}');"
+                                    {{#unless isComment}}disabled{{/unless}}>
+                                Nhận xét</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        {{#unless commentBidder}}
-                            <hr class="navbar-divider has-background-black"/>
-                            <div class="content">
-                                <div class="box">
-                                    <div class="field">
-                                        <label class="label">Nhận xét</label>
-                                        <div class="control">
-                                            <form action="/info/wonProduct/{{ProID}}" method="post" id="frmComment-{{ProID}}">
-                                                <textarea class="textarea" placeholder="" name="comment" id="comment"
-                                                          onkeydown="postCommentFromBidder({{ProID}});"></textarea>
-                                            </form>
+            {{#if isComment}}
+                <div class="modal modal_comment_{{ProID}}">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title comment_header is-size-6">Đánh giá sản phẩm <strong>{{ProName}}</strong></p>
+                            <button class="delete" aria-label="close" onclick="close_modal_comment('{{ProID}}');"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            {{#if isComment}}
+                                <div class="card-header-title is-size-4 has-text-success is-link ">
+                                    Nhận xét
+                                </div>
+                            {{/if}}
+
+                            {{#unless commentBidder}}
+                                <div class="content">
+                                    <div class="box">
+                                        <div class="field">
+                                            <label class="label">Ghi chú</label>
+                                            <div class="control">
+                                                <form action="/info/wonProduct/{{ProID}}" method="post" id="frmComment-{{ProID}}">
+                                                    <textarea class="textarea" name="comment" id="comment" placeholder="Nhập ở đây"></textarea>
+                                                </form>
+                                            </div>
+                                            <button class="button is-primary mt-2" onclick="postCommentFromBidder('{{ProID}}');">Gửi</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {{/unless}}
+                            {{/unless}}
+
+                            {{#unless pointFromBidder}}
+                                <footer class="card-footer is-size-7-mobile">
+                                    <form action="/info/wonProduct/like/{{ProID}}" method="post" id="like-{{ProID}}"></form>
+                                    <a href="javascript: $('#like-{{ProID}}').submit();" class="card-footer-item">
+                                        <span class="has-text-info"><i class="fa fa-thumbs-up"></i></span></a>
+
+                                    <form action="/info/wonProduct/dislike/{{ProID}}" method="post" id="dislike-{{ProID}}"></form>
+                                    <a href="javascript: $('#dislike-{{ProID}}').submit();" class="card-footer-item">
+                                        <span class="has-text-danger"><i class="fa fa-thumbs-down"></i></span>
+                                    </a>
+                                </footer>
+                            {{/unless }}
+                        </section>
                     </div>
-
-                    {{#unless pointFromBidder}}
-                        <footer class="card-footer is-size-7-mobile">
-                            <form action="/info/wonProduct/like/{{ProID}}" method="post" id="like-{{ProID}}"></form>
-                            <a href="javascript: $('#like-{{ProID}}').submit();" class="card-footer-item">
-                                <span class="has-text-info"><i class="fa fa-thumbs-up"></i></span></a>
-
-                            <form action="/info/wonProduct/dislike/{{ProID}}" method="post" id="dislike-{{ProID}}"></form>
-                            <a href="javascript: $('#dislike-{{ProID}}').submit();" class="card-footer-item">
-                                <span class="has-text-danger"><i class="fa fa-thumbs-down"></i></span>
-                            </a>
-                        </footer>
-                    {{/unless}}
-
                 </div>
-            </div>
+            {{/if}}
+
         {{/each}}
         <div class="column is-12">
             <nav

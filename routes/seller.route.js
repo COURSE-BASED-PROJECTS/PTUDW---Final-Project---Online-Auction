@@ -154,7 +154,7 @@ router.get('/soldProduct', async function (req, res)  {
 router.post('/soldProduct/:ProID',async function (req,res){
     const username = req.session.authAccount.username;
     const ProID = req.params.ProID;
-
+    console.log(req.body)
     await productHistoryModel.updateCommentSeller(username,ProID,req.body.comment);
     const url = req.headers.referer || '/';
     res.redirect(url);

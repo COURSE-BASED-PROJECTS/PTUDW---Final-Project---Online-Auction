@@ -6,7 +6,7 @@
   "description": "PTUDW - Final Project - Online Auction",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "express-handlebars-sections": "^1.0.1",
     "express-mysql-session": "^2.1.7",
     "express-session": "^1.17.2",
+    "gh-pages": "^3.2.3",
     "knex": "^0.95.14",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",

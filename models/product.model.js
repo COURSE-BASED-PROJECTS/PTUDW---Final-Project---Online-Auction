@@ -6,21 +6,21 @@ import moment from "moment";
 
 export default {
     async findTopClose(){
-        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        const now = moment().format("YYYY-MM-DD HH:mm");
         const list = await db.select().table('products').orderBy('DateEnd').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
         return list
     },
     async findTopBidder(){
-        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        const now = moment().format("YYYY-MM-DD HH:mm");
         let list = await db.select().table('products').orderBy('BidderCount', 'desc').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
         return list
     },
     async findTopPrice(){
-        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        const now = moment().format("YYYY-MM-DD HH:mm");
         let list = await db.select().table('products').orderBy('PriceCurrent', 'desc').where('DateEnd', '>', now).limit(5);
         dateFormat({key:list});
 
@@ -65,7 +65,15 @@ export default {
 
         return list
     },
+    async findBySeller(username) {
+        let list = await db.select().table('products').where('Seller',username);
+        dateFormat({key:list});
 
+        if (list.length === 0)
+            return null;
+
+        return list
+    },
     async countProduct(){
         const count = await db('products').count('ProID',{as: 'count'});
         return count;
@@ -121,7 +129,8 @@ export default {
         return list;
     },
     async findProductEnd(){
-        const now = moment().format("YYYY-MM-DD hh:mm:ss");
+        const now = moment().format("YYYY-MM-DD HH:mm");
+        console.log(now);
         let list = await db('products').where('DateEnd', '<', now);
         dateFormat({key:list});
 
@@ -218,6 +227,5 @@ export default {
         dateFormat({key:list});
 
         return list;
-    }
-
+    },
 }

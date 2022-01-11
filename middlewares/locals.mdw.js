@@ -1,9 +1,9 @@
 import categoryModel from "../models/category.model.js";
 import moment from "moment";
 import upgradeModel from "../models/upgrade.model.js";
-// import productModel from "../models/product.model.js";
-// import accountModel from "../models/account.model.js";
-// import sendMail from "../utils/sendMail.js";
+import productModel from "../models/product.model.js";
+import accountModel from "../models/account.model.js";
+import sendMail from "../utils/sendMail.js";
 
 export default function (app) {
     app.use(async function (req, res, next) {
@@ -16,16 +16,20 @@ export default function (app) {
         } else if (req.session.auth !== false) {
             const account = req.session.authAccount;
 
-            if (account.level === 'bidder'){
+            if (account.level === 'bidder') {
                 const info = await upgradeModel.findUsername(account.username);
                 if (info !== null) {
-                    res.locals.oldSeller = true;
+                    // Nếu là seller cũ nhưng chưa đăng bán thì khi hạ cấp xem như bidder không giữ lại chức năng
+                    if (await productModel.findBySeller(account.username) === null) {
+                        res.locals.oldSeller = false;
+                    } else {
+                        res.locals.oldSeller = true;
+                    }
                 } else {
                     res.locals.oldSeller = false;
                 }
                 res.locals.Bidder = true;
-            }
-            else if (account.level === 'seller') {
+            } else if (account.level === 'seller') {
                 const info = await upgradeModel.findUsername(account.username);
                 if (info !== null) {
                     const now = moment().format("YYYY-MM-DD hh:mm:ss");
@@ -59,34 +63,36 @@ export default function (app) {
         next();
     });
     // tìm sản phẩm kết thúc để gửi mail
-    // app.use(async function (req, res, next) {
-    //     const listProduct = await productModel.findProductEnd();
-    //     for (let lp of listProduct) {
-    //         if (lp.emailed === 0) {
-    //             if (lp.BidderCount === 0) {
-    //                 const accountSeller = await accountModel.findByUsername(lp.Seller);
-    //                 const content = "Sản phẩm bạn đăng đã hết phiên đấu giá. Rất tiếc không có người mua cho sản phẩm: " + lp.ProName
-    //                     + " của bạn đăng vào lúc: " + lp.DateStart + ". Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
-    //                 sendMail(accountSeller.email, content);
-    //                 await productModel.updateEmailed(lp.ProID);
-    //             } else {
-    //                 const accountSeller = await accountModel.findByUsername(lp.Seller);
-    //                 const contentSeller = "Sản phẩm bạn đăng đã hết phiên đấu giá. Sản phẩm: " + lp.ProName
-    //                     + " của bạn đăng vào lúc: " + lp.DateStart + " đã có người mua. Vui lòng liên hệ với Bidder " +
-    //                     lp.Bidder + " để giao dịch sản phẩm."
-    //                     + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
-    //                 sendMail(accountSeller.email, contentSeller);
-    //
-    //                 const accountBidder = await accountModel.findByUsername(lp.Bidder);
-    //                 const contentBidder = "Bạn đã thắng sản phẩm: " + lp.ProName
-    //                     + " được đăng vào lúc: " + lp.DateStart + " của Seller: " +
-    //                     lp.Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
-    //                 sendMail(accountBidder.email, contentBidder);
-    //
-    //                 await productModel.updateEmailed(lp.ProID);
-    //             }
-    //         }
-    //     }
-    //     next();
-    // });
+    setInterval(async function () {
+
+            const listProduct = await productModel.findProductEnd();
+            for (let lp of listProduct) {
+                if (lp.emailed === 0) {
+                    if (lp.BidderCount === 0) {
+                        const accountSeller = await accountModel.findByUsername(lp.Seller);
+                        const content = "Sản phẩm bạn đăng đã hết phiên đấu giá. Rất tiếc không có người mua cho sản phẩm: " + lp.ProName
+                            + " của bạn đăng vào lúc: " + lp.DateStart + ". Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
+                        sendMail(accountSeller.email, content);
+                        await productModel.updateEmailed(lp.ProID);
+                    } else {
+                        const accountSeller = await accountModel.findByUsername(lp.Seller);
+                        const contentSeller = "Sản phẩm bạn đăng đã hết phiên đấu giá. Sản phẩm: " + lp.ProName
+                            + " của bạn đăng vào lúc: " + lp.DateStart + " đã có người mua. Vui lòng liên hệ với Bidder " +
+                            lp.Bidder + " để giao dịch sản phẩm."
+                            + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
+                        sendMail(accountSeller.email, contentSeller);
+
+                        const accountBidder = await accountModel.findByUsername(lp.Bidder);
+                        const contentBidder = "Bạn đã thắng sản phẩm: " + lp.ProName
+                            + " được đăng vào lúc: " + lp.DateStart + " của Seller: " +
+                            lp.Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+                        sendMail(accountBidder.email, contentBidder);
+
+                        await productModel.updateEmailed(lp.ProID);
+                    }
+                }
+            }
+        },
+        60000
+    );
 }

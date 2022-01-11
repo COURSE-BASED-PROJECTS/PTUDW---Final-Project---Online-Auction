@@ -6,7 +6,7 @@ import async_errors from 'express-async-errors';
 import localMdw from "./middlewares/locals.mdw.js"
 import viewMdw from "./middlewares/view.mdw.js"
 import routesMdw from "./middlewares/routes.mdw.js"
-import sessionMdw from "./middlewares/session.mdw.js";
+import sessionMdw from "./middlewares/session.mdw.js"
 import errorMdw from "./middlewares/error.mdw.js"
 
 const app = express();
@@ -32,5 +32,5 @@ errorMdw(app);
 
 // add listen port
 app.listen(port, function() {
-    console.log(`Online auction app listening at http://localhost:${port}`)
+    console.log(`Online auction app listening at http://localhost:${port}`);
 })

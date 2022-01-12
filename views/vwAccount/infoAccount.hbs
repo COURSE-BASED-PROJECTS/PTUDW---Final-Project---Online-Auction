@@ -1,3 +1,129 @@
+{{#section 'loadmore_seller'}}
+    <script>
+        let offset_seller = 1;
+
+        function loadmore_seller(){
+            $.getJSON(`/admin/loadmoreSeller?offset=${offset_seller}`, function (data) {
+                const list = JSON.parse(JSON.stringify(data));
+                let html = "";
+
+                if(list.length === 0){
+                    $('.loadmore_seller').toggleClass("is-hidden");
+                    return
+                }
+
+                for (let i = 0; i < list.length; i++) {
+                    html += `<tr class="has-text-centered">
+                        <th>
+                            <p>
+                                <strong><a>#${list[i].username}</a></strong>
+                            </p>
+                        </th>
+                        <td>${list[i].name}</td>
+                        <td>${list[i].address}</td>
+                        <td>${list[i].email}</td>
+                        <td>`;
+
+                    html += `<i class="is-small tag has-text-info">${list[i].point_percent}%</i>`;
+                    html += `</td>
+                        <td>
+                            <form action="/admin/Account/degrade/${list[i].username}" method="post"
+                                  id="degrade-${list[i].username}"></form>
+                            <form action="/admin/Account/lock/${list[i].username}" method="post"
+                                  id="lock-${list[i].username}"></form>
+                            <span>
+                                    <a href="javascript: $('#degrade-${list[i].username}').submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-angle-double-down has-text-success"></i>
+                                        </span>
+                                    </a>
+                                    <a href="javascript: $("#lock-${list[i].username}").submit();"
+                                       class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-lock has-text-danger-dark"></i>
+                                        </span>
+                                    </a>
+                                </span>
+                        </td>
+                        <td>
+                            <form action="/admin/Account/delete/${list[i].username}" method="post"
+                                  id="delete-${list[i].username}"></form>
+                            <a href="javascript: $("#delete-${list[i].username}").submit();">
+                                <button class="delete mt-1 ml-2"></button>
+                            </a>
+                        </td>
+                    </tr>`;
+                }
+
+                // Appending the data below old data in <tbody> tag
+                document.getElementById("data_seller_account").innerHTML += html;
+                offset_seller = offset_seller + 1;
+
+            });
+        }
+
+    </script>
+{{/section}}
+{{#section 'loadmore_bidder'}}
+    <script>
+        let offset_bidder= 1;
+
+        function loadmore_bidder(){
+            $.getJSON(`/admin/loadmoreBidder?offset=${offset_bidder}`, function (data) {
+                const list = JSON.parse(JSON.stringify(data));
+                let html = "";
+
+                if(list.length === 0){
+                    $('.loadmore_bidder').toggleClass("is-hidden");
+                    return
+                }
+
+                for (let i = 0; i < list.length; i++) {
+                    html += `<tr class="has-text-centered">
+                        <th>
+                            <p>
+                                <strong><a>#${list[i].username}</a></strong>
+                            </p>
+                        </th>
+                        <td>${list[i].name}</td>
+                        <td>${list[i].address}</td>
+                        <td>${list[i].email}</td>
+                        <td>`
+
+                    html += `<i class="is-small tag has-text-info">${list[i].point_percent}%</i>`;
+
+                    html += `</td>
+                        <td>
+                            <form action="/admin/Account/lock/${list[i].username}" method="post"
+                                  id="lock-${list[i].username}"></form>
+                            <a href="javascript: $('#lock-${list[i].username}').submit();"
+                               class="button is-size-7 is-rounded is-light">
+                                        <span class="is-small">
+                                            <i class="fa fa-lock has-text-danger-dark"></i>
+                                        </span>
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/admin/Account/delete/${list[i].username}" method="post"
+                                  id="delete-${list[i].username}"></form>
+                            <a href="javascript: $('#delete-${list[i].username}').submit();">
+                                <button class="delete mt-1 ml-2"></button>
+                            </a>
+                        </td>
+                    </tr>`;
+                }
+
+                // Appending the data below old data in <tbody> tag
+                document.getElementById("data_bidder_account").innerHTML += html;
+                offset_bidder = offset_bidder + 1;
+
+            });
+        }
+
+    </script>
+{{/section}}
+
 {{#section 'js'}}
     <script>
         $.getJSON(`/account/hasAccountLock`, function (data) {
@@ -74,56 +200,57 @@
                 </tr>
                 </thead>
 
-                <tbody>
-                {{#each this.listSeller}}
-                    <tr class="has-text-centered">
-                        <th>
-                            <p>
-                                <strong><a>#{{username}}</a></strong>
-                            </p>
-                        </th>
-                        <td>{{name}}</td>
-                        <td>{{address}}</td>
-                        <td>{{email}}</td>
-                        <td>
-                            {{#if info.isPositive}}
-                                <i class="is-small tag has-text-info">+{{point}}</i>
-                            {{else}}
-                                <i class="is-small tag has-text-danger">{{point}}</i>
-                            {{/if}}
-                        </td>
-                        <td>
-                            <form action="/admin/Account/degrade/{{username}}" method="post"
-                                  id="degrade-{{username}}"></form>
-                            <form action="/admin/Account/lock/{{username}}" method="post"
-                                  id="lock-{{username}}"></form>
-                            <span>
-                                    <a href="javascript: $('#degrade-{{username}}').submit();"
-                                       class="button is-size-7 is-rounded is-light">
-                                        <span class="is-small">
-                                            <i class="fa fa-angle-double-down has-text-success"></i>
-                                        </span>
-                                    </a>
+                <tbody id="data_seller_account">
+                    {{#each this.listSeller}}
+                        <tr class="has-text-centered">
+                            <th>
+                                <p>
+                                    <strong><a>#{{username}}</a></strong>
+                                </p>
+                            </th>
+                            <td>{{name}}</td>
+                            <td>{{address}}</td>
+                            <td>{{email}}</td>
+                            <td>
+                                <i class="is-small tag has-text-info">{{point_percent}}%</i>
+                            </td>
+                            <td>
+                                <form action="/admin/Account/degrade/{{username}}" method="post"
+                                      id="degrade-{{username}}"></form>
+                                <form action="/admin/Account/lock/{{username}}" method="post"
+                                      id="lock-{{username}}"></form>
+                                <span>
+                                        <a href="javascript: $('#degrade-{{username}}').submit();"
+                                           class="button is-size-7 is-rounded is-light">
+                                            <span class="is-small">
+                                                <i class="fa fa-angle-double-down has-text-success"></i>
+                                            </span>
+                                        </a>
 
-                                    <a href="javascript: $('#lock-{{username}}').submit();"
-                                       class="button is-size-7 is-rounded is-light">
-                                        <span class="is-small">
-                                            <i class="fa fa-lock has-text-danger-dark"></i>
-                                        </span>
-                                    </a>
-                                </span>
-                        </td>
-                        <td>
-                            <form action="/admin/Account/delete/{{username}}" method="post"
-                                  id="delete-{{username}}"></form>
-                            <a href="javascript: $('#delete-{{username}}').submit();">
-                                <button class="delete mt-1 ml-2"></button>
-                            </a>
-                        </td>
-                    </tr>
-                {{/each}}
+                                        <a href="javascript: $('#lock-{{username}}').submit();"
+                                           class="button is-size-7 is-rounded is-light">
+                                            <span class="is-small">
+                                                <i class="fa fa-lock has-text-danger-dark"></i>
+                                            </span>
+                                        </a>
+                                    </span>
+                            </td>
+                            <td>
+                                <form action="/admin/Account/delete/{{username}}" method="post"
+                                      id="delete-{{username}}"></form>
+                                <a href="javascript: $('#delete-{{username}}').submit();">
+                                    <button class="delete mt-1 ml-2"></button>
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
                 </tbody>
             </table>
+
+            <div class="has-text-centered loadmore_seller">
+                <a class="button is-primary is-outlined" onclick="loadmore_seller();">Tải thêm...</a>
+            </div>
+
         </div>
     </div>
 
@@ -145,7 +272,7 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="data_bidder_account">
                 {{#each this.listBidder}}
                     <tr class="has-text-centered">
                         <th>
@@ -157,11 +284,7 @@
                         <td>{{address}}</td>
                         <td>{{email}}</td>
                         <td>
-                            {{#if info.isPositive}}
-                                <i class="is-small tag has-text-info">+{{point}}</i>
-                            {{else}}
-                                <i class="is-small tag has-text-danger">{{point}}</i>
-                            {{/if}}
+                            <i class="is-small tag has-text-info">{{point_percent}}%</i>
                         </td>
                         <td>
                             <form action="/admin/Account/lock/{{username}}" method="post"
@@ -184,6 +307,10 @@
                 {{/each}}
                 </tbody>
             </table>
+
+            <div class="has-text-centered loadmore_bidder">
+                <a class="button is-primary is-outlined" onclick="loadmore_bidder();">Tải thêm...</a>
+            </div>
         </div>
     </div>
 
@@ -217,11 +344,7 @@
                         <td>{{address}}</td>
                         <td>{{email}}</td>
                         <td>
-                            {{#if info.isPositive}}
-                                <i class="is-small tag has-text-info">+{{point}}</i>
-                            {{else}}
-                                <i class="is-small tag has-text-danger">{{point}}</i>
-                            {{/if}}
+                            <i class="is-small tag has-text-info">{{point_percent}}%</i>
                         </td>
                         <td>
                             <form action="/admin/Account/unlock/{{username}}" method="post"

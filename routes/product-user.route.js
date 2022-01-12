@@ -100,6 +100,9 @@ router.get('/detail/:id', async function (req, res) {
     let isRightSeller = false;
     let isAuth = false;
     let isLiked = false;
+    let point_percent_bidder = 0;
+    let point_percent_seller = 0;
+
     if (req.session.auth) {
         isAuth = await productModel.isAuthProduct(ProID, req.session.authAccount.username);
         isLockAuction = await lockAuctionAccountModel.isLock(req.session.authAccount.username, ProID);
@@ -114,13 +117,38 @@ router.get('/detail/:id', async function (req, res) {
             isRightSeller = true;
 
         const username = req.session.authAccount.username;
+        const account_bidder = await accountModel.findByUsername(product[0].Bidder);
+        const account_seller = await accountModel.findByUsername(product[0].Seller);
+
         isLiked = await productFavoriteModel.isFavorite(username, ProID);
+
+        if(account_bidder === null)
+            point_percent_bidder = 0;
+        else if(+account_bidder.sumBid === 0){
+            point_percent_bidder = 0;
+        } else if(account_bidder.sumBid>0){
+            if(account_bidder.point === 0)
+                point_percent_bidder = account_bidder.sumBid*-100;
+            else
+                point_percent_bidder = (account_bidder.point)*100/account_bidder.sumBid;
+        }
+        if(+account_seller.sumBid === 0){
+            point_percent_seller = 0;
+        } else if(account_seller.sumBid>0){
+            if(account_seller.point === 0)
+                point_percent_seller = account_seller.sumBid*-100;
+            else
+                point_percent_seller = (account_seller.point)*100/account_seller.sumBid;
+        }
+
 
     }
 
     if (product === null) {
         return res.redirect('/');
     }
+
+
 
     res.render('vwCategory/product', {
         layout: 'SignUp_Login',
@@ -135,6 +163,8 @@ router.get('/detail/:id', async function (req, res) {
         isRightSeller,
         seller,
         bidderFlag,
+        point_percent_bidder,
+        point_percent_seller
     });
 });
 

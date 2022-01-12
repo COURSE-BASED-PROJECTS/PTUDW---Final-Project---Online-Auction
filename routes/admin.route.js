@@ -106,19 +106,32 @@ router.get('/Account', async function (req, res) {
     let listBidder = [];
     let listLockAccount = [];
 
+
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,
         }
+        if(+account.sumBid === 0){
+            account.point_percent = 0;
+        } else if(account.sumBid>0){
+            if(account.point === 0)
+                account.point_percent = account.sumBid*-100;
+            else
+                account.point_percent = (account.point)*100/account.sumBid;
+        }
+
         if (account.isLock !== 1){
             if (account.level === 'seller'){
-                listSeller.push(account);
+                if(listSeller.length < 6)
+                    listSeller.push(account);
             }
             if (account.level === 'bidder'){
-                listBidder.push(account);
+                if(listBidder.length < 6)
+                    listBidder.push(account);
             }
         } else {
-            listLockAccount.push(account);
+            if(listLockAccount.length < 6)
+                listLockAccount.push(account);
         }
     }
 
@@ -328,5 +341,42 @@ router.get('/loadmore', async function (req, res) {
     }
     res.json(list);
 });
+
+router.get('/loadmoreSeller', async function (req, res) {
+    const offset = req.query.offset;
+    const list = await accountModel.findAllSeller(offset*6);
+
+    for(const account  of list){
+        if(+account.sumBid === 0){
+            account.point_percent = 0;
+        } else if(account.sumBid>0){
+            if(account.point === 0)
+                account.point_percent = account.sumBid*-100;
+            else
+                account.point_percent = (account.point)*100/account.sumBid;
+        }
+    }
+
+    res.json(list);
+});
+
+router.get('/loadmoreBidder', async function (req, res) {
+    const offset = req.query.offset;
+    const list = await accountModel.findAllSeller(offset*6);
+
+    for(const account  of list){
+        if(+account.sumBid === 0){
+            account.point_percent = 0;
+        } else if(account.sumBid>0){
+            if(account.point === 0)
+                account.point_percent = account.sumBid*-100;
+            else
+                account.point_percent = (account.point)*100/account.sumBid;
+        }
+    }
+
+    res.json(list);
+});
+
 
 export default router

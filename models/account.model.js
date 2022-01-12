@@ -95,5 +95,25 @@ export default {
         await db('account')
             .where({username: username})
             .delete()
-    }
+    },
+
+    async findAllSeller(offset){
+        const list = await db('account')
+            .where({level: "seller",isLock:false})
+            .limit(6)
+            .offset(offset)
+            .select();
+
+        return list;
+    },
+    async findAllBidder(offset){
+        const list = await db('account')
+            .where({level: "bidder",isLock:false})
+            .limit(6)
+            .offset(offset)
+            .select();
+
+        return list;
+    },
+
 }

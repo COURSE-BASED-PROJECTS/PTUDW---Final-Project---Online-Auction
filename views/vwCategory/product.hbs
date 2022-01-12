@@ -698,13 +698,13 @@
             </div>
 
             <div class="column is-12">
-                <div class="level">
-                    <span class="level-left"> Mã sản phẩm:
+                <div class="level columns">
+                    <span class="column is-12-mobile"> Mã sản phẩm:
                         <strong class="px-1"> {{this.product.ProID}} </strong>
                     </span>
 
                     {{#if auth}}
-                        <div class="level-right has-text-centered">
+                        <div class="has-text-right-tablet column is-12-mobile">
                             <div class="">
                                 {{#if isLiked}}
                                     <form action="/info/cancelFavorite/{{this.product.ProID}}" method="post"
@@ -729,25 +729,25 @@
             </div>
 
             <div class="column is-12">
-                <div class="level">
-                <span>Giá hiện tại: <strong> {{format_number
+                <div class="level columns">
+                <span class="column is-12-mobile">Giá hiện tại: <strong> {{format_number
                         this.product.PriceCurrent}}</strong></span>
-                    <span>Giá mua ngay: <strong> {{format_number
+                    <span class="column is-12-mobile level-right has-text-right-tablet">Giá mua ngay: <strong> {{format_number
                             this.product.PriceWin}}</strong></span>
                 </div>
             </div>
 
             {{#if auth}}
                 <div class="column is-12">
-                    <div class="level">
-                     <span>Người bán:
+                    <div class="level columns">
+                     <span class="column is-12-mobile">Người bán:
                         <strong><a href="/account/infoHistory/{{this.product.Seller}}">#{{this.product.Seller}}</a></strong>
-                         <span class="tag is-primary">+{{this.seller.point}}/{{this.seller.sumBid}}</span>
+                         <span class="tag is-primary">{{this.point_percent_bidder}}%</span>
                      </span>
 
-                        <span>Người đấu giá cao nhất:
+                        <span  class="column is-12-mobile">Người đấu giá cao nhất:
                             <strong><a href="/account/infoHistory/{{this.product.Bidder}}">#{{this.product.Bidder}}</a></strong>
-                            <span class="tag is-primary">+{{this.bidderFlag.point}}/{{this.bidderFlag.sumBid}}</span>
+                            <span class="tag is-primary">{{this.point_percent_seller}}%</span>
                         </span>
                     </div>
                 </div>
@@ -878,10 +878,13 @@
                             <div class="column is-12 ">
                                 <form action="/product/buynow/{{this.product.ProID}}" method="post"
                                       id="frmBuynow"></form>
-                                <a class="box has-background-warning has-text-centered has-text-weight-bold"
-                                   onclick="modal_announce();">MUA NGAY</a>
+
                             </div>
                         {{/if}}
+                        <div class="column is-12 mt-0 py-0">
+                            <a class="box has-background-warning has-text-centered has-text-weight-bold"
+                               onclick="modal_announce();">MUA NGAY</a>
+                        </div>
 
 
                     {{/if}}

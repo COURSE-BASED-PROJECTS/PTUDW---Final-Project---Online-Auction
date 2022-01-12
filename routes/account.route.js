@@ -202,18 +202,28 @@ router.post('/logout', async function (req, res) {
 });
 router.get('/infoHistory/:id', async function (req, res) {
     const username = req.params.id;
-    const point = await accountModel.getPointAccount(username);
     const account = await accountModel.findByUsername(username);
     const list = await historybidModel.findListHistoryBidByUsername(username,0);
     const listSeller = await historybidModel.findListHistorySeller(username,0);
+    let point_percent = 0;
+
+    if(+account.sumBid === 0){
+        point_percent = 0;
+    } else if(account.sumBid>0){
+        if(account.point === 0)
+            point_percent = account.sumBid*-100;
+        else
+            point_percent = (account.point)*100/account.sumBid;
+    }
+
 
     res.render('vwInfo/infoHistory', {
         layout: 'main',
-        point: account.sumBid === 0?0:point*100/account.sumBid,
+        point: point_percent,
         isEmpty: list.length === 0,
         list,
         isBidder: account.level === "bidder",
-        isEmptySold: listSeller.length ===0,
+        isEmptySold: listSeller.length === 0,
         listSeller,
         username
     });

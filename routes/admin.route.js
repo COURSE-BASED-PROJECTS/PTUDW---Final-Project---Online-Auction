@@ -105,6 +105,7 @@ router.get('/Account', async function (req, res) {
     let listSeller = [];
     let listBidder = [];
     let listLockAccount = [];
+
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,

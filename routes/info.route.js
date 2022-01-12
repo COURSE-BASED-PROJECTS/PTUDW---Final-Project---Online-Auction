@@ -16,6 +16,7 @@ const router = express.Router();
 
 router.get('/reviewProfile', async function (req, res) {
     const username = req.session.authAccount.username;
+    const account = await accountModel.findByUsername(username);
     const user = await accountModel.findByUsername(username);
     let isBidder = 0;
     if (user.level === 'bidder'){
@@ -31,13 +32,24 @@ router.get('/reviewProfile', async function (req, res) {
         isPending = 0;
     };
 
+    let point_percent = 0;
+    if(+account.sumBid === 0){
+        point_percent = 0;
+    } else if(account.sumBid>0){
+        if(account.point === 0)
+            point_percent = account.sumBid*-100;
+        else
+            point_percent = (account.point)*100/account.sumBid;
+    }
+
     res.render('vwInfo/profileAccount', {
         layout: 'SignUp_Login',
         user,
         isProfile: true,
         isBidder,
         isPending,
-        isSeller
+        isSeller,
+        point_percent
     });
 });
 
@@ -169,6 +181,7 @@ router.post('/reviewProfile/reUpgrade', async function (req, res) {
 
 router.get('/reviewHistory', async function (req, res) {
     const username = req.session.authAccount.username;
+    const account = await accountModel.findByUsername(username);
     const product = await productHistoryModel.findHistoryProduct(username);
     const point = await accountModel.getPointAccount(username);
 
@@ -190,6 +203,16 @@ router.get('/reviewHistory', async function (req, res) {
 
     const list = await productHistoryModel.findPageHistory(username, limit, offset);
 
+    let point_percent = 0;
+    if(+account.sumBid === 0){
+        point_percent = 0;
+    } else if(account.sumBid>0){
+        if(account.point === 0)
+            point_percent = account.sumBid*-100;
+        else
+            point_percent = (account.point)*100/account.sumBid;
+    }
+
     res.render('vwInfo/reviewHistory', {
         layout: 'main',
         isHistory: true,
@@ -205,7 +228,8 @@ router.get('/reviewHistory', async function (req, res) {
         pagePrev: {
             page: +page - 1,
             isVisible: (+page === 1) ? false : true,
-        }
+        },
+        point_percent
     });
 });
 

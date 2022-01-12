@@ -228,7 +228,7 @@ router.post('/Account/delete/:username', async function (req, res) {
     await productFavoriteModel.deleteAccount(username);
     await historybidModel.deleteAccount(username);
     await lockAuctionModel.deleteAccount(username);
-    await  productModel.deleteBidder(username);
+    await  productModel.changeBidder(username);
     const listPro = await productModel.findBySeller(username);
     if (listPro !== null){
         for (let p of listPro){

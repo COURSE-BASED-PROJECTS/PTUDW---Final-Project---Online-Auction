@@ -2,6 +2,8 @@ import db from '../utils/db.js'
 import dateFormat from "../utils/dateFormat.js";
 import classifyTypeSort from "../utils/classifyTypeSort.js";
 import moment from "moment";
+import accountModel from "./account.model.js";
+import sendMail from "../utils/sendMail.js";
 
 
 export default {
@@ -167,8 +169,8 @@ export default {
         const list = await db('products').where({ProID:ProID});
         dateFormat({key:list});
 
-        const dateStart = moment(list[0].DateStart,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-        const now = moment().format("YYYY-MM-DD hh:mm");
+        const dateStart = moment(list[0].DateStart,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+        const now = moment().format("YYYY-MM-DD HH:mm");
 
         const duration = moment(now).diff(moment(dateStart));
         const m = moment.duration(duration).asMinutes();
@@ -228,9 +230,40 @@ export default {
 
         return list;
     },
-    async deleteBidder(username) {
-        await db('products')
-            .where({Bidder: username})
-            .delete();
+    async changeBidder(username) {
+        const listPro = await db('products').where({Bidder: username})
+        if (listPro !== null){
+            for (let p of listPro){
+                const newBidder = await db('historybid').where({ProIDHistory: p.ProID}).orderBy('PriceBid', 'desc').limit(1);
+                if (newBidder.length !== 0){
+                    await db('products').where({ProID: p.ProID}).update({Bidder: newBidder[0].BidderHistory})
+                    await db('products').where({ProID: p.ProID}).update({PriceCurrent: newBidder[0].PriceBid});
+
+                    const accountSeller = await accountModel.findByUsername(p.Seller);
+                    const contentSeller = "Sản phẩm: " + p.ProName
+                        + " của bạn đăng vào lúc: " + p.DateStart + " đã thay đổi giá do người giữ giá bị xóa khỏi hệ thống." +
+                        " Giá hiện tại là: " + p.PriceCurrent
+                        + ". Vui lòng đăng nhập hệ thống để xem chi tiết."
+                    sendMail(accountSeller.email, contentSeller);
+
+                    // email người đang giữ giá sau khi xóa
+                    const accountBidder = await accountModel.findByUsername(newBidder[0].BidderHistory);
+                    const contentBidder = "Giá sản phẩm: " + p.ProName
+                        + " được đăng vào lúc: " + p.DateStart + " của Seller: " +
+                        p.Seller + "hiện tại là: " + p.PriceCurrent
+                        + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
+                        "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+                    sendMail(accountBidder.email, contentBidder);
+                } else {
+                    await db('products').where({Bidder: username}).update({Bidder: null});
+                    const accountSeller = await accountModel.findByUsername(p.Seller);
+                    const contentSeller = "Sản phẩm: " + p.ProName
+                        + " của bạn đăng vào lúc: " + p.DateStart + " đã không còn người đấu giá do người giữ giá duy nhất bị xóa khỏi hệ thống." +
+                        " Giá hiện tại là: " + p.PriceCurrent
+                        + ". Vui lòng đăng nhập hệ thống để xem chi tiết."
+                    sendMail(accountSeller.email, contentSeller);
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from 'bcrypt';
 import accountModel from "../models/account.model.js";
+import historybidModel from "../models/historybid.model.js";
 import moment from "moment";
 import sendMail from "../utils/sendMail.js";
 import generateOtp from "../utils/generateOTP.js";
@@ -198,4 +199,23 @@ router.post('/logout', async function (req, res) {
 
     res.redirect(url);
 });
+router.get('/infoHistory/:id', async function (req, res) {
+    const username = req.params.id;
+    const point = await accountModel.getPointAccount(username);
+    const account = await accountModel.findByUsername(username);
+    const list = await historybidModel.findListHistoryBidByUsername(username);
+    const listSeller = await historybidModel.findListHistorySeller(username);
+
+    res.render('vwInfo/infoHistory', {
+        layout: 'main',
+        point: account.sumBid === 0?0:point*100/account.sumBid,
+        isEmpty: list.length === 0,
+        list,
+        isBidder: account.level === "bidder",
+        isEmptySold: listSeller.length ===0,
+        listSeller,
+        username
+    });
+});
+
 export default router

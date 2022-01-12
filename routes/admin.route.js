@@ -99,6 +99,7 @@ router.post('/updateCategory/patchSubCat/:CatIDNext', async function (req, res) 
 router.get('/Account', async function (req, res) {
     const list = await accountModel.findAll();
 
+
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,

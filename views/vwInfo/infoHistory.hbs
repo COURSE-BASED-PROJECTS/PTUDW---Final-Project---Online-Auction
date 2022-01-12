@@ -1,0 +1,114 @@
+<div class="columns is-multiline is-mobile p-2">
+    <div class="column is-12 p-5 py-0">
+        <span class="tag is-success is-large">{{this.point}}%</span>
+        <hr class="has-background-grey"/>
+    </div>
+    {{#if this.isEmpty}}
+        <div class="column is-12 py-0">
+            <div class="card-header-title is-size-3">Không có lịch sử mua</div>
+        </div>
+
+    {{else}}
+        <div class="column is-12 py-0">
+            <div class="card-header-title is-size-3 py-0">Lịch sử mua sản phẩm</div>
+        </div>
+
+        {{#each this.list}}
+            <div class="column is-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img src="/img/product/{{ProID}}/1.png" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-4">{{ProName}}</p>
+                                <p class="subtitle is-6"><strong>Người bán:</strong> <a href="/account/infoHistory/{{Seller}}">@{{Seller}}</a></p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <p><strong>Mua với giá:</strong> <strong class="has-text-danger">{{format_number PriceWinAll}} vnđ</strong></p>
+                            <strong>Nhận xét từ người bán:
+                            {{#if pointFromSeller}}
+                                <span
+                                        class="icon is-small">
+
+                                    {{#if isPositiveFromSeller}}
+                                        <i class="fa fa-thumbs-up has-text-info"></i>
+                                    {{else}}
+                                        <i class="fa fa-thumbs-down has-text-danger"></i>
+                                    {{/if}}
+                                </span>
+                            {{/if}}
+                            </strong>
+                            {{#if commentSeller}}
+                                <p class="card-header-title has-text-info">{{commentSeller}}</p>
+                            {{else}}
+                                <p class="card-header-title has-text-info">Chưa có nhận xét từ người bán</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+
+    {{/if}}
+    {{#unless isBidder}}
+        {{#if this.isEmptySold}}
+            <div class="column is-12 py-0">
+                <div class="card-header-title is-size-3">Không có lịch sử bán</div>
+            </div>
+
+        {{else}}
+            <div class="column is-12 py-0">
+                <div class="card-header-title is-size-3 py-0">Lịch sử bán sản phẩm</div>
+            </div>
+            {{#each this.listSeller}}
+                <div class="column is-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-96x96">
+                                        <img src="/img/product/{{ProID}}/1.png" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">{{ProName}}</p>
+                                    <p class="subtitle is-6"><strong>Người mua:</strong> <a href="/account/infoHistory/{{Bidder}}">@{{Bidder}}</a></p>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <p><strong>Bán với giá:</strong> <strong class="has-text-danger">{{format_number PriceWinAll}} vnđ</strong></p>
+                                <strong>Nhận xét từ người mua:
+                                    {{#if pointFromBidder}}
+                                        <span
+                                                class="icon is-small">
+
+                                            {{#if isPositiveFromBidder}}
+                                                <i class="fa fa-thumbs-up has-text-info"></i>
+                                            {{else}}
+                                                <i class="fa fa-thumbs-down has-text-danger"></i>
+                                            {{/if}}
+                                        </span>
+                                    {{/if}}
+                                </strong>
+                                {{#if commentBidder}}
+                                    <p class="card-header-title has-text-info">{{commentBidder}}</p>
+                                {{else}}
+                                    <p class="card-header-title has-text-info">Chưa có nhận xét từ người bán</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    {{/unless}}
+
+
+</div>

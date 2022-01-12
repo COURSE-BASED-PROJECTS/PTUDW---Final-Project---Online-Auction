@@ -741,16 +741,14 @@
                 <div class="column is-12">
                     <div class="level">
                      <span>Người bán:
-                        <strong><a>#{{this.product.Seller}}</a></strong>
+                        <strong><a href="/account/infoHistory/{{this.product.Seller}}">#{{this.product.Seller}}</a></strong>
                          <span class="tag is-primary">+{{this.seller.point}}/{{this.seller.sumBid}}</span>
-
                      </span>
 
                         <span>Người đấu giá cao nhất:
-                        <strong><a href="#">#{{this.product.Bidder}}</a></strong>
-                        <span class="tag is-primary">+{{this.bidderFlag.point}}/{{this.bidderFlag.sumBid}}</span>
-
-                    </span>
+                            <strong><a href="/account/infoHistory/{{this.product.Bidder}}">#{{this.product.Bidder}}</a></strong>
+                            <span class="tag is-primary">+{{this.bidderFlag.point}}/{{this.bidderFlag.sumBid}}</span>
+                        </span>
                     </div>
                 </div>
             {{/if}}

@@ -6,6 +6,12 @@
             $.getJSON(`/admin/loadmore?offset=${offset}`, function (data) {
                 const list = JSON.parse(JSON.stringify(data));
                 let html = "";
+
+                if(list.length ===0){
+                    $('.loadmore').toggleClass("is-hidden");
+                    return
+                }
+
                 for (let i = 0; i < data.length; i++) {
                     html += "<tr class='has-text-centered'>";
                     html += `<th>${data[i].ProID}</th>`;
@@ -184,7 +190,7 @@
 
                 </tbody>
             </table>
-            <div class="has-text-centered">
+            <div class="has-text-centered loadmore">
                 <a class="button is-primary is-outlined" onclick="loadmore();">Tải thêm...</a>
             </div>
         </div>

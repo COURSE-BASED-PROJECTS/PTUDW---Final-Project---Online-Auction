@@ -2,6 +2,7 @@ import db from '../utils/db.js'
 import productModel from "./product.model.js";
 import accountModel from "./account.model.js";
 import moment from "moment";
+import dateFormat from "../utils/dateFormat.js";
 
 export default {
     async addHistory(entity,id, count) {
@@ -96,4 +97,58 @@ export default {
 
         return list[0].BidderHistory === username;
     },
+
+    async findListHistoryBidByUsername(username){
+        const list = await db('historybid')
+            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
+            .where({BidderHistory:username, isSuccessful:1})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                if(+p.pointFromSeller > 0)
+                    p.isPositiveFromSeller = true;
+                else
+                    p.isPositiveFromSeller = false;
+                result.push(p);
+            }
+        }
+
+        return result;
+    },
+
+    async findListHistorySeller(username){
+        const list = await db('historybid')
+            .join('products', function (){
+                this.on('historybid.ProIDHistory', '=', 'products.ProID')
+                    .andOn('historybid.BidderHistory', '=', 'products.Bidder')
+            })
+            .where({Seller:username})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
+            const now = moment().format("YYYY-MM-DD hh:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                if(+p.pointFromBidder > 0)
+                    p.isPositiveFromBidder = true;
+                else
+                    p.isPositiveFromBidder = false;
+                result.push(p);
+            }
+        }
+
+        return result;
+    }
+
 }

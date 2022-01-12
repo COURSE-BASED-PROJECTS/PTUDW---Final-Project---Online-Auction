@@ -123,7 +123,7 @@ router.get('/detail/:id', async function (req, res) {
     }
 
     res.render('vwCategory/product', {
-        layout: 'SignUp_login',
+        layout: 'SignUp_Login',
         product: product[0],
         isAuth,
         isLiked,

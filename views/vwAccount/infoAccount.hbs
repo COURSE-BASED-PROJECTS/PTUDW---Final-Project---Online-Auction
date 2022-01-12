@@ -70,36 +70,34 @@
                     <th><abbr title="">Email</abbr></th>
                     <th><abbr title="">Số điểm</abbr></th>
                     <th><abbr title="">Hạ cấp/Khóa</abbr></th>
+                    <th><abbr title="">Xóa</abbr></th>
                 </tr>
                 </thead>
 
                 <tbody>
-                {{#each this.list}}
-                    {{#if info.isLock}}
-                    {{else}}
-                        {{#if info.isSeller}}
-                            <tr class="has-text-centered">
-                                <th>
-                                    <p>
-                                        <strong><a>#{{username}}</a></strong>
-                                    </p>
-                                </th>
-                                <td>{{name}}</td>
-                                <td>{{address}}</td>
-                                <td>{{email}}</td>
-                                <td>
-                                    {{#if info.isPositive}}
-                                        <i class="is-small tag has-text-info">+{{point}}</i>
-                                    {{else}}
-                                        <i class="is-small tag has-text-danger">{{point}}</i>
-                                    {{/if}}
-                                </td>
-                                <td>
-                                    <form action="/admin/Account/degrade/{{username}}" method="post"
-                                          id="degrade-{{username}}"></form>
-                                    <form action="/admin/Account/lock/{{username}}" method="post"
-                                          id="lock-{{username}}"></form>
-                                    <span>
+                {{#each this.listSeller}}
+                    <tr class="has-text-centered">
+                        <th>
+                            <p>
+                                <strong><a>#{{username}}</a></strong>
+                            </p>
+                        </th>
+                        <td>{{name}}</td>
+                        <td>{{address}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                            {{#if info.isPositive}}
+                                <i class="is-small tag has-text-info">+{{point}}</i>
+                            {{else}}
+                                <i class="is-small tag has-text-danger">{{point}}</i>
+                            {{/if}}
+                        </td>
+                        <td>
+                            <form action="/admin/Account/degrade/{{username}}" method="post"
+                                  id="degrade-{{username}}"></form>
+                            <form action="/admin/Account/lock/{{username}}" method="post"
+                                  id="lock-{{username}}"></form>
+                            <span>
                                     <a href="javascript: $('#degrade-{{username}}').submit();"
                                        class="button is-size-7 is-rounded is-light">
                                         <span class="is-small">
@@ -114,11 +112,15 @@
                                         </span>
                                     </a>
                                 </span>
-                                </td>
-                            </tr>
-                        {{/if}}
-                    {{/if}}
-
+                        </td>
+                        <td>
+                            <form action="/admin/Account/delete/{{username}}" method="post"
+                                  id="delete-{{username}}"></form>
+                            <a href="javascript: $('#delete-{{username}}').submit();">
+                                <button class="delete mt-1 ml-2"></button>
+                            </a>
+                        </td>
+                    </tr>
                 {{/each}}
                 </tbody>
             </table>
@@ -139,43 +141,46 @@
                     <th><abbr title="">Email</abbr></th>
                     <th><abbr title="">Số điểm</abbr></th>
                     <th><abbr title="">Khóa</abbr></th>
+                    <th><abbr title="">Xóa</abbr></th>
                 </tr>
                 </thead>
 
                 <tbody>
-                {{#each this.list}}
-                    {{#if info.isLock}}
-                    {{else}}
-                        {{#if info.isBidder}}
-                            <tr class="has-text-centered">
-                                <th>
-                                    <p>
-                                        <strong><a>#{{username}}</a></strong>
-                                    </p>
-                                </th>
-                                <td>{{name}}</td>
-                                <td>{{address}}</td>
-                                <td>{{email}}</td>
-                                <td>
-                                    {{#if info.isPositive}}
-                                        <i class="is-small tag has-text-info">+{{point}}</i>
-                                    {{else}}
-                                        <i class="is-small tag has-text-danger">{{point}}</i>
-                                    {{/if}}
-                                </td>
-                                <td>
-                                    <form action="/admin/Account/lock/{{username}}" method="post"
-                                          id="lock-{{username}}"></form>
-                                    <a href="javascript: $('#lock-{{username}}').submit();"
-                                       class="button is-size-7 is-rounded is-light">
+                {{#each this.listBidder}}
+                    <tr class="has-text-centered">
+                        <th>
+                            <p>
+                                <strong><a>#{{username}}</a></strong>
+                            </p>
+                        </th>
+                        <td>{{name}}</td>
+                        <td>{{address}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                            {{#if info.isPositive}}
+                                <i class="is-small tag has-text-info">+{{point}}</i>
+                            {{else}}
+                                <i class="is-small tag has-text-danger">{{point}}</i>
+                            {{/if}}
+                        </td>
+                        <td>
+                            <form action="/admin/Account/lock/{{username}}" method="post"
+                                  id="lock-{{username}}"></form>
+                            <a href="javascript: $('#lock-{{username}}').submit();"
+                               class="button is-size-7 is-rounded is-light">
                                         <span class="is-small">
                                             <i class="fa fa-lock has-text-danger-dark"></i>
                                         </span>
-                                    </a>
-                                </td>
-                            </tr>
-                        {{/if}}
-                    {{/if}}
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/admin/Account/delete/{{username}}" method="post"
+                                  id="delete-{{username}}"></form>
+                            <a href="javascript: $('#delete-{{username}}').submit();">
+                                <button class="delete mt-1 ml-2"></button>
+                            </a>
+                        </td>
+                    </tr>
                 {{/each}}
                 </tbody>
             </table>
@@ -196,32 +201,32 @@
                     <th><abbr title="">Email</abbr></th>
                     <th><abbr title="">Số điểm</abbr></th>
                     <th><abbr title="">Mở khóa</abbr></th>
+                    <th><abbr title="">Xóa</abbr></th>
                 </tr>
                 </thead>
 
                 <tbody>
-                {{#each this.list}}
-                    {{#if info.isLock}}
-                        <tr class="has-text-centered">
-                            <th>
-                                <p>
-                                    <strong><a>#{{username}}</a></strong>
-                                </p>
-                            </th>
-                            <td>{{name}}</td>
-                            <td>{{address}}</td>
-                            <td>{{email}}</td>
-                            <td>
-                                {{#if info.isPositive}}
-                                    <i class="is-small tag has-text-info">+{{point}}</i>
-                                {{else}}
-                                    <i class="is-small tag has-text-danger">{{point}}</i>
-                                {{/if}}
-                            </td>
-                            <td>
-                                <form action="/admin/Account/unlock/{{username}}" method="post"
-                                      id="unlock-{{username}}"></form>
-                                <span>
+                {{#each this.listLockAccount}}
+                    <tr class="has-text-centered">
+                        <th>
+                            <p>
+                                <strong><a>#{{username}}</a></strong>
+                            </p>
+                        </th>
+                        <td>{{name}}</td>
+                        <td>{{address}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                            {{#if info.isPositive}}
+                                <i class="is-small tag has-text-info">+{{point}}</i>
+                            {{else}}
+                                <i class="is-small tag has-text-danger">{{point}}</i>
+                            {{/if}}
+                        </td>
+                        <td>
+                            <form action="/admin/Account/unlock/{{username}}" method="post"
+                                  id="unlock-{{username}}"></form>
+                            <span>
                                     <a href="javascript: $('#unlock-{{username}}').submit();"
                                        class="button is-size-7 is-rounded is-light">
                                         <span class="is-small">
@@ -229,9 +234,15 @@
                                         </span>
                                     </a>
                                 </span>
-                            </td>
-                        </tr>
-                    {{/if}}
+                        </td>
+                        <td>
+                            <form action="/admin/Account/delete/{{username}}" method="post"
+                                  id="delete-{{username}}"></form>
+                            <a href="javascript: $('#delete-{{username}}').submit();">
+                                <button class="delete mt-1 ml-2"></button>
+                            </a>
+                        </td>
+                    </tr>
                 {{/each}}
                 </tbody>
             </table>

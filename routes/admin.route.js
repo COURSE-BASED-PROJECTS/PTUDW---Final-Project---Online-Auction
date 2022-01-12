@@ -1,11 +1,15 @@
 import express from "express"
+import numeral from "numeral";
+import bcrypt from "bcrypt";
+
 import accountModel from "../models/account.model.js";
 import upgradeModel from "../models/upgrade.model.js";
 import categoryModel from "../models/category.model.js";
-import productModel from "../models/product.model.js"
+import productModel from "../models/product.model.js";
+import productFavoriteModel from "../models/productFavorite.model.js";
+import historybidModel from "../models/historybid.model.js";
+import lockAuctionModel from "../models/lockAuction.model.js"
 import sendMail from "../utils/sendMail.js";
-import numeral from "numeral";
-import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -98,23 +102,34 @@ router.post('/updateCategory/patchSubCat/:CatIDNext', async function (req, res) 
 
 router.get('/Account', async function (req, res) {
     const list = await accountModel.findAll();
-
-
+    let listSeller = [];
+    let listBidder = [];
+    let listLockAccount = [];
     for (const account of list) {
         account.info = {
             isPositive: account.point >= 0,
-            isSeller: account.level === 'seller',
-            isBidder: account.level === 'bidder',
-            isLock: account.isLock === 1
+        }
+        if (account.isLock !== 1){
+            if (account.level === 'seller'){
+                listSeller.push(account);
+            }
+            if (account.level === 'bidder'){
+                listBidder.push(account);
+            }
+        } else {
+            listLockAccount.push(account);
         }
     }
+
     res.render('vwAccount/infoAccount', {
         layout: 'main',
         isSeller: true,
         isAdmin: true,
         isAccount: true,
         isEmpty: list.length === 0,
-        list,
+        listSeller,
+        listBidder,
+        listLockAccount
     });
 });
 
@@ -185,7 +200,7 @@ router.post('/Account/degrade/:username', async function (req, res) {
     await accountModel.degradeAccount(username);
 
     const user = await accountModel.findByUsername(username);
-    const content = 'Tài khoản của bạn đã bị hạ cấp thành Bidder. Vui lòng liên hệ với chúng tôi để biết thêm chi tiết. ' +
+    const content = 'Tài khoản #' + user.username + ' của bạn đã bị hạ cấp thành Bidder. Vui lòng liên hệ với chúng tôi để biết thêm chi tiết. ' +
         'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
     sendMail(user.email, content);
 
@@ -198,9 +213,34 @@ router.post('/Account/lock/:username', async function (req, res) {
     await accountModel.lockAccount(username);
 
     const user = await accountModel.findByUsername(username);
-    const content = 'Tài khoản ' + user.username + ' của bạn đã bị khóa. Bạn sẽ không thể đăng nhập vào hệ thống. ' +
+    const content = 'Tài khoản #' + user.username + ' của bạn đã bị khóa. Bạn sẽ không thể đăng nhập vào hệ thống. ' +
         'Vui lòng liên hệ lại chúng tôi đễ biết thêm chi tiết';
     sendMail(user.email, content);
+
+    const url = req.headers.referer || '/';
+    res.redirect(url);
+});
+
+router.post('/Account/delete/:username', async function (req, res) {
+    const username = req.params.username;
+    const user = await accountModel.findByUsername(username);
+    await upgradeModel.deleteAccount(username);
+    await productFavoriteModel.deleteAccount(username);
+    await historybidModel.deleteAccount(username);
+    await lockAuctionModel.deleteAccount(username);
+    await  productModel.deleteBidder(username);
+    const listPro = await productModel.findBySeller(username);
+    if (listPro !== null){
+        for (let p of listPro){
+            await productModel.delProduct(p.ProID);
+        }
+    }
+    const content = 'Tài khoản #' + user.username + ' của bạn đã bị xóa khỏi hệ thống. Bạn sẽ không thể đăng nhập vào hệ thống. ' +
+        'Vui lòng liên hệ lại chúng tôi đễ biết thêm chi tiết';
+    sendMail(user.email, content);
+    await accountModel.deleteAccount(username);
+
+
 
     const url = req.headers.referer || '/';
     res.redirect(url);
@@ -211,7 +251,7 @@ router.post('/Account/unlock/:username', async function (req, res) {
     await accountModel.unlockAccount(username);
 
     const user = await accountModel.findByUsername(username);
-    const content = 'Tài khoản ' + user.username + ' của bạn đã được mở khóa. Bạn đã có thể đăng nhập vào hệ thống. ' +
+    const content = 'Tài khoản #' + user.username + ' của bạn đã được mở khóa. Bạn đã có thể đăng nhập vào hệ thống. ' +
         'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
     sendMail(user.email, content);
 
@@ -224,7 +264,7 @@ router.post('/Account/upgrade/:username', async function (req, res) {
     await accountModel.upgradeAccount(username);
 
     const user = await accountModel.findByUsername(username);
-    const content = 'Tài khoản ' + user.username + ' của bạn đã được xét duyệt nâng cấp thành Seller. ' +
+    const content = 'Tài khoản #' + user.username + ' của bạn đã được xét duyệt nâng cấp thành Seller. ' +
         'Bạn đã được quyền đăng tải sản phẩm. Vui lòng đăng nhập lại để cập nhật chức năng. ' +
         'Cám ơn bạn đã sử dụng hệ thống của chúng tôi.';
     sendMail(user.email, content);
@@ -238,7 +278,7 @@ router.post('/Account/cancel/:username', async function (req, res) {
     await accountModel.cancelUpgradeAccount(username);
 
     const user = await accountModel.findByUsername(username);
-    const content = 'Tài khoản ' + user.username + ' của bạn đã bị từ chối nâng cấp thành Seller. ' +
+    const content = 'Tài khoản #' + user.username + ' của bạn đã bị từ chối nâng cấp thành Seller. ' +
         'Vui lòng liên hệ lại chúng tôi đễ biết thêm chi tiết';
     sendMail(user.email, content);
     const url = req.headers.referer || '/';

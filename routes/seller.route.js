@@ -84,6 +84,13 @@ router.get('/liveProduct', async function (req, res)  {
     const offset = (page - 1) * limit;
 
     const list = await productOnAuctionModel.findPageOnAuctionSeller(username,limit,offset);
+
+    let listID = '';
+    for (let i = 0; i < list.length; i++) {
+        listID += list[i].ProID + ' ';
+    }
+    listID = listID.trim();
+
     const total = await productOnAuctionModel.countTotalPages(username);
     let nPages = Math.floor(total / limit);
     if (total % limit > 0) nPages++;
@@ -101,6 +108,7 @@ router.get('/liveProduct', async function (req, res)  {
         isSeller: true,
         isLive:true,
         list,
+        listID,
         isEmpty:list.length===0,
         pageNumbers,
         pageNext: {

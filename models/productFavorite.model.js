@@ -49,5 +49,10 @@ export default {
         dateFormat({key:list});
 
         return list
+    },
+    async deleteAccount(username){
+        await db('favorite')
+            .where({username: username})
+            .delete()
     }
 }

@@ -13,6 +13,11 @@ export default {
         }else{
             return true;
         }
+    },
+    async deleteAccount(username){
+        await db('lockauction')
+            .where({id: username})
+            .delete()
     }
 
 }

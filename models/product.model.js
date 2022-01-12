@@ -130,7 +130,6 @@ export default {
     },
     async findProductEnd(){
         const now = moment().format("YYYY-MM-DD HH:mm");
-        console.log(now);
         let list = await db('products').where('DateEnd', '<', now);
         dateFormat({key:list});
 
@@ -141,6 +140,7 @@ export default {
         // del following by step to avoid foreign key error
         await db('favorite').where('ProID',ProID).del();
         await db('historybid').where('ProIDHistory',ProID).del();
+        await db('lockauction').where('id',ProID).del();
         await db('products').where('ProID',ProID).del();
     },
 
@@ -228,4 +228,9 @@ export default {
 
         return list;
     },
+    async deleteBidder(username) {
+        await db('products')
+            .where({Bidder: username})
+            .delete();
+    }
 }

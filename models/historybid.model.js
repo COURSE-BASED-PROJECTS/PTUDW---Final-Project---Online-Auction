@@ -149,6 +149,11 @@ export default {
         }
 
         return result;
+    },
+    async deleteAccount(username){
+        await db('historybid')
+            .where({BidderHistory: username})
+            .delete()
     }
 
 }

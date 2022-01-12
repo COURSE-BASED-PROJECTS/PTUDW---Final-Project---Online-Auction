@@ -22,5 +22,10 @@ export default {
             .select();
 
         return list;
+    },
+    async deleteAccount(username){
+        await db('upgrade')
+            .where({id: username})
+            .delete()
     }
 }

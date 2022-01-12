@@ -62,7 +62,7 @@ export default function (app) {
         res.locals.lcCategories = await categoryModel.findAll();
         next();
     });
-    // tìm sản phẩm kết thúc để gửi mail
+    // tìm sản phẩm kết thúc để gửi mail mỗi 1 phút
     setInterval(async function () {
 
             const listProduct = await productModel.findProductEnd();

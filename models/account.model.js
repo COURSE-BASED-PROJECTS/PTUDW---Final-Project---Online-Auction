@@ -90,5 +90,10 @@ export default {
         await db('account')
             .where({ username: username})
             .update({ isLock: 0 })
+    },
+    async deleteAccount(username) {
+        await db('account')
+            .where({username: username})
+            .delete()
     }
 }

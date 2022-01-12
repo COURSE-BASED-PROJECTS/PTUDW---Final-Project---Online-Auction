@@ -235,10 +235,18 @@ router.get('/favouriteProduct', async function (req, res) {
     }
 
     const list = await productFavoriteModel.findPageFavorite(req.session.authAccount.username, limit, offset);
+
+    let listID = '';
+    for (let i = 0; i < list.length; i++) {
+        listID += list[i].ProID + ' ';
+    }
+    listID = listID.trim()
+
     res.render('vwInfo/favouriteProduct', {
         layout: 'main',
         isFavorite: true,
         list,
+        listID,
         isEmpty: list.length === 0,
         pageNumbers,
         pageNext: {

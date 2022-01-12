@@ -98,7 +98,7 @@ export default {
         return list[0].BidderHistory === username;
     },
 
-    async findListHistoryBidByUsername(username){
+    async findListHistoryBidByUsername(username,offset){
         const list = await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({BidderHistory:username, isSuccessful:1})
@@ -107,6 +107,7 @@ export default {
         dateFormat({key:list});
 
         const result = [];
+        const final = [];
 
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
@@ -120,10 +121,15 @@ export default {
             }
         }
 
-        return result;
+        for(let i=offset;(i<(2+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
+
+        return final;
+
     },
 
-    async findListHistorySeller(username){
+    async findListHistorySeller(username,offset){
         const list = await db('historybid')
             .join('products', function (){
                 this.on('historybid.ProIDHistory', '=', 'products.ProID')
@@ -135,6 +141,7 @@ export default {
         dateFormat({key:list});
 
         const result = [];
+        const final = [];
 
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
@@ -148,12 +155,11 @@ export default {
             }
         }
 
-        return result;
-    },
-    async deleteAccount(username){
-        await db('historybid')
-            .where({BidderHistory: username})
-            .delete()
+        for(let i=offset;(i<(2+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
+
+        return final;
     }
 
 }

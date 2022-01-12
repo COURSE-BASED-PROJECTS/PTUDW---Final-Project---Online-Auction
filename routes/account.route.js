@@ -6,6 +6,7 @@ import moment from "moment";
 import sendMail from "../utils/sendMail.js";
 import generateOtp from "../utils/generateOTP.js";
 import sliceURL from "../utils/sliceURL.js";
+import numeral from "numeral";
 
 const router = express.Router();
 
@@ -203,8 +204,8 @@ router.get('/infoHistory/:id', async function (req, res) {
     const username = req.params.id;
     const point = await accountModel.getPointAccount(username);
     const account = await accountModel.findByUsername(username);
-    const list = await historybidModel.findListHistoryBidByUsername(username);
-    const listSeller = await historybidModel.findListHistorySeller(username);
+    const list = await historybidModel.findListHistoryBidByUsername(username,0);
+    const listSeller = await historybidModel.findListHistorySeller(username,0);
 
     res.render('vwInfo/infoHistory', {
         layout: 'main',
@@ -216,6 +217,30 @@ router.get('/infoHistory/:id', async function (req, res) {
         listSeller,
         username
     });
+});
+
+router.get('/loadmoreBidder', async function (req, res) {
+    const offset = req.query.offset;
+    const username = req.query.username;
+
+    const list = await historybidModel.findListHistoryBidByUsername(username,offset*2);
+
+    for (const product of list) {
+        product.PriceWinAll = await numeral(product.PriceWinAll).format('0,0');
+    }
+    res.json(list);
+});
+
+router.get('/loadmoreSeller', async function (req, res) {
+    const offset = req.query.offset;
+    const username = req.query.username;
+
+    const list = await historybidModel.findListHistorySeller(username,2*offset);
+
+    for (const product of list) {
+        product.PriceWinAll = await numeral(product.PriceWinAll).format('0,0');
+    }
+    res.json(list);
 });
 
 export default router

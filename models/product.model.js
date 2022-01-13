@@ -9,21 +9,31 @@ import sendMail from "../utils/sendMail.js";
 export default {
     async findTopClose(){
         const now = moment().format("YYYY-MM-DD HH:mm");
-        const list = await db.select().table('products').orderBy('DateEnd').where('DateEnd', '>', now).limit(5);
-        dateFormat({key:list});
+        const list = await db.select().table('products')
+            .orderBy('DateEnd')
+            .where('DateEnd', '>', now)
+            .andWhere('emailed','0')
+            .limit(5);        dateFormat({key:list});
 
         return list
     },
     async findTopBidder(){
         const now = moment().format("YYYY-MM-DD HH:mm");
-        let list = await db.select().table('products').orderBy('BidderCount', 'desc').where('DateEnd', '>', now).limit(5);
-        dateFormat({key:list});
+        let list = await db.select().table('products')
+            .orderBy('BidderCount', 'desc')
+            .where('DateEnd', '>', now)
+            .andWhere('emailed','0')
+            .limit(5);        dateFormat({key:list});
 
         return list
     },
     async findTopPrice(){
         const now = moment().format("YYYY-MM-DD HH:mm");
-        let list = await db.select().table('products').orderBy('PriceCurrent', 'desc').where('DateEnd', '>', now).limit(5);
+        let list = await db.select().table('products')
+            .orderBy('PriceCurrent', 'desc')
+            .where('DateEnd', '>', now)
+            .andWhere('emailed','0')
+            .limit(5);
         dateFormat({key:list});
 
         return list

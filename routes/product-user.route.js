@@ -88,8 +88,8 @@ router.get('/detail/:id', async function (req, res) {
     const ProName = req.params.name;
     const ProID = req.params.id;
     const product = await productModel.findByProID(ProID);
-    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-    const now = moment().format("YYYY-MM-DD hh:mm");
+    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+    const now = moment().format("YYYY-MM-DD HH:mm");
     const isSold = await productModel.isSold(ProID);
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const listBid = await historybidModel.findListBidder(ProID);
@@ -183,8 +183,8 @@ router.get('/infoProduct/:id', async function (req, res) {
     const id = req.params.id;
     const product = await productModel.findByProID(id);
     const account = await accountModel.findByUsername(req.session.authAccount.username);
-    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-    const now = moment().format("YYYY-MM-DD hh:mm");
+    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+    const now = moment().format("YYYY-MM-DD HH:mm");
     const isSold = await productModel.isSold(id);
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
 
@@ -208,8 +208,8 @@ router.post('/setPrice', async function (req, res) {
     const product = await productModel.findByProID(id);
     const account = await accountModel.findByUsername(req.session.authAccount.username);
 
-    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-    const now = moment().format("YYYY-MM-DD hh:mm");
+    const dateEnd = moment(product[0].DateEnd, 'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+    const now = moment().format("YYYY-MM-DD HH:mm");
     const isSold = await productModel.isSold(id);
     const isExpired = moment(now).isAfter(dateEnd) || isSold;
     const priceBid = req.body.number;
@@ -296,7 +296,7 @@ router.post('/setPrice', async function (req, res) {
                     PriceStart: product[0].PriceCurrent,
                 }
                 // email người đang giữ giá cũ trước khi đổi người giữ giá mới
-                if (product[0].Bidder !== product[0].Seller) {
+                if (product[0].Bidder !== product[0].Seller && product[0].Bidder !== null) {
                     const accountOldBidder = await accountModel.findByUsername(product[0].Bidder);
                     const contentOldBidder = "Bạn không còn giữ giá cho sản phẩm: " + product[0].ProName
                         + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +

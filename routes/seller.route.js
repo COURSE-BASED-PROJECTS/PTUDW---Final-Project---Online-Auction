@@ -45,7 +45,7 @@ router.post('/upload',async function (req, res) {
     const upload = multer({ storage: storage })
     upload.array('image',7)(req, res, function(err){
         console.log(req.body)
-        const DateEnd = moment(req.body.DateEnd,'DD/MM/YYYY hh:mm').format('YYYY-MM-DD hh:mm:ss');
+        const DateEnd = moment(req.body.DateEnd,'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
         const username = req.session.authAccount.username;
         if(err){
             console.log(err);
@@ -60,7 +60,6 @@ router.post('/upload',async function (req, res) {
                 DateEnd: DateEnd,
                 Description: req.body.FullDesc,
                 CatIDNext:req.body.catIdNext,
-                Bidder:username,
                 Seller:username,
                 isVerify:req.body.Point === 'on',
                 renewal: req.body.checkbox === 'on',
@@ -73,7 +72,7 @@ router.post('/upload',async function (req, res) {
             });
         }
     });
-
+    return res.redirect('/seller/liveProduct');
 });
 
 router.get('/liveProduct', async function (req, res)  {

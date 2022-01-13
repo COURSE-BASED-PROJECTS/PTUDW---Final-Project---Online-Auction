@@ -63,7 +63,7 @@ export default {
             .select();
 
         for(let i=0;i<list.length;i++){
-            list[i].dateStart = moment(list[i].dateStart,'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm');
+            list[i].dateStart = moment(list[i].dateStart,'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm');
         }
 
         return list;

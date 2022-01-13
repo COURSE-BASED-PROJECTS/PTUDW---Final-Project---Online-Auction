@@ -25,8 +25,8 @@ export default {
 
         const result = [];
         for(const p of list){
-            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-            const now = moment().format("YYYY-MM-DD hh:mm");
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
             if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
                 if(+p.pointFromSeller > 0)
                     p.isPositiveFromSeller = true;
@@ -54,8 +54,8 @@ export default {
         const result = [];
 
         for(const p of list){
-            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-            const now = moment().format("YYYY-MM-DD hh:mm");
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
             if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
                 // if(+p.pointFromSeller > 0)
                 //     p.isPositiveFromBidder = true;
@@ -81,8 +81,8 @@ export default {
         const result = [];
 
         for(const p of list){
-            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-            const now = moment().format("YYYY-MM-DD hh:mm");
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
             if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
                 result.push(p);
             }
@@ -105,8 +105,8 @@ export default {
         const final = [];
 
         for(const p of list){
-            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-            const now = moment().format("YYYY-MM-DD hh:mm");
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
             if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
                 result.push(p);
             }
@@ -210,8 +210,8 @@ export default {
         const result = [];
 
         for(const p of list){
-            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY hh:mm').format("YYYY-MM-DD hh:mm");
-            const now = moment().format("YYYY-MM-DD hh:mm");
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
             if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
                 if(+p.pointFromSeller > 0)
                     p.isPositiveFromSeller = true;

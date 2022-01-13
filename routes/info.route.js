@@ -69,7 +69,7 @@ router.post('/reviewProfile', async function (req, res) {
 
 router.get('/reviewProfile/changePassword', function (req, res) {
     res.render('vwInfo/changePassword', {
-        layout: 'SignUp_login',
+        layout: 'SignUp_Login',
     });
 });
 router.post('/reviewProfile/changePassword', async function (req, res) {
@@ -104,7 +104,7 @@ router.get('/reviewProfile/activeEmail', activeEmail, async function (req, res) 
         resendOtp = true;
     }
     res.render('vwInfo/activeEmail', {
-        layout: 'SignUp_login',
+        layout: 'SignUp_Login',
         resendOtp
     });
 });
@@ -235,7 +235,7 @@ router.get('/reviewHistory', async function (req, res) {
 
 router.get('/updateInfo', async function (req, res) {
     res.render('vwInfo/updateInfo', {
-        layout: 'SignUp_login',
+        layout: 'SignUp_Login',
         isUpdateInfo: true,
     });
 });

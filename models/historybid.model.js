@@ -44,7 +44,7 @@ export default {
             .where({ProIDHistory:ProID,isAllowed:true}).select();
 
         for(let i=0;i<list.length;i++){
-            list[i].time = moment(list[i].time,'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm');
+            list[i].time = moment(list[i].time,'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm');
             list[i].name = await accountModel.getNameByUsername(list[i].BidderHistory);
             list[i].ProID = ProID;
         }
@@ -58,7 +58,7 @@ export default {
             .select();
 
         for(let i=0;i<list.length;i++){
-            list[i].time = moment(list[i].time,'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm');
+            list[i].time = moment(list[i].time,'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm');
         }
 
         return list

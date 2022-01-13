@@ -10,7 +10,7 @@ import sessionMdw from "./middlewares/session.mdw.js"
 import errorMdw from "./middlewares/error.mdw.js"
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // use public file
 app.use(express.static('public'));

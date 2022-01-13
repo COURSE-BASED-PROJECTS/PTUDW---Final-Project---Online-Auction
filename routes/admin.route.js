@@ -117,7 +117,7 @@ router.get('/Account', async function (req, res) {
             if(account.point === 0)
                 account.point_percent = account.sumBid*-100;
             else
-                account.point_percent = (account.point)*100/account.sumBid;
+                account.point_percent = ((account.point)*100/account.sumBid).toFixed();
         }
 
         if (account.isLock !== 1){
@@ -353,7 +353,7 @@ router.get('/loadmoreSeller', async function (req, res) {
             if(account.point === 0)
                 account.point_percent = account.sumBid*-100;
             else
-                account.point_percent = (account.point)*100/account.sumBid;
+                account.point_percent = ((account.point)*100/account.sumBid).toFixed();
         }
     }
 
@@ -371,7 +371,7 @@ router.get('/loadmoreBidder', async function (req, res) {
             if(account.point === 0)
                 account.point_percent = account.sumBid*-100;
             else
-                account.point_percent = (account.point)*100/account.sumBid;
+                account.point_percent = ((account.point)*100/account.sumBid).toFixed();
         }
     }
 

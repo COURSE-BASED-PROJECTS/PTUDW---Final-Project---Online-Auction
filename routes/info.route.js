@@ -39,7 +39,7 @@ router.get('/reviewProfile', async function (req, res) {
         if(account.point === 0)
             point_percent = account.sumBid*-100;
         else
-            point_percent = (account.point)*100/account.sumBid;
+            point_percent = ((account.point)*100/account.sumBid).toFixed();
     }
 
     res.render('vwInfo/profileAccount', {
@@ -210,7 +210,7 @@ router.get('/reviewHistory', async function (req, res) {
         if(account.point === 0)
             point_percent = account.sumBid*-100;
         else
-            point_percent = (account.point)*100/account.sumBid;
+            point_percent = ((account.point)*100/account.sumBid).toFixed();
     }
 
     res.render('vwInfo/reviewHistory', {

@@ -213,7 +213,7 @@ router.get('/infoHistory/:id', async function (req, res) {
         if(account.point === 0)
             point_percent = account.sumBid*-100;
         else
-            point_percent = (account.point)*100/account.sumBid;
+            point_percent = ((account.point)*100/account.sumBid).toFixed();
     }
 
 

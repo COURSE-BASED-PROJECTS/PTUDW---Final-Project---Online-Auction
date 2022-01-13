@@ -130,7 +130,7 @@ router.get('/detail/:id', async function (req, res) {
             if(account_bidder.point === 0)
                 point_percent_bidder = account_bidder.sumBid*-100;
             else
-                point_percent_bidder = (account_bidder.point)*100/account_bidder.sumBid;
+                point_percent_bidder = ((account_bidder.point)*100/account_bidder.sumBid).toFixed();
         }
         if(+account_seller.sumBid === 0){
             point_percent_seller = 0;
@@ -138,7 +138,7 @@ router.get('/detail/:id', async function (req, res) {
             if(account_seller.point === 0)
                 point_percent_seller = account_seller.sumBid*-100;
             else
-                point_percent_seller = (account_seller.point)*100/account_seller.sumBid;
+                point_percent_seller = ((account_seller.point)*100/account_seller.sumBid).toFixed();
         }
 
 

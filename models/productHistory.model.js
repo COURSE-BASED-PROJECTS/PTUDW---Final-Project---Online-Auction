@@ -214,9 +214,27 @@ export default {
     },
     async findWonProduct(username) {
         const list = await db('historybid')
-            .where({BidderHistory:username,isSuccessful:1})
+            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
+            .where({BidderHistory:username})
             .select();
-        return list;
+
+        dateFormat({key:list});
+
+        const result = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                if(+p.pointFromSeller > 0)
+                    p.isPositiveFromSeller = true;
+                else
+                    p.isPositiveFromSeller = false;
+                result.push(p);
+            }
+        }
+
+        return result;
     },
     async findPageWonProduct(username, limit, offset) {
         const list = await db('historybid')

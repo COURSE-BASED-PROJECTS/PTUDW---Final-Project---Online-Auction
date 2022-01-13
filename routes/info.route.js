@@ -328,10 +328,18 @@ router.get('/onlineAuction', async function (req, res) {
     }
 
     const list = await productAuctionModel.findPageOnAuction(username, limit, offset);
+
+    let listID = '';
+    for (let i = 0; i < list.length; i++) {
+        listID += list[i].ProID + ' ';
+    }
+    listID = listID.trim();
+    
     res.render('vwInfo/auctionProduct', {
         layout: 'main',
         isOnlineAuction: true,
         list,
+        listID,
         isEmpty: list.length === 0,
         pageNumbers,
         pageNext: {

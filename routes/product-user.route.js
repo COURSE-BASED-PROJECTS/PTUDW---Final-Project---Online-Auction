@@ -195,8 +195,8 @@ router.get('/infoProduct/:id', async function (req, res) {
     } else if (product[0].isVerify) {
         if(+account.sumBid === 0) {
             res.json("lowPoint");
-        } else if (+account.point / +account.sumBid < 0.8) {
-            res.json("lowPoint")
+        }else if((+account.point*1.0 / +account.sumBid) < 0.8) {
+            res.json("lowPoint");
         }
         res.json(product[0]);
     } else {

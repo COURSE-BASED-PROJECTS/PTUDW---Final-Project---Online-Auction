@@ -103,6 +103,7 @@
                         error = true;
                         return
                     } else if (+priceBid <= +infoProduct.PriceCurrent || (+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !== 0) {
+                        alert( (+infoProduct.firstPrice))
                         $('.modal_price_valid').toggleClass("is-active")
                         error = true;
                         return
@@ -890,19 +891,18 @@
                                 <a class="box has-background-primary"
                                    onclick="modal_verify();">Đấu giá</a>
                             </div>
-
-
                         {{/if}}
 
                     {{/if}}
 
-                    <div class="column is-12 ">
-                        <form action="/product/buynow/{{this.product.ProID}}" method="post"
-                              id="frmBuynow"></form>
-                        <a class="box has-background-warning has-text-centered has-text-weight-bold"
-                           onclick="modal_announce();">MUA NGAY</a>
-                    </div>
-
+                    {{#unless  this.isLockAuction}}
+                        <div class="column is-12 ">
+                            <form action="/product/buynow/{{this.product.ProID}}" method="post"
+                                  id="frmBuynow"></form>
+                            <a class="box has-background-warning has-text-centered has-text-weight-bold"
+                               onclick="modal_announce();">MUA NGAY</a>
+                        </div>
+                    {{/unless}}
 
                 {{/if}}
 

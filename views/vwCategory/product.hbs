@@ -102,7 +102,7 @@
                         $('.modal_priceInvalid').toggleClass("is-active")
                         error = true;
                         return
-                    } else if (+priceBid <= +infoProduct.PriceCurrent && (+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !== 0) {
+                    } else if (+priceBid <= +infoProduct.PriceCurrent || (+priceBid - +infoProduct.firstPrice) % +infoProduct.stepPrice !== 0) {
                         $('.modal_price_valid').toggleClass("is-active")
                         error = true;
                         return

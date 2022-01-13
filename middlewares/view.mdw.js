@@ -24,6 +24,15 @@ export default function (app){
                 }
                 return masking + name.substring(name.lastIndexOf(' ') + 1, name.length);
             },
+            mask_username(username){
+                let result = "****";
+
+                if(username === null)
+                    return "";
+                else{
+                    return username.substring(0,username.length/2) + result;
+                }
+            },
             section: hbs_sections(),
         }
     }));

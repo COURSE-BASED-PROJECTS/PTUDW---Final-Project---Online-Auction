@@ -94,13 +94,12 @@ export default {
         const list = await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({BidderHistory:username,Bidder:username})
-            .limit(limit)
-            .offset(offset)
             .select();
 
         dateFormat({key:list});
 
         const result = [];
+        const final = [];
 
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
@@ -110,8 +109,11 @@ export default {
             }
         }
 
+        for(let i=offset;(i<(limit+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
 
-        return result;
+        return final;
     },
     async isOnAuction(username, ProID) {
         const list = await db('historybid')

@@ -549,6 +549,7 @@
                                         <tr class="has-text-centered">
                                             <th><abbr title="time">Thời điểm</abbr></th>
                                             <th><abbr title="bidder">Người mua</abbr></th>
+                                            <th><abbr title="username">Tài khoản</abbr></th>
                                             <th><abbr title="price">Giá</abbr></th>
                                             <th><abbr title="delete">Xóa</abbr></th>
                                         </tr>
@@ -559,6 +560,7 @@
                                             <tr class="has-text-centered">
                                                 <th>{{time}}</th>
                                                 <td>{{mask_name name}}</td>
+                                                <td>{{BidderHistory}}</td>
                                                 <td>{{format_number PriceWinAll}}</td>
                                                 <form action="/product/del/{{BidderHistory}}" method="post"
                                                       id="frmDelAuction-{{BidderHistory}}">
@@ -745,8 +747,8 @@
                          <span class="tag is-primary">{{this.point_percent_bidder}}%</span>
                      </span>
 
-                        <span  class="column is-12-mobile">Người đấu giá cao nhất:
-                            <strong><a href="/account/infoHistory/{{this.product.Bidder}}">#{{this.product.Bidder}}</a></strong>
+                        <span  class="column is-12-mobile has-text-right">Người giữ giá:
+                            <strong><a href="/account/infoHistory/{{this.product.Bidder}}">#{{mask_username this.product.Bidder}}</a></strong>
                             <span class="tag is-primary">{{this.point_percent_seller}}%</span>
                         </span>
                     </div>
@@ -878,17 +880,15 @@
                             <div class="column is-12 ">
                                 <form action="/product/buynow/{{this.product.ProID}}" method="post"
                                       id="frmBuynow"></form>
-
                             </div>
                         {{/if}}
-                        <div class="column is-12 mt-0 py-0">
-                            <a class="box has-background-warning has-text-centered has-text-weight-bold"
-                               onclick="modal_announce();">MUA NGAY</a>
-                        </div>
-
 
                     {{/if}}
 
+                    <div class="column is-12 mt-1 py-0">
+                        <a class="box has-background-warning has-text-centered has-text-weight-bold"
+                           onclick="modal_announce();">MUA NGAY</a>
+                    </div>
 
 
                 {{/if}}

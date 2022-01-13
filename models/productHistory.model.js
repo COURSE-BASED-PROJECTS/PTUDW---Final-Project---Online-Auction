@@ -11,19 +11,11 @@ export default {
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
             .where({BidderHistory:username,Bidder:username})
             .select();
-        return list;
-    },
-    async findPageHistory(username, limit, offset) {
-        const list = await db('historybid')
-            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({BidderHistory:username,Bidder:username})
-            .limit(limit)
-            .offset(offset)
-            .select();
 
         dateFormat({key:list});
 
         const result = [];
+
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
             const now = moment().format("YYYY-MM-DD HH:mm");
@@ -36,8 +28,37 @@ export default {
             }
         }
 
-
         return result;
+    },
+    async findPageHistory(username, limit, offset) {
+        const list = await db('historybid')
+            .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
+            .where({BidderHistory:username,Bidder:username})
+            .select();
+
+        dateFormat({key:list});
+
+        const result = [];
+        const final = [];
+
+        for(const p of list){
+            const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+            const now = moment().format("YYYY-MM-DD HH:mm");
+            if(moment(now).isAfter(dateEnd) || await productModel.isSold(p.ProID)){
+                if(+p.pointFromSeller > 0)
+                    p.isPositiveFromSeller = true;
+                else
+                    p.isPositiveFromSeller = false;
+                result.push(p);
+            }
+        }
+
+        for(let i=offset;(i<(limit+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
+
+        return final;
+
     },
 
     async findSoldProduct(username){
@@ -200,14 +221,13 @@ export default {
     async findPageWonProduct(username, limit, offset) {
         const list = await db('historybid')
             .join('products', 'historybid.ProIDHistory', '=', 'products.ProID')
-            .where({BidderHistory:username, isSuccessful:1})
-            .limit(limit)
-            .offset(offset)
+            .where({BidderHistory:username})
             .select();
 
         dateFormat({key:list});
 
         const result = [];
+        const final = [];
 
         for(const p of list){
             const dateEnd = moment(p.DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
@@ -221,7 +241,10 @@ export default {
             }
         }
 
+        for(let i=offset;(i<(limit+offset)) && i<result.length;i++){
+            final.push(result[i]);
+        }
 
-        return result;
+        return final;
     }
 }

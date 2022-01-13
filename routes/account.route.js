@@ -234,8 +234,16 @@ router.get('/loadmoreBidder', async function (req, res) {
     const username = req.query.username;
 
     const list = await historybidModel.findListHistoryBidByUsername(username,offset*2);
+    let result = "****";
 
     for (const product of list) {
+
+        if(product.Seller === null)
+            product.SellerMask = "";
+        else{
+            product.SellerMask = product.Seller.substring(0,product.Seller.length/2) + result;
+        }
+
         product.PriceWinAll = await numeral(product.PriceWinAll).format('0,0');
     }
     res.json(list);
@@ -246,8 +254,14 @@ router.get('/loadmoreSeller', async function (req, res) {
     const username = req.query.username;
 
     const list = await historybidModel.findListHistorySeller(username,2*offset);
+    let result = "****";
 
     for (const product of list) {
+        if(product.Bidder === null)
+            product.BidderMask = "";
+        else{
+            product.BidderMask = product.Bidder.substring(0,product.Bidder.length/2) + result;
+        }
         product.PriceWinAll = await numeral(product.PriceWinAll).format('0,0');
     }
     res.json(list);

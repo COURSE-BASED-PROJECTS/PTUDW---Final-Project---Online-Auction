@@ -70,12 +70,12 @@
                     </div>
                     <div class="card-content py-2 px-0 is-size-6-desktop is-size-6-tablet is-size-7-mobile">
                         <strong class="is-block has-text-info-dark"> Giá hiện tại: <span
-                                class="has-text-danger-dark">{{PriceCurrent}}</span></strong>
+                                class="has-text-danger-dark">{{format_number PriceCurrent}}</span></strong>
                         <strong class="is-block has-text-info-dark"> Giá mua ngay: <span
-                                class="has-text-danger-dark">{{PriceWin}}</span></strong>
+                                class="has-text-danger-dark">{{format_number PriceWin}}</span></strong>
                         <hr class="navbar-divider"/>
                         <div class="content">
-                            <strong class="is-block"> Bidder: <a>@{{Bidder}}</a></strong>
+                            <strong class="is-block"> Bidder: <a>@{{mask_username Bidder}}</a></strong>
                             <strong class="is-block"> Số lượt ra giá: <a href="#">#{{BidderCount}}</a></strong>
                             <hr class="navbar-divider"/>
                             <time datetime="2016-1-1" class="is-block "><strong class="has-text-primary-dark">Ngày

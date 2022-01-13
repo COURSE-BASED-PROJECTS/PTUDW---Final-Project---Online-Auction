@@ -192,14 +192,16 @@ router.get('/infoProduct/:id', async function (req, res) {
 
     if (!account.isActive) {
         res.json(false);
-    } else if (product[0].isVerify) {
+    }else if(product[0].isVerify) {
         if(+account.sumBid === 0) {
             res.json("lowPoint");
+            return;
         }else if((+account.point*1.0 / +account.sumBid) < 0.8) {
             res.json("lowPoint");
+            return;
         }
         res.json(product[0]);
-    } else {
+    }else {
         res.json(product[0]);
     }
 

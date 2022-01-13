@@ -85,9 +85,11 @@
 
             $.getJSON(`/product/infoProduct/${ProID}`, function (data) {
                 if (data === false) {
-                    $('.modal_isActive').toggleClass("is-active")
+                    $('.modal_isActive').toggleClass("is-active");
+                    return;
                 } else if (data === "lowPoint") {
-                    $('.modal_lowpoint').toggleClass("is-active")
+                    $('.modal_lowpoint').toggleClass("is-active");
+                    return;
                 } else {
                     const infoProduct = JSON.parse(JSON.stringify(data))
                     let error = false;
@@ -772,8 +774,8 @@
             </span>
             {{else}}
                 <span class="column is-12 "><strong>Sản phẩm không cần người mua uy tín</strong>
-                <hr class="has-background-grey"/>
-            </span>
+                    <hr class="has-background-grey"/>
+                </span>
             {{/if}}
 
 

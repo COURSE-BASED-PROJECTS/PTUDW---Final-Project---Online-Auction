@@ -241,14 +241,16 @@ export default {
         return list;
     },
     async changeBidder(username) {
-        const listPro = await db('products').where({Bidder: username})
-        if (listPro !== null){
+        const listPro = await db('products').where({Bidder: username});
+        dateFormat({key:listPro});
+        if (listPro !== null) {
             for (let p of listPro){
                 const newBidder = await db('historybid').where({ProIDHistory: p.ProID}).orderBy('PriceBid', 'desc').limit(1);
                 if (newBidder.length !== 0){
+                    const bidderCount = +p.BidderCount - 1;
                     await db('products').where({ProID: p.ProID}).update({Bidder: newBidder[0].BidderHistory})
                     await db('products').where({ProID: p.ProID}).update({PriceCurrent: newBidder[0].PriceBid});
-
+                    await db('products').where({ProID: p.ProID}).update({BidderCount: bidderCount});
                     const accountSeller = await accountModel.findByUsername(p.Seller);
                     const contentSeller = "Sản phẩm: " + p.ProName
                         + " của bạn đăng vào lúc: " + p.DateStart + " đã thay đổi giá do người giữ giá bị xóa khỏi hệ thống." +
@@ -265,7 +267,7 @@ export default {
                         "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
                     sendMail(accountBidder.email, contentBidder);
                 } else {
-                    await db('products').where({Bidder: username}).update({Bidder: null});
+                    await db('products').where({Bidder: username}).update({Bidder: null, BidderCount: 0});
                     const accountSeller = await accountModel.findByUsername(p.Seller);
                     const contentSeller = "Sản phẩm: " + p.ProName
                         + " của bạn đăng vào lúc: " + p.DateStart + " đã không còn người đấu giá do người giữ giá duy nhất bị xóa khỏi hệ thống." +

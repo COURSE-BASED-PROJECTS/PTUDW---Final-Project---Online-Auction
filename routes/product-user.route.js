@@ -242,12 +242,13 @@ router.post('/setPrice', async function (req, res) {
                 + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
             sendMail(accountSeller.email, contentSeller);
             // gửi mail người thắng
-            const accountBidder = await accountModel.findByUsername(product[0].Bidder);
-            const contentBidder = "Bạn đã thắng sản phẩm: " + product[0].ProName
-                + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-                product[0].Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
-            sendMail(accountBidder.email, contentBidder);
-
+            if (product[0].Bidder !== null) {
+                const accountBidder = await accountModel.findByUsername(product[0].Bidder);
+                const contentBidder = "Bạn đã thắng sản phẩm: " + product[0].ProName
+                    + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+                    product[0].Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+                sendMail(accountBidder.email, contentBidder);
+            }
             await productModel.updateEmailed(product[0].ProID);
 
         } else {
@@ -264,30 +265,32 @@ router.post('/setPrice', async function (req, res) {
                 await historybidModel.addHistory(historybid, id, product[0].BidderCount);
                 await productModel.updateCurrentPrice(id, priceBid)
 
-                // email người bán giá thay đổi
-                const accountSeller = await accountModel.findByUsername(product[0].Seller);
-                const contentSeller = "Sản phẩm: " + product[0].ProName
-                    + " của bạn đăng vào lúc: " + product[0].DateStart + " đã được tăng giá." +
-                    " Giá hiện tại là: " + product[0].PriceCurrent
-                    + ". Vui lòng đăng nhập hệ thống để xem chi tiết."
-                sendMail(accountSeller.email, contentSeller);
+                if (product[0].Bidder !== null) {
+                    // email người bán giá thay đổi
+                    const accountSeller = await accountModel.findByUsername(product[0].Seller);
+                    const contentSeller = "Sản phẩm: " + product[0].ProName
+                        + " của bạn đăng vào lúc: " + product[0].DateStart + " đã được tăng giá." +
+                        " Giá hiện tại là: " + product[0].PriceCurrent
+                        + ". Vui lòng đăng nhập hệ thống để xem chi tiết."
+                    sendMail(accountSeller.email, contentSeller);
 
-                // email người đang giữ giá (Cập nhật giá mới)
-                const accountBidder = await accountModel.findByUsername(product[0].Bidder);
-                const contentBidder = "Giá sản phẩm: " + product[0].ProName
-                    + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-                    product[0].Seller + " đã tăng lên. Giá hiện tại là: " + product[0].PriceCurrent
-                    + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
-                    "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
-                sendMail(accountBidder.email, contentBidder);
+                    // email người đang giữ giá (Cập nhật giá mới)
+                    const accountBidder = await accountModel.findByUsername(product[0].Bidder);
+                    const contentBidder = "Giá sản phẩm: " + product[0].ProName
+                        + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+                        product[0].Seller + " đã tăng lên. Giá hiện tại là: " + product[0].PriceCurrent
+                        + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
+                        "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+                    sendMail(accountBidder.email, contentBidder);
 
-                // email người đặt nhưng ko vượt qua ng giữ giá
-                const contentNewBidder = "Bạn đã đặt giá không thành công cho sản phẩm: " + product[0].ProName
-                    + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-                    product[0].Seller + ". Rất tiết giá của bạn đưa ra không chiến thắng được người chơi khác."
-                    + "Nếu bạn còn hứng thú với sản phẩm này, vui lòng vào hệ thống để đấu giá tiếp nào." +
-                    " Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
-                sendMail(account.email, contentNewBidder);
+                    // email người đặt nhưng ko vượt qua ng giữ giá
+                    const contentNewBidder = "Bạn đã đặt giá không thành công cho sản phẩm: " + product[0].ProName
+                        + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+                        product[0].Seller + ". Rất tiết giá của bạn đưa ra không chiến thắng được người chơi khác."
+                        + "Nếu bạn còn hứng thú với sản phẩm này, vui lòng vào hệ thống để đấu giá tiếp nào." +
+                        " Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+                    sendMail(account.email, contentNewBidder);
+                }
 
             } else {
                 const priceWinAll = +priceBidFlag === 0 ? product[0].firstPrice : +priceBidFlag + +product[0].stepPrice;
@@ -322,12 +325,14 @@ router.post('/setPrice', async function (req, res) {
                 sendMail(accountSeller.email, contentSeller);
 
                 // email người mới đặt giá thành công
-                const contentBidder = "Bạn đã đặt giá thành công cho sản phẩm: " + product[0].ProName
-                    + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-                    product[0].Seller + ". Giá của bạn đưa ra đang cao hơn những người chơi khác."
-                    + "Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
-                    "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
-                sendMail(account.email, contentBidder);
+                if (product[0].Bidder !== null) {
+                    const contentBidder = "Bạn đã đặt giá thành công cho sản phẩm: " + product[0].ProName
+                        + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+                        product[0].Seller + ". Giá của bạn đưa ra đang cao hơn những người chơi khác."
+                        + "Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
+                        "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+                    sendMail(account.email, contentBidder);
+                }
             }
         }
 

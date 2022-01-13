@@ -762,8 +762,18 @@
 
             <span class="column is-12 ">Bước giá: <strong>{{format_number
                     this.product.stepPrice}}</strong>
+<!--                <hr class="has-background-grey"/>-->
+            </span>
+
+            {{#if this.product.isVerify}}
+                <span class="column is-12 "><strong>Sản phẩm cần người mua uy tín</strong>
                 <hr class="has-background-grey"/>
             </span>
+            {{else}}
+                <span class="column is-12 "><strong>Sản phẩm không cần người mua uy tín</strong>
+                <hr class="has-background-grey"/>
+            </span>
+            {{/if}}
 
 
             <span class="column is-12  pt-0">Thời điểm đăng: <strong>{{this.product.DateStart}}</strong></span>

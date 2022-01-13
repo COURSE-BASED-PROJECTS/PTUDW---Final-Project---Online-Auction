@@ -193,7 +193,9 @@ router.get('/infoProduct/:id', async function (req, res) {
     if (!account.isActive) {
         res.json(false);
     } else if (product[0].isVerify) {
-        if (+account.point / +account.sumBid < 0.8) {
+        if(+account.sumBid === 0) {
+            res.json("lowPoint");
+        } else if (+account.point / +account.sumBid < 0.8) {
             res.json("lowPoint")
         }
         res.json(product[0]);
@@ -327,6 +329,11 @@ router.post('/setPrice', async function (req, res) {
             }
         }
 
+        if(product[0].renewal){
+            if(productModel.isNearlyExpired(id)){
+                productModel.addMoreTime(id,product[0].DateEnd);
+            }
+        }
 
         const url = req.headers.referer || '/';
         res.redirect(url);

@@ -23,7 +23,6 @@ export default {
                 .update(entity);
         }
 
-
     },
     async addHistoryBuyNow(entity) {
         await db('historybid').insert(entity);

@@ -1,53 +1,38 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jan 13, 2022 at 09:48 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET TIMEZONE = 'Asia/Ho_Chi_Minh';
 
 use heroku_d91b1e77f575fa2;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `onlineauction`
+-- Database: onlineauction
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Table structure for table account
 --
 
-CREATE TABLE `account` (
-  `name` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `dob` date DEFAULT NULL,
-  `point` int(11) NOT NULL,
-  `level` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT 0,
-  `sumBid` int(11) NOT NULL DEFAULT 0,
-  `otp` smallint(6) DEFAULT NULL,
-  `isLock` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE account (
+  name varchar(50) NOT NULL,
+  address varchar(100) NOT NULL,
+  email varchar(50) NOT NULL,
+  dob date DEFAULT NULL,
+  point integer NOT NULL,
+  level varchar(50) NOT NULL,
+  username varchar(50) NOT NULL,
+  password varchar(100) NOT NULL,
+  isActive smallint NOT NULL DEFAULT 0,
+  sumBid integer NOT NULL DEFAULT 0,
+  otp smallint(6) DEFAULT NULL,
+  isLock smallint NOT NULL DEFAULT 0
+) ;
 
 --
--- Dumping data for table `account`
+-- Dumping data for table account
 --
 
-INSERT INTO `account` (`name`, `address`, `email`, `dob`, `point`, `level`, `username`, `password`, `isActive`, `sumBid`, `otp`, `isLock`) VALUES
+INSERT INTO account (name, address, email, dob, point, level, username, password, isActive, sumBid, otp, isLock) VALUES
 ('Nguyễn Đức Quân', '456/1 Trương Định, Quận 3, TPHCM', 'dtien@gmail.com', '1983-12-22', 0, 'bidder', 'daitien', '$2a$10$JCCQ92ioG.A6kqQs6jDZO.dOELnevSwBMjHpGheA5tDXir4QvkioK', 0, 0, 2056, 0),
 ('Nguyễn Văn An', '234 Nguyễn Văn Linh, Quận Thủ Đức, TPHCM', 'dtphat@gmail.com', '1990-12-13', 0, 'seller', 'daitoanphat', '$2a$10$os5Va7p5VnjBdZvPUCQt/eSpIsEnf.7uPlDm4Pck4RfT0bZZ9lYV.', 1, 0, 6419, 0),
 ('Nguyễn Đức Huy', '123 Nguyễn Văn Cừ', 'duchuy040421@gmail.com', '2001-04-04', 0, 'admin', 'dhuy', '$2a$10$PvOejPY3hGtfuw3H9mpQa.BkYwIjqtPB8hwlGqWkoMMbu7DSAs7AW', 1, 0, 1111, 0),
@@ -65,19 +50,19 @@ INSERT INTO `account` (`name`, `address`, `email`, `dob`, `point`, `level`, `use
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table categories
 --
 
-CREATE TABLE `categories` (
-  `CatID` int(11) UNSIGNED NOT NULL,
-  `CatName` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE categories (
+  CatID serial NOT NULL,
+  CatName varchar(50) NOT NULL
+) ;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table categories
 --
 
-INSERT INTO `categories` (`CatID`, `CatName`) VALUES
+INSERT INTO categories (CatID, CatName) VALUES
 (1, 'Thiết bị số'),
 (2, 'Thời trang'),
 (3, 'Giày'),
@@ -86,20 +71,20 @@ INSERT INTO `categories` (`CatID`, `CatName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriesnext`
+-- Table structure for table categoriesnext
 --
 
-CREATE TABLE `categoriesnext` (
-  `CatIDNext` int(11) UNSIGNED NOT NULL,
-  `CatNextName` varchar(50) NOT NULL,
-  `CatID` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE categoriesnext (
+  CatIDNext serial NOT NULL,
+  CatNextName varchar(50) NOT NULL,
+  CatID serial NOT NULL
+) ;
 
 --
--- Dumping data for table `categoriesnext`
+-- Dumping data for table categoriesnext
 --
 
-INSERT INTO `categoriesnext` (`CatIDNext`, `CatNextName`, `CatID`) VALUES
+INSERT INTO categoriesnext (CatIDNext, CatNextName, CatID) VALUES
 (1, 'Điện thoại', 1),
 (2, 'Máy tính bảng/Laptop', 1),
 (3, 'Áo', 2),
@@ -113,49 +98,49 @@ INSERT INTO `categoriesnext` (`CatIDNext`, `CatNextName`, `CatID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favorite`
+-- Table structure for table favorite
 --
 
-CREATE TABLE `favorite` (
-  `ProID` int(11) UNSIGNED NOT NULL,
-  `username` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE favorite (
+  ProID serial NOT NULL,
+  username varchar(50) NOT NULL
+) ;
 
 --
--- Dumping data for table `favorite`
+-- Dumping data for table favorite
 --
 
-INSERT INTO `favorite` (`ProID`, `username`) VALUES
+INSERT INTO favorite (ProID, username) VALUES
 (16, 'dinhvan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historybid`
+-- Table structure for table historybid
 --
 
-CREATE TABLE `historybid` (
-  `ProIDHistory` int(11) UNSIGNED NOT NULL,
-  `BidderHistory` varchar(50) NOT NULL,
-  `PriceBid` bigint(20) NOT NULL,
-  `PriceStart` bigint(20) NOT NULL,
-  `PriceWinAll` bigint(20) NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `isSuccessful` tinyint(1) NOT NULL DEFAULT 0,
-  `isAllowed` tinyint(1) NOT NULL DEFAULT 1,
-  `isWinner` tinyint(1) NOT NULL DEFAULT 0,
-  `commentBidder` text NOT NULL,
-  `commentSeller` text NOT NULL,
-  `pointFromBidder` int(1) NOT NULL DEFAULT 0,
-  `pointFromSeller` int(1) NOT NULL DEFAULT 0,
-  `isCancel` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE historybid (
+  ProIDHistory serial NOT NULL,
+  BidderHistory varchar(50) NOT NULL,
+  PriceBid bigserial NOT NULL,
+  PriceStart bigserial NOT NULL,
+  PriceWinAll bigserial NOT NULL,
+  time datetime NOT NULL DEFAULT current_timestamp(),
+  isSuccessful smallint NOT NULL DEFAULT 0,
+  isAllowed smallint NOT NULL DEFAULT 1,
+  isWinner smallint NOT NULL DEFAULT 0,
+  commentBidder text NOT NULL,
+  commentSeller text NOT NULL,
+  pointFromBidder integer NOT NULL DEFAULT 0,
+  pointFromSeller integer NOT NULL DEFAULT 0,
+  isCancel smallint NOT NULL DEFAULT 0
+) ;
 
 --
--- Dumping data for table `historybid`
+-- Dumping data for table historybid
 --
 
-INSERT INTO `historybid` (`ProIDHistory`, `BidderHistory`, `PriceBid`, `PriceStart`, `PriceWinAll`, `time`, `isSuccessful`, `isAllowed`, `isWinner`, `commentBidder`, `commentSeller`, `pointFromBidder`, `pointFromSeller`, `isCancel`) VALUES
+INSERT INTO historybid (ProIDHistory, BidderHistory, PriceBid, PriceStart, PriceWinAll, time, isSuccessful, isAllowed, isWinner, commentBidder, commentSeller, pointFromBidder, pointFromSeller, isCancel) VALUES
 (5, 'dhuy', 11000000, 10000000, 10000000, '2021-12-26 23:04:48', 0, 0, 0, '', '', 0, 0, 0),
 (5, 'phatdat', 10800000, 10800000, 10100000, '2021-12-26 23:05:33', 0, 0, 0, '', '', 0, 0, 0),
 (16, 'giabao', 14500000, 14000000, 14000000, '2022-01-13 07:28:02', 0, 1, 0, '', '', 0, 0, 0),
@@ -174,44 +159,44 @@ INSERT INTO `historybid` (`ProIDHistory`, `BidderHistory`, `PriceBid`, `PriceSta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lockauction`
+-- Table structure for table lockauction
 --
 
-CREATE TABLE `lockauction` (
-  `id` varchar(50) NOT NULL,
-  `product` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE lockauction (
+  id varchar(50) NOT NULL,
+  product serial NOT NULL
+) ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table products
 --
 
-CREATE TABLE `products` (
-  `ProID` int(11) UNSIGNED NOT NULL,
-  `ProName` varchar(50) NOT NULL,
-  `PriceCurrent` bigint(20) NOT NULL,
-  `PriceWin` bigint(20) NOT NULL,
-  `stepPrice` bigint(20) NOT NULL,
-  `firstPrice` bigint(20) NOT NULL,
-  `Bidder` varchar(50) DEFAULT NULL,
-  `DateStart` datetime NOT NULL DEFAULT current_timestamp(),
-  `DateEnd` datetime NOT NULL,
-  `BidderCount` int(11) DEFAULT 0,
-  `Description` text NOT NULL,
-  `CatIDNext` int(11) UNSIGNED DEFAULT NULL,
-  `Seller` varchar(50) DEFAULT NULL,
-  `renewal` tinyint(1) NOT NULL DEFAULT 0,
-  `isVerify` tinyint(1) NOT NULL DEFAULT 1,
-  `emailed` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE products (
+  ProID serial NOT NULL,
+  ProName varchar(50) NOT NULL,
+  PriceCurrent bigserial NOT NULL,
+  PriceWin bigserial NOT NULL,
+  stepPrice bigserial NOT NULL,
+  firstPrice bigserial NOT NULL,
+  Bidder varchar(50) DEFAULT NULL,
+  DateStart datetime NOT NULL DEFAULT current_timestamp(),
+  DateEnd datetime NOT NULL,
+  BidderCount integer DEFAULT 0,
+  Description text NOT NULL,
+  CatIDNext serial DEFAULT NULL,
+  Seller varchar(50) DEFAULT NULL,
+  renewal smallint NOT NULL DEFAULT 0,
+  isVerify smallint NOT NULL DEFAULT 1,
+  emailed smallint NOT NULL DEFAULT 0
+) ;
 
 --
--- Dumping data for table `products`
+-- Dumping data for table products
 --
 
-INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPrice`, `firstPrice`, `Bidder`, `DateStart`, `DateEnd`, `BidderCount`, `Description`, `CatIDNext`, `Seller`, `renewal`, `isVerify`, `emailed`) VALUES
+INSERT INTO products (ProID, ProName, PriceCurrent, PriceWin, stepPrice, firstPrice, Bidder, DateStart, DateEnd, BidderCount, Description, CatIDNext, Seller, renewal, isVerify, emailed) VALUES
 (1, 'REALME 8 Pro 8GB - 128GB', 8000000, 10000000, 500000, 7900000, NULL, '2021-12-12 23:23:11', '2022-01-13 07:35:00', 0, '<p>Thương hiệu: Realme</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.4&quot;, FHD+, Super AMOLED, 1080 x 2400 Pixel</p> <p>Camera sau: 108.0 MP + 8.0 MP + 2.0 MP + 2.0 MP</p> <p>Camera trước: 16.0 MP</p> <p>CPU: 2 x Kryo 465 2.3 GHz + 6 x Kryo 465 1.8 GHz</p> <p>RAM: 8GB</p> <p>Bộ nhớ trong: 128GB</p>', 1, 'dhuy01', 0, 0, 1),
 (2, 'OPPO Reno6 5G', 10000000, 15000000, 500000, 10000000, NULL, '2021-12-12 09:26:12', '2022-01-29 16:55:20', 0, '<p>Thương hiệu: Oppo</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.43&quot;, FHD+, AMOLED, 1080 x 2400 Pixel</p> <p>Camera sau: 64.0 MP + 8.0 MP + 2.0 MP</p> <p>Camera trước: 32.0 MP</p> <p>CPU: MediaTek Dimensity 900 5G</p> <p>RAM: 8GB</p> <p>Bộ nhớ trong: 128GB</p>', 1, 'dhuy01', 0, 0, 0),
 (3, 'APPLE iPhone XR 128GB ', 10000000, 17000000, 700000, 10000000, NULL, '2021-12-12 09:26:12', '2022-01-28 16:55:20', 0, '<p>Thương hiệu: Apple</p> <p>Xuất xứ: Trung Quốc</p> <p>Thời gian bảo h&agrave;nh: 12 Th&aacute;ng</p> <p>M&agrave;n h&igrave;nh: 6.1&quot;, Liquid Retina HD, IPS LCD, 828 x 1792 Pixel</p> <p>Camera sau: 12.0 MP</p> <p>Camera trước: 7.0 MP</p> <p>CPU: A12 Bionic - 4 x 2.5 GHz Vortex + 4 x 1.6 GHz Tempest</p> <p>RAM: 3GB</p> <p>Bộ nhớ trong: 128GB</p>', 1, 'dhuy01', 0, 0, 0),
@@ -277,7 +262,7 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
 (64, 'DR.MARTENS 1460 Mono Lace-Up Boot', 2400000, 3426000, 400000, 2400000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>1460 Mono l&agrave; đ&ocirc;i bốt Dr.Martens nguy&ecirc;n bản với đế đồng m&agrave;u, d&acirc;y da, đường kh&acirc;u, khoen, d&acirc;y buộc, v&ograve;ng g&oacute;t v&agrave; thậm ch&iacute; cả lớp l&oacute;t&mdash; cho một c&aacute;i nh&igrave;n đơn sắc từ đầu. Giữ lại tất cả cấu tr&uacute;c của phong c&aacute;ch&nbsp; cổ điển, bao gồm c&aacute;c mặt c&oacute; r&atilde;nh, đường kh&acirc;u c&oacute; thể nh&igrave;n thấy v&agrave; v&ograve;ng nối g&oacute;t ch&acirc;n.</p> <ul> <li>Được l&agrave;m bằng da mịn Dr.Martens bền bỉ.</li> <li>Được x&acirc;y dựng tr&ecirc;n đế đệm kh&iacute; mang t&iacute;nh biểu tượng của Dr. Martens, c&oacute; khả năng chống dầu v&agrave; mỡ, chống m&agrave;i m&ograve;n v&agrave; trơn trượt tốt</li> <li>Chất liệu: Bền bỉ v&agrave; nổi tiếng cứng khi bắt đầu, Da mịn, c&oacute; thể được đ&aacute;nh b&oacute;ng sang b&oacute;ng s&aacute;ng hoặc đ&aacute;nh vảy một c&aacute;ch nghệ thuật t&ugrave;y thuộc v&agrave;o sở th&iacute;ch của bạn.</li> </ul>', 6, 'nbtram', 0, 0, 0),
 (65, 'PALLADIUM Pallabrousse Legion Star', 1100000, 2169800, 300000, 1100000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>Trụ cột của huyền thoại Palladium, Pallabrousse Legion l&agrave; chiếc ủng bằng vải ban đầu được sản xuất v&agrave;o năm 1947. Giờ đ&acirc;y, huyền thoại của n&oacute; đang được khởi chạy lại cho một thế hệ nh&agrave; th&aacute;m hiểm mới.</p> <ul> <li>L&agrave; chiếc ủng đ&atilde; diễu h&agrave;nh khắp thế giới với Binh đo&agrave;n Ngoại giao Ph&aacute;p, t&aacute;c phẩm to lớn nhưng thoải m&aacute;i n&agrave;y đ&atilde; được t&aacute;i sinh bằng vật liệu hiện đại đồng thời t&ocirc;n trọng di sản vượt thời gian của n&oacute;.</li> <li>Sử dụng khu&ocirc;n v&agrave; gi&agrave;y Pallabrousse ban đầu l&agrave;m đ&egrave;n dẫn đường cho dự &aacute;n n&agrave;y, c&aacute;c yếu tố ban đầu của thiết kế đ&atilde; được l&agrave;m cho thoải m&aacute;i v&agrave; tinh vi hơn để ph&ugrave; hợp với nhu cầu ng&agrave;y nay.</li> <li>Phần tr&ecirc;n bằng vải cotton 100% hữu cơ của n&oacute; được x&acirc;y dựng dựa tr&ecirc;n đế ngo&agrave;i vấu mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i để giảm mỏi ch&acirc;n v&agrave; c&oacute; c&aacute;c chi tiết trang tr&iacute; trang nh&atilde;, t&ocirc;n vinh vị tr&iacute; của n&oacute; trong lịch sử.</li> </ul>', 6, 'nbtram', 0, 0, 0),
 (66, 'PALLADIUM Pampa X Tech WPN Black', 1900000, 4644057, 500000, 1900000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>Palladium X Michelin ... Hai thương hiệu Ph&aacute;p với c&aacute;c sản phẩm chức năng mang t&iacute;nh biểu tượng đ&atilde; hợp t&aacute;c để mang lại cảm gi&aacute;c cầm nắm tốt nhất. Đế ngo&agrave;i mới n&agrave;y dựa tr&ecirc;n lốp CrossClimate mang lại độ b&aacute;m tuyệt đối nhờ chất liệu cao su đặc biệt v&agrave; bề mặt của n&oacute;. Pampa X Tech l&agrave; một đ&ocirc;i ủng chống thấm nước + bằng vải nubuck / nylon mềm để giữ cho đ&ocirc;i ch&acirc;n của bạn lu&ocirc;n thoải m&aacute;i v&agrave; kh&ocirc; r&aacute;o trong những chuyến kh&aacute;m ph&aacute; th&agrave;nh phố nặng nề của bạn.</p> <ul> <li>UPPER: gi&agrave;y kh&ocirc;ng thấm nước được l&agrave;m chủ yếu bằng da nubuck; qu&yacute; v&agrave; lưỡi bằng vải dệt tổng hợp</li> <li>LINING: chất liệu h&agrave;ng đầu l&agrave; 70% repreve, 30% polyester, chất liệu ph&iacute;a dưới l&agrave; 100% polyester</li> <li>SOCKLINER: EVA đ&uacute;c với tổ ong để tạo sự thoải m&aacute;i v&agrave; đệm - phủ 70% vải bố, 30% polyester</li> <li>BOTTOM + TOE CAP: Đế ngo&agrave;i của Michelin với thiết kế đặc biệt để mang lại độ b&aacute;m tuyệt vời cho mọi điều kiện thời tiết; 100% cao su</li> <li>THƯƠNG HIỆU: Nh&atilde;n dệt tr&ecirc;n lưỡi / nh&atilde;n cao su ở phần tư b&ecirc;n / in ở phần b&ecirc;n / logo GPS tr&ecirc;n phần tư ở giữa</li> <li>C&Aacute;C T&Iacute;NH NĂNG: cấu tạo bootie với m&agrave;ng / gusset / khoen v&agrave; khoen v&ograve;ng ở phần tr&ecirc;n c&ugrave;ng / ren phẳng bằng polyester / gia cố tr&ecirc;n g&oacute;t / Bộ đếm g&oacute;t TPU / đế c&oacute; thể th&aacute;o rời</li> </ul>', 6, 'nbtram', 0, 0, 0);
-INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPrice`, `firstPrice`, `Bidder`, `DateStart`, `DateEnd`, `BidderCount`, `Description`, `CatIDNext`, `Seller`, `renewal`, `isVerify`, `emailed`) VALUES
+INSERT INTO products (ProID, ProName, PriceCurrent, PriceWin, stepPrice, firstPrice, Bidder, DateStart, DateEnd, BidderCount, Description, CatIDNext, Seller, renewal, isVerify, emailed) VALUES
 (67, 'PALLADIUM Off-Grid Hi Zip Waterproof', 1700000, 3651600, 400000, 1700000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>Sly, phong c&aacute;ch tương lai với những gợi &yacute; về truyền thống đ&atilde; được kết hợp v&agrave;o sản phẩm mới nhất để th&uacute;c đẩy c&aacute;c giới hạn. Được thiết kế để th&aacute;ch thức quy ước v&agrave; x&aacute;c định lại kh&aacute;m ph&aacute; trong cuộc sống sau khi kh&oacute;a m&aacute;y.</p> <p>Đặc điểm:</p> <ul> <li>Off-Grid nổi bật với đế ngo&agrave;i h&igrave;nh tổ ong qu&aacute; khổ mang đến cảm gi&aacute;c cầm nắm vượt trội, ph&ugrave; hợp về mặt giải phẫu v&agrave; kiểu d&aacute;ng sang trọng.</li> <li>Sự lặp lại của gi&agrave;y sneakerboot n&agrave;y đ&atilde; được x&acirc;y dựng về mặt kỹ thuật để bảo vệ bạn khỏi c&aacute;c yếu tố.</li> <li>Bọc ngo&agrave;i chống nước bao gồm phần tr&ecirc;n v&agrave; một lớp zip chống thấm nước cho ph&eacute;p bạn dễ d&agrave;ng đi v&agrave;o.</li> <li>Th&ecirc;m v&agrave;o d&acirc;y buộc nhanh ch&oacute;ng, m&agrave;u sắc b&oacute;ng bẩy v&agrave; thương hiệu tinh tế, bạn c&oacute; một đ&ocirc;i gi&agrave;y thể thao của tương lai.</li> </ul> <p>Ra khỏi lưới v&agrave; kh&aacute;m ph&aacute; lại thế giới của bạn.</p>', 6, 'nbtram', 0, 0, 0),
 (68, 'PALLADIUM Pallabase Twill Butternut', 1000000, 2054025, 200000, 1000000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>', 6, 'nbtram', 0, 0, 0),
 (69, 'PALLADIUM Pallabase Twill Star White', 1000000, 2054025, 200000, 1000000, NULL, '2022-01-23 23:00:00', '2022-01-28 23:55:00', 0, '<p>Khởi động Pallabase Twill đưa Pampa mang t&iacute;nh biểu tượng của ch&uacute;ng t&ocirc;i l&ecirc;n một cấp độ cao hơn.</p> <p>Một đ&ocirc;i bốt nữ t&iacute;nh với phần g&oacute;t cao hơn v&agrave; Palladium DNA, bao gồm cả phần mũi gi&agrave;y cao su mang t&iacute;nh biểu tượng.</p> <p>Một chiếc khuy bảo vệ v&agrave; phong c&aacute;ch l&agrave;m cho chiếc ủng n&agrave;y trở th&agrave;nh một bổ sung tuyệt vời cho trang phục dạo phố của bạn.</p>', 6, 'nbtram', 0, 0, 0),
@@ -327,20 +312,20 @@ INSERT INTO `products` (`ProID`, `ProName`, `PriceCurrent`, `PriceWin`, `stepPri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sessions`
+-- Table structure for table sessions
 --
 
-CREATE TABLE `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `expires` int(11) UNSIGNED NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE sessions (
+  session_id varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  expires serial NOT NULL,
+  data mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+) ;
 
 --
--- Dumping data for table `sessions`
+-- Dumping data for table sessions
 --
 
-INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
+INSERT INTO sessions (session_id, expires, data) VALUES
 ('4SkE5kcr9DT6hcCqeCNrHCBAy7OAunqy', 1642141777, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"auth\":true,\"retUrl\":\"http://localhost:3000/seller/liveProduct\",\"authAccount\":{\"name\":\"Nguyễn Minh Bảo\",\"address\":\"777 Võ Văn Kiệt, Quận 5, TPHCM\",\"email\":\"nmbao@gmail.com\",\"dob\":\"1989-04-10T17:00:00.000Z\",\"point\":0,\"level\":\"seller\",\"username\":\"giabao\",\"isActive\":1,\"sumBid\":0,\"otp\":5270,\"isLock\":0}}'),
 ('9M_EuIG5KihU1nDTwIWmB1k-MqnJSgd9', 1642120486, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"auth\":false,\"retUrl\":\"http://localhost:3000/\"}'),
 ('DNbQf10xtrium-_88zBOwOI7a_LTngD4', 1642149031, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"auth\":true,\"retUrl\":\"http://localhost:3000/product/detail/18\",\"authAccount\":{\"name\":\"Nguyễn Bảo Trâm\",\"address\":\"231 Nguyễn Văn Cừ\",\"email\":\"nbtram191@gmail.com\",\"dob\":\"2001-11-10T17:00:00.000Z\",\"point\":2,\"level\":\"admin\",\"username\":\"nbtram\",\"isActive\":1,\"sumBid\":13,\"otp\":1913,\"isLock\":0}}'),
@@ -354,130 +339,130 @@ INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `upgrade`
+-- Table structure for table upgrade
 --
 
-CREATE TABLE `upgrade` (
-  `id` varchar(50) NOT NULL,
-  `isCheck` tinyint(1) NOT NULL DEFAULT 0,
-  `isCancel` tinyint(1) NOT NULL DEFAULT 0,
-  `dateStart` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE upgrade (
+  id varchar(50) NOT NULL,
+  isCheck smallint NOT NULL DEFAULT 0,
+  isCancel smallint NOT NULL DEFAULT 0,
+  dateStart timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `account`
+-- Indexes for table account
 --
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`username`);
+ALTER TABLE account
+  ADD PRIMARY KEY (username);
 
 --
--- Indexes for table `categories`
+-- Indexes for table categories
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`CatID`);
-ALTER TABLE `categories` ADD FULLTEXT KEY `category` (`CatName`);
+ALTER TABLE categories
+  ADD PRIMARY KEY (CatID);
+ALTER TABLE categories ADD FULLTEXT KEY category (CatName);
 
 --
--- Indexes for table `categoriesnext`
+-- Indexes for table categoriesnext
 --
-ALTER TABLE `categoriesnext`
-  ADD PRIMARY KEY (`CatIDNext`),
-  ADD KEY `CatID` (`CatID`);
+ALTER TABLE categoriesnext
+  ADD PRIMARY KEY (CatIDNext),
+  ADD KEY CatID (CatID);
 
 --
--- Indexes for table `favorite`
+-- Indexes for table favorite
 --
-ALTER TABLE `favorite`
-  ADD KEY `username` (`username`),
-  ADD KEY `favorite_ibfk_1` (`ProID`);
+ALTER TABLE favorite
+  ADD KEY username (username),
+  ADD KEY favorite_ibfk_1 (ProID);
 
 --
--- Indexes for table `historybid`
+-- Indexes for table historybid
 --
-ALTER TABLE `historybid`
-  ADD PRIMARY KEY (`time`),
-  ADD KEY `Bidder` (`BidderHistory`),
-  ADD KEY `historybid_ibfk_3` (`ProIDHistory`);
+ALTER TABLE historybid
+  ADD PRIMARY KEY (time),
+  ADD KEY Bidder (BidderHistory),
+  ADD KEY historybid_ibfk_3 (ProIDHistory);
 
 --
--- Indexes for table `products`
+-- Indexes for table products
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`ProID`),
-  ADD KEY `CatIDNext` (`CatIDNext`),
-  ADD KEY `Bidder` (`Bidder`),
-  ADD KEY `Seller` (`Seller`);
-ALTER TABLE `products` ADD FULLTEXT KEY `fulltextSearch` (`ProName`);
+ALTER TABLE products
+  ADD PRIMARY KEY (ProID),
+  ADD KEY CatIDNext (CatIDNext),
+  ADD KEY Bidder (Bidder),
+  ADD KEY Seller (Seller);
+ALTER TABLE products ADD FULLTEXT KEY fulltextSearch (ProName);
 
 --
--- Indexes for table `sessions`
+-- Indexes for table sessions
 --
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`session_id`);
+ALTER TABLE sessions
+  ADD PRIMARY KEY (session_id);
 
 --
--- Indexes for table `upgrade`
+-- Indexes for table upgrade
 --
-ALTER TABLE `upgrade`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE upgrade
+  ADD PRIMARY KEY (id);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT for table categories
 --
-ALTER TABLE `categories`
-  MODIFY `CatID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE categories
+  MODIFY CatID serial NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT for table products
 --
-ALTER TABLE `products`
-  MODIFY `ProID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+ALTER TABLE products
+  MODIFY ProID serial NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `categoriesnext`
+-- Constraints for table categoriesnext
 --
-ALTER TABLE `categoriesnext`
-  ADD CONSTRAINT `categoriesnext_ibfk_1` FOREIGN KEY (`CatID`) REFERENCES `categories` (`CatID`);
+ALTER TABLE categoriesnext
+  ADD CONSTRAINT categoriesnext_ibfk_1 FOREIGN KEY (CatID) REFERENCES categories (CatID);
 
 --
--- Constraints for table `favorite`
+-- Constraints for table favorite
 --
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`ProID`) REFERENCES `products` (`ProID`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`username`) REFERENCES `account` (`username`);
+ALTER TABLE favorite
+  ADD CONSTRAINT favorite_ibfk_1 FOREIGN KEY (ProID) REFERENCES products (ProID) ON DELETE NO ACTION,
+  ADD CONSTRAINT favorite_ibfk_2 FOREIGN KEY (username) REFERENCES account (username);
 
 --
--- Constraints for table `historybid`
+-- Constraints for table historybid
 --
-ALTER TABLE `historybid`
-  ADD CONSTRAINT `historybid_ibfk_2` FOREIGN KEY (`BidderHistory`) REFERENCES `account` (`username`),
-  ADD CONSTRAINT `historybid_ibfk_3` FOREIGN KEY (`ProIDHistory`) REFERENCES `products` (`ProID`) ON DELETE NO ACTION;
+ALTER TABLE historybid
+  ADD CONSTRAINT historybid_ibfk_2 FOREIGN KEY (BidderHistory) REFERENCES account (username),
+  ADD CONSTRAINT historybid_ibfk_3 FOREIGN KEY (ProIDHistory) REFERENCES products (ProID) ON DELETE NO ACTION;
 
 --
--- Constraints for table `products`
+-- Constraints for table products
 --
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CatIDNext`) REFERENCES `categoriesnext` (`CatIDNext`),
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`Bidder`) REFERENCES `account` (`username`),
-  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`Seller`) REFERENCES `account` (`username`);
+ALTER TABLE products
+  ADD CONSTRAINT products_ibfk_1 FOREIGN KEY (CatIDNext) REFERENCES categoriesnext (CatIDNext),
+  ADD CONSTRAINT products_ibfk_2 FOREIGN KEY (Bidder) REFERENCES account (username),
+  ADD CONSTRAINT products_ibfk_3 FOREIGN KEY (Seller) REFERENCES account (username);
 
 --
--- Constraints for table `upgrade`
+-- Constraints for table upgrade
 --
-ALTER TABLE `upgrade`
-  ADD CONSTRAINT `upgrade_ibfk_1` FOREIGN KEY (`id`) REFERENCES `account` (`username`);
+ALTER TABLE upgrade
+  ADD CONSTRAINT upgrade_ibfk_1 FOREIGN KEY (id) REFERENCES account (username);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

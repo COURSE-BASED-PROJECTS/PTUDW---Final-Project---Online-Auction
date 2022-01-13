@@ -443,13 +443,15 @@ router.post('/del/:username', async function (req, res) {
         sendMail(accountCurrent.email, content);
 
         // gửi email cho ng giữ giá mới.
-        const accountNew = await accountModel.findByUsername(newBidder);
-        const contentNew = "Giá sản phẩm: " + product[0].ProName
-            + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-            product[0].Seller + " hiện tại là: " + product[0].PriceCurrent
-            + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
-            "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
-        sendMail(accountNew.email, contentNew);
+        if (product[0].Bidder !== null) {
+            const accountNew = await accountModel.findByUsername(newBidder);
+            const contentNew = "Giá sản phẩm: " + product[0].ProName
+                + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+                product[0].Seller + " hiện tại là: " + product[0].PriceCurrent
+                + ". Bạn là người đang giữ giá sản phẩm này, vui lòng vào hệ thống để xem chi tiết." +
+                "Chúng tôi sẽ gửi email cho bạn khi giá sản phẩm thay đổi. Cám ơn bạn đã tham gia đấu giá trên hệ thống của chúng tôi."
+            sendMail(accountNew.email, contentNew);
+        }
     }
 
 

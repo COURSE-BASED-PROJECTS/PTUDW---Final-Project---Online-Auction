@@ -70,9 +70,9 @@ router.post('/upload',async function (req, res) {
             res.render('vwSeller/sellProduct',{
                 layout:'SignUp_Login',
             });
+            res.redirect('/seller/liveProduct');
         }
     });
-    return res.redirect('/seller/liveProduct');
 });
 
 router.get('/liveProduct', async function (req, res)  {

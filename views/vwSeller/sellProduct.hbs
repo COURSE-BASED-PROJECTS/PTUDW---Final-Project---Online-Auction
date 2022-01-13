@@ -32,15 +32,16 @@
             $('#CatIDNext').val(subCatID);
 
             if(name && firstPrice && winPrice && dateEnd && subCatID
-            && stepPrice && FullDesc )
+                    && stepPrice && FullDesc )
                 $('#frmUpload').off('submit').submit();
             else {
-                if ($('#check-info').hasClass("is-hidden")) {
-                    $('#check-info').removeClass("is-hidden");
-                }else{
-                    $('.check-info').toggleClass('is-hidden');
-                }
+                $('.modal_verify').removeClass("is-active")
 
+                if ($('.modal_Invalid').hasClass("is-active")) {
+                    $('.modal_Invalid').removeClass("is-active")
+                } else {
+                    $('.modal_Invalid').toggleClass("is-active")
+                }
             }
         });
 
@@ -62,46 +63,65 @@
             ]
         });
     </script>
+
+    <script>
+        function modal_verify() {
+            if ($('.modal_verify').hasClass("is-active")) {
+                $('.modal_verify').removeClass("is-active")
+            } else {
+                $('.modal_verify').toggleClass("is-active")
+            }
+        }
+        function close_modal() {
+            $('.modal_verify').removeClass("is-active")
+        }
+
+    </script>
+
 {{/section}}
+
 <form action="/seller/upload" method="post" id="frmUpload" enctype="multipart/form-data">
     <div class="has-text-centered">
         <div class="column is-5 is-inline-block box my-5">
-            <div class="notification is-warning is-hidden check-info">
-                <strong>Vui lòng điền đầy đủ thông tin</strong>
+<!--            <div class="notification is-warning is-hidden check-info">-->
+<!--                <strong>Vui lòng điền đầy đủ thông tin</strong>-->
+<!--            </div>-->
+
+            <div
+                    class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG BÁN SẢN PHẨM
             </div>
 
-            <div class="card-header-title is-inline-block is-size-4-tablet is-size-4-mobile">ĐĂNG BÁN SẢN PHẨM</div>
-
-        <div class="field has-text-left">
-            <label class="label">Tên sản phẩm</label>
-            <div class="control"  >
-                <input class="input" type="text" placeholder="Nhập tên sản phẩm" id="txtName" name="name" />
+            <div class="field has-text-left">
+                <label class="label">Tên sản phẩm</label>
+                <div class="control"  >
+                    <input class="input" type="text" placeholder="Nhập tên sản phẩm" id="txtName" name="name" />
+                </div>
             </div>
-        </div>
 
-        <div class="file is-info has-name my-2" id="file-js-example">
-            <label class="file-label">
-                <input class="file-input" type="file" name="image" multiple accept="image/png, image/jpeg">
+            <div class="file is-info has-name my-2" id="file-js-example">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="image" multiple accept="image/png, image/jpeg">
 
-                <span class="file-cta">
-                    <span class="file-icon">
-                        <i class="fas fa-upload"></i>
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label is">
+                            Tải lên hình ảnh…
+                        </span>
                     </span>
-                    <span class="file-label is">
-                        Tải lên hình ảnh…
-                    </span>
-                </span>
 
-                <span class="file-name">
-                    1.png
-                </span>
-            </label>
-        </div>
-        <div class="field has-text-left">
-            <label>
-                <i> *Định dạng tên ảnh theo mẫu: 1.png, 2.png, ... , 7.png </i>
-            </label>
-        </div>
+                    <span class="file-name">
+                        1.png
+                    </span>
+                </label>
+            </div>
+
+            <div class="field has-text-left">
+                <label>
+                    <i> *Định dạng tên ảnh theo mẫu: 1.png, 2.png, ... , 7.png </i>
+                </label>
+            </div>
 
             <div class="field has-text-left">
                 <div class="control has-icons-left">
@@ -119,127 +139,175 @@
                         <input type="number" id="CatIDNext" hidden name="catIdNext" />
 
                         <span class="icon is-left">
-                            <i class="fa fa-list-ul"></i>
+                             <i class="fa fa-list-ul"></i>
                         </span>
-
                     </div>
 
                 </div>
 
-        <div class="field has-text-left">
-            <label class="label">Giá mua ngay</label>
-            <div class="control has-icons-left has-icons-right" >
-                <input
-                        class="input is-info"
-                        type="number"
-                        placeholder="Nhập giá mua ngay"
-                        id="txtPrice"
-                        name="Price"
-                />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-money"></i>
-                </span>
-                <span class="icon is-small is-right"> </span>
-            </div>
-        </div>
+                <div class="field has-text-left">
+                    <label class="label">Giá mua ngay</label>
+                    <div class="control has-icons-left has-icons-right" >
+                        <input
+                                class="input is-info"
+                                type="number"
+                                placeholder="Nhập giá mua ngay"
+                                id="txtPrice"
+                                name="Price"
+                        />
 
-        <div class="field has-text-left">
-            <label class="label">Giá khởi điểm</label>
-            <div class="control has-icons-left has-icons-right " >
-                <input
-                        class="input is-success"
-                        type="number"
-                        placeholder="Giá khởi điểm"
-                        id="txtFirstPrice"
-                        name="FirstPrice"
-                />
-                <span class="icon is-small is-left">
-                  <i class="fas fa-money-bill"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-            </div>
-        </div>
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-money"></i>
+                        </span>
 
-        <div class="field has-text-left">
-            <label class="label">Bước giá</label>
-            <div class="control has-icons-left has-icons-right" >
-                <input
-                        class="input is-dark"
-                        type="number"
-                        placeholder="Bước giá"
-                        id="txtstepPrice"
-                        name="stepPrice"
-                />
-                <span class="icon is-small is-left">
-                  <i class="fas fa-money"></i>
-                </span>
-                <span class="icon is-small is-right"> </span>
-            </div>
-        </div>
+                        <span class="icon is-small is-right"> </span>
+                    </div>
+                </div>
 
-        <div class="field has-text-left">
-            <label class="label" for="stepPrice">Thời gian kết thúc</label>
-            <div class="control has-icons-left has-icons-right" >
-                <input
-                        class="input is-info"
-                        type="text"
-                        id="datetimepicker"
-                        name="DateEnd"
-                />
-                <span class="icon is-small is-left">
-                    <i class="fa fa-calendar-day"></i>
-                </span>
 
-                <span class="icon is-small is-right"></span>
+                <div class="field has-text-left">
+                    <label class="label">Giá khởi điểm</label>
 
-            </div>
-        </div>
+                    <div class="control has-icons-left has-icons-right " >
+                        <input
+                                class="input is-success"
+                                type="number"
+                                placeholder="Giá khởi điểm"
+                                id="txtFirstPrice"
+                                name="FirstPrice"
+                        />
 
-        <hr class="has-background-black">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-money-bill"></i>
+                        </span>
 
-        <div class="field has-text-left">
-            <label class="label" for="txtFullDesc">Mô tả sản phẩm</label>
-            <div class="control">
-                <!--                <textarea class="textarea" placeholder="Textarea"></textarea>-->
-                <textarea
-                        id="txtFullDesc"
-                        name="FullDesc"
-                        placeholder="Nhập ở đây">
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
 
-                </textarea>
-            </div>
+                    </div>
+                </div>
 
-        </div>
 
-        <div class="field has-text-left">
-            <div class="control">
-                <label class="checkbox" for="txtCheckbox">
-                    <input type="checkbox" id="txtCheckbox" name="checkbox" />
-                    Tự động gia hạn
-                </label>
-            </div>
-        </div>
-        <div class="field has-text-left">
-            <div class="control">
-                <label class="checkbox" for="txtPoint">
-                    <input type="checkbox" id="txtPoint" name="Point" />
-                    Chỉ cho phép người mua có điểm uy tín trên 80% tham gia
-                </label>
-            </div>
-        </div>
+                <div class="field has-text-left">
+                    <label class="label">Bước giá</label>
 
-        <div class="field is-grouped has-text-left">
-            <div class="control">
-                <button class="button is-link">Đăng bán</button>
-            </div>
-            <div class="control">
-                <button class="button is-link is-light">Hủy</button>
-            </div>
+                    <div class="control has-icons-left has-icons-right" >
 
-        </div>
+                        <input
+                                class="input is-dark"
+                                type="number"
+                                placeholder="Bước giá"
+                                id="txtstepPrice"
+                                name="stepPrice"
+                        />
+
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-money"></i>
+                        </span>
+
+                        <span class="icon is-small is-right"> </span>
+                    </div>
+                </div>
+
+
+                <div class="field has-text-left">
+                    <label class="label" for="stepPrice">Thời gian kết thúc</label>
+
+                    <div class="control has-icons-left has-icons-right" >
+                        <input
+                                class="input is-info"
+                                type="text"
+                                id="datetimepicker"
+                                name="DateEnd"
+                        />
+
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-calendar-day"></i>
+                        </span>
+
+                        <span class="icon is-small is-right"></span>
+                    </div>
+                </div>
+
+                <hr class="has-background-black">
+
+
+                <div class="field has-text-left">
+
+                    <label class="label" for="txtFullDesc">Mô tả sản phẩm</label>
+
+                    <div class="control">
+                        <textarea
+                                id="txtFullDesc"
+                                name="FullDesc"
+                                placeholder="Nhập ở đây">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="field has-text-left">
+                    <div class="control">
+                        <label class="checkbox" for="txtCheckbox">
+                            <input type="checkbox" id="txtCheckbox" name="checkbox" />
+                            Tự động gia hạn
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field has-text-left">
+                    <div class="control">
+                        <label class="checkbox" for="txtPoint">
+                            <input type="checkbox" id="txtPoint" name="Point" />
+                            Chỉ cho phép người mua có điểm uy tín trên 80% tham gia
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <a onclick="modal_verify();" class="button is-primary">
+                            <i class="fa fa-upload mr-2"></i>
+                            Đăng bán
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="modal modal_verify">
+        <div class="modal-background"></div>
+        <div class="modal-card has-text-centered">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Xác nhận</p>
+                <button class="delete close_modal" aria-label="close" onclick="close_modal();"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Bạn muốn đăng bán sản phẩm này?
+                </p>
+            </section>
+            <footer class="modal-card-foot is-justify-content-center">
+                <a class="button is-success "
+                   href="javascript: $('#frmUpload').submit();">Đồng ý</a>
+                <a class="button" onclick="close_modal();">Hủy</a>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal modal_Invalid">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <section class="modal-card-body notification is-warning is-large">
+                <p>
+                    <strong>Vui lòng điền đầy đủ thông tin</strong>
+                </p>
+
+                <button class="delete is-large" aria-label="close"></button>
+
+            </section>
+        </div>
+    </div>
+
 </form>

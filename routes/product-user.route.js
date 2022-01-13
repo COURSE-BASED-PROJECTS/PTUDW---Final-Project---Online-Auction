@@ -353,18 +353,22 @@ router.post('/buynow/:id', async function (req, res) {
     await productModel.updateSuccessul(username, product[0].PriceWin, id);
 
     // gửi mail người thắng , người bán
-    const accountSeller = await accountModel.findByUsername(product[0].Seller);
-    const contentSeller = "Sản phẩm: " + product[0].ProName
-        + " của bạn đăng vào lúc: " + product[0].DateStart + " đã có người mua. Vui lòng liên hệ với Bidder " +
-        product[0].Bidder + " để giao dịch sản phẩm."
-        + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
-    sendMail(accountSeller.email, contentSeller);
-    const accountBidder = await accountModel.findByUsername(product[0].Bidder);
-    const contentBidder = "Bạn đã thắng sản phẩm: " + product[0].ProName
-        + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
-        product[0].Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. " +
-        "Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
-    sendMail(accountBidder.email, contentBidder);
+    if (product[0].Bidder !== null) {
+        const accountSeller = await accountModel.findByUsername(product[0].Seller);
+        const contentSeller = "Sản phẩm: " + product[0].ProName
+            + " của bạn đăng vào lúc: " + product[0].DateStart + " đã có người mua. Vui lòng liên hệ với Bidder " +
+            product[0].Bidder + " để giao dịch sản phẩm."
+            + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
+        sendMail(accountSeller.email, contentSeller);
+
+        const accountBidder = await accountModel.findByUsername(product[0].Bidder);
+        const contentBidder = "Bạn đã thắng sản phẩm: " + product[0].ProName
+            + " được đăng vào lúc: " + product[0].DateStart + " của Seller: " +
+            product[0].Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. " +
+            "Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+
+        sendMail(accountBidder.email, contentBidder);
+    }
 
     await productModel.updateEmailed(product[0].ProID);
 

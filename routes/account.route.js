@@ -122,7 +122,7 @@ router.get('/login', async function (req, res) {
     const prevURL = sliceURL(req.headers.referer);
 
     if (prevURL !== "/account/login/" && req.headers.referer !== "/favicon.ico"
-        && prevURL !== "/account/register/") {
+        && prevURL !== "/account/register/" && prevURL !== "/account/login/forgotPassword/") {
         req.session.retUrl = req.headers.referer;
     }
     res.render('vwSignUp_Login/Login', {
@@ -173,8 +173,8 @@ router.get('/login/forgotPassword', function (req, res) {
 router.post('/login/forgotPassword', async function (req, res) {
     const username = req.query.username;
     const newPass = generateOtp(6) + '';
-    console.log(typeof newPass);
-    console.log(newPass);
+    //console.log(typeof newPass);
+    //console.log(newPass);
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(newPass, salt);
     const entity = {
@@ -185,7 +185,7 @@ router.post('/login/forgotPassword', async function (req, res) {
 
     const account = await accountModel.findByUsername(username);
 
-    const content = 'Your new password is: <b>' + newPass + '</b>.<br/>Please change your password after successful login. If you do not change your password soon, we cannot guarantee your security.'
+    const content = 'Mật khẩu mới của bạn là: <b>' + newPass + '</b><br/>Vui lòng thay đổi mật khẩu của bạn sau khi đăng nhập thành công. Nếu bạn không thay đổi mật khẩu sớm, chúng tôi không thể đảm bảo an toàn bảo mật cho bạn.'
     sendMail(account.email, content);
 
     res.redirect('/account/login');

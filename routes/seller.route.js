@@ -67,9 +67,9 @@ router.post('/upload',async function (req, res) {
 
             productModel.addProduct(product)
 
-            res.render('vwSeller/sellProduct',{
-                layout:'SignUp_Login',
-            });
+            // res.render('vwSeller/sellProduct',{
+            //     layout:'SignUp_Login',
+            // });
             res.redirect('/seller/liveProduct');
         }
     });

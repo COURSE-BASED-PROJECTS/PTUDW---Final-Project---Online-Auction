@@ -769,13 +769,23 @@
             </span>
 
             {{#if this.product.isVerify}}
-                <span class="column is-12 "><strong>Sản phẩm cần người mua uy tín</strong>
-                <hr class="has-background-grey"/>
-            </span>
-            {{else}}
-                <span class="column is-12 "><strong>Sản phẩm không cần người mua uy tín</strong>
+
+                <span class="column is-12 ">
+                    <img src="/img/logo/star.png"  height="32" width="32">
+                    <strong>Sản phẩm cần người mua uy tín</strong>
+
                     <hr class="has-background-grey"/>
                 </span>
+
+            {{else}}
+
+                <span class="column is-12 ">
+                    <img src="/img/logo/rating_off.png" height="32" width="32">
+                    <strong>Sản phẩm không cần người mua uy tín</strong>
+
+                    <hr class="has-background-grey"/>
+                </span>
+
             {{/if}}
 
 

@@ -81,13 +81,13 @@ export default function (app) {
                             lp.Bidder + " để giao dịch sản phẩm."
                             + " Cám ơn bạn đã đăng sản phẩm trên hệ thống của chúng tôi."
                         sendMail(accountSeller.email, contentSeller);
-
-                        const accountBidder = await accountModel.findByUsername(lp.Bidder);
-                        const contentBidder = "Bạn đã thắng sản phẩm: " + lp.ProName
-                            + " được đăng vào lúc: " + lp.DateStart + " của Seller: " +
-                            lp.Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
-                        sendMail(accountBidder.email, contentBidder);
-
+                        if (lp.Bidder !== null) {
+                            const accountBidder = await accountModel.findByUsername(lp.Bidder);
+                            const contentBidder = "Bạn đã thắng sản phẩm: " + lp.ProName
+                                + " được đăng vào lúc: " + lp.DateStart + " của Seller: " +
+                                lp.Seller + ". Vui lòng liên hệ với Seller để giao dịch sản phẩm. Cám ơn bạn đã giao dịch sản phẩm trên hệ thống của chúng tôi."
+                            sendMail(accountBidder.email, contentBidder);
+                        }
                         await productModel.updateEmailed(lp.ProID);
                     }
                 }

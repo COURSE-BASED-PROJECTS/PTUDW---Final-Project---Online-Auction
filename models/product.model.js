@@ -277,5 +277,28 @@ export default {
                 }
             }
         }
+    },
+
+    async isNearlyExpired(ProID){
+        const list = await db('products').where({ProID:ProID});
+        dateFormat({key:list});
+
+        const dateEnd = moment(list[0].DateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+        const now = moment().format("YYYY-MM-DD HH:mm");
+
+        const duration = moment(now).diff(moment(dateEnd));
+        const m = moment.duration(duration).asMinutes();
+
+        if(+m <= 5){
+            return true;
+        }
+        return false;
+    },
+    async addMoreTime(ProID,dateEnd){
+        // const dateEndUpdate = moment(dateEnd,'DD/MM/YYYY HH:mm').format("YYYY-MM-DD HH:mm");
+
+        await db('products')
+            .where({ProID:ProID})
+            .update({DateEnd:moment(dateEnd,'DD/MM/YYYY HH:mm').add(10,'minutes').format("YYYY-MM-DD HH:mm")});
     }
 }
